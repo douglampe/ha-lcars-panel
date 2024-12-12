@@ -1,0 +1,46 @@
+@use 'row'
+@use 'column'
+@use 'bar'
+@use 'element'
+@use 'elbow'
+@use 'bracket'
+@use 'layout'
+@use 'colors'
+@use 'text'
+
+body
+  background-color: var(--color-default-bg)
+  margin: 0
+
+a
+  margin: 0
+  padding: 0
+  text-decoration: none
+
+.lcars-card
+  font-family: Antonio, "Arial", monospace
+  color: #fff
+  text-transform: uppercase
+
+.lcars-wrapper
+  background-color: #000
+  display: flex
+  flex-direction: column
+  height: 100vh
+
+::-webkit-scrollbar
+  width: 1em
+
+::-webkit-scrollbar-track
+  background-color: colors.$defaultBg
+
+::-webkit-scrollbar-thumb
+  background-color: #696969
+  outline: 1px solid #696969
+
+@each $name, $color in colors.$colors
+  .lcars-#{$name}-bg
+    background-color: $color
+    fill: color
+  .lcars-#{$name}-color
+    color: $color

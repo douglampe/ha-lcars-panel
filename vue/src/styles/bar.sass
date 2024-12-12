@@ -1,0 +1,100 @@
+@use 'colors'
+
+.lcars-bar
+  position: relative
+  color: colors.$defaultBg
+  height: 100%
+  width: 100%
+  margin: 0
+  display: inline-block
+  background-color: colors.$default
+
+  &:after
+    content: ''
+    display: block
+    position: absolute
+    background: colors.$defaultBg
+
+  &.empty
+    background-color: transparent
+
+  &.spacer
+    margin: 0
+    padding: 0
+    background-color: transparent
+    width: 3vw
+    min-width: 3vw
+    height: 3vw
+    min-height: 3vw
+
+  &.double-spacer
+    background-color: transparent
+    width: 0.5rem
+    min-width: 0.5rem
+    height: 0.5rem
+    min-height: 0.5rem
+
+  &.left-space
+    margin-left: 3vw
+
+  &.left-double-space
+    margin-left: 0.5rem
+
+  &.right-space
+    margin-right: 3vw
+
+  &.right-double-space
+    margin-right: 0.5rem
+
+  &.horizontal
+    height: 2vw
+
+  &.left-end
+    width: 1.5rem
+    max-width: 1.5rem
+    min-width: 1.5rem
+    border-top-left-radius: 0.75rem
+    border-bottom-left-radius: 0.75rem
+
+  &.left-end.decorated:after
+    right: 3vw
+    width: 3vw
+    height: 100%
+    background-color: colors.$defaultBg
+
+  &.right-end
+    width: 1.5rem
+    max-width: 1.5rem
+    min-width: 1.5rem
+    border-top-right-radius: 0.75rem
+    border-bottom-right-radius: 0.75rem
+
+  &.right-end.decorated:after
+    left: 3vw
+    width: 3vw
+    height: 100%
+    background-color: colors.$defaultBg
+    background-color: colors.$defaultBg
+
+  &.fill
+    flex: 1
+
+  &.bottom
+    align-self: flex-end
+
+  & .lcars-title
+    color: #fff
+    background-color: colors.$defaultBg
+    text-transform: uppercase
+    margin: 0
+    margin-left: 0.83335rem
+    padding-left: 0.16667rem
+    padding-right: 0.16667rem
+    padding-bottom: 0.16667rem
+    display: inline-block
+    font-size: 150%
+    height: 100%
+
+  & .lcars-title.right
+    float: right
+    margin-right: 0.83335rem

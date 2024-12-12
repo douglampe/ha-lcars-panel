@@ -1,0 +1,23 @@
+@use 'sizes'
+
+.lcars-text-element
+  font-size: 2.6vw
+  height: 3vw
+  line-height: 2.6vw
+.lcars-text-element.centered
+  text-align: center
+
+.lcars-bar-text
+  font-size: 2vw
+  height: 2vw
+  line-height: 1.8vw
+  margin: 0
+  padding: 0
+
+@each $name, $height in sizes.$u-heights
+  .lcars-text-#{$name}
+    font-size: $height
+    height: $height
+    line-height: $height - 0.4vw
+  .lcars-text-#{$name}.centered
+    text-align: center

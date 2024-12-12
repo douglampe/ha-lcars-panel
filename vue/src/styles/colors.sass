@@ -1,0 +1,11 @@
+@use "sass:map"
+
+$colors: ( "gray": #234, "white": #fff, "black": #000, "gray-blue": #6b8697, "pale-canary": #ff9, "golden-tanoi": #fc6, "neon-carrot": #f93, "eggplant": #646, "lilac": #c9c, "anakiwa": #9cf, "mariner": #36c, "bahama-blue": #069, "red-alert": #e10, "blue-bell": #99c, "melrose": #99f, "hopbush": #c69, "chestnut-rose": #c66, "orange-peel": #f96, "atomic-tangerine": #f90, "danub": #68c, "indigo": #45b, "lavender-purple": #97a, "cosmic": #746, "red-damask": #d64, "medium-carmine": #a53, "bourbon": #b62, "sandy-brown": #e95, "periwinkle": #cdf, "dodger-blue": #59f, "dodger-blue-alt": #36f, "blue": #01e, "navy-blue": #008, "husk": #ba5, "rust": #b41, "tamarillo": #821 )
+
+$default: map.get($colors, 'gray-blue')
+$defaultBg: map.get($colors, 'black')
+
+:root
+  --color-default-bg: #{$defaultBg}
+  @each $name, $color in $colors
+    --color-#{$name}: #{$color}

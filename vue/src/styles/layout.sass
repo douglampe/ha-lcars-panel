@@ -1,0 +1,32 @@
+@use 'sizes'
+
+.lcars-u-0-plus
+  width: 2vw
+
+@each $name, $width in sizes.$u-widths
+  .lcars-#{$name}
+    width: $width
+  .lcars-#{$name}.half
+    width: $width - 4vw
+  .lcars-#{$name}-plus
+    width: $width + 2vw
+  .lcars-#{$name}-minus
+    width: $width - 2vw
+
+@each $name, $height in sizes.$u-heights
+  .lcars-#{$name}
+    height: $height
+  .lcars-#{$name}.half
+    height: calc($height / 2)
+
+.lcars-container
+  width: 100%
+  height: 100%
+
+.centered
+  justify-content: center
+  align-items: center
+  text-align: center
+
+.fill
+  flex: 1

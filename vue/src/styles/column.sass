@@ -1,0 +1,39 @@
+.lcars-column
+  display: inline-flex
+  flex-direction: column
+
+  &.fill
+    flex: 1
+
+  &.centered
+    justify-content: center
+
+  &.full-centered
+    justify-content: center
+    align-items: center
+
+  &.centered-right
+    justify-content: center
+    align-items: flex-end
+
+  &.bottom
+    justify-content: flex-end
+
+  &.bottom-centered
+    justify-content: flex-end
+    align-items: center
+
+  & :last-child
+    margin-bottom: 0
+
+  & > *
+    margin-bottom: 0.2vw
+
+  &.left-menu
+    padding-right: 2rem
+
+  &.right-menu
+    padding-left: 2rem
+
+  &.start-space
+    margin-top: 0.25rem

@@ -1,0 +1,55 @@
+
+@use 'colors'
+
+.lcars-elbow
+  position: relative
+  width: 4vw
+  min-width: 4vw
+  height: 4vw
+  min-height: 4vw
+  background: colors.$default
+  margin: 0
+
+  &:after
+    content: ''
+    display: block
+    position: absolute
+    width: 2vw
+    height: 2vw
+    background: colors.$defaultBg
+
+  &.left-bottom
+    border-top-left-radius: 4vw
+
+  &.left-bottom:after
+    right: 0
+    top: 2vw
+    border-top-left-radius: 2vw
+
+  &.left-top
+    border-bottom-left-radius: 4vw
+
+  &.left-top:after
+    right: 0
+    bottom: 2vw
+    border-bottom-left-radius: 2vw
+
+  &.right-bottom
+    border-top-right-radius: 4vw
+
+  &.right-bottom:after
+    top: 2vw
+    border-top-right-radius: 2vw
+  
+  &.right-bottom.square-outer
+    border-top-right-radius: 0
+
+  &.right-top
+    border-bottom-right-radius: 4vw
+
+  &.right-top:after
+    bottom: 2vw
+    border-bottom-right-radius: 2vw
+  
+  &.right-top.square-outer
+    border-bottom-right-radius: 0

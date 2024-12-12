@@ -1,0 +1,5 @@
+node_modules
+!./ha-config/custom_components/**/*
+!./ha-config/configuration.yaml
+ha-config/**
+dist/

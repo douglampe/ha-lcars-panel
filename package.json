@@ -1,0 +1,23 @@
+{
+  "name": "hass-lcars",
+  "version": "0.0.1",
+  "description": "LCARS Dashboard for Home Assistant",
+  "scripts": {
+    "build": "node build.js",
+    "sass": "sass src/sass/main.sass dist/css/lcars.css",
+    "watch": "node --watch build.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/douglampe/hacs-lcars.git"
+  },
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/douglampe/hacs-lcars/issues"
+  },
+  "homepage": "https://github.com/douglampe/hacs-lcars#readme",
+  "dependencies": {
+    "handlebars": "^4.7.8",
+    "sass": "^1.82.0"
+  }
+}
