@@ -1,11 +1,13 @@
 <script setup lang="ts">
-import { computed, reactive, ref, useId, watch } from 'vue'
+import { computed, reactive, useId, watch } from 'vue'
 import gsap from 'gsap'
+
+import { haState } from '../HAState'
 import VDotLine from './VDotLine.vue'
+
 const id = useId()
 
 const {
-  hass,
   entity,
   attribute,
   title,
@@ -20,12 +22,6 @@ const {
   minorTickInterval,
   decimalPlaces,
 } = defineProps({
-  hass: {
-    type: Object,
-    default() {
-      return {}
-    },
-  },
   entity: {
     type: String,
     default() {
@@ -105,23 +101,14 @@ const {
     },
   },
 })
+
 function colSize() {
   return ((window.innerWidth ?? 1280) * 8) / 100
 }
-const watchValue = ref(0)
-const reactiveValue = reactive({ number: 0 })
-const reactiveValueY = reactive({ number: colSize() * (rows ?? 6) })
-const reactiveValueHeight = reactive({ number: colSize() * (rows ?? 6) })
-watch(watchValue, (n) => {
-  const height = colSize() * (rows ?? 6)
-  gsap.to(reactiveValue, { duration: 1, number: n })
-  gsap.to(reactiveValueY, { duration: 1, number: ((max - n) * height) / (max - min) })
-  gsap.to(reactiveValueHeight, { duration: 1, number: (n * height) / (max - min) })
-})
-watchValue.value = getValue()
 
-const size = computed(() => {
-  const value = getValue()
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function getData(state: any) {
+  const value = getValue(state)
   const width = colSize() * (cols ?? 1)
   const height = colSize() * (rows ?? 6)
   const majorTicks = []
@@ -149,6 +136,7 @@ const size = computed(() => {
     height,
     majorTicks,
     minorTicks,
+    value,
     valueY: ((max - value) * height) / (max - min),
     valueHeight: ((max - min - value) * height) / (max - min),
     tickLength: width * 0.3,
@@ -156,21 +144,50 @@ const size = computed(() => {
     minorTickLength: width * 0.15,
     middle: width * 0.5,
   }
+}
+
+const data = computed(() => {
+  return getData(haState.value)
 })
 
-function getValue() {
-  if (!hass || !hass.states) {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function getValue(state: any) {
+  if (!state?.states) {
     return min
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const entityObject: any = hass.states[entity]
+  const entityObject: any = state.states[entity]
 
-  if (!entityObject || !entityObject.attributes) {
+  if (!entityObject?.attributes) {
     return min
   }
+
   return entityObject.attributes[attribute]
 }
+
+const reactiveValue = reactive({ number: min })
+const reactiveValueY = reactive({ number: colSize() * (rows ?? 6) })
+const reactiveValueHeight = reactive({ number: colSize() * (rows ?? 6) })
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function animateValue(newData: any) {
+  gsap.to(reactiveValue, { duration: 1, number: newData.value })
+  gsap.to(reactiveValueY, { duration: 1, number: newData.valueY })
+  gsap.to(reactiveValueHeight, { duration: 1, number: newData.valueHeight })
+}
+
+watch(
+  () => getValue(haState.value),
+  (v) => {
+    if (v) {
+      const newData = getData(haState.value)
+      animateValue(newData)
+    }
+  },
+)
+
+animateValue(data.value)
 </script>
 
 <template>
@@ -180,24 +197,24 @@ function getValue() {
         version="1.1"
         xmlns="http://www.w3.org/2000/svg"
         xmlns:xlink="http://www.w3.org/1999/xlink"
-        :width="size.width"
-        :height="size.height"
-        :viewBox="'0,0,' + size.width + ',' + size.height"
+        :width="data.width"
+        :height="data.height"
+        :viewBox="'0,0,' + data.width + ',' + data.height"
       >
         <defs>
           <linearGradient :id="'vertical-gradient-' + id">
             <stop offset="0" stop-opacity="0" :stop-color="bgColor" />
-            <stop :offset="size.width" stop-opacity="1" :stop-color="bgColor" />
+            <stop :offset="data.width" stop-opacity="1" :stop-color="bgColor" />
           </linearGradient>
         </defs>
         <rect
           x="0"
-          :y="reactiveValueY.number.toFixed(0)"
+          :y="(reactiveValueY.number ?? 0).toFixed(0)"
           rx="0.5vw"
           ry="0.5vw"
           id="Value Gradient"
-          :width="size.width"
-          :height="reactiveValueHeight.number.toFixed(0)"
+          :width="data.width"
+          :height="(reactiveValueHeight.number ?? 0).toFixed(0)"
           :fill="'url(#vertical-gradient-' + id + ')'"
         />
         <rect
@@ -206,8 +223,8 @@ function getValue() {
           rx="0.5vw"
           ry="0.5vw"
           id="Border"
-          :width="size.width"
-          :height="size.height"
+          :width="data.width"
+          :height="data.height"
           :stroke="color"
           :stroke-width="stroke"
           fill="none"
@@ -230,44 +247,44 @@ function getValue() {
           style="mix-blend-mode: normal"
         >
           <path
-            v-for="tick in size.majorTicks"
+            v-for="tick in data.majorTicks"
             :key="'tick-left-' + tick.value"
-            :d="'M0 ' + tick.y + ' h' + size.tickLength"
+            :d="'M0 ' + tick.y + ' h' + data.tickLength"
             :id="'Major tick ' + tick.value"
             fill="none"
             :stroke="color"
             :stroke-width="stroke"
           />
           <path
-            v-for="tick in size.minorTicks"
+            v-for="tick in data.minorTicks"
             :key="'minor-tick-left-' + tick.value"
-            :d="'M0 ' + tick.y + ' h' + size.minorTickLength"
+            :d="'M0 ' + tick.y + ' h' + data.minorTickLength"
             :id="'Minor tick ' + tick.value"
             fill="none"
             :stroke="color"
             :stroke-width="stroke"
           />
           <path
-            v-for="tick in size.majorTicks"
+            v-for="tick in data.majorTicks"
             :key="'tick-right-' + tick.value"
-            :d="'M' + size.width + ' ' + tick.y + ' h-' + size.tickLength"
+            :d="'M' + data.width + ' ' + tick.y + ' h-' + data.tickLength"
             :id="'Major tick right' + tick.value"
             fill="none"
             :stroke="color"
             :stroke-width="stroke"
           />
           <path
-            v-for="tick in size.minorTicks"
+            v-for="tick in data.minorTicks"
             :key="'minor-tick-right-' + tick.value"
-            :d="'M' + size.width + ' ' + tick.y + ' h-' + size.minorTickLength"
+            :d="'M' + data.width + ' ' + tick.y + ' h-' + data.minorTickLength"
             :id="'Minor tick lower' + tick.value"
             fill="none"
             :stroke="color"
             :stroke-width="stroke"
           />
           <text
-            v-for="tick in size.majorTicks"
-            :x="size.middle"
+            v-for="tick in data.majorTicks"
+            :x="data.middle"
             :y="tick.y"
             :key="'label-' + tick.value"
             id='1 "in. label no. 0'
@@ -276,7 +293,7 @@ function getValue() {
             stroke-width="1"
             font-family="monospace"
             font-weight="bold"
-            :font-size="size.fontSize"
+            :font-size="data.fontSize"
             text-anchor="middle"
             dominant-baseline="middle"
           >

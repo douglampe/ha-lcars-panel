@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import HAStateView from './HAStateView.vue'
 import HorizontalPanel from './HorizontalPanel.vue'
 import HorizontalScale from './HorizontalScale.vue'
 import LCARSColumn from './LCARSColumn.vue'
@@ -8,6 +9,7 @@ import VerticalScale from './VerticalScale.vue'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const components: Record<string, any> = {
+  HAStateView,
   HorizontalPanel,
   HorizontalScale,
   LCARSColumn,
@@ -17,7 +19,7 @@ const components: Record<string, any> = {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const { hass, items } = defineProps<{ hass: any; items: any }>()
+const { items } = defineProps<{ items: any }>()
 </script>
 
 <template>
@@ -25,9 +27,8 @@ const { hass, items } = defineProps<{ hass: any; items: any }>()
     v-for="(item, index) in items"
     :is="components[item.type]"
     :key="index"
-    :hass="hass"
     v-bind="item.props"
   >
-    <RecursiveComponent :hass="hass" :items="item.children" />
+    <RecursiveComponent :items="item.children" />
   </component>
 </template>

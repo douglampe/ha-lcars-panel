@@ -1,5 +1,5 @@
 {
-  "name": "hass-lcars",
+  "name": "ha-lcars-panel",
   "version": "0.0.1",
   "description": "LCARS Dashboard for Home Assistant",
   "scripts": {

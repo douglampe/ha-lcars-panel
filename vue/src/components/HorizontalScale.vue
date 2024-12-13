@@ -1,11 +1,12 @@
 <script setup lang="ts">
-import { computed, reactive, ref, useId, watch } from 'vue'
+import { computed, reactive, useId, watch } from 'vue'
 import gsap from 'gsap'
+
+import { haState } from '../HAState'
 import DotLine from './DotLine.vue'
 const id = useId()
 
 const {
-  hass,
   entity,
   attribute,
   title,
@@ -20,12 +21,6 @@ const {
   minorTickInterval,
   decimalPlaces,
 } = defineProps({
-  hass: {
-    type: Object,
-    default() {
-      return {}
-    },
-  },
   entity: {
     type: String,
     default() {
@@ -109,18 +104,11 @@ const {
 function colSize() {
   return ((window.innerWidth ?? 1280) * 8) / 100
 }
-const watchValue = ref(0)
-const reactiveValue = reactive({ number: 0 })
-const reactiveValueX = reactive({ number: 0 })
-watch(watchValue, (n) => {
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function getData(state: any) {
+  const value = getValue(state)
   const width = colSize() * (cols ?? 8)
-  gsap.to(reactiveValue, { duration: 1, number: Number(n) ?? 0 })
-  gsap.to(reactiveValueX, { duration: 1, number: ((Number(n) ?? 0) * width) / (max - min) })
-})
-watchValue.value = getValue()
-const size = computed(() => {
-  const value = getValue()
-  const width = ((window.innerWidth ?? 1280) * (cols ?? 8) * 8) / 100
   const majorTicks = []
   for (
     let i = Number(min) + Number(tickInterval);
@@ -149,27 +137,55 @@ const size = computed(() => {
     width,
     majorTicks,
     minorTicks,
+    value,
     valueX: ((value - min) * width) / (max - min),
     tickLength: (height ?? 50) * 0.3,
     fontSize: (height ?? 50) * 0.25,
     minorTickLength: (height ?? 50) * 0.15,
     middle: (height ?? 50) * 0.5,
   }
+}
+
+const data = computed(() => {
+  return getData(haState.value)
 })
 
-function getValue() {
-  if (!hass || !hass.states) {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function getValue(state: any) {
+  if (!state?.states) {
     return min
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const entityObject: any = hass.states[entity]
+  const entityObject: any = state.states[entity]
 
-  if (!entityObject || !entityObject.attributes) {
+  if (!entityObject?.attributes) {
     return min
   }
+
   return entityObject.attributes[attribute]
 }
+
+const reactiveValue = reactive({ number: 0 })
+const reactiveValueX = reactive({ number: 0 })
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function animateValue(newData: any) {
+  gsap.to(reactiveValue, { duration: 1, number: newData.value })
+  gsap.to(reactiveValueX, { duration: 1, number: newData.valueX })
+}
+
+watch(
+  () => getValue(haState.value),
+  (v) => {
+    if (v) {
+      const newData = getData(haState.value)
+      animateValue(newData)
+    }
+  },
+)
+
+animateValue(data.value)
 </script>
 <template>
   <div style="padding: 1vw">
@@ -177,14 +193,14 @@ function getValue() {
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
       xmlns:xlink="http://www.w3.org/1999/xlink"
-      :width="size.width"
+      :width="data.width"
       :height="height"
-      :viewBox="'0,0,' + size.width + ',' + height"
+      :viewBox="'0,0,' + data.width + ',' + height"
     >
       <defs>
         <linearGradient :id="'gradient-' + id">
           <stop offset="0" stop-opacity="0" :stop-color="bgColor" />
-          <stop :offset="size.width" stop-opacity="1" :stop-color="bgColor" />
+          <stop :offset="data.width" stop-opacity="1" :stop-color="bgColor" />
         </linearGradient>
       </defs>
       <rect
@@ -193,7 +209,7 @@ function getValue() {
         rx="0.5vw"
         ry="0.5vw"
         id="Value Gradient"
-        :width="reactiveValueX.number.toFixed(0)"
+        :width="(reactiveValueX.number ?? 0).toFixed(0)"
         :height="height"
         :fill="'url(#gradient-' + id + ')'"
       />
@@ -203,7 +219,7 @@ function getValue() {
         rx="0.5vw"
         ry="0.5vw"
         id="Border"
-        :width="size.width"
+        :width="data.width"
         :height="height"
         :stroke="color"
         :stroke-width="stroke"
@@ -227,53 +243,53 @@ function getValue() {
         style="mix-blend-mode: normal"
       >
         <path
-          v-for="tick in size.majorTicks"
+          v-for="tick in data.majorTicks"
           :key="'tick-upper-' + tick.value"
-          :d="'M' + tick.x + ' 0 v' + size.tickLength"
+          :d="'M' + tick.x + ' 0 v' + data.tickLength"
           :id="'Major tick ' + tick.value"
           fill="none"
           :stroke="color"
           :stroke-width="stroke"
         />
         <path
-          v-for="tick in size.minorTicks"
+          v-for="tick in data.minorTicks"
           :key="'minor-tick-upper-' + tick.value"
-          :d="'M' + tick.x + ' 0 v' + size.minorTickLength"
+          :d="'M' + tick.x + ' 0 v' + data.minorTickLength"
           :id="'Minor tick ' + tick.value"
           fill="none"
           :stroke="color"
           :stroke-width="stroke"
         />
         <path
-          v-for="tick in size.majorTicks"
+          v-for="tick in data.majorTicks"
           :key="'tick-lower-' + tick.value"
-          :d="'M' + tick.x + ' ' + height + ' v-' + size.tickLength"
+          :d="'M' + tick.x + ' ' + height + ' v-' + data.tickLength"
           :id="'Major tick lower' + tick.value"
           fill="none"
           :stroke="color"
           :stroke-width="stroke"
         />
         <path
-          v-for="tick in size.minorTicks"
+          v-for="tick in data.minorTicks"
           :key="'minor-tick-lower-' + tick.value"
-          :d="'M' + tick.x + ' ' + height + ' v-' + size.minorTickLength"
+          :d="'M' + tick.x + ' ' + height + ' v-' + data.minorTickLength"
           :id="'Minor tick lower' + tick.value"
           fill="none"
           :stroke="color"
           :stroke-width="stroke"
         />
         <text
-          v-for="tick in size.majorTicks"
+          v-for="tick in data.majorTicks"
           :x="tick.x"
           :key="'label-' + tick.value"
-          :y="size.middle"
+          :y="data.middle"
           id='1 "in. label no. 0'
           :fill="color"
           stroke="none"
           stroke-width="1"
           font-family="monospace"
           font-weight="bold"
-          :font-size="size.fontSize"
+          :font-size="data.fontSize"
           text-anchor="middle"
           dominant-baseline="middle"
         >

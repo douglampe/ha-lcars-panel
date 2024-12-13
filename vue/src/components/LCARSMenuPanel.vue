@@ -8,8 +8,6 @@ import CPanel from './CPanel.vue'
 const reactiveTitle = ref('HOME')
 const reactiveColor = ref('var(--color-gray-blue)')
 
-const { items } = defineProps<{ items: MenuItem[] }>()
-
 const emit = defineEmits<{
   (e: 'select', item: MenuItem): void
 }>()
@@ -26,7 +24,7 @@ function onSelect(item: MenuItem) {
 </style>
 
 <template>
-  <LeftBracketMenu :items="items" @select="onSelect"></LeftBracketMenu>
+  <LeftBracketMenu @select="onSelect"></LeftBracketMenu>
   <div class="lcars-column lcars-u-0-plus">&nbsp;</div>
   <CPanel :title="reactiveTitle" :color="reactiveColor" :leftColor="reactiveColor">
     <div class="lcars-row">
