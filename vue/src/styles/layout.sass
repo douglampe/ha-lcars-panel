@@ -69,7 +69,7 @@
     height: var(--lcars-cell-height)
 
 @for $i from 1 through 12
-  $height: calc(var(--lcars-cell-height) * $i) !important
+  $height: calc(var(--lcars-cell-height) * $i)
   .lcars-h-#{$i}
     height: #{$height} !important
     width: var(--lcars-cell-width)
