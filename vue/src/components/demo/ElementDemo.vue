@@ -14,8 +14,8 @@
     <code>right-end</code>.
   </p>
   <div class="lcars-column">
-    <div class="lcars-bar left-end"></div>
-    <div class="lcars-bar right-end"></div>
+    <div class="lcars-bar horizontal left-end"></div>
+    <div class="lcars-bar horizontal right-end"></div>
   </div>
   <p>
     You can add decorators to bars by adding a <code>decorator</code> class in addition to
@@ -23,8 +23,9 @@
   </p>
   <div class="lcars-column">
     <div class="lcars-row">
-      <div class="lcars-bar left-end decorated lcars-color-3-bg"></div>
-      <div class="lcars-bar horizontal lcars-w-1 lcars-color-3-bg"></div>
+      <div class="lcars-bar horizontal left-end"></div>
+      <div class="lcars-bar left-end decorated"></div>
+      <div class="lcars-bar horizontal lcars-w-1"></div>
     </div>
     <div class="lcars-bar right-end decorated"></div>
   </div>
