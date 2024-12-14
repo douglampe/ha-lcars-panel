@@ -89,9 +89,6 @@ export function loadDefault() {
 }
 
 export function showDemo(demo: { main: string; sub?: string; fullScreen?: boolean }) {
+  haConfig.value.showDemo = demo.main !== 'none'
   haConfig.value.demo = demo
-}
-
-export function isDemoVisible() {
-  return typeof haConfig.value.demo != undefined && haConfig.value.demo?.main !== 'none'
 }

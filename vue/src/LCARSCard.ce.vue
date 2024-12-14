@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-import { isDemoVisible } from './HAConfig'
+import { haConfig } from './HAConfig'
 import type { MenuItem } from './MenuItem'
 import DemoContainer from './components/demo/DemoContainer.vue'
 import LCARSMenuPanel from './components/LCARSMenuPanel.vue'
@@ -16,7 +16,7 @@ function onSelect(item: MenuItem) {
 </script>
 
 <template>
-  <DemoContainer v-if="isDemoVisible()" />
+  <DemoContainer v-if="haConfig.showDemo" />
   <div v-else class="lcars-wrapper">
     <LCARSMenuPanel @select="onSelect">
       <RecursiveComponent :items="reactiveMenuItem.items" />
