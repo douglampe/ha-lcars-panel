@@ -105,4 +105,16 @@
       <div class="lcars-bracket bottom hollow lcars-w-3 lcars-color-6-border"></div>
     </div>
   </div>
+  <p>A T is like an intersection.</p>
+  <div class="lcars-column">
+    <div class="lcars-row">
+      <div class="lcars-t-left lcars-color-5-bg"></div>
+      <div class="lcars-bar horizontal flex-center lcars-w-1 lcars-color-5-bg"></div>
+      <div class="lcars-bar horizontal flex-center right-end lcars-color-5-bg"></div>
+    </div>
+    <div class="lcars-row">
+      <div class="lcars-bar horizontal flex-center lcars-w-1 lcars-color-5-bg"></div>
+      <div class="lcars-t-right lcars-color-5-bg"></div>
+    </div>
+  </div>
 </template>

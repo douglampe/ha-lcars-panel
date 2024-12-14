@@ -53,3 +53,63 @@
   
   &.right-top.square-outer
     border-bottom-right-radius: 0
+
+.lcars-t-left,
+.lcars-t-right
+  flex-direction: column
+  position: relative
+  width: 150px
+  height: 150px
+  background-color: #fb5
+
+.lcars-t-left:before
+  content: ''
+  background-color: var(--lcars-color-default-bg)
+  width: 50px
+  height: 50px
+  display: block
+  position: absolute
+  top: 0
+  right: 0
+  border-bottom-left-radius: 50px
+  margin: 0
+  padding: 0
+
+.lcars-t-left:after
+  content: ''
+  background-color: var(--lcars-color-default-bg)
+  width: 50px
+  height: 50px
+  display: block
+  position: absolute
+  bottom: 0
+  right: 0
+  border-top-left-radius: 50px
+  margin: 0
+  padding: 0
+
+.lcars-t-right:before
+  content: ''
+  background-color: var(--lcars-color-default-bg)
+  width: 50px
+  height: 50px
+  display: block
+  position: absolute
+  top: 0
+  left: 0
+  border-bottom-right-radius: 50px
+  margin: 0
+  padding: 0
+
+.lcars-t-right:after
+  content: ''
+  background-color: var(--lcars-color-default-bg)
+  width: 50px
+  height: 50px
+  display: block
+  position: absolute
+  bottom: 0
+  left: 0
+  border-top-right-radius: 50px
+  margin: 0
+  padding: 0
