@@ -1,8 +1,9 @@
+@use 'globals'
 
 .lcars-row
   display: inline-flex
   flex-direction: row
-  width: 100%
+  flex-wrap: wrap
 
   &.fill
     flex: 1
@@ -24,6 +25,13 @@
   &.right-bottom
     justify-content: flex-end
     align-items: flex-end
+  
+  &.gap > *
+    margin-right: var(--lcars-gap)
 
-  & :last-child
+  &.gap-small > *
+    margin-right: var(--lcars-gap-small)
+
+  &.gap:last-child,
+  &.gap-small:last-child
     margin-right: 0

@@ -5,11 +5,11 @@ const defaultConfig = {
     {
       index: '01',
       title: 'Cartography',
-      color: 'var(--color-chestnut-rose)',
+      color: 'var(--lcars-color-chestnut-rose)',
       items: [
         {
           type: 'HorizontalPanel',
-          props: { color: 'var(--color-neon-carrot)' },
+          props: { color: 'var(--lcars-color-neon-carrot)' },
           children: [
             {
               type: 'LCARSRow',
@@ -21,8 +21,8 @@ const defaultConfig = {
                       type: 'HorizontalScale',
                       props: {
                         cols: 3,
-                        bgColor: 'var(--color-neon-carrot)',
-                        color: 'var(--color-anakiwa)',
+                        bgColor: 'var(--lcars-color-neon-carrot)',
+                        color: 'var(--lcars-color-anakiwa)',
                         title: 'Azimuth',
                         entity: 'sun.sun',
                         attribute: 'azimuth',
@@ -41,8 +41,8 @@ const defaultConfig = {
                     {
                       type: 'VerticalScale',
                       props: {
-                        color: 'var(--color-periwinkle)',
-                        bgColor: 'var(--color-neon-carrot)',
+                        color: 'var(--lcars-color-periwinkle)',
+                        bgColor: 'var(--lcars-color-neon-carrot)',
                         title: 'Elevation',
                         entity: 'sun.sun',
                         attribute: 'elevation',
@@ -61,11 +61,11 @@ const defaultConfig = {
         },
       ],
     },
-    { index: '02', title: 'Navigation', color: 'var(--color-neon-carrot)' },
+    { index: '02', title: 'Navigation', color: 'var(--lcars-color-neon-carrot)' },
     {
       index: '03',
       title: 'Sensors',
-      color: 'var(--color-periwinkle)',
+      color: 'var(--lcars-color-periwinkle)',
       items: [
         {
           type: 'LCARSColumn',
@@ -73,13 +73,25 @@ const defaultConfig = {
         },
       ],
     },
-    { index: '04', title: 'Communication', color: 'var(--color-dodger-blue)' },
-    { index: '05', title: 'Engineering', color: 'var(--color-lilac)' },
-    { index: '06', title: 'Holodeck', color: 'var(--color-periwinkle)' },
-    { index: '07', title: 'Medical', color: 'var(--color-dodger-blue)' },
+    { index: '04', title: 'Communication', color: 'var(--lcars-color-dodger-blue)' },
+    { index: '05', title: 'Engineering', color: 'var(--lcars-color-lilac)' },
+    { index: '06', title: 'Holodeck', color: 'var(--lcars-color-periwinkle)' },
+    { index: '07', title: 'Medical', color: 'var(--lcars-color-dodger-blue)' },
   ],
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
 } as any
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const haConfig = ref(import.meta.env.DEV ? defaultConfig : ({} as any))
+
+export function loadDefault() {
+  haConfig.value = defaultConfig
+}
+
+export function showDemo(demo: { main: string; sub?: string; fullScreen?: boolean }) {
+  haConfig.value.demo = demo
+}
+
+export function isDemoVisible() {
+  return typeof haConfig.value.demo != undefined && haConfig.value.demo?.main !== 'none'
+}

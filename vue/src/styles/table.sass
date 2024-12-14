@@ -1,0 +1,69 @@
+// LCARS table
+
+// Baseline defaults
+table 
+  border: none
+
+  & td,th 
+    text-align: left
+    vertical-align: top
+    white-space: nowrap
+
+  & th 
+    font-weight: bolder
+
+  &.standard-header 
+    border-spacing: 2rem .25rem
+    margin-left: -2rem
+
+  &.standard-header th 
+    border-bottom: .1rem solid
+
+  &.standard-header tbody:before 
+    /* only works without border-collapse, note */
+    line-height: .1em 
+    content: "\00a0"
+    color: transparent
+    display: block 
+
+@keyframes rowscan 
+  0%
+    filter: brightness(1.0)
+  3%
+    filter: brightness(1.65)
+  10%
+    filter: brightness(1.65)
+  14%
+    filter: brightness(1.0)
+  100%
+    filter: brightness(1.0)
+
+$animationDuration: 8s
+$animationFramecount: 10
+@for $animationFrameIdx from 1 through $animationFramecount
+  table.lcars-table.scanning tr:nth-child(#{$animationFrameIdx}) td 
+    animation-name: rowscan
+    animation-duration: $animationDuration
+    animation-delay: calc($animationDuration / $animationFramecount * $animationFrameIdx)
+    animation-iteration-count: infinite
+
+@keyframes rowscan-fast 
+  0%
+    filter: brightness(1.0)
+  3%
+    filter: brightness(1.65)
+  10%
+    filter: brightness(1.65)
+  14%
+    filter: brightness(1.0)
+  100%
+    filter: brightness(1.0)
+
+$animationDuration: 2s
+$animationFramecount: 12
+@for $animationFrameIdx from 1 through $animationFramecount
+  table.lcars-table.scanning-fast tr:nth-child(#{$animationFrameIdx}) td 
+    animation-name: rowscan-fast
+    animation-duration: $animationDuration
+    animation-delay: calc($animationDuration / $animationFramecount * $animationFrameIdx)
+    animation-iteration-count: infinite

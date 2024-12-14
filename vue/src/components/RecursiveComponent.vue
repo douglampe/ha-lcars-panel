@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import EntityAttributeTable from './EntityAttributeTable.vue'
+import HAStateTable from './HAStateTable.vue'
 import HAStateView from './HAStateView.vue'
 import HorizontalPanel from './HorizontalPanel.vue'
 import HorizontalScale from './HorizontalScale.vue'
@@ -9,6 +11,8 @@ import VerticalScale from './VerticalScale.vue'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const components: Record<string, any> = {
+  EntityAttributeTable,
+  HAStateTable,
   HAStateView,
   HorizontalPanel,
   HorizontalScale,

@@ -5,7 +5,7 @@ import LCARSElement from './LCARSElement.vue'
 
 <template>
   <div class="lcars-column">
-    <LCARSElement class="lcars-u-2 rounded centered" @click="loadTestState()"
+    <LCARSElement class="lcars-w-2 rounded centered" @click="loadTestState()"
       >Load Test State</LCARSElement
     >
     <pre style="text-transform: none; overflow-y: scroll; flex: 1">{{ haState.states }}</pre>

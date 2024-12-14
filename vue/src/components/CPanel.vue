@@ -6,13 +6,13 @@ const { title, color } = defineProps({
   color: {
     type: String,
     default() {
-      return 'var(--color-gray-blue)'
+      return 'var(--lcars-color-gray-blue)'
     },
   },
   leftColor: {
     type: String,
     default() {
-      return 'var(--color-golden-tanoi)'
+      return 'var(--lcars-color-golden-tanoi)'
     },
   },
 })
@@ -21,7 +21,7 @@ const { title, color } = defineProps({
 <template>
   <div class="lcars-column fill">
     <div class="lcars-row">
-      <div class="lcars-u-1 lcars-elbow left-bottom" :style="{ backgroundColor: color }"></div>
+      <div class="lcars-w-1 lcars-elbow left-bottom" :style="{ backgroundColor: color }"></div>
       <div class="lcars-bar horizontal fill" :style="{ backgroundColor: color }"></div>
       <div class="lcars-bar-text" :style="{ color: color }">{{ title }}</div>
       <div
@@ -30,7 +30,10 @@ const { title, color } = defineProps({
       ></div>
     </div>
     <div class="lcars-row fill">
-      <div :style="{ backgroundColor: leftColor }" class="lcars-bar lcars-u-1-minus"></div>
+      <div
+        :style="{ backgroundColor: leftColor }"
+        class="lcars-bar lcars-w-1-minus lcars-hmax"
+      ></div>
       <div
         class="lcars-column fill"
         style="margin-top: -2vw; margin-bottom: -2vw; margin-left: 1vw"
@@ -39,7 +42,7 @@ const { title, color } = defineProps({
       </div>
     </div>
     <div class="lcars-row">
-      <div class="lcars-u-1 lcars-elbow left-top" :style="{ backgroundColor: color }"></div>
+      <div class="lcars-w-1 lcars-elbow left-top" :style="{ backgroundColor: color }"></div>
       <div class="lcars-bar horizontal bottom fill" :style="{ backgroundColor: color }"></div>
       <div
         class="lcars-bar horizontal right-end decorated bottom"

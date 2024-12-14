@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { defineEmits } from 'vue'
 import LCARSElement from './LCARSElement.vue'
 import type { MenuItem } from '../MenuItem'
 const props: MenuItem = defineProps<MenuItem>()
@@ -17,24 +16,17 @@ const { index, icon, title, color, href } = props
     class="lcars-row"
     @click="$emit('select', props)"
   >
-    <div class="lcars-u-1-minus lcars-row">
-      <LCARSElement
-        :left="true"
-        :rounded="true"
-        :cap="true"
-        :bgColor="color"
-        color="#000"
-        style="margin-left: 1vw"
-      ></LCARSElement>
-      <div class="lcars-text-element centered fill">
+    <div class="lcars-row">
+      <div class="lcars-cap-left" :style="{ backgroundColor: color }"></div>
+      <div class="lcars-text-element centered lcars-w-unit">
         <span v-if="icon" v-html="icon" :style="{ color: color }"></span
         ><span v-else :style="{ color: color }">{{ index }}</span>
       </div>
     </div>
     <LCARSElement
-      class="lcars-u-2-minus"
+      class="lcars-w-2-minus lcars-h-unit"
       :bgColor="color"
-      color="var(--color-black)"
+      color="var(--lcars-color-black)"
       :href="href ?? ''"
     >
       {{ title }}

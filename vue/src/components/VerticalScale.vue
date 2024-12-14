@@ -55,13 +55,13 @@ const {
   color: {
     type: String,
     default() {
-      return 'var(--color-periwinkle)'
+      return 'var(--lcars-color-periwinkle)'
     },
   },
   bgColor: {
     type: String,
     default() {
-      return 'var(--color-golden-tanoi)'
+      return 'var(--lcars-color-golden-tanoi)'
     },
   },
   stroke: {

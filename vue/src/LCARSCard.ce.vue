@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-import { haConfig } from './HAConfig'
+import { isDemoVisible } from './HAConfig'
 import type { MenuItem } from './MenuItem'
-import LayoutTests from './components/LayoutTests.vue'
+import DemoContainer from './components/demo/DemoContainer.vue'
 import LCARSMenuPanel from './components/LCARSMenuPanel.vue'
 import RecursiveComponent from './components/RecursiveComponent.vue'
 
@@ -16,12 +16,11 @@ function onSelect(item: MenuItem) {
 </script>
 
 <template>
-  <div class="lcars-card lcars-wrapper">
-    <div class="lcars-row fill">
-      <LCARSMenuPanel @select="onSelect">
-        <RecursiveComponent :items="reactiveMenuItem.items" />
-      </LCARSMenuPanel>
-    </div>
+  <DemoContainer v-if="isDemoVisible()" />
+  <div v-else class="lcars-wrapper">
+    <LCARSMenuPanel @select="onSelect">
+      <RecursiveComponent :items="reactiveMenuItem.items" />
+    </LCARSMenuPanel>
   </div>
 </template>
 

@@ -1,19 +1,26 @@
-@use 'colors'
+@use 'globals'
+
+.lcars-wrapper hr
+    border: calc(var(--lcars-unit) / 2)
+    border-color: var(--lcars-color-default)
+    border-style: solid
+    border-radius: calc(var(--lcars-unit) / 2)
+    margin: var(--lcars-gap-small)
 
 .lcars-bar
   position: relative
-  color: colors.$defaultBg
-  height: 100%
-  width: 100%
+  color: var(--lcars-color-default-bg)
   margin: 0
   display: inline-block
-  background-color: colors.$default
+  background-color: var(--lcars-color-default)
+  width: 100%
+  height: 100%
 
   &:after
     content: ''
     display: block
     position: absolute
-    background: colors.$defaultBg
+    background: var(--lcars-color-default-bg)
 
   &.empty
     background-color: transparent
@@ -22,59 +29,58 @@
     margin: 0
     padding: 0
     background-color: transparent
-    width: 3vw
-    min-width: 3vw
-    height: 3vw
-    min-height: 3vw
+    width: var(--lcars-unit)
+    min-width: var(--lcars-unit)
+    height: var(--lcars-unit)
+    min-height: var(--lcars-unit)
 
   &.double-spacer
     background-color: transparent
-    width: 0.5rem
-    min-width: 0.5rem
-    height: 0.5rem
-    min-height: 0.5rem
+    width: calc(var(--lcars-unit) * 2)
+    min-width: calc(var(--lcars-unit) * 2)
+    height: calc(var(--lcars-unit) * 2)
+    min-height: calc(var(--lcars-unit) * 2)
 
   &.left-space
-    margin-left: 3vw
+    margin-left: var(--lcars-unit)
 
   &.left-double-space
-    margin-left: 0.5rem
+    margin-left: calc(var(--lcars-unit) * 2)
 
   &.right-space
-    margin-right: 3vw
+    margin-right: var(--lcars-unit)
 
   &.right-double-space
-    margin-right: 0.5rem
+    margin-right: calc(var(--lcars-unit) * 2)
 
   &.horizontal
-    height: 2vw
+    height: var(--lcars-unit)
 
   &.left-end
-    width: 1.5rem
-    max-width: 1.5rem
-    min-width: 1.5rem
-    border-top-left-radius: 0.75rem
-    border-bottom-left-radius: 0.75rem
+    width: calc(var(--lcars-unit) / 2)
+    max-width: calc(var(--lcars-unit) / 2)
+    min-width: calc(var(--lcars-unit) / 2)
+    border-top-left-radius: calc(var(--lcars-unit) / 2)
+    border-bottom-left-radius: calc(var(--lcars-unit) / 2)
 
   &.left-end.decorated:after
-    right: 3vw
-    width: 3vw
+    right: var(--lcars-unit)
+    width: var(--lcars-unit)
     height: 100%
-    background-color: colors.$defaultBg
+    background-color: var(--lcars-color-default-bg)
 
   &.right-end
-    width: 1.5rem
-    max-width: 1.5rem
-    min-width: 1.5rem
-    border-top-right-radius: 0.75rem
-    border-bottom-right-radius: 0.75rem
+    width: calc(var(--lcars-unit) / 2)
+    max-width: calc(var(--lcars-unit) / 2)
+    min-width: calc(var(--lcars-unit) / 2)
+    border-top-right-radius: calc(var(--lcars-unit) / 2)
+    border-bottom-right-radius: calc(var(--lcars-unit) / 2)
 
   &.right-end.decorated:after
-    left: 3vw
-    width: 3vw
+    left: var(--lcars-unit)
+    width: var(--lcars-unit)
     height: 100%
-    background-color: colors.$defaultBg
-    background-color: colors.$defaultBg
+    background-color: var(--lcars-color-default-bg)
 
   &.fill
     flex: 1
@@ -84,7 +90,7 @@
 
   & .lcars-title
     color: #fff
-    background-color: colors.$defaultBg
+    background-color: var(--lcars-color-default-bg)
     text-transform: uppercase
     margin: 0
     margin-left: 0.83335rem
@@ -98,3 +104,17 @@
   & .lcars-title.right
     float: right
     margin-right: 0.83335rem
+
+.lcars-cap-left
+    width: calc(var(--lcars-unit) / 2)
+    max-width: calc(var(--lcars-unit) / 2)
+    min-width: calc(var(--lcars-unit) / 2)
+    border-top-left-radius: calc(var(--lcars-unit) / 2)
+    border-bottom-left-radius: calc(var(--lcars-unit) / 2)
+
+.lcars-bar-text
+  font-size: calc(var(--lcars-unit) * 0.8)
+  height: var(--lcars-unit)
+  line-height: calc(var(--lcars-unit) * .9)
+  margin: 0
+  padding: 0

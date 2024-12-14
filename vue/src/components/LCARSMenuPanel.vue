@@ -6,7 +6,7 @@ import LeftBracketMenu from './LeftBracketMenu.vue'
 import CPanel from './CPanel.vue'
 
 const reactiveTitle = ref('HOME')
-const reactiveColor = ref('var(--color-gray-blue)')
+const reactiveColor = ref('var(--lcars-color-gray-blue)')
 
 const emit = defineEmits<{
   (e: 'select', item: MenuItem): void
@@ -14,7 +14,7 @@ const emit = defineEmits<{
 
 function onSelect(item: MenuItem) {
   reactiveTitle.value = item?.title ?? 'HOME'
-  reactiveColor.value = item?.color ?? 'var(--color-gray-blue)'
+  reactiveColor.value = item?.color ?? 'var(--lcars-color-gray-blue)'
   emit('select', item)
 }
 </script>
@@ -24,11 +24,11 @@ function onSelect(item: MenuItem) {
 </style>
 
 <template>
-  <LeftBracketMenu @select="onSelect"></LeftBracketMenu>
-  <div class="lcars-column lcars-u-0-plus">&nbsp;</div>
-  <CPanel :title="reactiveTitle" :color="reactiveColor" :leftColor="reactiveColor">
-    <div class="lcars-row">
+  <div class="lcars-row lcars-wmax">
+    <LeftBracketMenu @select="onSelect"></LeftBracketMenu>
+    <div class="lcars-column lcars-w-unit"></div>
+    <CPanel :title="reactiveTitle" :color="reactiveColor" :leftColor="reactiveColor">
       <slot></slot>
-    </div>
-  </CPanel>
+    </CPanel>
+  </div>
 </template>
