@@ -44,7 +44,7 @@ defineEmits<{
         index="99"
         title="Demo"
         color="var(--lcars-color-dodger-blue)"
-        @click="showDemo({ main: 'elements' })"
+        @click="showDemo({ main: 'layout' })"
       />
       <!-- /MENU ITEMS -->
       <!-- BOTTOM BRACKETS -->
