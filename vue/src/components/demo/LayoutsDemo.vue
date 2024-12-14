@@ -52,8 +52,8 @@ const subs = [
       <p>
         The layout system is intended to follow the law of least astonishment. The size of each
         element is calculated in terms of the "LCARS UNIT". This is set by the CSS variable
-        <code>--lcars-unit</code> which has a default value of <code>50px</code>. Here is a 1-unit
-        square:
+        <code>--lcars-unit</code> which has a default value of <code>2vw</code> or 2% of the
+        viewport width. Here is a 1-unit square:
         <span
           class="lcars-golden-tanoi-bg"
           style="
