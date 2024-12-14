@@ -75,4 +75,33 @@
     </div>
     <div class="lcars-element cap"></div>
   </div>
+  <h2>Brackets</h2>
+  <p>
+    Brackets go on either side or above or below. Use <code>hollow</code> to make the bracket
+    concave. Set the color of a bracket with background color (ex: <code>--lcars-color-1-bg</code>)
+    but use background color to change the color of a hollow bracket(ex:
+    <code>--lcars-color-1-border</code>).
+  </p>
+  <div class="lcars-row">
+    <div class="lcars-bracket left lcars-color-3-bg"></div>
+    <div class="lcars-w-3 lcars-h-3"></div>
+    <div class="lcars-bracket right lcars-color-3-bg"></div>
+  </div>
+  <div class="lcars-row">
+    <div class="lcars-bracket left hollow lcars-color-4-border"></div>
+    <div class="lcars-w-3 lcars-h-3"></div>
+    <div class="lcars-bracket right hollow lcars-color-4-border"></div>
+  </div>
+  <div class="lcars-row">
+    <div class="lcars-column">
+      <div class="lcars-bracket top lcars-w-3 lcars-color-5-bg"></div>
+      <div class="lcars-w-3 lcars-h-3"></div>
+      <div class="lcars-bracket bottom lcars-w-3 lcars-color-5-bg"></div>
+    </div>
+    <div class="lcars-column">
+      <div class="lcars-bracket top hollow lcars-w-3 lcars-color-6-border"></div>
+      <div class="lcars-w-3 lcars-h-3"></div>
+      <div class="lcars-bracket bottom hollow lcars-w-3 lcars-color-6-border"></div>
+    </div>
+  </div>
 </template>
