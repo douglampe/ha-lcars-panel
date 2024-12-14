@@ -19,6 +19,10 @@ class LCARSCustomCard extends HTMLElement {
     haConfig.value = config
   }
 
+  set panel(panel: any) {
+    haConfig.value = panel?.config
+  }
+
   set hass(hass: any) {
     haState.value = hass
   }
