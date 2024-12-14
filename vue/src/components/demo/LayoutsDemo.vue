@@ -138,6 +138,8 @@ const subs = [
         >
           lcars-w-2
         </div>
+      </div>
+      <div class="lcars-row lcars-w-12">
         <div
           v-for="n in 2"
           :key="n"
@@ -147,33 +149,33 @@ const subs = [
         </div>
         <div class="lcars-border lcars-w-4 lcars-code lcars-pad-0 lcars-margin-0">lcars-w-4</div>
         <div class="lcars-border lcars-w-2 lcars-code lcars-pad-0 lcars-margin-0">lcars-w-1</div>
-        <div class="lcars-column lcars-h-6">
-          <div
-            v-for="n in 6"
-            :key="n"
-            class="lcars-border lcars-h-1 lcars-code lcars-pad-0 lcars-margin-0"
-          >
-            lcars-h-1
-          </div>
-          <div
-            v-for="n in 3"
-            :key="n"
-            class="lcars-border lcars-h-2 lcars-code lcars-pad-0 lcars-margin-0"
-          >
-            lcars-h-2
-          </div>
-          <div
-            v-for="n in 2"
-            :key="n"
-            class="lcars-border lcars-h-3 lcars-code lcars-pad-0 lcars-margin-0"
-          >
-            lcars-h-3
-          </div>
-          <div class="lcars-border lcars-h-4 lcars-code lcars-pad-0 lcars-margin-0">lcars-h-4</div>
-          <div class="lcars-border lcars-h-2 lcars-code lcars-pad-0 lcars-margin-0">lcars-h-2</div>
-          <div class="lcars-border lcars-h-5 lcars-code lcars-pad-0 lcars-margin-0">lcars-h-5</div>
-          <div class="lcars-border lcars-h-1 lcars-code lcars-pad-0 lcars-margin-0">lcars-h-1</div>
+      </div>
+      <div class="lcars-column lcars-h-6">
+        <div
+          v-for="n in 6"
+          :key="n"
+          class="lcars-border lcars-h-1 lcars-code lcars-pad-0 lcars-margin-0"
+        >
+          lcars-h-1
         </div>
+        <div
+          v-for="n in 3"
+          :key="n"
+          class="lcars-border lcars-h-2 lcars-code lcars-pad-0 lcars-margin-0"
+        >
+          lcars-h-2
+        </div>
+        <div
+          v-for="n in 2"
+          :key="n"
+          class="lcars-border lcars-h-3 lcars-code lcars-pad-0 lcars-margin-0"
+        >
+          lcars-h-3
+        </div>
+        <div class="lcars-border lcars-h-4 lcars-code lcars-pad-0 lcars-margin-0">lcars-h-4</div>
+        <div class="lcars-border lcars-h-2 lcars-code lcars-pad-0 lcars-margin-0">lcars-h-2</div>
+        <div class="lcars-border lcars-h-5 lcars-code lcars-pad-0 lcars-margin-0">lcars-h-5</div>
+        <div class="lcars-border lcars-h-1 lcars-code lcars-pad-0 lcars-margin-0">lcars-h-1</div>
       </div>
       <p>
         Adding a <code>-half</code> suffix to any of the above will add an additional half cell
@@ -189,6 +191,8 @@ const subs = [
           >
             lcars-w-1
           </div>
+        </div>
+        <div class="lcars-row lcars-w-9">
           <div class="lcars-border lcars-w-0-half lcars-code lcars-pad-0 lcars-margin-0">
             lcars-w-0-half
           </div>
@@ -218,6 +222,8 @@ const subs = [
           >
             lcars-w-1
           </div>
+        </div>
+        <div class="lcars-row lcars-w-9">
           <div class="lcars-border lcars-w-1-plus lcars-code lcars-pad-0 lcars-margin-0">
             lcars-w-1-plus
           </div>
