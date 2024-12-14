@@ -1,3 +1,5 @@
+@use "sass:list"
+
 @use 'globals'
 @use 'row'
 @use 'column'
@@ -32,7 +34,7 @@ body
   border-color: var(--lcars-coloor-default)
 
 @each $name, $color in globals.$colors
-  $index: index((globals.$colors), ($name $color))
+  $index: list.index((globals.$colors), ($name $color))
   .lcars-color-#{$index}-color,
   .lcars-#{$name}-color
     color: #{$color}
