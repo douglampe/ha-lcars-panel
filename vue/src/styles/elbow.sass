@@ -16,14 +16,14 @@
     position: absolute
     width: calc(var(--lcars-unit) * 1)
     height: calc(var(--lcars-unit) * 1)
-    background: var(--lcars-color-default-bg)
+    background-color: var(--lcars-color-default-bg)
 
   &.left-bottom
     border-top-left-radius: calc(var(--lcars-unit) * 2)
 
   &.left-bottom:after
     right: 0
-    top: calc(var(--lcars-unit) * 1)
+    bottom: 0
     border-top-left-radius: calc(var(--lcars-unit) * 1)
 
   &.left-top
@@ -31,14 +31,14 @@
 
   &.left-top:after
     right: 0
-    bottom: calc(var(--lcars-unit) * 1)
+    top: 0
     border-bottom-left-radius: calc(var(--lcars-unit) * 1)
 
   &.right-bottom
     border-top-right-radius: calc(var(--lcars-unit) * 2)
 
   &.right-bottom:after
-    top: calc(var(--lcars-unit) * 1)
+    bottom: 0
     border-top-right-radius: calc(var(--lcars-unit) * 1)
   
   &.right-bottom.square-outer
@@ -48,7 +48,7 @@
     border-bottom-right-radius: calc(var(--lcars-unit) * 2)
 
   &.right-top:after
-    bottom: calc(var(--lcars-unit) * 1)
+    top: 0
     border-bottom-right-radius: calc(var(--lcars-unit) * 1)
   
   &.right-top.square-outer

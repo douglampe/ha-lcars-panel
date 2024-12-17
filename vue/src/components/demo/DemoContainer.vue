@@ -3,12 +3,16 @@ import { haConfig, showDemo } from '@/HAConfig'
 import LayoutsDemo from './LayoutsDemo.vue'
 import TextDemo from './TextDemo.vue'
 import ElementsDemo from './ElementDemo.vue'
+import ReplicaDemo from './ReplicaDemo.vue'
+import PanelDemo from './PanelDemo.vue'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const demoComponents: Record<string, any> = {
   layout: LayoutsDemo,
   text: TextDemo,
+  panels: PanelDemo,
   elements: ElementsDemo,
+  replica: ReplicaDemo,
 }
 </script>
 

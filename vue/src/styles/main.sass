@@ -11,10 +11,6 @@
 @use 'table'
 @use 'text'
 
-body
-  background-color: var(--lcars-color-default-bg)
-  margin: 0
-
 ::-webkit-scrollbar
   width: 1em
 
@@ -22,8 +18,8 @@ body
   background-color: var(--lcars-color-default-bg)
 
 ::-webkit-scrollbar-thumb
-  background-color: #696969
-  outline: 1px solid #696969
+  background-color: var(--lcars-color-default-scrollbar)
+  outline: 1px solid var(--lcars-color-default-scrollbar)
 
 .lcars-default-color
   color: var(--lcars-color-default)

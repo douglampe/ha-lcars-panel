@@ -63,36 +63,6 @@ const { title, color } = defineProps({
   bottomCap: {
     type: Boolean,
   },
-  bottomHeight: {
-    type: Number,
-    default() {
-      return 1
-    },
-  },
-  bottomOuterRadX: {
-    type: Number,
-    default() {
-      return 2
-    },
-  },
-  bottomOuterRadY: {
-    type: Number,
-    default() {
-      return 2
-    },
-  },
-  bottomInnerRadX: {
-    type: Number,
-    default() {
-      return 1
-    },
-  },
-  bottomInnerRadY: {
-    type: Number,
-    default() {
-      return 1
-    },
-  },
 })
 </script>
 
@@ -160,48 +130,16 @@ const { title, color } = defineProps({
             width: 'calc(var(--lcars-unit) * ' + leftWidth + ')',
           }"
         ></div>
+        <div
+          v-if="bottomCap"
+          class="lcars-el"
+          :class="'b-cap-' + leftWidth * 5"
+          :style="{ backgroundColor: color, height: 'calc(var(--lcars-unit) * ' + topHeight + ')' }"
+        ></div>
       </div>
-      <div class="lcars-col fill">
+      <div class="lcars-col" :class="{ fill: fillWidth }">
         <slot></slot>
       </div>
-    </div>
-    <div class="lcars-row">
-      <div
-        class="lcars-el"
-        :class="[
-          bottomOuterRadX > 0 && bottomOuterRadY > 0
-            ? 'rad-bl-' + bottomOuterRadX + '-' + bottomOuterRadY
-            : '',
-          bottomInnerRadX > 0 && bottomInnerRadY
-            ? 'rad-i-bl-' + bottomInnerRadX + '-' + bottomInnerRadY
-            : '',
-        ]"
-        :style="{
-          backgroundColor: color,
-          width:
-            'calc(var(--lcars-unit) * ' +
-            leftWidth +
-            ' + var(--lcars-unit) * ' +
-            bottomInnerRadX +
-            ')',
-          height: 'calc(var(--lcars-unit) * ' + bottomHeight + ' + var(--lcars-unit))',
-        }"
-      ></div>
-      <div
-        class="lcars-el bottom lcars-h-unit"
-        :class="{ fill: fillWidth }"
-        :style="{ backgroundColor: color }"
-      ></div>
-      <slot name="bottom"></slot>
-      <div
-        v-if="bottomCap"
-        class="lcars-el bottom"
-        :class="'r-cap-' + bottomHeight * 5"
-        :style="{
-          backgroundColor: color,
-          height: 'calc(var(--lcars-unit) * ' + bottomHeight + ')',
-        }"
-      ></div>
     </div>
   </div>
 </template>

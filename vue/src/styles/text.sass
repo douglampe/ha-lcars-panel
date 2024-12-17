@@ -11,6 +11,9 @@
     flex: none
     font-size: calc(var(--lcars-unit) / 2)
     margin: var(--lcars-gap-small) !important
+  
+  & bold
+    font-weight: bold
 
   & code,
   & pre,
@@ -29,10 +32,11 @@
 .lcars-text-element.centered
   text-align: center
 
-@for $i from 1 through 6
-  $fontSize: calc(var(--lcars-unit) / 4 * #{$i})
+@for $i from 1 through 30
+  $fontSize: calc(var(--lcars-gap) + var(--lcars-gap-small) * #{$i})
   .lcars-font-#{$i}
-    font-size: #{$fontSize}
+    font-size: #{$fontSize} !important
+    line-height: calc(#{$fontSize} * 0.8) !important
 
 @for $i from 1 through 6
   h#{$i}

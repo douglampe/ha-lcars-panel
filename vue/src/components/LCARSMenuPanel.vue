@@ -26,8 +26,17 @@ function onSelect(item: MenuItem) {
 <template>
   <div class="lcars-row lcars-wmax">
     <LeftBracketMenu @select="onSelect"></LeftBracketMenu>
-    <div class="lcars-column lcars-w-unit"></div>
-    <CPanel :title="reactiveTitle" :color="reactiveColor" :leftColor="reactiveColor">
+    <div class="lcars-col lcars-w-unit"></div>
+    <CPanel
+      :title="reactiveTitle"
+      :color="reactiveColor"
+      :leftColor="reactiveColor"
+      :topCap="true"
+      :bottomCap="true"
+      :fillWidth="true"
+      :fillHeight="true"
+      style="min-height: calc(var(--lcars-unit) * 10)"
+    >
       <slot></slot>
     </CPanel>
   </div>

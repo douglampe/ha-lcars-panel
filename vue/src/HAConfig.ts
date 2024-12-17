@@ -61,7 +61,30 @@ const defaultConfig = {
         },
       ],
     },
-    { index: '02', title: 'Navigation', color: 'var(--lcars-color-neon-carrot)' },
+    {
+      index: '02',
+      title: 'Navigation',
+      color: 'var(--lcars-color-neon-carrot)',
+      items: [
+        {
+          type: 'OPanel',
+          props: {
+            fillWidth: true,
+            fillHeight: true,
+            class: 'lcars-w-5 lcars-h-4',
+          },
+          children: [
+            {
+              type: 'HAStateValue',
+              props: {
+                entity: 'sun.sun',
+                attribute: 'azimuth',
+              },
+            },
+          ],
+        },
+      ],
+    },
     {
       index: '03',
       title: 'Sensors',

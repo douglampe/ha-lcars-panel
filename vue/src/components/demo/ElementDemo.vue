@@ -13,7 +13,7 @@
     To draw a rounded end, add another <code>div</code> with <code>left-end</code> or
     <code>right-end</code>.
   </p>
-  <div class="lcars-column">
+  <div class="lcars-col">
     <div class="lcars-bar horizontal left-end"></div>
     <div class="lcars-bar horizontal right-end"></div>
   </div>
@@ -21,7 +21,7 @@
     You can add decorators to bars by adding a <code>decorator</code> class in addition to
     <code>left-end</code> or <code>right-end</code>
   </p>
-  <div class="lcars-column">
+  <div class="lcars-col">
     <div class="lcars-row">
       <div class="lcars-bar horizontal left-end"></div>
       <div class="lcars-bar left-end decorated"></div>
@@ -31,7 +31,7 @@
   </div>
   <h2>Elbows</h2>
   <p>Elbows are bendy bits.</p>
-  <div class="lcars-column">
+  <div class="lcars-col">
     <div class="lcars-row">
       <div class="lcars-elbow right-bottom lcars-w-1"></div>
       <div class="lcars-elbow left-bottom lcars-w-1"></div>
@@ -41,7 +41,7 @@
       <div class="lcars-elbow left-top lcars-w-1"></div>
     </div>
   </div>
-  <div class="lcars-column gap">
+  <div class="lcars-col gap">
     <div class="lcars-row gap">
       <div class="lcars-elbow right-bottom lcars-w-1"></div>
       <div class="lcars-elbow left-bottom lcars-w-1"></div>
@@ -51,7 +51,7 @@
       <div class="lcars-elbow left-top lcars-w-1"></div>
     </div>
   </div>
-  <div class="lcars-column gap-small">
+  <div class="lcars-col gap-small">
     <div class="lcars-row gap-small">
       <div class="lcars-elbow right-bottom lcars-w-1"></div>
       <div class="lcars-elbow left-bottom lcars-w-1"></div>
@@ -94,19 +94,19 @@
     <div class="lcars-bracket right hollow lcars-color-4-border"></div>
   </div>
   <div class="lcars-row">
-    <div class="lcars-column">
+    <div class="lcars-col">
       <div class="lcars-bracket top lcars-w-3 lcars-color-5-bg"></div>
       <div class="lcars-w-3 lcars-h-3"></div>
       <div class="lcars-bracket bottom lcars-w-3 lcars-color-5-bg"></div>
     </div>
-    <div class="lcars-column">
+    <div class="lcars-col">
       <div class="lcars-bracket top hollow lcars-w-3 lcars-color-6-border"></div>
       <div class="lcars-w-3 lcars-h-3"></div>
       <div class="lcars-bracket bottom hollow lcars-w-3 lcars-color-6-border"></div>
     </div>
   </div>
   <p>A T is like an intersection.</p>
-  <div class="lcars-column">
+  <div class="lcars-col">
     <div class="lcars-row">
       <div class="lcars-t-left lcars-color-5-bg"></div>
       <div class="lcars-bar horizontal flex-center lcars-w-1 lcars-color-5-bg"></div>
@@ -115,6 +115,13 @@
     <div class="lcars-row">
       <div class="lcars-bar horizontal flex-center lcars-w-1 lcars-color-5-bg"></div>
       <div class="lcars-t-right lcars-color-5-bg"></div>
+    </div>
+  </div>
+  <h2>Colors</h2>
+  <p>There are colors</p>
+  <div class="lcars-row">
+    <div v-for="n in 35" :key="n" class="lcars-w-1" :class="'lcars-color-' + n + '-bg'">
+      lcars-color-{{ n }}
     </div>
   </div>
 </template>

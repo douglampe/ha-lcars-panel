@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import type { MenuItem } from '../MenuItem'
+import DPanel from './DPanel.vue'
 import NumberedMenuItem from './NumberedMenuItem.vue'
 import { haConfig, showDemo } from '../HAConfig'
 
@@ -22,16 +23,9 @@ defineEmits<{
 </script>
 
 <template>
-  <div class="lcars-block">
-    <div class="lcars-column right gap-small">
-      <!-- TOP BRACKETS -->
-      <div class="lcars-row">
-        <div class="lcars-bar bar horizontal lcars-w-1-minus"></div>
-        <div class="lcars-w-2-plus lcars-elbow right-bottom lcars-gray-blue-bg"></div>
-      </div>
-      <div class="lcars-w-2 lcars-elbow right-bottom square-outer lcars-gray-bg"></div>
-      <!-- /TOP BRACKETS -->
-      <!-- MENU ITEMS -->
+  <DPanel color="var(--lcars-color-default)" :right-width="7" :fill-height="true">
+    <template #right>
+      <div class="lcars-el rad-i-tr-1 lcars-h-1 lcars-w-2-plus lcars-gray-bg"></div>
       <NumberedMenuItem
         v-for="item in haConfig.menuItems"
         :key="item.index"
@@ -47,14 +41,7 @@ defineEmits<{
         class="button"
         @click="showDemo({ main: 'layout' })"
       />
-      <!-- /MENU ITEMS -->
-      <!-- BOTTOM BRACKETS -->
-      <div class="lcars-w-2 lcars-elbow right-top square-outer lcars-gray-bg"></div>
-      <div class="lcars-row">
-        <div class="lcars-bar bar horizontal bottom lcars-w-1-minus"></div>
-        <div class="lcars-w-2-plus lcars-elbow right-top"></div>
-      </div>
-      <!-- /BOTTOM BRACKETS -->
-    </div>
-  </div>
+      <div class="lcars-el rad-i-br-1 lcars-h-1 lcars-w-2-plus lcars-gray-bg"></div>
+    </template>
+  </DPanel>
 </template>

@@ -1,9 +1,8 @@
 @use 'globals'
 
-.lcars-column
-  display: inline-flex
+.lcars-col
+  display: flex
   flex-direction: column
-  flex-wrap: wrap
 
   &.fill
     flex: 1
@@ -38,12 +37,3 @@
 
   &.gap-small > *
     margin-bottom: var(--lcars-gap-small)
-
-  &.left-menu
-    padding-right: 2rem
-
-  &.right-menu
-    padding-left: 2rem
-
-  &.start-space
-    margin-top: 0.25rem

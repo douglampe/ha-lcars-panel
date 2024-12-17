@@ -192,7 +192,7 @@ animateValue(data.value)
 
 <template>
   <div class="lcars-row" style="padding: 1vw">
-    <div class="lcars-column">
+    <div class="lcars-col">
       <svg
         version="1.1"
         xmlns="http://www.w3.org/2000/svg"
@@ -302,7 +302,7 @@ animateValue(data.value)
         </g>
       </svg>
     </div>
-    <div class="lcars-column">
+    <div class="lcars-col">
       <div
         class="lcars-text-element"
         style="transform: rotate(-90deg) translate(2vw, -2vw)"

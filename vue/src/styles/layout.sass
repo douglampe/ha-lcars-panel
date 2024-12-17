@@ -1,5 +1,11 @@
 @use 'globals'
 
+:root
+  --global-outline: none
+  
+*
+  outline: 1px var(--global-outline) red
+
 .lcars-wrapper
   background-color: var(--lcars-color-default-bg)
   color: var(--lcars-color-default-text)
@@ -11,6 +17,16 @@
     cursor: pointer
   & .flex-center
     align-self: center
+  & .relative
+    position: relative
+  & .bottom-right
+    position: absolute
+    bottom: var(--lcars-gap)
+    right: var(--lcars-gap)
+  & .bottom-left
+    position: absolute
+    bottom: var(--lcars-gap)
+    left: var(--lcars-gap)
 
 .lcars-vw
   width: 100vw !important
@@ -46,12 +62,20 @@
 .lcars-margin-0
   margin: 0 !important
 
-@for $i from 1 through 10
+@for $i from 1 through 20
   $gapSize: calc(var(--lcars-gap-small) * #{$i})
   .lcars-pad-#{$i}
     padding: #{$gapSize} !important
     & > *
       padding: 0
+  .lcars-margin-left-#{$i}
+    margin-left: #{$gapSize} !important
+  .lcars-margin-right-#{$i}
+    margin-right: #{$gapSize} !important
+  .lcars-margin-top-#{$i}
+    margin-top: #{$gapSize} !important
+  .lcars-margin-bottom-#{$i}
+    margin-bottom: #{$gapSize} !important
   .lcars-margin-#{$i}
     margin: #{$gapSize} !important
     & > *
@@ -78,7 +102,13 @@
     height: #{$height} !important
     width: var(--lcars-cell-width)
   .lcars-h-#{$i}-half
+    height: calc(#{$height} + var(--lcars-cell-height) / 2) !important
+    width: var(--lcars-cell-width)
+  .lcars-h-#{$i}-minus
     height: calc(#{$height} - var(--lcars-unit)) !important
+    width: var(--lcars-cell-width)
+  .lcars-h-#{$i}-plus
+    height: calc(#{$height} + var(--lcars-unit)) !important
     width: var(--lcars-cell-width)
 
 .lcars-w-unit

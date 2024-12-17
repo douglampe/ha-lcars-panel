@@ -27,8 +27,17 @@ const { title, color } = defineProps({
       return 'var(--lcars-color-golden-tanoi)'
     },
   },
-  topCap: {
-    type: Boolean,
+  rightWidth: {
+    type: Number,
+    default() {
+      return 3
+    },
+  },
+  rightColor: {
+    type: String,
+    default() {
+      return 'var(--lcars-color-golden-tanoi)'
+    },
   },
   topHeight: {
     type: Number,
@@ -36,32 +45,53 @@ const { title, color } = defineProps({
       return 1
     },
   },
-  topOuterRadX: {
+  topLeftOuterRadX: {
     type: Number,
     default() {
       return 2
     },
   },
-  topOuterRadY: {
+  topLeftOuterRadY: {
     type: Number,
     default() {
       return 2
     },
   },
-  topInnerRadX: {
+  topLeftInnerRadX: {
     type: Number,
     default() {
       return 1
     },
   },
-  topInnerRadY: {
+  topLeftInnerRadY: {
     type: Number,
     default() {
       return 1
     },
   },
-  bottomCap: {
-    type: Boolean,
+  topRightOuterRadX: {
+    type: Number,
+    default() {
+      return 2
+    },
+  },
+  topRightOuterRadY: {
+    type: Number,
+    default() {
+      return 2
+    },
+  },
+  topRightInnerRadX: {
+    type: Number,
+    default() {
+      return 1
+    },
+  },
+  topRightInnerRadY: {
+    type: Number,
+    default() {
+      return 1
+    },
   },
   bottomHeight: {
     type: Number,
@@ -69,25 +99,49 @@ const { title, color } = defineProps({
       return 1
     },
   },
-  bottomOuterRadX: {
+  bottomLeftOuterRadX: {
     type: Number,
     default() {
       return 2
     },
   },
-  bottomOuterRadY: {
+  bottomLeftOuterRadY: {
     type: Number,
     default() {
       return 2
     },
   },
-  bottomInnerRadX: {
+  bottomLeftInnerRadX: {
     type: Number,
     default() {
       return 1
     },
   },
-  bottomInnerRadY: {
+  bottomLeftInnerRadY: {
+    type: Number,
+    default() {
+      return 1
+    },
+  },
+  bottomRightOuterRadX: {
+    type: Number,
+    default() {
+      return 2
+    },
+  },
+  bottomRightOuterRadY: {
+    type: Number,
+    default() {
+      return 2
+    },
+  },
+  bottomRightInnerRadX: {
+    type: Number,
+    default() {
+      return 1
+    },
+  },
+  bottomRightInnerRadY: {
     type: Number,
     default() {
       return 1
@@ -102,9 +156,11 @@ const { title, color } = defineProps({
       <div
         class="lcars-el"
         :class="[
-          topOuterRadX > 0 && topOuterRadY > 0 ? 'rad-tl-' + topOuterRadX + '-' + topOuterRadY : '',
-          topInnerRadX > 0 && topInnerRadY > 0
-            ? 'rad-i-tl-' + topInnerRadX + '-' + topInnerRadY
+          topLeftOuterRadX > 0 && topLeftOuterRadY > 0
+            ? 'rad-tl-' + topLeftOuterRadX + '-' + topLeftOuterRadY
+            : '',
+          topLeftInnerRadX > 0 && topLeftInnerRadY > 0
+            ? 'rad-i-tl-' + topLeftInnerRadX + '-' + topLeftInnerRadY
             : '',
         ]"
         :style="{
@@ -113,16 +169,17 @@ const { title, color } = defineProps({
             'calc(var(--lcars-unit) * ' +
             leftWidth +
             ' + var(--lcars-unit) * ' +
-            topInnerRadX +
+            topLeftInnerRadX +
             ')',
           height:
             'calc(var(--lcars-unit) * ' +
             topHeight +
             ' + var(--lcars-unit) * ' +
-            topInnerRadY +
+            topLeftInnerRadY +
             ')',
         }"
       ></div>
+      <slot name="top"></slot>
       <div
         class="lcars-el"
         :class="{ fill: fillWidth }"
@@ -131,7 +188,6 @@ const { title, color } = defineProps({
           height: 'calc(var(--lcars-unit) * ' + topHeight + ')',
         }"
       ></div>
-      <slot name="top"></slot>
       <div
         v-if="title"
         class="lcars-bar-text"
@@ -144,10 +200,26 @@ const { title, color } = defineProps({
         {{ title }}
       </div>
       <div
-        v-if="topCap"
         class="lcars-el"
-        :class="'r-cap-' + topHeight * 5"
-        :style="{ backgroundColor: color, height: 'calc(var(--lcars-unit) * ' + topHeight + ')' }"
+        :class="[
+          'rad-tr-' + topRightOuterRadX + '-' + topRightOuterRadY,
+          'rad-i-tr-' + topRightInnerRadX + '-' + topRightInnerRadY,
+        ]"
+        :style="{
+          backgroundColor: color,
+          width:
+            'calc(var(--lcars-unit) * ' +
+            rightWidth +
+            ' + var(--lcars-unit) * ' +
+            topRightInnerRadX +
+            ')',
+          height:
+            'calc(var(--lcars-unit) * ' +
+            topHeight +
+            ' + var(--lcars-unit) * ' +
+            topRightInnerRadY +
+            ')',
+        }"
       ></div>
     </div>
     <div class="lcars-row" :class="{ fill: fillHeight }">
@@ -161,19 +233,29 @@ const { title, color } = defineProps({
           }"
         ></div>
       </div>
-      <div class="lcars-col fill">
+      <div class="lcars-col" :class="{ fill: fillWidth }">
         <slot></slot>
+      </div>
+      <div class="lcars-col right">
+        <slot name="right"></slot>
+        <div
+          class="lcars-el fill"
+          :style="{
+            backgroundColor: rightColor,
+            width: 'calc(var(--lcars-unit) * ' + rightWidth + ')',
+          }"
+        ></div>
       </div>
     </div>
     <div class="lcars-row">
       <div
         class="lcars-el"
         :class="[
-          bottomOuterRadX > 0 && bottomOuterRadY > 0
-            ? 'rad-bl-' + bottomOuterRadX + '-' + bottomOuterRadY
+          bottomLeftOuterRadX > 0 && bottomLeftOuterRadY > 0
+            ? 'rad-bl-' + bottomLeftOuterRadX + '-' + bottomLeftOuterRadY
             : '',
-          bottomInnerRadX > 0 && bottomInnerRadY
-            ? 'rad-i-bl-' + bottomInnerRadX + '-' + bottomInnerRadY
+          bottomLeftInnerRadX > 0 && bottomLeftInnerRadY
+            ? 'rad-i-bl-' + bottomLeftInnerRadX + '-' + bottomLeftInnerRadY
             : '',
         ]"
         :style="{
@@ -182,24 +264,38 @@ const { title, color } = defineProps({
             'calc(var(--lcars-unit) * ' +
             leftWidth +
             ' + var(--lcars-unit) * ' +
-            bottomInnerRadX +
+            bottomLeftInnerRadX +
             ')',
           height: 'calc(var(--lcars-unit) * ' + bottomHeight + ' + var(--lcars-unit))',
         }"
       ></div>
+      <slot name="bottom"></slot>
       <div
         class="lcars-el bottom lcars-h-unit"
         :class="{ fill: fillWidth }"
         :style="{ backgroundColor: color }"
       ></div>
-      <slot name="bottom"></slot>
       <div
-        v-if="bottomCap"
-        class="lcars-el bottom"
-        :class="'r-cap-' + bottomHeight * 5"
+        class="lcars-el"
+        :class="
+          'rad-br-' +
+          bottomRightOuterRadX +
+          '-' +
+          bottomRightOuterRadY +
+          ' rad-i-br-' +
+          bottomRightInnerRadX +
+          '-' +
+          bottomRightInnerRadY
+        "
         :style="{
           backgroundColor: color,
-          height: 'calc(var(--lcars-unit) * ' + bottomHeight + ')',
+          width:
+            'calc(var(--lcars-unit) * ' +
+            rightWidth +
+            ' + var(--lcars-unit) * ' +
+            bottomRightInnerRadX +
+            ')',
+          height: 'calc(var(--lcars-unit) * ' + bottomHeight + ' + var(--lcars-unit))',
         }"
       ></div>
     </div>

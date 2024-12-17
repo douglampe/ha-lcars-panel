@@ -46,6 +46,12 @@ tag behaves.</pre
       <li><span class="lcars-font-4">lcars-font-4</span></li>
       <li><span class="lcars-font-5">lcars-font-5</span></li>
       <li><span class="lcars-font-6">lcars-font-6</span></li>
+      <li><span class="lcars-font-7">lcars-font-7</span></li>
+      <li><span class="lcars-font-8">lcars-font-8</span></li>
+      <li><span class="lcars-font-9">lcars-font-9</span></li>
+      <li><span class="lcars-font-10">lcars-font-10</span></li>
+      <li><span class="lcars-font-11">lcars-font-11</span></li>
+      <li><span class="lcars-font-12">lcars-font-12</span></li>
     </ul>
     <h2>Headings</h2>
     <p>

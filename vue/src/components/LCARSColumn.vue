@@ -1,3 +1,3 @@
 <template>
-  <div class="lcars-column"><slot></slot></div>
+  <div class="lcars-col"><slot></slot></div>
 </template>

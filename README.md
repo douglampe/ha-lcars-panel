@@ -4,7 +4,8 @@ Inspired by the iconic Star Trek user interface, this [LCARS Home Assistant Them
 and this [LCARS HTML/CSS Framework](https://github.com/joernweissenborn/lcars), LCARS for Home Assistant is intended
 to provide a LCARS-like dashboard experience for home assistant. Thanks to
 [HA Lovelace Connector](https://github.com/iva-stolnik/vue-ha-lovelace-connector) for cracking the code on wrapping a
-Vue SFC as a custom component.
+Vue SFC as a custom component. Shout out to [Name That Color](https://chir.ag/projects/name-that-color/) for helping
+give a name to colors I grabbed from various samples.
 
 ## Configuration
 

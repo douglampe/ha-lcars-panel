@@ -4,7 +4,7 @@ import LCARSElement from './LCARSElement.vue'
 </script>
 
 <template>
-  <div class="lcars-column">
+  <div class="lcars-col">
     <LCARSElement class="lcars-w-2 rounded centered" @click="loadTestState()"
       >Load Test State</LCARSElement
     >

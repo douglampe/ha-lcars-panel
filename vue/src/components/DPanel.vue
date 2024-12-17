@@ -15,13 +15,13 @@ const { title, color } = defineProps({
       return 'var(--lcars-color-gray-blue)'
     },
   },
-  leftWidth: {
+  rightWidth: {
     type: Number,
     default() {
       return 3
     },
   },
-  leftColor: {
+  rightColor: {
     type: String,
     default() {
       return 'var(--lcars-color-golden-tanoi)'
@@ -100,38 +100,14 @@ const { title, color } = defineProps({
   <div class="lcars-col" :class="{ fill: fillWidth }">
     <div class="lcars-row">
       <div
+        v-if="topCap"
         class="lcars-el"
-        :class="[
-          topOuterRadX > 0 && topOuterRadY > 0 ? 'rad-tl-' + topOuterRadX + '-' + topOuterRadY : '',
-          topInnerRadX > 0 && topInnerRadY > 0
-            ? 'rad-i-tl-' + topInnerRadX + '-' + topInnerRadY
-            : '',
-        ]"
-        :style="{
-          backgroundColor: color,
-          width:
-            'calc(var(--lcars-unit) * ' +
-            leftWidth +
-            ' + var(--lcars-unit) * ' +
-            topInnerRadX +
-            ')',
-          height:
-            'calc(var(--lcars-unit) * ' +
-            topHeight +
-            ' + var(--lcars-unit) * ' +
-            topInnerRadY +
-            ')',
-        }"
-      ></div>
-      <div
-        class="lcars-el"
-        :class="{ fill: fillWidth }"
+        :class="'l-cap-' + topHeight * 5"
         :style="{
           backgroundColor: color,
           height: 'calc(var(--lcars-unit) * ' + topHeight + ')',
         }"
       ></div>
-      <slot name="top"></slot>
       <div
         v-if="title"
         class="lcars-bar-text"
@@ -143,63 +119,90 @@ const { title, color } = defineProps({
       >
         {{ title }}
       </div>
+      <slot name="top"></slot>
       <div
-        v-if="topCap"
         class="lcars-el"
-        :class="'r-cap-' + topHeight * 5"
-        :style="{ backgroundColor: color, height: 'calc(var(--lcars-unit) * ' + topHeight + ')' }"
+        :class="{ fill: fillWidth }"
+        :style="{
+          backgroundColor: color,
+          height: 'calc(var(--lcars-unit) * ' + topHeight + ')',
+        }"
       ></div>
-    </div>
-    <div class="lcars-row" :class="{ fill: fillHeight }">
-      <div class="lcars-col">
-        <slot name="left"></slot>
-        <div
-          class="lcars-el fill"
-          :style="{
-            backgroundColor: leftColor,
-            width: 'calc(var(--lcars-unit) * ' + leftWidth + ')',
-          }"
-        ></div>
-      </div>
-      <div class="lcars-col fill">
-        <slot></slot>
-      </div>
-    </div>
-    <div class="lcars-row">
       <div
         class="lcars-el"
         :class="[
-          bottomOuterRadX > 0 && bottomOuterRadY > 0
-            ? 'rad-bl-' + bottomOuterRadX + '-' + bottomOuterRadY
-            : '',
-          bottomInnerRadX > 0 && bottomInnerRadY
-            ? 'rad-i-bl-' + bottomInnerRadX + '-' + bottomInnerRadY
-            : '',
+          'rad-tr-' + topOuterRadX + '-' + topOuterRadY,
+          'rad-i-tr-' + topInnerRadX + '-' + topInnerRadY,
         ]"
         :style="{
           backgroundColor: color,
           width:
             'calc(var(--lcars-unit) * ' +
-            leftWidth +
+            rightWidth +
             ' + var(--lcars-unit) * ' +
-            bottomInnerRadX +
+            topInnerRadX +
             ')',
-          height: 'calc(var(--lcars-unit) * ' + bottomHeight + ' + var(--lcars-unit))',
+          height:
+            'calc(var(--lcars-unit) * ' +
+            topHeight +
+            ' + var(--lcars-unit) * ' +
+            topInnerRadY +
+            ')',
         }"
       ></div>
+    </div>
+    <div class="lcars-row right" :class="{ fill: fillHeight }">
+      <div class="lcars-col" :class="{ fill: fillWidth }">
+        <slot></slot>
+      </div>
+      <div class="lcars-col right">
+        <slot name="right"></slot>
+        <div
+          class="lcars-el fill"
+          :style="{
+            backgroundColor: rightColor,
+            width: 'calc(var(--lcars-unit) * ' + rightWidth + ')',
+          }"
+        ></div>
+      </div>
+    </div>
+    <div class="lcars-row">
+      <div
+        v-if="bottomCap"
+        class="lcars-el bottom l-cap"
+        :class="'l-cap-' + topHeight * 5"
+        :style="{
+          backgroundColor: color,
+          height: 'calc(var(--lcars-unit) * ' + bottomHeight + ')',
+        }"
+      ></div>
+      <slot name="bottom"></slot>
       <div
         class="lcars-el bottom lcars-h-unit"
         :class="{ fill: fillWidth }"
         :style="{ backgroundColor: color }"
       ></div>
-      <slot name="bottom"></slot>
       <div
-        v-if="bottomCap"
-        class="lcars-el bottom"
-        :class="'r-cap-' + bottomHeight * 5"
+        class="lcars-el"
+        :class="
+          'rad-br-' +
+          bottomOuterRadX +
+          '-' +
+          bottomOuterRadY +
+          ' rad-i-br-' +
+          bottomInnerRadX +
+          '-' +
+          bottomInnerRadY
+        "
         :style="{
           backgroundColor: color,
-          height: 'calc(var(--lcars-unit) * ' + bottomHeight + ')',
+          width:
+            'calc(var(--lcars-unit) * ' +
+            rightWidth +
+            ' + var(--lcars-unit) * ' +
+            bottomInnerRadX +
+            ')',
+          height: 'calc(var(--lcars-unit) * ' + bottomHeight + ' + var(--lcars-unit))',
         }"
       ></div>
     </div>

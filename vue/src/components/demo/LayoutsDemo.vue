@@ -120,7 +120,7 @@ const subs = [
         <code>.lcars-w-1</code> through
         <code>.lcars-w-12</code>
         to set the width and <code>.lcars-h-1</code> through <code>.lcars-h-12</code> to set the
-        height. Use <code>lcars-row</code> and <code>lcars-column</code> to set the flex direction.
+        height. Use <code>lcars-row</code> and <code>lcars-col</code> to set the flex direction.
         Below are some examples:
       </p>
       <div class="lcars-row lcars-w-12">
@@ -150,7 +150,7 @@ const subs = [
         <div class="lcars-border lcars-w-4 lcars-code lcars-pad-0 lcars-margin-0">lcars-w-4</div>
         <div class="lcars-border lcars-w-2 lcars-code lcars-pad-0 lcars-margin-0">lcars-w-1</div>
       </div>
-      <div class="lcars-column lcars-h-6">
+      <div class="lcars-col lcars-h-6">
         <div
           v-for="n in 6"
           :key="n"
@@ -249,7 +249,7 @@ const subs = [
         children of a row or column, add a <code>gap</code> class to add a 1/5 unit margin or use
         <code>gap-small</code> to add a 1/10 unit margin.
       </p>
-      <div class="lcars-column">
+      <div class="lcars-col">
         <div class="lcars-row gap">
           <div class="lcars-bar horizontal lcars-w-1"></div>
           <div class="lcars-bar horizontal lcars-w-1"></div>
@@ -263,13 +263,13 @@ const subs = [
         </div>
       </div>
       <p></p>
-      <div class="lcars-column gap">
+      <div class="lcars-col gap">
         <div class="lcars-bar lcars-w-1"></div>
         <div class="lcars-bar lcars-w-1"></div>
         <div class="lcars-bar lcars-w-1"></div>
       </div>
       <p></p>
-      <div class="lcars-column gap-small">
+      <div class="lcars-col gap-small">
         <div class="lcars-bar lcars-w-1"></div>
         <div class="lcars-bar lcars-w-1"></div>
         <div class="lcars-bar lcars-w-1"></div>

@@ -30,36 +30,6 @@ const { title, color } = defineProps({
   topCap: {
     type: Boolean,
   },
-  topHeight: {
-    type: Number,
-    default() {
-      return 1
-    },
-  },
-  topOuterRadX: {
-    type: Number,
-    default() {
-      return 2
-    },
-  },
-  topOuterRadY: {
-    type: Number,
-    default() {
-      return 2
-    },
-  },
-  topInnerRadX: {
-    type: Number,
-    default() {
-      return 1
-    },
-  },
-  topInnerRadY: {
-    type: Number,
-    default() {
-      return 1
-    },
-  },
   bottomCap: {
     type: Boolean,
   },
@@ -98,60 +68,14 @@ const { title, color } = defineProps({
 
 <template>
   <div class="lcars-col" :class="{ fill: fillWidth }">
-    <div class="lcars-row">
-      <div
-        class="lcars-el"
-        :class="[
-          topOuterRadX > 0 && topOuterRadY > 0 ? 'rad-tl-' + topOuterRadX + '-' + topOuterRadY : '',
-          topInnerRadX > 0 && topInnerRadY > 0
-            ? 'rad-i-tl-' + topInnerRadX + '-' + topInnerRadY
-            : '',
-        ]"
-        :style="{
-          backgroundColor: color,
-          width:
-            'calc(var(--lcars-unit) * ' +
-            leftWidth +
-            ' + var(--lcars-unit) * ' +
-            topInnerRadX +
-            ')',
-          height:
-            'calc(var(--lcars-unit) * ' +
-            topHeight +
-            ' + var(--lcars-unit) * ' +
-            topInnerRadY +
-            ')',
-        }"
-      ></div>
-      <div
-        class="lcars-el"
-        :class="{ fill: fillWidth }"
-        :style="{
-          backgroundColor: color,
-          height: 'calc(var(--lcars-unit) * ' + topHeight + ')',
-        }"
-      ></div>
-      <slot name="top"></slot>
-      <div
-        v-if="title"
-        class="lcars-bar-text"
-        :style="{
-          color: color,
-          fontSize: 'calc(var(--lcars-unit) * ' + topHeight + ')',
-          lineHeight: 'calc(var(--lcars-unit) * ' + topHeight + ' * 0.8)',
-        }"
-      >
-        {{ title }}
-      </div>
-      <div
-        v-if="topCap"
-        class="lcars-el"
-        :class="'r-cap-' + topHeight * 5"
-        :style="{ backgroundColor: color, height: 'calc(var(--lcars-unit) * ' + topHeight + ')' }"
-      ></div>
-    </div>
     <div class="lcars-row" :class="{ fill: fillHeight }">
       <div class="lcars-col">
+        <div
+          v-if="bottomCap"
+          class="lcars-el"
+          :class="'t-cap-' + leftWidth * 5"
+          :style="{ backgroundColor: color }"
+        ></div>
         <slot name="left"></slot>
         <div
           class="lcars-el fill"
@@ -161,7 +85,7 @@ const { title, color } = defineProps({
           }"
         ></div>
       </div>
-      <div class="lcars-col fill">
+      <div class="lcars-col" :class="{ fill: fillWidth }">
         <slot></slot>
       </div>
     </div>
@@ -193,6 +117,17 @@ const { title, color } = defineProps({
         :style="{ backgroundColor: color }"
       ></div>
       <slot name="bottom"></slot>
+      <div
+        v-if="title"
+        class="lcars-el lcars-bar-text bottom"
+        :style="{
+          color: color,
+          fontSize: 'calc(var(--lcars-unit) * ' + bottomHeight + ')',
+          lineHeight: 'calc(var(--lcars-unit) * ' + bottomHeight + ' * 0.8)',
+        }"
+      >
+        {{ title }}
+      </div>
       <div
         v-if="bottomCap"
         class="lcars-el bottom"
