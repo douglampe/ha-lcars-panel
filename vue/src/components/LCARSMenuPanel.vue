@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 
+import { currentNav } from '@/LocalNav'
 import type { MenuItem } from '../MenuItem'
 import LeftBracketMenu from './LeftBracketMenu.vue'
 import CPanel from './CPanel.vue'
@@ -11,6 +12,10 @@ const reactiveColor = ref('var(--lcars-color-gray-blue)')
 const emit = defineEmits<{
   (e: 'select', item: MenuItem): void
 }>()
+
+const title = computed(() => {
+  return currentNav.value?.split('/').pop()
+})
 
 function onSelect(item: MenuItem) {
   reactiveTitle.value = item?.title ?? 'HOME'
@@ -25,10 +30,12 @@ function onSelect(item: MenuItem) {
 
 <template>
   <div class="lcars-row lcars-wmax">
-    <LeftBracketMenu @select="onSelect"></LeftBracketMenu>
+    <LeftBracketMenu @select="onSelect">
+      <slot name="left"></slot>
+    </LeftBracketMenu>
     <div class="lcars-col lcars-w-unit"></div>
     <CPanel
-      :title="reactiveTitle"
+      :title="title"
       :color="reactiveColor"
       :leftColor="reactiveColor"
       :topCap="true"

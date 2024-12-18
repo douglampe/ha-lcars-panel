@@ -1,19 +1,20 @@
 <script setup lang="ts">
-import { showDemo } from '../../HAConfig'
+import { navigate } from '@/LocalNav'
 </script>
 <template>
   <div class="lcars-wmax">
     <h1>Text</h1>
     <p>
-      As discussed in the <a href="#" @click="showDemo({ main: 'layout' })">Layouts</a> demo, the
+      As discussed in the
+      <a href="#" @click="navigate('/demo/layout')">Layouts</a> demo, the
       <code>lcars-wrapper</code> applies some default styles. Many of these apply to text.
     </p>
     <h2>Links</h2>
     <p>
       All links (<code>&lt;a&gt;</code> tag) like
-      <a href="#" @click="showDemo({ main: 'none' })">this one</a> have
-      <code>text-decoration</code> set to <code>none</code> to remove the underline, removes any
-      margin or padding, and the color is set to <code>var(--lcars-color-default)</code>.
+      <a href="#" @click="navigate('/demo')">this one</a> have <code>text-decoration</code> set to
+      <code>none</code> to remove the underline, removes any margin or padding, and the color is set
+      to <code>var(--lcars-color-default)</code>.
     </p>
     <h2>Paragraphs</h2>
     <p>

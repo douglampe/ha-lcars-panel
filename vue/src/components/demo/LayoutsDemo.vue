@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { haConfig, showDemo } from '../../HAConfig'
+import { haConfig } from '@/HAConfig'
+import { navigate } from '@/LocalNav'
 
 const subs = [
   {
@@ -44,7 +45,7 @@ const subs = [
       :class="haConfig.demo.sub"
     >
       {{ haConfig.demo.sub }}
-      <span class="lcars-element button rounded" @click="showDemo({ main: 'layout' })">Close</span>
+      <span class="lcars-element button rounded" @click="navigate('/demo/layout')">Close</span>
     </div>
     <div v-if="!haConfig.demo?.sub" class="lcars-font-2">
       <h1>Layout</h1>
@@ -85,7 +86,7 @@ const subs = [
           <td>
             <div
               class="lcars-element button rounded lcars-margin-1"
-              @click="showDemo({ main: 'layout', sub: sub.class, fullScreen: true })"
+              @click="navigate(`/demo/${sub.class}`)"
             >
               Demo
             </div>

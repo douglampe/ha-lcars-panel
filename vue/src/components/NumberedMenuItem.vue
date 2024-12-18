@@ -2,19 +2,11 @@
 import type { MenuItem } from '../MenuItem'
 const props: MenuItem = defineProps<MenuItem>()
 
-defineEmits<{
-  (e: 'select', item: MenuItem): void
-}>()
-const { index, icon, title, color, href } = props
+const { index, icon, title, color } = props
 </script>
 
 <template>
-  <component
-    :is="href ? 'a' : 'div'"
-    :href="href"
-    class="lcars-row"
-    @click="$emit('select', props)"
-  >
+  <div class="lcars-row lcars-el button">
     <div class="lcars-row">
       <div class="lcars-el l-cap-5" :style="{ backgroundColor: color }"></div>
       <div class="lcars-text-element centered lcars-w-unit">
@@ -28,5 +20,5 @@ const { index, icon, title, color, href } = props
     >
       {{ title }}
     </div>
-  </component>
+  </div>
 </template>

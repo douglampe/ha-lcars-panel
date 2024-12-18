@@ -1,18 +1,11 @@
 <script setup lang="ts">
-import { haConfig, showDemo } from '@/HAConfig'
-import LayoutsDemo from './LayoutsDemo.vue'
-import TextDemo from './TextDemo.vue'
-import ElementsDemo from './ElementDemo.vue'
-import ReplicaDemo from './ReplicaDemo.vue'
-import PanelDemo from './PanelDemo.vue'
+import { navigate, currentNav } from '@/LocalNav'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const demoComponents: Record<string, any> = {
-  layout: LayoutsDemo,
-  text: TextDemo,
-  panels: PanelDemo,
-  elements: ElementsDemo,
-  replica: ReplicaDemo,
+const { children } = defineProps<{ children: any[] }>()
+
+function onClick(path: string) {
+  navigate(path)
 }
 </script>
 
@@ -22,27 +15,25 @@ const demoComponents: Record<string, any> = {
 
 <template>
   <div class="lcars-wrapper">
-    <div v-if="!haConfig.demo?.fullScreen">
+    <div>
       <span
-        v-for="[key, _value] in Object.entries(demoComponents)"
-        :key="key"
+        v-for="child in children"
+        :key="child.type"
         class="lcars-element rounded button"
         :style="{
-          backgroundColor:
-            haConfig.demo?.main === key
-              ? 'var(--lcars-color-golden-tanoi)'
-              : 'var(--lcars-color-neon-carrot)',
+          backgroundColor: currentNav.endsWith(child.showForNv)
+            ? 'var(--lcars-color-golden-tanoi)'
+            : 'var(--lcars-color-neon-carrot)',
         }"
-        @click="showDemo({ main: key })"
-        >{{ key }}</span
+        @click="onClick(child.showForNav)"
+        >{{ child.props.title }}</span
       >
       <span
         class="lcars-element rounded button lcars-color-neon-carrot-bg"
         style="background-color: var(--lcars-color-gray); color: var(--lcars-color-white)"
-        @click="showDemo({ main: 'none' })"
+        @click="onClick('/')"
         >Exit</span
       >
     </div>
-    <component :is="demoComponents[haConfig.demo?.main ?? 'layout']"></component>
   </div>
 </template>

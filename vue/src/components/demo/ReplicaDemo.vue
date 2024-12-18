@@ -6,9 +6,9 @@ import DPanel from '../DPanel.vue'
 import PPanel from '../PPanel.vue'
 import OPanel from '../OPanel.vue'
 
-const root = document.documentElement
+// const root = document.documentElement
 
-root?.style.setProperty('--lcars-unit', '25px')
+// root?.style.setProperty('--lcars-unit', '25px')
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const rootStyle: any = computed(() => {
