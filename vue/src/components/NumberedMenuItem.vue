@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import type { MenuItem } from '../MenuItem'
-const props: MenuItem = withDefaults(defineProps<MenuItem>(), { width: 5 })
-
-const { index, icon, title, color, width } = props
+const { index, icon, title, color, width = 5 } = defineProps<MenuItem>()
 </script>
 
 <template>

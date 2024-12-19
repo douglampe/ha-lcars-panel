@@ -3,14 +3,11 @@ import { computed } from 'vue'
 import DPanel from './DPanel.vue'
 import NumberedMenuItem from './NumberedMenuItem.vue'
 
-const { color, accentColor, width } = withDefaults(
-  defineProps<{ color?: string; accentColor?: string; width?: number }>(),
-  {
-    color: 'var(--lcars-color-default)',
-    accentColor: 'var(--lcars-color-gray)',
-    width: 7,
-  },
-)
+const {
+  color = 'var(--lcars-color-default)',
+  accentColor = 'var(--lcars-color-gray)',
+  width = 7,
+} = defineProps<{ color?: string; accentColor?: string; width?: number }>()
 
 const isDev = computed(() => {
   return import.meta.env.DEV

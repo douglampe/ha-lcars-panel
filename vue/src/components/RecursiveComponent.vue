@@ -10,6 +10,7 @@ import ReplicaDemo from './demo/ReplicaDemo.vue'
 import TextDemo from './demo/TextDemo.vue'
 import DPanel from './DPanel.vue'
 import EntityAttributeTable from './EntityAttributeTable.vue'
+import HAStateColor from './HAStateColor.vue'
 import HAStateTable from './HAStateTable.vue'
 import HAStateValue from './HAStateValue.vue'
 import HAStateView from './HAStateView.vue'
@@ -32,6 +33,7 @@ const components: Record<string, any> = {
   SevenPanel,
   OPanel,
   EntityAttributeTable,
+  HAStateColor,
   HAStateTable,
   HAStateValue,
   HAStateView,
