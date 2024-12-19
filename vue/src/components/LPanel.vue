@@ -108,13 +108,13 @@ const { title, color } = defineProps({
             ' + var(--lcars-unit) * ' +
             bottomInnerRadX +
             ')',
-          height: 'calc(var(--lcars-unit) * ' + bottomHeight + ' + var(--lcars-unit))',
+          height: `calc(var(--lcars-unit) * ${bottomHeight} + var(--lcars-unit) * ${bottomInnerRadY}`,
         }"
       ></div>
       <div
-        class="lcars-el bottom lcars-h-unit"
+        class="lcars-el bottom"
         :class="{ fill: fillWidth }"
-        :style="{ backgroundColor: color }"
+        :style="{ backgroundColor: color, height: `calc(var(--lcars-unit) * ${bottomHeight}` }"
       ></div>
       <slot name="bottom"></slot>
       <div
