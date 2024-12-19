@@ -1,6 +1,11 @@
 <script setup lang="ts">
-import { haConfig } from './HAConfig'
+import { onMounted } from 'vue'
+import { haConfig, loadVariables } from './HAConfig'
 import RecursiveComponent from './components/RecursiveComponent.vue'
+
+onMounted(() => {
+  loadVariables()
+})
 </script>
 
 <template>

@@ -2,7 +2,7 @@
 import { defineCustomElement } from 'vue'
 
 import { haState } from './HAState'
-import { haConfig, setVariable } from './HAConfig'
+import { loadConfig } from './HAConfig'
 import LCARSCardCe from './LCARSCard.ce.vue'
 
 customElements.define('lcars-card', defineCustomElement(LCARSCardCe))
@@ -20,7 +20,9 @@ class LCARSCustomCard extends HTMLElement {
   }
 
   set panel(panel: any) {
-    haConfig.value = panel?.config
+    if (panel.config) {
+      loadConfig(panel.config)
+    }
   }
 
   set hass(hass: any) {
@@ -32,13 +34,7 @@ class LCARSCustomCard extends HTMLElement {
       return
     }
 
-    haConfig.value = config
-
-    if (config.vars) {
-      Object.entries(config.vars).forEach(([key, value]) => {
-        setVariable(key, value as string)
-      })
-    }
+    loadConfig(config)
   }
 
   connectedCallback() {

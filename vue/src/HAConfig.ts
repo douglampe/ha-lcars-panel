@@ -237,12 +237,25 @@ if (import.meta.env.DEV) {
 }
 
 export function setVariable(key: string, value: string) {
-  document.documentElement?.style.setProperty(`--${key.replace('_', '-')}`, value)
+  const formattedKey = `--${key.replace('_', '-')}`
+  document.documentElement?.style.setProperty(formattedKey, value)
+}
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function loadConfig(config: any) {
+  haConfig.value = config
+
+  loadVariables()
+}
+
+export function loadVariables() {
+  if (haConfig.value?.vars) {
+    Object.entries(haConfig.value?.vars).forEach(([key, value]) => {
+      setVariable(key, value as string)
+    })
+  }
 }
 
 export function loadDefault() {
-  haConfig.value = defaultConfig
-  Object.entries(defaultConfig.vars).forEach(([key, value]) => {
-    setVariable(key, value as string)
-  })
+  loadConfig(defaultConfig)
 }
