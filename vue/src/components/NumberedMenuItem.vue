@@ -26,7 +26,7 @@ const { index, icon, title, color, width } = props
     <div
       class="lcars-h-unit"
       :style="{
-        width: 'calc(var(--lcars-unit) * ' + width + ')',
+        width: `calc(var(--lcars-unit) * ${width})`,
         fontSize: 'calc(var(--lcars-unit) * 0.6)',
         lineHeight: 'calc(var(--lcars-unit) * 0.85)',
         backgroundColor: color,

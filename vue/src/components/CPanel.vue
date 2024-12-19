@@ -102,25 +102,13 @@ const { title, color } = defineProps({
       <div
         class="lcars-el"
         :class="[
-          topOuterRadX > 0 && topOuterRadY > 0 ? 'rad-tl-' + topOuterRadX + '-' + topOuterRadY : '',
-          topInnerRadX > 0 && topInnerRadY > 0
-            ? 'rad-i-tl-' + topInnerRadX + '-' + topInnerRadY
-            : '',
+          topOuterRadX > 0 && topOuterRadY > 0 ? `rad-tl-${topOuterRadX}-${topOuterRadY}` : '',
+          topInnerRadX > 0 && topInnerRadY > 0 ? `rad-i-tl-${topInnerRadX}-${topInnerRadY}` : '',
         ]"
         :style="{
           backgroundColor: color,
-          width:
-            'calc(var(--lcars-unit) * ' +
-            leftWidth +
-            ' + var(--lcars-unit) * ' +
-            topInnerRadX +
-            ')',
-          height:
-            'calc(var(--lcars-unit) * ' +
-            topHeight +
-            ' + var(--lcars-unit) * ' +
-            topInnerRadY +
-            ')',
+          width: `calc(var(--lcars-unit) * ${leftWidth} + var(--lcars-unit) * ${topInnerRadX})`,
+          height: `calc(var(--lcars-unit) * ${topHeight} + var(--lcars-unit) * ${topInnerRadY})`,
         }"
       ></div>
       <div
@@ -128,7 +116,7 @@ const { title, color } = defineProps({
         :class="{ fill: fillWidth }"
         :style="{
           backgroundColor: color,
-          height: 'calc(var(--lcars-unit) * ' + topHeight + ')',
+          height: `calc(var(--lcars-unit) * ${topHeight})`,
         }"
       ></div>
       <slot name="top"></slot>
@@ -137,8 +125,8 @@ const { title, color } = defineProps({
         class="lcars-bar-text"
         :style="{
           color: color,
-          fontSize: 'calc(var(--lcars-unit) * ' + topHeight + ')',
-          lineHeight: 'calc(var(--lcars-unit) * ' + topHeight + ' * 0.8)',
+          fontSize: `calc(var(--lcars-unit) * ${topHeight})`,
+          lineHeight: `calc(var(--lcars-unit) * ${topHeight} * 0.8)`,
         }"
       >
         {{ title }}
@@ -146,8 +134,8 @@ const { title, color } = defineProps({
       <div
         v-if="topCap"
         class="lcars-el"
-        :class="'r-cap-' + topHeight * 5"
-        :style="{ backgroundColor: color, height: 'calc(var(--lcars-unit) * ' + topHeight + ')' }"
+        :class="`r-cap-${topHeight * 5}`"
+        :style="{ backgroundColor: color, height: `calc(var(--lcars-unit) * ${topHeight})` }"
       ></div>
     </div>
     <div class="lcars-row" :class="{ fill: fillHeight }">
@@ -157,7 +145,7 @@ const { title, color } = defineProps({
           class="lcars-el fill"
           :style="{
             backgroundColor: leftColor,
-            width: 'calc(var(--lcars-unit) * ' + leftWidth + ')',
+            width: `calc(var(--lcars-unit) * ${leftWidth})`,
           }"
         ></div>
       </div>
@@ -170,21 +158,16 @@ const { title, color } = defineProps({
         class="lcars-el"
         :class="[
           bottomOuterRadX > 0 && bottomOuterRadY > 0
-            ? 'rad-bl-' + bottomOuterRadX + '-' + bottomOuterRadY
+            ? `rad-bl-${bottomOuterRadX}-${bottomOuterRadY}`
             : '',
           bottomInnerRadX > 0 && bottomInnerRadY
-            ? 'rad-i-bl-' + bottomInnerRadX + '-' + bottomInnerRadY
+            ? `rad-i-bl-${bottomInnerRadX}-${bottomInnerRadY}`
             : '',
         ]"
         :style="{
           backgroundColor: color,
-          width:
-            'calc(var(--lcars-unit) * ' +
-            leftWidth +
-            ' + var(--lcars-unit) * ' +
-            bottomInnerRadX +
-            ')',
-          height: 'calc(var(--lcars-unit) * ' + bottomHeight + ' + var(--lcars-unit))',
+          width: `calc(var(--lcars-unit) * ${leftWidth} + var(--lcars-unit) * ${bottomInnerRadX})`,
+          height: `calc(var(--lcars-unit) * ${bottomHeight} + var(--lcars-unit))`,
         }"
       ></div>
       <div
@@ -196,10 +179,10 @@ const { title, color } = defineProps({
       <div
         v-if="bottomCap"
         class="lcars-el bottom"
-        :class="'r-cap-' + bottomHeight * 5"
+        :class="`r-cap-${bottomHeight * 5}`"
         :style="{
           backgroundColor: color,
-          height: 'calc(var(--lcars-unit) * ' + bottomHeight + ')',
+          height: `calc(var(--lcars-unit) * ${bottomHeight})`,
         }"
       ></div>
     </div>
