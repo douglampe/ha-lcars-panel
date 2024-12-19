@@ -97,14 +97,14 @@ function onClick() {
     </template>
     <template #top v-if="config.topChildren">
       <RecursiveComponent
-        v-for="(child, index) in config.leftChildren"
+        v-for="(child, index) in config.topChildren"
         :key="index"
         v-bind="child"
       />
     </template>
     <template #bottom v-if="config.bottomChildren">
       <RecursiveComponent
-        v-for="(child, index) in config.leftChildren"
+        v-for="(child, index) in config.bottomChildren"
         :key="index"
         v-bind="child"
       />
