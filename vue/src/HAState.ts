@@ -3,6 +3,22 @@ import { ref } from 'vue'
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const haState = ref({} as any)
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function getStateValue(state: any, entity: string, attribute: string = 'state') {
+  if (!state.states) {
+    return
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const entityObject: any = state.states[entity]
+
+  if (!entityObject?.attributes) {
+    return
+  }
+
+  return entityObject.attributes[attribute]
+}
+
 export function loadTestState() {
   haState.value = {
     states: {
