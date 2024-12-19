@@ -3,6 +3,15 @@ import { computed } from 'vue'
 import DPanel from './DPanel.vue'
 import NumberedMenuItem from './NumberedMenuItem.vue'
 
+const { color, accentColor, width } = withDefaults(
+  defineProps<{ color?: string; accentColor?: string; width?: number }>(),
+  {
+    color: 'var(--lcars-color-default)',
+    accentColor: 'var(--lcars-color-gray)',
+    width: 7,
+  },
+)
+
 const isDev = computed(() => {
   return import.meta.env.DEV
 })
@@ -12,9 +21,12 @@ const icon =
 </script>
 
 <template>
-  <DPanel color="var(--lcars-color-default)" :right-width="7" :fill-height="true">
+  <DPanel :color="color" :right-width="width" :fill-height="true">
     <template #right>
-      <div class="lcars-el rad-i-tr-1 lcars-h-1 lcars-w-2-plus lcars-gray-bg"></div>
+      <div
+        class="lcars-el rad-i-tr-1 lcars-h-1"
+        :style="{ backgroundColor: accentColor, width: `calc(var(--lcars-unit) * ${width})` }"
+      ></div>
       <slot></slot>
       <NumberedMenuItem
         v-if="isDev"
@@ -25,7 +37,10 @@ const icon =
         class="button"
         href="/"
       />
-      <div class="lcars-el rad-i-br-1 lcars-h-1 lcars-w-2-plus lcars-gray-bg"></div>
+      <div
+        class="lcars-el rad-i-br-1 lcars-h-1"
+        :style="{ backgroundColor: accentColor, width: `calc(var(--lcars-unit) * ${width})` }"
+      ></div>
     </template>
   </DPanel>
 </template>
