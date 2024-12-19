@@ -5,7 +5,7 @@ import RecursiveComponent from './components/RecursiveComponent.vue'
 
 <template>
   <div class="lcars-wrapper">
-    <RecursiveComponent v-bind="haConfig" />
+    <RecursiveComponent v-bind="haConfig" :type="undefined" />
   </div>
 </template>
 
