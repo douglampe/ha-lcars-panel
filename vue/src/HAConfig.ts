@@ -11,7 +11,7 @@ const defaultConfig = {
       leftChildren: [
         {
           type: 'NumberedMenuItem',
-          nav: '/home/cartography',
+          nav: '/cartography',
           props: {
             index: '01',
             title: 'Cartography',
@@ -220,6 +220,198 @@ const defaultConfig = {
               type: 'ReplicaDemo',
               showForNav: '/demo/replica',
               props: { title: 'Replica' },
+            },
+          ],
+        },
+      ],
+    },
+    {
+      showForNav: '/cartography',
+      props: {
+        class: 'lcars-col',
+      },
+      children: [
+        {
+          type: 'LPanel',
+          props: {
+            fillWidth: true,
+            fillHeight: true,
+            color: 'var(--lcars-color-dodger-blue)',
+            leftColor: 'var(--lcars-color-dodger-blue)',
+            bottomHeight: 0.5,
+            bottomOuterRadX: 3,
+            bottomInnerRadX: 2,
+            bottomInnerRadY: 1,
+            class: 'lcars-margin-bottom-3',
+          },
+          leftChildren: [
+            {
+              nav: '/home',
+              props: {
+                class: 'lcars-el button lcars-lilac-bg lcars-h-1 relative lcars-margin-bottom-1',
+              },
+              children: [
+                {
+                  text: 'LCARS 23295',
+                  class: 'lcars-black-color bottom-right',
+                },
+              ],
+            },
+            {
+              text: '01-23564',
+              props: {
+                class: 'lcars-el lcars-dodger-blue-bg lcars-h-1 lcars-pad-4 lcars-black-color',
+                style: 'text-align: right',
+              },
+            },
+          ],
+          bottomChildren: [
+            {
+              props: {
+                class:
+                  'lcars-el lcars-golden-tanoi-bg bottom lcars-margin-left-1 lcars-margin-right-1',
+                style: 'height: calc(var(--lcars-unit) * .5);width: calc(var(--lcars-unit) * .75);',
+              },
+            },
+            {
+              props: {
+                class: 'lcars-el lcars-lilac-bg lcars-w-1-plus bottom lcars-margin-right-1',
+                style: 'height: calc(var(--lcars-unit) * .5);',
+              },
+            },
+            {
+              props: {
+                class: 'lcars-el lcars-lilac-bg lcars-w-3 bottom lcars-margin-right-1',
+                style: 'height: calc(var(--lcars-unit) * .5);',
+              },
+            },
+            {
+              props: {
+                class: 'lcars-el lcars-indian-red-bg lcars-w-1 bottom lcars-margin-right-1',
+                style: 'height: calc(var(--lcars-unit) * .5);',
+              },
+            },
+          ],
+        },
+        {
+          type: 'PPanel',
+          props: {
+            fillWidth: true,
+            fillHeight: true,
+            color: 'var(--lcars-color-indian-red)',
+            leftColor: 'var(--lcars-color-indian-red)',
+            topHeight: 0.5,
+            topOuterRadX: 3,
+            topInnerRadX: 2,
+            topInnerRadY: 1,
+          },
+          topChildren: [
+            {
+              props: {
+                class: 'lcars-el lcars-golden-tanoi-bg lcars-margin-left-1 lcars-margin-right-1',
+                style: 'height: calc(var(--lcars-unit) * .5);width: calc(var(--lcars-unit) * .75);',
+              },
+            },
+            {
+              props: {
+                class: 'lcars-el lcars-atomic-tangerine-bg lcars-w-1-plus lcars-margin-right-1',
+                style: 'height: calc(var(--lcars-unit) * .25);',
+              },
+            },
+            {
+              props: {
+                class: 'lcars-el lcars-lilac-bg lcars-w-3 lcars-margin-right-1',
+                style: 'height: calc(var(--lcars-unit) * .5);',
+              },
+            },
+            {
+              props: {
+                class: 'lcars-el lcars-indian-red-bg lcars-w-1 lcars-margin-right-1',
+                style: 'height: calc(var(--lcars-unit) * .5);',
+              },
+            },
+          ],
+          leftChildren: [
+            {
+              props: {
+                class: 'lcars-el lcars-indian-red-bg lcars-h-unit relative lcars-margin-bottom-1',
+              },
+              children: [
+                {
+                  text: '02-24156',
+                  class: 'lcars-black-color bottom-right',
+                },
+              ],
+            },
+            {
+              props: {
+                class: 'lcars-el lcars-indian-red-bg lcars-h-1-plus relative lcars-margin-bottom-1',
+              },
+              children: [
+                {
+                  text: '03-41248',
+                  class: 'lcars-black-color bottom-right',
+                },
+              ],
+            },
+            {
+              props: {
+                class: 'lcars-el lcars-golden-tanoi-bg lcars-h-unit relative lcars-margin-bottom-1',
+              },
+              children: [
+                {
+                  text: '04-14702',
+                  class: 'lcars-black-color bottom-right',
+                },
+              ],
+            },
+            {
+              props: {
+                class:
+                  'lcars-el lcars-atomic-tangerine-bg lcars-h-1-plus relative lcars-margin-bottom-1',
+              },
+              children: [
+                {
+                  text: '05-32456',
+                  class: 'lcars-black-color bottom-right',
+                },
+              ],
+            },
+          ],
+          children: [
+            {
+              props: { class: 'lcars-row' },
+              children: [
+                {
+                  props: {
+                    class: 'lcars-col lcars-margin-left-10',
+                  },
+                  children: [
+                    {
+                      text: 'Sun',
+                      props: {
+                        class: 'lcars-golden-tanoi-color lcars-font-10 lcars-margin-bottom-5',
+                      },
+                    },
+                    {
+                      type: 'EntityAttributeList',
+                      props: {
+                        entity: 'sun.sun',
+                        scanning: true,
+                        class: 'lcars-lilac-color',
+                      },
+                    },
+                  ],
+                },
+                {
+                  tag: 'img',
+                  props: {
+                    src: '/img/sun.webp',
+                    class: 'lcars-margin-left-10',
+                    style: 'width: calc(var(--lcars-unit) * 10)',
+                  },
+                },
+              ],
             },
           ],
         },

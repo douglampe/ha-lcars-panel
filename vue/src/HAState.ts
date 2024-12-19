@@ -56,6 +56,36 @@ export function loadTestState() {
         last_changed: '2024-12-11T22:34:22.081Z',
         last_updated: '2024-12-11T22:34:22.081Z',
       },
+      'weather.forecast_home': {
+        entity_id: 'weather.forecast_home',
+        state: 'cloudy',
+        attributes: {
+          temperature: 71,
+          dew_point: 66,
+          temperature_unit: '°F',
+          humidity: 82,
+          cloud_coverage: 87.5,
+          uv_index: 3.8,
+          pressure: 30.11,
+          pressure_unit: 'inHg',
+          wind_bearing: 59.6,
+          wind_speed: 3.6,
+          wind_speed_unit: 'mph',
+          visibility_unit: 'mi',
+          precipitation_unit: 'in',
+          attribution:
+            'Weather forecast from met.no, delivered by the Norwegian Meteorological Institute.',
+          friendly_name: 'Forecast Home',
+          supported_features: 3,
+        },
+        context: {
+          id: '01JFG0KECHT4MWRP4K8VR3VFFR',
+          parent_id: null,
+          user_id: null,
+        },
+        last_changed: '2024-12-19T17:49:14.001Z',
+        last_updated: '2024-12-19T17:49:14.001Z',
+      },
     },
   }
 }
