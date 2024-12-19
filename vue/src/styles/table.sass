@@ -46,24 +46,35 @@ $animationFramecount: 10
     animation-duration: $animationDuration
     animation-delay: calc($animationDuration / $animationFramecount * $animationFrameIdx)
     animation-iteration-count: infinite
+@for $animationFrameIdx from 2 through $animationFramecount
+  .scanning-children :nth-child(#{$animationFrameIdx})
+    animation-name: rowscan
+    animation-duration: $animationDuration
+    animation-delay: calc($animationDuration / $animationFramecount * $animationFrameIdx)
+    animation-iteration-count: infinite
 
-@keyframes rowscan-fast 
-  0%
-    filter: brightness(1.0)
-  3%
-    filter: brightness(1.65)
-  10%
-    filter: brightness(1.65)
-  14%
-    filter: brightness(1.0)
-  100%
-    filter: brightness(1.0)
+$animationDuration: 5s
+@for $animationFrameIdx from 1 through 20
+  @keyframes rowfill-#{$animationFrameIdx}
+    0%
+      filter: brightness(0)
+    #{$animationFrameIdx * 4}%
+      filter: brightness(1)
+    100%
+      filter: brightness(0)
+  table.lcars-table.row-fill tr:nth-child(#{$animationFrameIdx}) td
+    filter: brightness(0)
+    animation-name: rowfill-#{$animationFrameIdx}
+    animation-timing-function: step-end
+    animation-duration: $animationDuration
+    animation-delay: 0
+    animation-iteration-count: infinite
 
 $animationDuration: 2s
 $animationFramecount: 12
 @for $animationFrameIdx from 1 through $animationFramecount
   table.lcars-table.scanning-fast tr:nth-child(#{$animationFrameIdx}) td 
-    animation-name: rowscan-fast
+    animation-name: rowscan
     animation-duration: $animationDuration
     animation-delay: calc($animationDuration / $animationFramecount * $animationFrameIdx)
     animation-iteration-count: infinite

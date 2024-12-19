@@ -10,28 +10,36 @@ import ReplicaDemo from './demo/ReplicaDemo.vue'
 import TextDemo from './demo/TextDemo.vue'
 import DPanel from './DPanel.vue'
 import EntityAttributeTable from './EntityAttributeTable.vue'
+import EntityAttributeList from './EntityAttributeList.vue'
 import HAStateColor from './HAStateColor.vue'
 import HAStateTable from './HAStateTable.vue'
 import HAStateValue from './HAStateValue.vue'
 import HAStateView from './HAStateView.vue'
 import HorizontalPanel from './HorizontalPanel.vue'
 import HorizontalScale from './HorizontalScale.vue'
+import JPanel from './JPanel.vue'
 import LCARSColumn from './LCARSColumn.vue'
 import LCARSMenuPanel from './LCARSMenuPanel.vue'
 import LCARSRow from './LCARSRow.vue'
+import LPanel from './LPanel.vue'
 import NumberedMenuItem from './NumberedMenuItem.vue'
 import OPanel from './OPanel.vue'
 import PPanel from './PPanel.vue'
 import SevenPanel from './SevenPanel.vue'
 import VerticalPanel from './VerticalPanel.vue'
 import VerticalScale from './VerticalScale.vue'
+import EntityAttributeFlow from './EntityAttributeFlow.vue'
 
 const components: Record<string, any> = {
   CPanel,
   DPanel,
   PPanel,
   SevenPanel,
+  LPanel,
+  JPanel,
   OPanel,
+  EntityAttributeFlow,
+  EntityAttributeList,
   EntityAttributeTable,
   HAStateColor,
   HAStateTable,
@@ -55,6 +63,7 @@ const components: Record<string, any> = {
 
 interface Props {
   type?: string
+  tag?: string
   text?: string
   props?: Record<string, any>
   showForNav?: string
@@ -67,7 +76,7 @@ interface Props {
   bottomChildren?: any[]
 }
 
-const config = defineProps<Props>()
+const config = withDefaults(defineProps<Props>(), { tag: 'div' })
 
 function isVisible() {
   if (config.showForNav && !currentNav?.value.startsWith(config.showForNav)) {
@@ -86,7 +95,7 @@ function onClick() {
 <template>
   <component
     v-if="isVisible()"
-    :is="config.type ? components[config.type] : 'div'"
+    :is="config.type ? components[config.type] : tag"
     v-bind="config.props"
     @click="onClick()"
   >

@@ -2,9 +2,8 @@
 import { computed } from 'vue'
 import { haState } from '../HAState'
 
-const { entity, fillRows, scanning, fast } = defineProps<{
+const { entity, scanning, fast } = defineProps<{
   entity: string
-  fillRows?: boolean
   scanning?: boolean
   fast?: boolean
 }>()
@@ -12,10 +11,6 @@ const { entity, fillRows, scanning, fast } = defineProps<{
 const classes = computed(() => {
   if (scanning) {
     return `scanning-cell${fast ? '-fast' : ''}`
-  }
-
-  if (fillRows) {
-    return 'row-fill'
   }
 
   return ''
@@ -36,10 +31,14 @@ const rows = computed(() => {
 </script>
 
 <template>
-  <table class="lcars-table" :class="classes">
-    <tr v-for="(row, index) in rows" :key="index">
-      <td>{{ row.key }}</td>
-      <td>{{ row.value }}</td>
-    </tr>
-  </table>
+  <div class="lcars-row" :class="classes" style="flex-wrap: wrap">
+    <div
+      v-for="(row, index) in rows"
+      :key="index"
+      class="lcars-col"
+      style="width: calc(var(--lcars-unit) * 5)"
+    >
+      {{ row.key.replace('_', ' ') }}: {{ row.value }}
+    </div>
+  </div>
 </template>
