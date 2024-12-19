@@ -2,7 +2,19 @@
 import { computed } from 'vue'
 import { haState } from '../HAState'
 
-const { entity } = defineProps<{ entity: string }>()
+const { entity, scanning, fast } = defineProps<{
+  entity: string
+  scanning?: boolean
+  fast?: boolean
+}>()
+
+const classes = computed(() => {
+  if (scanning) {
+    return `scanning-cell${fast ? '-fast' : ''}`
+  }
+
+  return ''
+})
 
 const rows = computed(() => {
   if (!haState?.value?.states) {
@@ -11,7 +23,7 @@ const rows = computed(() => {
   const rowList: Array<{ key: string; value: string }> = []
   const entityObject = haState?.value?.states[entity]
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  Object.entries((entityObject as any).attributes).forEach(([key, value], j) => {
+  Object.entries((entityObject as any).attributes).forEach(([key, value]) => {
     rowList.push({ key, value: value as string })
   })
   return rowList
@@ -19,7 +31,7 @@ const rows = computed(() => {
 </script>
 
 <template>
-  <table class="lcars-table scanning-fast lcars-husk-color">
+  <table class="lcars-table" :class="classes">
     <tr v-for="(row, index) in rows" :key="index">
       <td>{{ row.key }}</td>
       <td>{{ row.value }}</td>
