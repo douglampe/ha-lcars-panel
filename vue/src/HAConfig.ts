@@ -1,6 +1,9 @@
 import { ref } from 'vue'
 
 const defaultConfig = {
+  vars: {
+    lcars_unit: '3vw',
+  },
   children: [
     {
       type: 'LCARSMenuPanel',
@@ -227,8 +230,19 @@ const defaultConfig = {
 } as any
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const haConfig = ref(import.meta.env.DEV ? defaultConfig : ({} as any))
+export const haConfig = ref({} as any)
+
+if (import.meta.env.DEV) {
+  loadDefault()
+}
+
+export function setVariable(key: string, value: string) {
+  document.documentElement?.style.setProperty(`--${key.replace('_', '-')}`, value)
+}
 
 export function loadDefault() {
   haConfig.value = defaultConfig
+  Object.entries(defaultConfig.vars).forEach(([key, value]) => {
+    setVariable(key, value as string)
+  })
 }

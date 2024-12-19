@@ -1,14 +1,10 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { haConfig } from '@/HAConfig'
+import { haConfig, setVariable } from '@/HAConfig'
 import CPanel from '../CPanel.vue'
 import DPanel from '../DPanel.vue'
 import PPanel from '../PPanel.vue'
 import OPanel from '../OPanel.vue'
-
-// const root = document.documentElement
-
-// root?.style.setProperty('--lcars-unit', '25px')
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const rootStyle: any = computed(() => {
@@ -23,7 +19,7 @@ const rootStyle: any = computed(() => {
 
 function setLayoutVisible(visible: boolean) {
   haConfig.value.showLayout = visible
-  document.documentElement?.style.setProperty('--global-outline', visible ? 'solid' : 'none')
+  setVariable('--global-outline', visible ? 'solid' : 'none')
 }
 </script>
 
