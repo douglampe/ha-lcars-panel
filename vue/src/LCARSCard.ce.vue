@@ -10,7 +10,7 @@ onMounted(() => {
 
 <template>
   <div class="lcars-wrapper">
-    <RecursiveComponent v-bind="haConfig" :type="undefined" />
+    <RecursiveComponent :children="haConfig.children" />
   </div>
 </template>
 
