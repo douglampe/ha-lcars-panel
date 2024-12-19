@@ -19,7 +19,7 @@ const rootStyle: any = computed(() => {
 
 function setLayoutVisible(visible: boolean) {
   haConfig.value.showLayout = visible
-  setVariable('--global-outline', visible ? 'solid' : 'none')
+  setVariable('global-outline', visible ? 'solid' : 'none')
 }
 </script>
 
