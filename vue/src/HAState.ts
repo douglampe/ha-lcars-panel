@@ -1,15 +1,21 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { ref } from 'vue'
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const haState = ref({} as any)
+export interface HAState {
+  states: Record<string, any>
+  user: any
+  callService: (service: string, data?: any) => Promise<any>
+  callWS: (message: any) => Promise<any>
+  callApi: (method: string, path: string, data?: any) => Promise<any>
+}
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const haState = ref({} as HAState)
+
 export function getStateValue(state: any, entity: string, attribute: string = 'state') {
   if (!state.states) {
     return
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const entityObject: any = state.states[entity]
 
   if (!entityObject?.attributes) {
@@ -21,6 +27,22 @@ export function getStateValue(state: any, entity: string, attribute: string = 's
 
 export function loadTestState() {
   haState.value = {
+    callService: (_service: string, _data?: any) => Promise.reject('Thisis a test state.'),
+    callWS: (_message: any) => Promise.reject('Thisis a test state.'),
+    callApi: (_method: string, _path: string, _data?: any) =>
+      Promise.reject('Thisis a test state.'),
+    user: {
+      id: '758186e6a1854ee2896efbd593cb542c',
+      name: 'Doug',
+      is_owner: true,
+      is_admin: true,
+      credentials: [
+        {
+          auth_provider_type: 'homeassistant',
+          auth_provider_id: null,
+        },
+      ],
+    },
     states: {
       'person.doug': {
         entity_id: 'person.doug',
