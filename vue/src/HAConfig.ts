@@ -397,7 +397,7 @@ const defaultConfig = {
                       type: 'EntityAttributeList',
                       props: {
                         entity: 'sun.sun',
-                        scanning: true,
+                        fillRows: true,
                         class: 'lcars-lilac-color',
                       },
                     },
