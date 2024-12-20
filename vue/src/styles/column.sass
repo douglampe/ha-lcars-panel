@@ -1,5 +1,7 @@
-.lcars-column
-  display: inline-flex
+@use 'globals'
+
+.lcars-col
+  display: flex
   flex-direction: column
 
   &.fill
@@ -16,6 +18,9 @@
     justify-content: center
     align-items: flex-end
 
+  &.right
+    align-items: flex-end
+
   &.bottom
     justify-content: flex-end
 
@@ -23,17 +28,12 @@
     justify-content: flex-end
     align-items: center
 
-  & :last-child
+  &.gap:last-child,
+  &.gap-small:last-child
     margin-bottom: 0
 
-  & > *
-    margin-bottom: 0.2vw
+  &.gap > *
+    margin-bottom: var(--lcars-gap)
 
-  &.left-menu
-    padding-right: 2rem
-
-  &.right-menu
-    padding-left: 2rem
-
-  &.start-space
-    margin-top: 0.25rem
+  &.gap-small > *
+    margin-bottom: var(--lcars-gap-small)

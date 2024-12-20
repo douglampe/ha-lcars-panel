@@ -1,56 +1,43 @@
 <script setup lang="ts">
-import type { MenuItem } from '../MenuItem'
+import { computed } from 'vue'
+import DPanel from './DPanel.vue'
 import NumberedMenuItem from './NumberedMenuItem.vue'
 
-const { items } = defineProps<{ items: MenuItem[] }>()
-const exitItem: MenuItem = {
-  index: '99',
-  icon: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>exit-to-app</title><path fill="currentColor" d="M19,3H5C3.89,3 3,3.89 3,5V9H5V5H19V19H5V15H3V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3M10.08,15.58L11.5,17L16.5,12L11.5,7L10.08,8.41L12.67,11H3V13H12.67L10.08,15.58Z" /></svg>',
-  title: 'Transporter',
-  color: 'var(--color-neon-carrot)',
-  href: '/',
-}
-defineEmits<{
-  (e: 'select', item: MenuItem): void
-}>()
+const {
+  color = 'var(--lcars-color-default)',
+  accentColor = 'var(--lcars-color-gray)',
+  width = 7,
+} = defineProps<{ color?: string; accentColor?: string; width?: number }>()
+
+const isDev = computed(() => {
+  return import.meta.env.DEV
+})
+
+const icon =
+  '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>exit-to-app</title><path fill="currentColor" d="M19,3H5C3.89,3 3,3.89 3,5V9H5V5H19V19H5V15H3V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3M10.08,15.58L11.5,17L16.5,12L11.5,7L10.08,8.41L12.67,11H3V13H12.67L10.08,15.58Z" /></svg>'
 </script>
 
 <template>
-  <div class="lcars-column">
-    <!-- TOP BRACKETS -->
-    <div class="lcars-row">
-      <div class="lcars-bar bar horizontal" style="width: 2vw"></div>
-      <div class="lcars-u-2-plus lcars-elbow right-bottom"></div>
-    </div>
-    <div class="lcars-row">
-      <div class="lcars-u-1 half"></div>
-      <div class="lcars-u-2 lcars-elbow right-bottom square-outer lcars-gray-bg"></div>
-    </div>
-    <!-- /TOP BRACKETS -->
-    <!-- MENU ITEMS -->
-    <NumberedMenuItem
-      v-for="item in items"
-      :key="item.index"
-      v-bind="item"
-      @select="$emit('select', item)"
-    ></NumberedMenuItem>
-    <NumberedMenuItem v-bind="exitItem"></NumberedMenuItem>
-    <!-- /MENU ITEMS -->
-    <!-- FILLER -->
-    <div class="lcars-row fill">
-      <div class="lcars-bar empty lcars-u-1-minus">&nbsp;</div>
-      <div class="lcars-u-2-minus lcars-bar lcars-gray-bg"></div>
-    </div>
-    <!-- /FILLER -->
-    <!-- BOTTOM BRACKETS -->
-    <div class="lcars-row">
-      <div class="lcars-u-1 half"></div>
-      <div class="lcars-u-2 lcars-elbow right-top square-outer lcars-gray-bg"></div>
-    </div>
-    <div class="lcars-row">
-      <div class="lcars-bar bar horizontal bottom" style="width: 2vw"></div>
-      <div class="lcars-u-2-plus lcars-elbow right-top"></div>
-    </div>
-    <!-- /BOTTOM BRACKETS -->
-  </div>
+  <DPanel :color="color" :right-width="width" :fill-height="true">
+    <template #right>
+      <div
+        class="lcars-el rad-i-tr-1 lcars-h-1"
+        :style="{ backgroundColor: accentColor, width: `calc(var(--lcars-unit) * ${width})` }"
+      ></div>
+      <slot></slot>
+      <NumberedMenuItem
+        v-if="isDev"
+        index="99"
+        title="Transporter"
+        color="var(--lcars-color-neon-carrot)"
+        :icon="icon"
+        class="button"
+        href="/"
+      />
+      <div
+        class="lcars-el rad-i-br-1 lcars-h-1"
+        :style="{ backgroundColor: accentColor, width: `calc(var(--lcars-unit) * ${width})` }"
+      ></div>
+    </template>
+  </DPanel>
 </template>

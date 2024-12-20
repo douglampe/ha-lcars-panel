@@ -4,13 +4,13 @@ const { color, bgColor, right, left, rounded, button, addition, decorator, cap }
   color: {
     type: String,
     default() {
-      return 'var(--color-default-bg)'
+      return 'var(--lcars-color-default-bg)'
     },
   },
   bgColor: {
     type: String,
     default() {
-      return 'var(--color-golden-tanoi)'
+      return 'var(--lcars-color-golden-tanoi)'
     },
   },
   right: {

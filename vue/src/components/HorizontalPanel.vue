@@ -30,7 +30,7 @@ const containerStyle = computed(() => {
 <template>
   <div class="lcars-row" style="margin: 0.5vw">
     <div class="lcars-bracket left" :class="{ hollow: hollow }" :style="bracketStyle"></div>
-    <div class="lcars-column" :style="containerStyle"><slot></slot></div>
+    <div class="lcars-col" :style="containerStyle"><slot></slot></div>
     <div class="lcars-bracket right" :class="{ hollow: hollow }" :style="bracketStyle"></div>
   </div>
 </template>

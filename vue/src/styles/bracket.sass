@@ -1,35 +1,30 @@
+.lcars-bracket
+  background-color: var(--lcars-color-default)
 
-.lcars-bracket.left
-  width: 3vw
-  border-top-left-radius: 3vw
-  border-bottom-left-radius: 3vw
-  border-width: 2vw 0 2vw 1vw
+  &.left
+    width: var(--lcars-unit)
+    border-top-left-radius: var(--lcars-unit)
+    border-bottom-left-radius: var(--lcars-unit)
+    border-width: calc(var(--lcars-unit) * 2 / 3) 0 calc(var(--lcars-unit) * 2 / 3) calc(var(--lcars-unit) / 3)
 
-.lcars-bracket.right
-  width: 3vw
-  border-top-right-radius: 3vw
-  border-bottom-right-radius: 3vw
-  border-width: 2vw 1vw 2vw 0
+  &.right
+    width: var(--lcars-unit)
+    border-top-right-radius: var(--lcars-unit)
+    border-bottom-right-radius: var(--lcars-unit)
+    border-width: calc(var(--lcars-unit) * 2 / 3) calc(var(--lcars-unit) / 3) calc(var(--lcars-unit) * 2 / 3) 0
 
-.lcars-bracket.top
-  height: 3vw
-  border-top-left-radius: 3vw
-  border-top-right-radius: 3vw
-  border-width: 1vw 2vw 0 2vw
+  &.top
+    height: var(--lcars-unit)
+    border-top-left-radius: var(--lcars-unit)
+    border-top-right-radius: var(--lcars-unit)
+    border-width: calc(var(--lcars-unit) / 3) calc(var(--lcars-unit) * 2 / 3) 0 calc(var(--lcars-unit) * 2 / 3)
 
-.lcars-bracket.bottom
-  height: 3vw
-  border-bottom-left-radius: 3vw
-  border-bottom-right-radius: 3vw
-  border-width: 0 2vw 1vw 2vw
+  &.bottom
+    height: var(--lcars-unit)
+    border-bottom-left-radius: var(--lcars-unit)
+    border-bottom-right-radius: var(--lcars-unit)
+    border-width: 0 calc(var(--lcars-unit) * 2 / 3) calc(var(--lcars-unit) / 3) calc(var(--lcars-unit) * 2 / 3)
 
-.lcars-bracket.hollow
-  border-style: solid
-
-.lcars-bracket.left.hollow,
-.lcars-bracket.right.hollow
-  width: 2vw
-
-.lcars-bracket.top.hollow,
-.lcars-bracket.bottom.hollow
-  height: 2vw
+  &.hollow
+    background-color: var(--lcars-color-default-bg)
+    border-style: solid

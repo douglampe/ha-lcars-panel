@@ -1,3 +1,6 @@
+@use "sass:list"
+
+@use 'globals'
 @use 'row'
 @use 'column'
 @use 'bar'
@@ -5,42 +8,36 @@
 @use 'elbow'
 @use 'bracket'
 @use 'layout'
-@use 'colors'
+@use 'table'
 @use 'text'
-
-body
-  background-color: var(--color-default-bg)
-  margin: 0
-
-a
-  margin: 0
-  padding: 0
-  text-decoration: none
-
-.lcars-card
-  font-family: Antonio, "Arial", monospace
-  color: #fff
-  text-transform: uppercase
-
-.lcars-wrapper
-  background-color: #000
-  display: flex
-  flex-direction: column
-  height: 100vh
 
 ::-webkit-scrollbar
   width: 1em
 
 ::-webkit-scrollbar-track
-  background-color: colors.$defaultBg
+  background-color: var(--lcars-color-default-bg)
 
 ::-webkit-scrollbar-thumb
-  background-color: #696969
-  outline: 1px solid #696969
+  background-color: var(--lcars-color-default-scrollbar)
+  outline: 1px solid var(--lcars-color-default-scrollbar)
 
-@each $name, $color in colors.$colors
-  .lcars-#{$name}-bg
-    background-color: $color
-    fill: color
+.lcars-default-color
+  color: var(--lcars-color-default)
+.lcars-default-bg
+  background-color: var(--lcars-coloor-default-bg)
+  fill: color
+.lcars-default-border
+  border-color: var(--lcars-coloor-default)
+
+@each $name, $color in globals.$colors
+  $index: list.index((globals.$colors), ($name $color))
+  .lcars-color-#{$index}-color,
   .lcars-#{$name}-color
-    color: $color
+    color: #{$color}
+  .lcars-color-#{$index}-bg,
+  .lcars-#{$name}-bg
+    background-color: #{$color}
+    fill: color
+  .lcars-color-#{$index}-border,
+  .lcars-#{$name}-border
+    border-color: #{$color}

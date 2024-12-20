@@ -4,7 +4,8 @@ Inspired by the iconic Star Trek user interface, this [LCARS Home Assistant Them
 and this [LCARS HTML/CSS Framework](https://github.com/joernweissenborn/lcars), LCARS for Home Assistant is intended
 to provide a LCARS-like dashboard experience for home assistant. Thanks to
 [HA Lovelace Connector](https://github.com/iva-stolnik/vue-ha-lovelace-connector) for cracking the code on wrapping a
-Vue SFC as a custom component.
+Vue SFC as a custom component. Shout out to [Name That Color](https://chir.ag/projects/name-that-color/) for helping
+give a name to colors I grabbed from various samples.
 
 ## Configuration
 
@@ -24,19 +25,19 @@ panel_custom:
       menuItems:
         - index: "01"
           title: Cartography
-          color: "var(--color-chestnut-rose)"
+          color: "var(--lcars-color-chestnut-rose)"
           items:
             - type: "LCARSColumn"
               children:
                 - type: "HorizontalPanel"
                   props:
-                    color: "var(--color-neon-carrot)"
+                    color: "var(--lcars-color-neon-carrot)"
                   children:
                     - type: "HorizontalScale"
                       props:
                         cols: 3
-                        bgColor: "var(--color-neon-carrot)"
-                        color: "var(--color-anakiwa)"
+                        bgColor: "var(--lcars-color-neon-carrot)"
+                        color: "var(--lcars-color-anakiwa)"
                         title: Azimuth
                         entity: "sun.sun"
                         attribute: azimuth
@@ -49,13 +50,13 @@ panel_custom:
               children:
                 - type: "VerticalPanel"
                   props:
-                    color: "var(--color-dodger-blue)"
+                    color: "var(--lcars-color-dodger-blue)"
                   children:
                     - type: "HorizontalScale"
                       props:
                         cols: 3
-                        bgColor: "var(--color-dodger-blue)"
-                        color: "var(--color-anakiwa)"
+                        bgColor: "var(--lcars-color-dodger-blue)"
+                        color: "var(--lcars-color-anakiwa)"
                         title: Elevation
                         entity: "sun.sun"
                         attribute: elevation
@@ -66,20 +67,20 @@ panel_custom:
                         decimalPlaces: 1
         - index: "02"
           title: Navigation
-          color: "var(--color-neon-carrot)"
+          color: "var(--lcars-color-neon-carrot)"
         - index: "03"
           title: Sensors
-          color: "var(--color-periwinkle)"
+          color: "var(--lcars-color-periwinkle)"
         - index: "04"
           title: Communication
-          color: "var(--color-dodger-blue)"
+          color: "var(--lcars-color-dodger-blue)"
         - index: "05"
           title: Engineering
-          color: "var(--color-lilac)"
+          color: "var(--lcars-color-lilac)"
         - index: "06"
           title: Holodeck
-          color: "var(--color-periwinkle)"
+          color: "var(--lcars-color-periwinkle)"
         - index: "07"
           title: Medical
-          color: "var(--color-dodger-blue)"
+          color: "var(--lcars-color-dodger-blue)"
 ```

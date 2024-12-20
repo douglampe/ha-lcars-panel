@@ -47,9 +47,9 @@ const containerStyle = computed(() => {
 </script>
 
 <template>
-  <div class="lcars-column" style="margin: 0.5vw">
+  <div class="lcars-col" style="margin: 0.5vw">
     <div class="lcars-bracket top" :class="{ hollow: hollow }" :style="bracketStyle"></div>
-    <div class="lcars-column" :style="containerStyle">
+    <div class="lcars-col" :style="containerStyle">
       <slot></slot>
     </div>
     <div class="lcars-bracket bottom" :class="{ hollow: hollow }" :style="bracketStyle"></div>

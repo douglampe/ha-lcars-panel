@@ -1,16 +1,134 @@
-@use 'colors'
+@use 'globals'
+
+.lcars-el
+  position: relative
+  &.button
+    cursor: pointer
+  &.bottom
+    align-self: flex-end
+  &.fill
+    flex: 1
+
+  @for $i from 1 through 25
+    $radius: calc(var(--lcars-gap) + var(--lcars-gap) * #{$i})
+    &.l-cap-#{$i},
+    &.rad-#{$i}
+      border-top-left-radius: #{$radius}
+      border-bottom-left-radius: #{$radius}
+      min-width: calc(#{$radius} / 2)
+    &.r-cap-#{$i},
+    &.rad-#{$i}
+      border-top-right-radius: #{$radius}
+      border-bottom-right-radius: #{$radius}
+      min-width: calc(#{$radius} / 2)
+    &.t-cap-#{$i}
+      border-top-left-radius: #{$radius}
+      border-top-right-radius: #{$radius}
+      min-height: calc(#{$radius} / 2)
+    &.b-cap-#{$i}
+      border-bottom-left-radius: #{$radius}
+      border-bottom-right-radius: #{$radius}
+      min-height: calc(#{$radius} / 2)
+  @for $i from 1 through 6
+    $rad1: calc(var(--lcars-unit) * #{$i})
+    &.rad-tr-#{$i}
+      border-top-right-radius: $rad1
+    &.rad-tl-#{$i}
+      border-top-left-radius: $rad1
+    &.rad-bl-#{$i}
+      border-bottom-left-radius: $rad1
+    &.rad-br-#{$i}
+      border-bottom-right-radius: $rad1
+    &.rad-i-tl-#{$i}:after,
+    &.rad-i-tr-#{$i}:after,
+    &.rad-i-bl-#{$i}:after,
+    &.rad-i-br-#{$i}:after
+      content: ''
+      background-color: var(--lcars-color-default-bg)
+      width: $rad1
+      height: $rad1
+      display: block
+      position: absolute
+      margin: 0
+      padding: 0      
+    &.rad-i-tl-#{$i}:after
+      border-top-left-radius: $rad1
+      bottom: 0
+      right: 0
+    &.rad-i-tr-#{$i}:after
+      border-top-right-radius: $rad1
+      bottom: 0
+      left: 0
+    &.rad-i-bl-#{$i}:after
+      border-bottom-left-radius: $rad1
+      top: 0
+      right: 0
+    &.rad-i-br-#{$i}:after
+      border-bottom-right-radius: $rad1
+      top: 0
+      left: 0
+    @for $j from 1 through 6
+      $rad2: calc(var(--lcars-unit) * #{$j})
+      &.rad-i-tl-#{$i}-#{$j}:after,
+      &.rad-i-tr-#{$i}-#{$j}:after,
+      &.rad-i-bl-#{$i}-#{$j}:after,
+      &.rad-i-br-#{$i}-#{$j}:after
+        content: ''
+        background-color: var(--lcars-color-default-bg)
+        width: $rad1
+        height: $rad2
+        display: block
+        position: absolute
+        margin: 0
+        padding: 0      
+      &.rad-tr-#{$i}-#{$j}
+        border-top-right-radius: $rad1 $rad2
+      &.rad-tl-#{$i}-#{$j}
+        border-top-left-radius: $rad1 $rad2
+      &.rad-bl-#{$i}-#{$j}
+        border-bottom-left-radius: $rad1 $rad2
+      &.rad-br-#{$i}-#{$j}
+        border-bottom-right-radius: $rad1 $rad2
+
+      &.rad-i-tl-#{$i}-#{$j}:after,
+      &.rad-i-tr-#{$i}-#{$j}:after,
+      &.rad-i-bl-#{$i}-#{$j}:after,
+      &.rad-i-br-#{$i}-#{$j}:after
+        content: ''
+        background-color: var(--lcars-color-default-bg)
+        width: $rad1
+        height: $rad2
+        display: block
+        position: absolute
+        margin: 0
+        padding: 0      
+      &.rad-i-tl-#{$i}-#{$j}:after
+        border-top-left-radius: $rad1 $rad2
+        bottom: 0
+        right: 0
+      &.rad-i-tr-#{$i}-#{$j}:after
+        border-top-right-radius: $rad1 $rad2
+        bottom: 0
+        left: 0
+      &.rad-i-bl-#{$i}-#{$j}:after
+        border-bottom-left-radius: $rad1 $rad2
+        top: 0
+        right: 0
+      &.rad-i-br-#{$i}-#{$j}:after
+        border-bottom-right-radius: $rad1 $rad2
+        top: 0
+        left: 0
 
 .lcars-element
   position: relative
   font-weight: bold
-  font-size: 1.2vw
+  font-size: calc(var(--lcars-unit) * .6)
   vertical-align: middle
-  line-height: 3vw
-  color: colors.$defaultBg
+  color: var(--lcars-color-default-bg)
   background: #fc6
-  height: 3vw
-  width: 8vw
-  box-sizing: border-box
+  height: var(--lcars-unit)
+  line-height: var(--lcars-unit)
+  min-width: calc(var(--lcars-unit) * 3)
   padding-left: 0.75vw
   padding-right: 0.75vw
   display: inline-flex
@@ -25,32 +143,32 @@
     justify-content: flex-end
 
   &.left-rounded
-    border-top-left-radius: 1.5vw
-    border-bottom-left-radius: 1.5vw
-    padding-left: 1.5vw
+    border-top-left-radius: calc(var(--lcars-unit) / 2)
+    border-bottom-left-radius: calc(var(--lcars-unit) / 2)
+    padding-left: calc(var(--lcars-unit) / 2)
 
   &.right-rounded
-    border-top-right-radius: 1.5vw
-    border-bottom-right-radius: 1.5vw
-    padding-right: 1.5vw
+    border-top-right-radius: calc(var(--lcars-unit) / 2)
+    border-bottom-right-radius: calc(var(--lcars-unit) / 2)
+    padding-right: calc(var(--lcars-unit) / 2)
 
   &.rounded
-    border-radius: 1.5vw
-    padding-left: 1.5vw
-    padding-right: 1.5vw
+    border-radius: calc(var(--lcars-unit) / 2)
+    padding-left: calc(var(--lcars-unit) / 2)
+    padding-right: calc(var(--lcars-unit) / 2)
 
   &.button
     cursor: pointer
 
   &.button.button:active
-    background-color: #c69
+    background-color: var(--lcars-color-active)
 
   & &-addition
     display: flex
     flex-direction: column
     justify-content: flex-end
     height: 100%
-    background-color: colors.$defaultBg
+    background-color: var(--lcars-color-default)
     color: #fff
     font-size: 2vw
     margin-left: 0.25vw
@@ -65,8 +183,8 @@
     left: -2.25vw
     height: 100%
     background-color: #fc6
-    border-top-left-radius: 1.5vw
-    border-bottom-left-radius: 1.5vw
+    border-top-left-radius: calc(var(--lcars-unit) / 2)
+    border-bottom-left-radius: calc(var(--lcars-unit) / 2)
 
   & &-decorator:after
     content: ''
@@ -75,13 +193,13 @@
     right: 0.25vw
     width: 0.25vw
     height: 100%
-    background-color: colors.$defaultBg
+    background-color: var(--lcars-color-default-bg)
 
   & &-decorator.right
     right: -2.25vw
     left: unset
-    border-top-right-radius: 1.5vw
-    border-bottom-right-radius: 1.5vw
+    border-top-right-radius: calc(var(--lcars-unit) / 2)
+    border-bottom-right-radius: calc(var(--lcars-unit) / 2)
     border-top-left-radius: 0
     border-bottom-left-radius: 0
 

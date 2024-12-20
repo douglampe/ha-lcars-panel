@@ -1,43 +1,37 @@
 <script setup lang="ts">
-import { defineEmits } from 'vue'
-import LCARSElement from './LCARSElement.vue'
 import type { MenuItem } from '../MenuItem'
-const props: MenuItem = defineProps<MenuItem>()
-
-defineEmits<{
-  (e: 'select', item: MenuItem): void
-}>()
-const { index, icon, title, color, href } = props
+const { index, icon, title, color, width = 5 } = defineProps<MenuItem>()
 </script>
 
 <template>
-  <component
-    :is="href ? 'a' : 'div'"
-    :href="href"
-    class="lcars-row"
-    @click="$emit('select', props)"
-  >
-    <div class="lcars-u-1-minus lcars-row">
-      <LCARSElement
-        :left="true"
-        :rounded="true"
-        :cap="true"
-        :bgColor="color"
-        color="#000"
-        style="margin-left: 1vw"
-      ></LCARSElement>
-      <div class="lcars-text-element centered fill">
+  <div class="lcars-row lcars-el button">
+    <div class="lcars-row">
+      <div class="lcars-el l-cap-5" :style="{ backgroundColor: color }"></div>
+      <div class="lcars-text-element centered lcars-w-unit">
         <span v-if="icon" v-html="icon" :style="{ color: color }"></span
-        ><span v-else :style="{ color: color }">{{ index }}</span>
+        ><span
+          v-else
+          :style="{
+            color: color,
+            paddingTop: 0,
+            fontSize: 'calc(var(--lcars-unit) * 1)',
+            lineHeight: 'calc(var(--lcars-unit) * 0.9)',
+          }"
+          >{{ index }}</span
+        >
       </div>
     </div>
-    <LCARSElement
-      class="lcars-u-2-minus"
-      :bgColor="color"
-      color="var(--color-black)"
-      :href="href ?? ''"
+    <div
+      class="lcars-h-unit"
+      :style="{
+        width: `calc(var(--lcars-unit) * ${width})`,
+        fontSize: 'calc(var(--lcars-unit) * 0.6)',
+        lineHeight: 'calc(var(--lcars-unit) * 0.85)',
+        backgroundColor: color,
+        color: 'var(--lcars-color-black)',
+      }"
     >
       {{ title }}
-    </LCARSElement>
-  </component>
+    </div>
+  </div>
 </template>

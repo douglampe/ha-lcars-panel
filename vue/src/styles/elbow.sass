@@ -1,55 +1,115 @@
 
-@use 'colors'
+@use 'globals'
 
 .lcars-elbow
   position: relative
-  width: 4vw
-  min-width: 4vw
-  height: 4vw
-  min-height: 4vw
-  background: colors.$default
+  width: calc(var(--lcars-unit) * 2)
+  min-width: calc(var(--lcars-unit) * 2)
+  height: calc(var(--lcars-unit) * 2)
+  min-height: calc(var(--lcars-unit) * 2)
+  background: var(--lcars-color-default)
   margin: 0
 
   &:after
     content: ''
     display: block
     position: absolute
-    width: 2vw
-    height: 2vw
-    background: colors.$defaultBg
+    width: calc(var(--lcars-unit) * 1)
+    height: calc(var(--lcars-unit) * 1)
+    background-color: var(--lcars-color-default-bg)
 
   &.left-bottom
-    border-top-left-radius: 4vw
+    border-top-left-radius: calc(var(--lcars-unit) * 2)
 
   &.left-bottom:after
     right: 0
-    top: 2vw
-    border-top-left-radius: 2vw
+    bottom: 0
+    border-top-left-radius: calc(var(--lcars-unit) * 1)
 
   &.left-top
-    border-bottom-left-radius: 4vw
+    border-bottom-left-radius: calc(var(--lcars-unit) * 2)
 
   &.left-top:after
     right: 0
-    bottom: 2vw
-    border-bottom-left-radius: 2vw
+    top: 0
+    border-bottom-left-radius: calc(var(--lcars-unit) * 1)
 
   &.right-bottom
-    border-top-right-radius: 4vw
+    border-top-right-radius: calc(var(--lcars-unit) * 2)
 
   &.right-bottom:after
-    top: 2vw
-    border-top-right-radius: 2vw
+    bottom: 0
+    border-top-right-radius: calc(var(--lcars-unit) * 1)
   
   &.right-bottom.square-outer
     border-top-right-radius: 0
 
   &.right-top
-    border-bottom-right-radius: 4vw
+    border-bottom-right-radius: calc(var(--lcars-unit) * 2)
 
   &.right-top:after
-    bottom: 2vw
-    border-bottom-right-radius: 2vw
+    top: 0
+    border-bottom-right-radius: calc(var(--lcars-unit) * 1)
   
   &.right-top.square-outer
     border-bottom-right-radius: 0
+
+.lcars-t-left,
+.lcars-t-right
+  flex-direction: column
+  position: relative
+  width: 150px
+  height: 150px
+  background-color: #fb5
+
+.lcars-t-left:before
+  content: ''
+  background-color: var(--lcars-color-default-bg)
+  width: 50px
+  height: 50px
+  display: block
+  position: absolute
+  top: 0
+  right: 0
+  border-bottom-left-radius: 50px
+  margin: 0
+  padding: 0
+
+.lcars-t-left:after
+  content: ''
+  background-color: var(--lcars-color-default-bg)
+  width: 50px
+  height: 50px
+  display: block
+  position: absolute
+  bottom: 0
+  right: 0
+  border-top-left-radius: 50px
+  margin: 0
+  padding: 0
+
+.lcars-t-right:before
+  content: ''
+  background-color: var(--lcars-color-default-bg)
+  width: 50px
+  height: 50px
+  display: block
+  position: absolute
+  top: 0
+  left: 0
+  border-bottom-right-radius: 50px
+  margin: 0
+  padding: 0
+
+.lcars-t-right:after
+  content: ''
+  background-color: var(--lcars-color-default-bg)
+  width: 50px
+  height: 50px
+  display: block
+  position: absolute
+  bottom: 0
+  left: 0
+  border-top-right-radius: 50px
+  margin: 0
+  padding: 0

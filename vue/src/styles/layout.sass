@@ -1,32 +1,134 @@
-@use 'sizes'
+@use 'globals'
 
-.lcars-u-0-plus
-  width: 2vw
+:root
+  --global-outline: none
+  
+*
+  outline: 1px var(--global-outline) red
 
-@each $name, $width in sizes.$u-widths
-  .lcars-#{$name}
-    width: $width
-  .lcars-#{$name}.half
-    width: $width - 4vw
-  .lcars-#{$name}-plus
-    width: $width + 2vw
-  .lcars-#{$name}-minus
-    width: $width - 2vw
+.lcars-wrapper
+  background-color: var(--lcars-color-default-bg)
+  color: var(--lcars-color-default-text)
+  font-family: Antonio, "Arial", monospace
+  text-transform: uppercase
+  & *
+    box-sizing: border-box
+  & .button
+    cursor: pointer
+  & .flex-center
+    align-self: center
+  & .relative
+    position: relative
+  & .bottom-right
+    position: absolute
+    bottom: var(--lcars-gap)
+    right: var(--lcars-gap)
+  & .bottom-left
+    position: absolute
+    bottom: var(--lcars-gap)
+    left: var(--lcars-gap)
 
-@each $name, $height in sizes.$u-heights
-  .lcars-#{$name}
-    height: $height
-  .lcars-#{$name}.half
-    height: calc($height / 2)
+.lcars-vw
+  width: 100vw !important
 
-.lcars-container
-  width: 100%
-  height: 100%
+.lcars-vh
+  height: 100vh !important
+
+.lcars-vmax
+  width: 100vw !important
+  height: 100vh !important
+    
+.lcars-wmax
+  width: 100% !important
+
+.lcars-hmax
+  height: 100% !important
+
+.lcars-max
+  width: 100% !important
+  height: 100% !important
+
+.lcars-sq-vmax
+  width: 100vmax !important
+  height: 100vmax !important
+
+.lcars-sq-vmin
+  width: 100vmin !important
+  height: 100vmin !important
+
+.lcars-pad-0
+  padding: 0 !important
+
+.lcars-margin-0
+  margin: 0 !important
+
+@for $i from 1 through 20
+  $gapSize: calc(var(--lcars-gap-small) * #{$i})
+  .lcars-pad-#{$i}
+    padding: #{$gapSize} !important
+    & > *
+      padding: 0
+  .lcars-margin-left-#{$i}
+    margin-left: #{$gapSize} !important
+  .lcars-margin-right-#{$i}
+    margin-right: #{$gapSize} !important
+  .lcars-margin-top-#{$i}
+    margin-top: #{$gapSize} !important
+  .lcars-margin-bottom-#{$i}
+    margin-bottom: #{$gapSize} !important
+  .lcars-margin-#{$i}
+    margin: #{$gapSize} !important
+    & > *
+      margin: 0
+
+@for $i from 1 through 12
+  $width: calc(var(--lcars-cell-width) * $i) 
+  .lcars-w-#{$i}
+    width: #{$width} !important
+    height: var(--lcars-cell-height)
+  .lcars-w-#{$i}-half
+    width: calc($width + var(--lcars-cell-width) / 2) !important
+    height: var(--lcars-cell-height)
+  .lcars-w-#{$i}-plus
+    width: calc($width + var(--lcars-unit)) !important
+    height: var(--lcars-cell-height)
+  .lcars-w-#{$i}-minus
+    width: calc($width - var(--lcars-unit)) !important
+    height: var(--lcars-cell-height)
+
+@for $i from 1 through 12
+  $height: calc(var(--lcars-cell-height) * $i)
+  .lcars-h-#{$i}
+    height: #{$height} !important
+    width: var(--lcars-cell-width)
+  .lcars-h-#{$i}-half
+    height: calc(#{$height} + var(--lcars-cell-height) / 2) !important
+    width: var(--lcars-cell-width)
+  .lcars-h-#{$i}-minus
+    height: calc(#{$height} - var(--lcars-unit)) !important
+    width: var(--lcars-cell-width)
+  .lcars-h-#{$i}-plus
+    height: calc(#{$height} + var(--lcars-unit)) !important
+    width: var(--lcars-cell-width)
+
+.lcars-w-unit
+  width: var(--lcars-unit) !important
+
+.lcars-h-unit
+  height: var(--lcars-unit) !important
+
+.lcars-w-0-half
+  width: calc(var(--lcars-cell-width) / 2) !important
+
+.lcars-border
+  border-color: var(--lcars-color-default)
+  border-style: solid
+  porder-size: 1px
+
+.lcars-block
+  display: block
 
 .centered
   justify-content: center
   align-items: center
   text-align: center
-
-.fill
-  flex: 1
