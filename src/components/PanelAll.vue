@@ -100,14 +100,14 @@ const {
     <LCARSRow :fill="fillHeight">
       <LCARSCol>
         <slot name="left"></slot>
-        <LCARSElement :fill="true" :color="leftColor" :width="leftWidth"></LCARSElement>
+        <LCARSElement :fill="true" :color="leftColor ?? color" :width="leftWidth"></LCARSElement>
       </LCARSCol>
-      <LCARSCol :fill="fillWidth">
+      <LCARSCol :fill="fillWidth" :margin-left="leftPad" :margin-right="rightPad">
         <slot></slot>
       </LCARSCol>
       <LCARSCol :right="true">
         <slot name="right"></slot>
-        <LCARSElement :fill="true" :color="rightColor" :width="rightWidth"></LCARSElement>
+        <LCARSElement :fill="true" :color="rightColor ?? color" :width="rightWidth"></LCARSElement>
       </LCARSCol>
     </LCARSRow>
     <LCARSRow bottom>
@@ -121,12 +121,7 @@ const {
         :rad-y-inner-bottom-left="radYInnerBottomLeft"
       ></LCARSElement>
       <slot name="bottom"></slot>
-      <LCARSElement
-        :fill="fillWidth"
-        :color="color"
-        :height="bottomHeight"
-        :style="{ backgroundColor: color }"
-      ></LCARSElement>
+      <LCARSElement :fill="fillWidth" :color="color" :height="bottomHeight"></LCARSElement>
       <LCARSElement
         :color="color"
         :width="rightWidth + radXInnerBottomRight"
