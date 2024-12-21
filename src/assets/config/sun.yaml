@@ -1,388 +1,297 @@
 type: custom:lcars-custom-card
 vars:
-  lcars_unit: 3.2vw
+  lcars_unit: 3vw
 children:
-  - props:
-      class: lcars-col
+  - type: panel-bl
+    config:
+      fillWidth: true
+      fillHeight: true
+      marginBottom: 0.2
+      color: dodger-blue
+      leftColor: dodger-blue
+      bottomHeight: 0.5
+      outerRadX: 3
+      outerRadY: 1
+      innerRadX: 2
+      innerRadY: 1
+      gap: 1
+    leftChildren:
+      - type: el
+        text: LCARS 23295
+        nav: 'url:/'
+        config:
+          color: lilac
+          textAlign: bottom-right
+          textColor: black
+          height: 2
+          button: true
+      - type: el
+        text: 01-23564
+        config:
+          color: dodger-blue
+          fill: true
+          textAlign: top-right
+          textColor: black
+          margin-bottom: -0.1
+    bottomChildren:
+      - type: el
+        config:
+          color: golden-tainoi
+          width: 0.75
+          height: 0.5
+      - type: el
+        config:
+          color: lilac
+          width: 4
+          height: 0.5
+      - type: el
+        config:
+          color: lilac
+          width: 9
+          height: 0.5
+      - type: el
+        config:
+          color: indian-red
+          width: 3
+          height: 0.5
     children:
-      - type: LPanel
-        props:
-          fillWidth: true
-          fillHeight: true
-          color: var(--lcars-color-dodger-blue)
-          leftColor: var(--lcars-color-dodger-blue)
-          bottomHeight: 0.5
-          bottomOuterRadX: 3
-          bottomInnerRadX: 2
-          bottomInnerRadY: 1
-          class: lcars-margin-bottom-3
-        leftChildren:
-          - props:
-              class:
-                - lcars-el
-                - button
-                - lcars-lilac-bg
-                - lcars-h-1
-                - relative
-                - lcars-margin-bottom-1
-            children:
-              - text: LCARS 23295
-                props:
-                  class: lcars-black-color bottom-right
-          - text: 01-23564
-            props:
-              class:
-                - lcars-el
-                - lcars-dodger-blue-bg
-                - lcars-pad-4
-                - lcars-black-color
-              style:
-                textAlign: right
-        bottomChildren:
-          - props:
-              class:
-                - lcars-el
-                - lcars-golden-tanoi-bg
-                - bottom
-                - lcars-margin-left-1
-                - lcars-margin-right-1
-            style:
-              height: calc(var(--lcars-unit) * .5)
-              width: calc(var(--lcars-unit) * .75)
-          - props:
-              class:
-                - lcars-el
-                - lcars-lilac-bg
-                - bottom
-                - lcars-w-1-plus
-                - lcars-margin-left-1
-                - lcars-margin-right-1
-            style:
-              height: calc(var(--lcars-unit) * .5)
-          - props:
-              class:
-                - lcars-el
-                - lcars-lilac-bg
-                - bottom
-                - lcars-w-3
-                - lcars-margin-left-1
-                - lcars-margin-right-1
-            style:
-              height: calc(var(--lcars-unit) * .5)
-          - props:
-              class:
-                - lcars-el
-                - lcars-indian-red-bg
-                - bottom
-                - lcars-w-1
-                - lcars-margin-left-1
-                - lcars-margin-right-1
-            style:
-              height: calc(var(--lcars-unit) * .5)
+      - type: el
+        text: Planetary Catelog Database 93-6636
+        config:
+          fill: true
+          textColor: golden-tainoi
+          fontSize: 1
+          marginBottom: 0.5
+          textAlign: top-right
+      - type: row
         children:
-          - text: Planetary Catelog Database 93-6636
-            props:
-              class: lcars-font-10 lcars-golden-tanoi-color lcars-margin-bottom-6
-              style:
-                textAlign: right
-          - props:
-              class: lcars-row
+          - type: col
             children:
-              - props:
-                  class: lcars-col
+              - type: table
+                config:
+                  margin-left: 1
+                  animation: scanning
+                  fontSize: 0.5
+                  lineHeight: 0.6
                 children:
-                  - tag: table
-                    props:
-                      class: lcars-margin-left-10 lcars-table scanning right
-                    style:
-                      fontSize: calc(var(--lcars-unit) * 0.5)
-                      lineHeight: calc(var(--lcars-unit) * 0.6)
+                  - tag: tr
                     children:
-                      - tag: tr
+                      - tag: td
                         children:
-                          - tag: td
-                            children:
-                              - type: HAStateValue
-                                props:
-                                  entity: weather.forecast_home
-                                  attribute: temperature
-                          - tag: td
-                            children:
-                              - type: HAStateValue
-                                props:
-                                  entity: weather.forecast_home
-                                  attribute: dew_point
-                          - tag: td
-                            children:
-                              - type: HAStateValue
-                                props:
-                                  entity: weather.forecast_home
-                                  attribute: humidity
-                          - tag: td
-                            children:
-                              - type: HAStateValue
-                                props:
-                                  entity: weather.forecast_home
-                                  attribute: cloud_coverage
-                      - tag: tr
+                          - type: state-value
+                            config:
+                              entity: weather.forecast_home
+                              attribute: temperature
+                      - tag: td
                         children:
-                          - tag: td
-                            children:
-                              - type: HAStateValue
-                                props:
-                                  entity: weather.forecast_home
-                                  attribute: uv_index
-                          - tag: td
-                            children:
-                              - type: HAStateValue
-                                props:
-                                  entity: weather.forecast_home
-                                  attribute: pressure
-                          - tag: td
-                            children:
-                              - type: HAStateValue
-                                props:
-                                  entity: weather.forecast_home
-                                  attribute: wind_bearing
-                          - tag: td
-                            children:
-                              - type: HAStateValue
-                                props:
-                                  entity: weather.forecast_home
-                                  attribute: wind_speed
-              - props:
-                  class: lcars-col fill right
+                          - type: state-value
+                            config:
+                              entity: weather.forecast_home
+                              attribute: dew_point
+                      - tag: td
+                        children:
+                          - type: state-value
+                            config:
+                              entity: weather.forecast_home
+                              attribute: humidity
+                      - tag: td
+                        children:
+                          - type: state-value
+                            config:
+                              entity: weather.forecast_home
+                              attribute: cloud_coverage
+                  - tag: tr
+                    children:
+                      - tag: td
+                        children:
+                          - type: state-value
+                            config:
+                              entity: weather.forecast_home
+                              attribute: uv_index
+                      - tag: td
+                        children:
+                          - type: state-value
+                            config:
+                              entity: weather.forecast_home
+                              attribute: pressure
+                      - tag: td
+                        children:
+                          - type: state-value
+                            config:
+                              entity: weather.forecast_home
+                              attribute: wind_bearing
+                      - tag: td
+                        children:
+                          - type: state-value
+                            config:
+                              entity: weather.forecast_home
+                              attribute: wind_speed
+          - type: col
+            config:
+              fill: true
+              right: true
+            children:
+              - type: row
+                config:
+                  right: true
+                  margin-bottom: 0.3
                 children:
-                  - props:
-                      class: lcars-row right lcars-margin-bottom-3
-                    children:
-                      - text: 07-3215
-                        props:
-                          class:
-                            - lcars-dodger-blue-bg
-                            - lcars-black-color
-                            - lcars-el
-                            - lcars-w-1
-                            - lcars-h-unit
-                            - rad-2
-                            - lcars-font-6
-                            - lcars-pad-4
-                            - centered
-                            - lcars-margin-right-3
-                      - text: 03-4984
-                        props:
-                          class:
-                            - lcars-atomic-tangerine-bg
-                            - lcars-black-color
-                            - lcars-el
-                            - lcars-w-1
-                            - lcars-h-unit
-                            - rad-2
-                            - lcars-font-6
-                            - lcars-pad-4
-                            - centered
-                  - props:
-                      class: lcars-row right
-                    children:
-                      - text: 08-2501
-                        props:
-                          class:
-                            - lcars-lilac-bg
-                            - lcars-black-color
-                            - lcars-el
-                            - lcars-w-1
-                            - lcars-h-unit
-                            - rad-2
-                            - lcars-font-6
-                            - lcars-pad-4
-                            - centered
-                            - lcars-margin-right-3
-                      - text: 04-2809
-                        props:
-                          class:
-                            - lcars-indian-red-bg
-                            - lcars-black-color
-                            - lcars-el
-                            - lcars-w-1
-                            - lcars-h-unit
-                            - rad-2
-                            - lcars-font-6
-                            - lcars-pad-4
-                            - centered
-      - type: PPanel
-        props:
-          fillWidth: true
-          fillHeight: true
-          color: var(--lcars-color-indian-red)
-          leftColor: var(--lcars-color-indian-red)
-          topHeight: 0.5
-          topOuterRadX: 3
-          topInnerRadX: 2
-          topInnerRadY: 1
-        topChildren:
-          - props:
-              class:
-                - lcars-el
-                - lcars-golden-tanoi-bg
-                - lcars-margin-left-1
-                - lcars-margin-right-1
-            style:
-              height: calc(var(--lcars-unit) * .5)
-              width: calc(var(--lcars-unit) * .75)
-          - props:
-              class:
-                - lcars-el
-                - lcars-atomic-tangerine-bg
-                - lcars-w-1-plus
-                - lcars-margin-left-1
-                - lcars-margin-right-1
-            style:
-              height: calc(var(--lcars-unit) * .25)
-          - props:
-              class:
-                - lcars-el
-                - lcars-lilac-bg
-                - lcars-w-3
-                - lcars-margin-left-1
-                - lcars-margin-right-1
-            style:
-              height: calc(var(--lcars-unit) * .5)
-          - props:
-              class:
-                - lcars-el
-                - lcars-indian-red-bg
-                - lcars-w-1
-                - lcars-margin-left-1
-                - lcars-margin-right-1
-            style:
-              height: calc(var(--lcars-unit) * .5)
-        leftChildren:
-          - props:
-              class:
-                - lcars-el
-                - button
-                - lcars-indian-red-bg
-                - lcars-h-unit
-                - relative
-                - lcars-margin-bottom-1
-            children:
-              - text: 02-24156
-                props:
-                  class: lcars-black-color bottom-right
-          - props:
-              class:
-                - lcars-el
-                - button
-                - lcars-indian-red-bg
-                - lcars-h-1-plus
-                - relative
-                - lcars-margin-bottom-1
-            children:
-              - text: 03-41248
-                props:
-                  class: lcars-black-color bottom-right
-          - props:
-              class:
-                - lcars-el
-                - button
-                - lcars-golden-tanoi-bg
-                - lcars-h-unit
-                - relative
-                - lcars-margin-bottom-1
-            children:
-              - text: 04-14702
-                props:
-                  class: lcars-black-color bottom-right
-          - text: 05-32456
-            props:
-              class:
-                - lcars-el
-                - button
-                - lcars-atomic-tangerine-bg
-                - lcars-black-color
-                - lcars-h-1-plus
-                - relative
-                - lcars-margin-bottom-1
-                - lcars-pad-4
-              style:
-                textAlign: right
+                  - type: pill
+                    text: 07-3215
+                    config:
+                      color: dodger-blue
+                      fontSize: 0.5
+                      margin-right: 0.3
+                  - type: pill
+                    text: 03-4984
+                    config:
+                      fontSize: 0.5
+                      color: atomic-tangerine
+              - type: row
+                config:
+                  right: true
+                children:
+                  - type: pill
+                    text: 08-2501
+                    config:
+                      color: lilac
+                      fontSize: 0.5
+                      margin-right: 0.3
+                  - type: pill
+                    text: 04-2809
+                    config:
+                      color: indian-red
+                      fontSize: 0.5
+  - type: panel-tl
+    config:
+      fillWidth: true
+      fillHeight: true
+      color: indian-red
+      leftColor: indian-red
+      leftPad: 1
+      topHeight: 0.5
+      outerRadX: 3
+      innerRadX: 2
+      innerRadY: 1
+    topChildren:
+      - type: el
+        config:
+          color: golden-tainoi
+          height: .5
+          width: .75
+      - type: el
+        config:
+          color: atomic-tangerine
+          width: 4
+          height: 0.25
+      - type: el
+        config:
+          color: lilac
+          width: 9
+          height: 0.5
+      - type: el
+        config:
+          color: indian-red
+          width: 3
+          height: .5
+    leftChildren:
+      - type: el
+        text: 02-24156
+        config:
+          color: indian-red
+          height: 1
+          textAlign: bottom-right
+          textColor: black
+      - type: el
+        text: 03-41248
+        config:
+          color: indian-red
+          height: 3
+          textAlign: bottom-right
+          textColor: black
+      - type: el
+        text: 04-14702
+        config:
+          color: golden-tainoi
+          height: 1
+          textAlign: bottom-right
+          textColor: black
+      - type: el
+        text: 05-32456
+        config:
+          color: atomic-tangerine
+          height: 3
+          textAlign: top-right
+          textColor: black
+    children:
+      - type: row
         children:
-          - props:
-              class: lcars-row
+          - type: col
             children:
-              - props:
-                  class: clars-col lcars-margin-left-10
-                children:
-                  - text: Sol
-                    props:
-                      class:
-                        - lcars-golden-tanoi-color
-                        - lcars-font-10
-                        - lcars-margin-bottom-5
-                  - type: EntityAttributeList
-                    props:
-                      entity: sun.sun
-                      scanning: true
-                      class: lcars-lilac-color
-                      style:
-                        fontSize: calc(var(--lcars-unit) * 0.5)
-                        lineHeight: calc(var(--lcars-unit) * 0.6)
-              - type: OPanel
-                props:
-                  class: lcars-margin-left-5
-                  leftWidth: 1
-                  rightWidth: 1
-                  topLeftOuterRadX: 2
-                  topRightOuterRadX: 2
-                  bottomLeftOuterRadX: 2
-                  bottomRightOuterRadX: 2
-                  topHeight: 0.5
-                  bottomHeight: 0.5
-                  color: var(--lcars-color-indian-red)
-                  leftColor: var(--lcars-color-indian-red)
-                  rightColor: var(--lcars-color-indian-red)
-                topChildren:
-                  - props:
-                      class:
-                        - lcars-el
-                        - lcars-w-unit
-                        - lcars-indian-red-bg
-                      style:
-                        height: calc(var(--lcars-unit) * 0.5)
-                  - props:
-                      class: lcars-el fill lcars-h-unit lcars-black-bg
-                  - props:
-                      class:
-                        - lcars-el
-                        - lcars-w-unit
-                        - lcars-indian-red-bg
-                      style:
-                        height: calc(var(--lcars-unit) * 0.5)
-                bottomChildren:
-                  - props:
-                      class:
-                        - lcars-el
-                        - lcars-w-unit
-                        - lcars-indian-red-bg
-                        - bottom
-                      style:
-                        height: calc(var(--lcars-unit) * 0.5)
-                  - props:
-                      class: lcars-el fill lcars-h-unit lcars-black-bg
-                  - props:
-                      class:
-                        - lcars-el
-                        - lcars-w-unit
-                        - lcars-indian-red-bg
-                        - bottom
-                      style:
-                        height: calc(var(--lcars-unit) * 0.5)
-                children:
-                  - tag: img
-                    props:
-                      src: >-
-                        https://www.nasa.gov/wp-content/uploads/2016/07/10f0.15.gif?w=500
-                      style:
-                        width: calc(var(--lcars-unit) * 8)
-                        marginLeft: calc(var(--lcars-unit) * 2)
-                        marginRight: calc(var(--lcars-unit) * 2)
+              - type: el
+                text: Sol
+                config:
+                  textColor: golden-tainoi
+                  fontSize: 1
+                  marginBottom: 0.5
+              - type: attribute-list
+                config:
+                  entity: sun.sun
+                  textColor: lilac
+                  fontSize: 0.5
+                  animation: row-fill
+          - type: panel-all
+            config:
+              leftWidth: 1
+              rightWidth: 1
+              radXTopLeft: 2
+              radXTopRight: 2
+              radXBottomLeft: 2
+              radXBottomRight: 2
+              topHeight: 0.5
+              bottomHeight: 0.5
+              color: indian-red
+              leftColor: indian-red
+              rightColor: indian-red
+              gap: 0
+              marginLeft: 0.5
+            topChildren:
+              - type: el
+                config:
+                  color: indian-red
+                  width: 1
+                  height: 0.5
+              - type: el
+                config:
+                  color: black
+                  fill: true
+                  height: 1
+              - type: el
+                config:
+                  color: indian-red
+                  width: 1
+                  height: 0.5
+            bottomChildren:
+              - type: el
+                config:
+                  color: indian-red
+                  width: 1
+                  height: 0.5
+              - type: el
+                config:
+                  color: black
+                  fill: true
+                  height: 1
+              - type: el
+                config:
+                  color: indian-red
+                  width: 1
+                  height: 0.5
+            children:
+              - tag: img
+                config:
+                  src: https://www.nasa.gov/wp-content/uploads/2016/07/10f0.15.gif?w=500
+                  style:
+                    width: calc(var(--lcars-unit) * 8)
+                    marginLeft: calc(var(--lcars-unit) * 2)
+                    marginRight: calc(var(--lcars-unit) * 2)
