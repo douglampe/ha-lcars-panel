@@ -5,7 +5,7 @@ on:
       - 'main'
 
 jobs:
-  build-and-publish:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
