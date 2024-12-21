@@ -1,6 +1,7 @@
 <!-- eslint-disable @typescript-eslint/no-explicit-any -->
 <script setup lang="ts">
 import { computed } from 'vue'
+import { navigate } from '@/LocalNav'
 import type { ElementProps } from '../props/ElementProps'
 import {
   borderStyle,
@@ -12,11 +13,13 @@ import {
   unitSize,
 } from '@/Layout'
 
-// defineOptions({
-//   inheritAttrs: false,
-// })
-
 const config = defineProps<ElementProps>()
+
+function onClick() {
+  if (config.nav) {
+    navigate(config.nav)
+  }
+}
 
 const styleObject = computed(() => {
   return removeUndefined({
@@ -43,7 +46,7 @@ const styleObject = computed(() => {
     borderBottomRightRadius:
       borderStyle(config.radXBottomRight, config.radYBottomRight) ??
       (config.capBottom || config.capRight ? unitSize(config.height ?? 1 / 2) : undefined),
-    cursor: config.button ? 'pointer' : undefined,
+    cursor: config.button || config.nav ? 'pointer' : undefined,
     position:
       config.radXInnerTopLeft ||
       config.radYInnerTopLeft ||
@@ -60,7 +63,7 @@ const styleObject = computed(() => {
 </script>
 
 <template>
-  <div :style="styleObject">
+  <div :style="styleObject" v-on="config.nav ? { click: onClick } : {}">
     <slot></slot>
     <div
       v-if="config.radXInnerTopLeft || config.radYInnerTopLeft"

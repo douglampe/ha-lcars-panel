@@ -3,6 +3,7 @@ import type { PadProps } from '@/props/PadProps'
 import type { RadiusProps } from './RadiusProps'
 
 export interface ElementProps extends MarginProps, PadProps, RadiusProps {
+  nav?: string
   color?: string
   textColor?: string
   fontSize?: number

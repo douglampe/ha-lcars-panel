@@ -3,7 +3,6 @@ export interface ConfigItem {
   tag?: string
   text?: string
   showForNav?: string
-  nav?: string
   children?: ConfigItem[]
   leftChildren?: ConfigItem[]
   rightChildren?: ConfigItem[]

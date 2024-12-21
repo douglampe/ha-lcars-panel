@@ -1,7 +1,7 @@
 <!-- eslint-disable @typescript-eslint/no-explicit-any -->
 <script setup lang="ts">
 import { components } from '../HAConfig'
-import { currentNav, navigate } from '@/LocalNav'
+import { currentNav } from '@/LocalNav'
 import type { ConfigItem } from '@/ConfigItem'
 
 const props = withDefaults(defineProps<ConfigItem>(), { tag: 'div' })
@@ -12,12 +12,6 @@ function isVisible() {
   }
   return true
 }
-
-function onClick() {
-  if (props.nav) {
-    navigate(props.nav)
-  }
-}
 </script>
 
 <template>
@@ -25,7 +19,6 @@ function onClick() {
     v-if="isVisible()"
     :is="props.type ? components[props.type] : tag"
     v-bind="props.config"
-    v-on="props.nav ? { click: onClick } : {}"
   >
     <template #left v-if="props.leftChildren">
       <RecursiveComponent
