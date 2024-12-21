@@ -1,13 +1,8 @@
 {
   "name": "ha-lcars-panel",
-<<<<<<< HEAD
   "version": "0.0.0",
   "private": true,
   "type": "module",
-=======
-  "version": "0.0.1",
-  "description": "LCARS Dashboard for Home Assistant",
->>>>>>> main
   "scripts": {
     "dev": "vite",
     "build": "run-p type-check \"build-only {@}\" --",
