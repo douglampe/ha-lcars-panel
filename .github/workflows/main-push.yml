@@ -1,0 +1,27 @@
+name: Main Push
+on:
+  push:
+    branches:
+      - '*'
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+      - name: Build
+        run: |
+          yarn
+          yarn build
+          mkdir release
+          cp dist/assets/index*.js release/ha-lcars-panel.js
+          cp dist/assets/index*.css release/ha-lcars-panel.css
+
+      - name: Publish
+        uses: actions/upload-artifact@v4
+        with:
+          name: ha-lcars-panel
+          path: release
