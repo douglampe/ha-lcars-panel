@@ -2,7 +2,7 @@
 <script setup lang="ts">
 import { components } from '../HAConfig'
 import { currentNav, navigate } from '@/LocalNav'
-import type { ConfigItem } from './ConfigItem'
+import type { ConfigItem } from '@/ConfigItem'
 
 const props = withDefaults(defineProps<ConfigItem>(), { tag: 'div' })
 
