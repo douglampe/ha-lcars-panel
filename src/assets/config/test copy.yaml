@@ -1,0 +1,296 @@
+type: custom:lcars-custom-card
+vars:
+  lcars_unit: 3vw
+children:
+  - type: panel-bl
+    config:
+      fillWidth: true
+      marginBottom: 0.2
+      color: dodger-blue
+      leftColor: dodger-blue
+      bottomHeight: 0.5
+      outerRadX: 3
+      outerRadY: 1
+      innerRadX: 2
+      innerRadY: 1
+    leftChildren:
+      - type: el
+        text: LCARS 23295
+        nav: 'url:/'
+        config:
+          color: lilac
+          textAlign: bottom-right
+          textColor: black
+          heght: 2
+          button: true
+      - type: el
+        text: 01-23564
+        config:
+          color: dodger-blue
+          textAlign: top-right
+          textColor: black
+          fill: true
+    bottomChildren:
+      - type: el
+        config:
+          color: golden-tainoi
+          width: 0.75
+          height: 0.5
+      - type: el
+        config:
+          color: lilac
+          width: 4
+          height: 0.5
+      - type: el
+        config:
+          color: lilac
+          width: 9
+          height: 0.5
+      - type: el
+        config:
+          color: indian-red
+          width: 3
+          height: 0.5
+    children:
+      - type: row
+        config:
+        children:
+          - type: el
+            text: Planetary Catelog Database 93-6636
+            config:
+              fill: true
+              textColor: golden-tainoi
+              fontSize: 1
+              marginBottom: 0.5
+              textAlign: top-right
+      - type: row
+        children:
+          - type: col
+            children:
+              - type: table
+                config:
+                  margin-left: 1
+                  animation: scanning
+                  fontSize: 0.5
+                  lineHeight: 0.6
+                children:
+                  - tag: tr
+                    children:
+                      - tag: td
+                        children:
+                          - type: state-value
+                            config:
+                              entity: weather.forecast_home
+                              attribute: temperature
+                      - tag: td
+                        children:
+                          - type: state-value
+                            config:
+                              entity: weather.forecast_home
+                              attribute: dew_point
+                      - tag: td
+                        children:
+                          - type: state-value
+                            config:
+                              entity: weather.forecast_home
+                              attribute: humidity
+                      - tag: td
+                        children:
+                          - type: state-value
+                            config:
+                              entity: weather.forecast_home
+                              attribute: cloud_coverage
+                  - tag: tr
+                    children:
+                      - tag: td
+                        children:
+                          - type: state-value
+                            config:
+                              entity: weather.forecast_home
+                              attribute: uv_index
+                      - tag: td
+                        children:
+                          - type: state-value
+                            config:
+                              entity: weather.forecast_home
+                              attribute: pressure
+                      - tag: td
+                        children:
+                          - type: state-value
+                            config:
+                              entity: weather.forecast_home
+                              attribute: wind_bearing
+                      - tag: td
+                        children:
+                          - type: state-value
+                            config:
+                              entity: weather.forecast_home
+                              attribute: wind_speed
+              - type: col
+                config:
+                  fill: true
+                  right: true
+                children:
+                  - type: row
+                    config:
+                      right: true
+                      margin-bttom: 0.3
+                    children:
+                      - type: pill
+                        text: 07-3215
+                        config:
+                          color: dodger-blue
+                          fontSize: 0.5
+                          margin-right: 0.3
+                      - type: pill
+                        text: 03-4984
+                        config:
+                          fontSize: 0.5
+                          color: atomic-tangerine
+                  - type: row
+                    config:
+                      right: true
+                    children:
+                      - type: pill
+                        text: 08-2501
+                        config:
+                          color: lilac
+                          fontSize: 0.5
+                          margin-right: 0.3
+                      - type: pill
+                        text: 04-2809
+                        config:
+                          color: indian-red
+                          fontSize: 0.5
+  - type: panel-tl
+    config:
+      fillWidth: true
+      color: indian-red
+      leftColor: indian-red
+      leftPad: 1
+      topHeight: 0.5
+      outerRadX: 3
+      innerRadX: 2
+      innerRadY: 1
+    topChildren:
+      - type: el
+        config:
+          color: golden-tainoi
+          height: .5
+          width: .75
+      - type: el
+        config:
+          color: atomic-tangerine
+          width: 4
+          height: 0.25
+      - type: el
+        config:
+          color: lilac
+          width: 9
+          height: 0.5
+      - type: el
+        config:
+          color: indian-red
+          width: 3
+          height: .5
+    leftChildren:
+      - type: el
+        text: 02-24156
+        config:
+          color: indian-red
+          height: 1
+          textAlign: bottom-right
+          textColor: black
+      - type: el
+        text: 03-41248
+        config:
+          color: indian-red
+          height: 3
+          textAlign: bottom-right
+          textColor: black
+      - type: el
+        text: 04-14702
+        config:
+          color: golden-tainoi
+          height: 1
+          textAlign: bottom-right
+          textColor: black
+      - type: el
+        text: 05-32456
+        config:
+          color: atomic-tangerine
+          height: 3
+          textAlign: top-right
+          textColor: black
+    children:
+      - type: row
+        children:
+          - type: col
+            children:
+              - type: el
+                text: Sol
+                config:
+                  textColor: golden-tainoi
+                  fontSize: 1
+                  marginBottom: 0.5
+              - type: attribute-list
+                config:
+                  entity: sun.sun
+                  textColor: lilac
+                  fontSize: 0.5
+                  animation: row-fill
+          - type: panel-all
+            config:
+              leftWidth: 1
+              rightWidth: 1
+              radXTopLeft: 2
+              radXTopRight: 2
+              radXBottomLeft: 2
+              radXBottomRight: 2
+              topHeight: 0.5
+              bottomHeight: 0.5
+              color: indian-red
+              leftColor: indian-red
+              rightColor: indian-red
+              gap: 0
+              marginLeft: 0.5
+            topChildren:
+              - type: el
+                config:
+                  color: indian-red
+                  width: 1
+                  height: 0.5
+              - type: el
+                config:
+                  color: black
+                  fill: true
+                  height: 1
+              - type: el
+                config:
+                  color: indian-red
+                  width: 1
+                  height: 0.5
+            bottomChildren:
+              - type: el
+                config:
+                  color: indian-red
+                  width: 1
+                  height: 0.5
+              - type: el
+                config:
+                  color: black
+                  fill: true
+                  height: 1
+              - type: el
+                config:
+                  color: indian-red
+                  width: 1
+                  height: 0.5
+            children:
+              - tag: img
+                config:
+                  src: https://www.nasa.gov/wp-content/uploads/2016/07/10f0.15.gif?w=500
+                  style:
+                    width: calc(var(--lcars-unit) * 8)
+                    marginLeft: calc(var(--lcars-unit) * 2)
+                    marginRight: calc(var(--lcars-unit) * 2)
