@@ -1,0 +1,727 @@
+type: custom:lcars-custom-card
+vars:
+  lcars_unit: 5vmin
+props:
+  class: lcars-wrapper
+  style: 'height: calc(100vh - 76px);'
+children:
+  - showForNav: /home
+    props:
+      class: lcars-row
+      style: 'height: calc(100vh - 76px);padding-top: 10px; padding-bottom: 10px;'
+    children:
+      - type: DPanel
+        props:
+          right-width: 7
+          fill-height: true
+          right-color: var(--lcars-color-1)
+        rightChildren:
+          - props:
+              class: lcars-el rad-i-tr-1 lcars-h-1 lcars-w-2-plus lcars-gray-bg
+          - type: NumberedMenuItem
+            nav: /home/communications
+            props:
+              index: '01'
+              title: Communications
+              color: var(--lcars-color-17)
+          - type: NumberedMenuItem
+            nav: /home/cartography
+            props:
+              index: '02'
+              title: Cartography
+              color: var(--lcars-color-4)
+          - type: NumberedMenuItem
+            nav: /navigation
+            props:
+              index: '03'
+              title: Navigation
+              color: var(--lcars-color-15)
+          - type: NumberedMenuItem
+            nav: /home/sensors
+            props:
+              index: '04'
+              title: Sensors
+              color: var(--lcars-color-19)
+          - props:
+              class: lcars-el rad-i-br-1 lcars-h-1 lcars-w-2-plus lcars-gray-bg
+      - showForNav: /home/communications
+        props:
+          class: lcars-col lcars-w-unit
+        children:
+          - props:
+              class: lcars-el rad-i-br-1 lcars-color-17-bg lcars-h-1 lcars-w-unit
+              style: 'margin-top: calc(var(--lcars-unit) * 3)'
+          - props:
+              class: lcars-el rad-i-tr-1 lcars-color-17-bg lcars-h-unit lcars-w-unit
+      - showForNav: /home/cartography
+        props:
+          class: lcars-col lcars-w-unit
+        children:
+          - props:
+              class: lcars-el rad-i-br-1 lcars-color-4-bg lcars-h-1 lcars-w-unit
+              style: 'margin-top: calc(var(--lcars-unit) * 4)'
+          - props:
+              class: lcars-el rad-i-tr-1 lcars-color-4-bg lcars-h-unit lcars-w-unit
+      - type: CPanel
+        showForNav: /home/communications
+        props:
+          title: Communications
+          fill-width: true
+          fill-height: true
+          top-cap: true
+          bottom-cap: true
+          color: var(--lcars-color-17)
+          left-color: var(--lcars-color-17)
+      - type: CPanel
+        showForNav: /home/cartography
+        props:
+          title: Cartography
+          fill-width: true
+          fill-height: true
+          top-cap: true
+          bottom-cap: true
+          color: var(--lcars-color-4)
+          left-color: var(--lcars-color-4)
+        children:
+          - props:
+              class: lcars-row lcars-margin-4
+            children:
+              - text: SOL AZ
+                props:
+                  class:
+                    - lcars-el
+                    - lcars-color-5-bg
+                    - lcars-w-1
+                    - lcars-h-unit
+                    - r-cap-2
+                    - lcars-black-color
+                    - lcars-font-6
+                    - lcars-pad-4
+                    - centered
+                    - lcars-margin-right-4
+              - type: HAStateColor
+                props:
+                  bgColor: var(--lcars-color-5)
+                  color: var(--lcars-color-black)
+                  entity: sun.sun
+                  attribute: azimuth
+                  min: -360
+                  max: 360
+                  class:
+                    - lcars-color-5-bg
+                    - lcars-black-color
+                    - lcars-el
+                    - lcars-w-1
+                    - lcars-h-unit
+                    - rad-2
+                    - lcars-font-6
+                    - lcars-pad-4
+                    - centered
+                children:
+                  - type: HAStateValue
+                    props:
+                      entity: sun.sun
+                      attribute: azimuth
+          - props:
+              class: lcars-row lcars-margin-4
+            children:
+              - text: SOL EL
+                props:
+                  class:
+                    - lcars-el
+                    - lcars-color-5-bg
+                    - lcars-w-1
+                    - lcars-h-unit
+                    - r-cap-2
+                    - lcars-black-color
+                    - lcars-font-6
+                    - lcars-pad-4
+                    - centered
+                    - lcars-margin-right-4
+              - type: HAStateColor
+                props:
+                  bgColor: var(--lcars-color-5)
+                  color: var(--lcars-color-black)
+                  entity: sun.sun
+                  attribute: elevation
+                  min: -540
+                  max: 180
+                  class:
+                    - lcars-el
+                    - lcars-w-1
+                    - lcars-h-unit
+                    - rad-2
+                    - lcars-font-6
+                    - lcars-pad-4
+                    - centered
+                children:
+                  - type: HAStateValue
+                    props:
+                      entity: sun.sun
+                      attribute: elevation
+          - props:
+              class: lcars-row lcars-margin-4
+            children:
+              - type: EntityAttributeTable
+                entity: sun.sun
+                props:
+                  class: lcars-font-6
+                  style: 'color: var(--lcars-color-4)'
+      - showForNav: /home/sensors
+        type: HAStateView
+  - props:
+      class: lcars-row lcars-wmax
+      style: 'transform-origin: top left; transform: scale(75%);'
+    showForNav: /navigation
+    children:
+      - type: DPanel
+        props:
+          top-outer-rad-x: 1
+          top-outer-rad-y: 3
+          top-height: 6
+          right-width: 1
+          color: var(--lcars-color-mule-fawn)
+          right-color: var(--lcars-color-mule-fawn)
+        topChildren:
+          - props:
+              class: lcars-mule-fawn-bg lcars-h-3
+              style: >-
+                width: calc(var(--lcars-unit) * 4.3);             margin-left:
+                calc(var(--lcars-unit) * 4); margin-right: calc(0px -
+                var(--lcars-unit) * 1.4); transform: skew(25deg);
+                border-top-left-radius: calc(var(--lcars-unit) * 2);
+                border-bottom-left-radius: var(--lcars-unit);
+          - nav: /home
+            props:
+              class:
+                - lcars-mule-fawn-bg
+                - lcars-h-3
+                - relative
+                - lcars-margin-right-5
+              style: 'cursor: pointer; width: calc(var(--lcars-unit) * 5.3);'
+            children:
+              - text: Course Select
+                props:
+                  class: lcars-black-color lcars-font-2 bold bottom-right
+          - props:
+              class: >-
+                lcars-cowboy-bg lcars-w-0-half lcars-h-3 relative
+                lcars-margin-right-5
+            children:
+              - text: '524'
+                props:
+                  class: lcars-black-color lcars-font-2 bold bottom-right
+          - props:
+              class: lcars-cowboy-bg lcars-h-3 relative lcars-margin-right-5
+              style: 'width: calc(var(--lcars-unit) * 4.15)'
+            children:
+              - text: Navigational
+                props:
+                  class: lcars-black-color lcars-font-2 bold bottom-right
+          - props:
+              class: lcars-paarl-bg lcars-h-3 relative lcars-margin-right-5
+              style: 'width: calc(var(--lcars-unit) * 8.62)'
+            children:
+              - text: Flight Control
+                props:
+                  class: lcars-black-color lcars-font-2 bold bottom-right
+          - props:
+              class: lcars-mule-fawn-bg lcars-h-3 relative lcars-margin-right-5
+              style: 'width: calc(var(--lcars-unit) * 2.45)'
+            children:
+              - text: '837'
+                props:
+                  class: lcars-black-color lcars-font-2 bold bottom-right
+          - props:
+              class: lcars-mule-fawn-bg lcars-w-1 lcars-h-3
+        rightChildren:
+          - props:
+              class: >-
+                lcars-mule-fawn-bg lcars-el lcars-w-unit lcars-h-3-plus
+                lcars-margin-bottom-6
+          - props:
+              class: lcars-mule-fawn-bg lcars-el lcars-w-unit fill
+        bottomChildren:
+          - props:
+              class: lcars-el fill
+          - props:
+              class: lcars-mule-fawn-bg lcars-el bottom lcars-h-unit
+              style: >-
+                width: calc(var(--lcars-unit) * 1); margin-right: -10px;
+                transform: skew(25deg);
+          - props:
+              class: >-
+                lcars-mule-fawn-bg lcars-el bottom lcars-w-4-minus lcars-h-unit
+                lcars-font-3 lcars-black-color relative lcars-margin-right-3
+              style: 'text-align: right;'
+            children:
+              - text: '2435'
+                props:
+                  class: lcars-black-color lcars-font-2 bold bottom-right
+          - props:
+              class:
+                - lcars-cowboy-bg
+                - lcars-el
+                - bottom
+                - lcars-h-unit
+                - lcars-w-1
+                - lcars-margin-right-3
+                - rlative
+            children:
+              - text: '8785'
+                props:
+                  class: lcars-black-color lcars-font-2 bold bottom-right
+          - props:
+              class:
+                - lcars-mule-fawn-bg
+                - lcars-el
+                - bottom
+                - lcars-w-1
+                - lcars-h-unit
+            children:
+              - text: '3453'
+                props:
+                  class: lcars-black-color lcars-font-2 bold bottom-right
+        children:
+          - props:
+              class: lcars-col right lcars-margin-right-10
+            children:
+              - props:
+                  class: lcars-row  lcars-margin-bottom-7
+                children:
+                  - text: '30'
+                    props:
+                      class:
+                        - lcars-mountbatten-pink-color
+                        - lcars-el
+                        - lcars-font-15
+                        - lcars-margin-right-1
+                  - props:
+                      class:
+                        - lcars-mountbatten-pink-bg
+                        - lcars-h-unit
+                        - lcars-margin-right-5
+                      style: 'width: calc(var(--lcars-unit) * 0.4) !important'
+                  - text: AV BRK
+                    props:
+                      class:
+                        - lcars-mountbatten-pink-bg
+                        - lcars-el r-cap-5
+                        - lcars-w-1
+                        - lcars-h-unit
+                        - lcars-font-2
+                        - lcars-black-color
+                        - lcars-pad-4
+                        - lcars-margin-right-5
+                      style: 'padding-top: calc(var(--lcars-gap) * 2) !important'
+                  - text: 30 391
+                    props:
+                      class:
+                        - lcars-eggplant-bg
+                        - lcars-el
+                        - rad-5
+                        - lcars-w-1-minus
+                        - lcars-h-unit
+                        - lcars-font-2
+                        - lcars-black-color
+                        - lcars-pad-4
+                      style: 'padding-top: calc(var(--lcars-gap) * 2) !important'
+              - props:
+                  class: lcars-row  lcars-margin-bottom-7
+                children:
+                  - text: '44'
+                    props:
+                      class:
+                        - lcars-mule-fawn-color
+                        - lcars-el
+                        - lcars-font-15
+                        - lcars-margin-right-1
+                  - props:
+                      class:
+                        - lcars-mule-fawn-bg
+                        - lcars-h-unit
+                        - lcars-margin-right-5
+                      style: 'width: calc(var(--lcars-unit) * 0.4) !important'
+                  - text: TE FAB
+                    props:
+                      class:
+                        - lcars-mule-fawn-bg
+                        - lcars-el
+                        - r-cap-5
+                        - lcars-w-1
+                        - lcars-h-unit
+                        - lcars-font-2
+                        - lcars-black-color
+                        - lcars-margin-right-5
+                        - lcars-pad-4
+                      style: 'padding-top: calc(var(--lcars-gap) * 2) !important'
+                  - text: NO BES
+                    props:
+                      class:
+                        - lcars-cowboy-bg
+                        - lcars-el
+                        - rad-5
+                        - lcars-w-1-minus
+                        - lcars-h-unit
+                        - lcars-font-2
+                        - lcars-black-color
+                        - lcars-pad-4
+                      style: 'padding-top: calc(var(--lcars-gap) * 2) !important'
+              - props:
+                  class: lcars-row lcars-h-unit
+              - props:
+                  class: lcars-row  lcars-margin-bottom-7
+                children:
+                  - text: '17'
+                    props:
+                      class:
+                        - lcars-mule-fawn-color
+                        - lcars-el
+                        - lcars-font-15
+                        - lcars-margin-right-1
+                  - props:
+                      class:
+                        - lcars-mule-fawn-bg
+                        - lcars-h-unit
+                        - lcars-margin-right-5
+                      style: 'width: calc(var(--lcars-unit) * 0.4) !important'
+                  - text: AR SENSOR
+                    props:
+                      class:
+                        - lcars-fiery-orange-bg
+                        - lcars-el
+                        - r-cap-5
+                        - lcars-w-1
+                        - lcars-h-unit
+                        - lcars-font-2
+                        - lcars-black-color
+                        - lcars-margin-right-5
+                        - lcars-pad-4
+                      style: 'padding-top: calc(var(--lcars-gap) * 2) !important'
+                  - text: DI OVE
+                    props:
+                      class:
+                        - lcars-fiery-orange-bg
+                        - lcars-el
+                        - rad-5
+                        - lcars-w-1-minus
+                        - lcars-h-unit
+                        - lcars-font-2
+                        - lcars-black-color
+                        - lcars-pad-4
+                      style: 'padding-top: calc(var(--lcars-gap) * 2) !important'
+              - props:
+                  class: lcars-row  lcars-margin-bottom-7
+                children:
+                  - text: '9'
+                    props:
+                      class:
+                        - lcars-smoky-color
+                        - lcars-el
+                        - lcars-font-15
+                        - lcars-margin-right-1
+                  - props:
+                      class:
+                        - lcars-smoky-bg
+                        - lcars-h-unit
+                        - lcars-margin-right-5
+                      style: 'width: calc(var(--lcars-unit) * 0.4) !important'
+                  - text: SB ELF
+                    props:
+                      class:
+                        - lcars-smoky-bg
+                        - lcars-el
+                        - r-cap-5
+                        - lcars-w-1
+                        - lcars-h-unit
+                        - lcars-font-2
+                        - lcars-black-color
+                        - lcars-margin-right-5
+                        - lcars-pad-4
+                      style: 'padding-top: calc(var(--lcars-gap) * 2) !important'
+                  - text: JE FLE
+                    props:
+                      class:
+                        - lcars-fiery-orange-bg
+                        - lcars-el
+                        - rad-5
+                        - lcars-w-1-minus
+                        - lcars-h-unit
+                        - lcars-font-2
+                        - lcars-black-color
+                        - lcars-pad-4
+                      style: 'padding-top: calc(var(--lcars-gap) * 2) !important'
+              - props:
+                  class: lcars-row  lcars-margin-bottom-7
+                children:
+                  - text: '16'
+                    props:
+                      class:
+                        - lcars-eggplant-color
+                        - lcars-el
+                        - lcars-font-15
+                        - lcars-margin-right-1
+                  - props:
+                      class:
+                        - lcars-eggplant-bg
+                        - lcars-h-unit
+                        - lcars-margin-right-5
+                      style: 'width: calc(var(--lcars-unit) * 0.4) !important'
+                  - text: RE AUB
+                    props:
+                      class:
+                        - lcars-eggplant-bg
+                        - lcars-el
+                        - r-cap-5
+                        - lcars-w-1
+                        - lcars-h-unit
+                        - lcars-font-2
+                        - lcars-black-color
+                        - lcars-margin-right-5
+                        - lcars-pad-4
+                      style: 'padding-top: calc(var(--lcars-gap) * 2) !important'
+                  - props:
+                      style: 'width: calc(var(--lcars-unit) * 2)'
+              - props:
+                  class: lcars-row  lcars-margin-bottom-7
+                children:
+                  - text: '6'
+                    props:
+                      class:
+                        - lcars-mule-fawn-color
+                        - lcars-el
+                        - lcars-font-15
+                        - lcars-margin-right-1
+                  - props:
+                      class:
+                        - lcars-mule-fawn-bg
+                        - lcars-h-unit
+                        - lcars-margin-right-5
+                      style: 'width: calc(var(--lcars-unit) * 0.4) !important'
+                  - text: PF MLG
+                    props:
+                      class:
+                        - lcars-mule-fawn-bg
+                        - lcars-el
+                        - r-cap-5
+                        - lcars-w-1
+                        - lcars-h-unit
+                        - lcars-font-2
+                        - lcars-black-color
+                        - lcars-margin-right-5
+                        - lcars-pad-4
+                      style: 'padding-top: calc(var(--lcars-gap) * 2) !important'
+                  - text: AB FOX
+                    props:
+                      class:
+                        - lcars-paarl-bg
+                        - lcars-el
+                        - rad-5
+                        - lcars-w-1-minus
+                        - lcars-h-unit
+                        - lcars-font-2
+                        - lcars-black-color
+                        - lcars-pad-4
+                      style: 'padding-top: calc(var(--lcars-gap) * 2) !important'
+              - props:
+                  class: lcars-row  lcars-margin-bottom-7
+                children:
+                  - text: BA TRB
+                    props:
+                      class:
+                        - lcars-fiery-orange-bg
+                        - lcars-el
+                        - rad-5
+                        - lcars-w-1-minus
+                        - lcars-h-unit
+                        - lcars-font-2
+                        - lcars-black-color
+                        - lcars-pad-4
+                      style: 'padding-top: calc(var(--lcars-gap) * 2) !important'
+              - props:
+                  class: lcars-row  lcars-margin-bottom-7
+                children:
+                  - text: '6'
+                    props:
+                      class:
+                        - lcars-mule-fawn-color
+                        - lcars-el
+                        - lcars-font-15
+                        - lcars-margin-right-1
+                  - props:
+                      class:
+                        - lcars-mule-fawn-bg
+                        - lcars-h-unit
+                        - lcars-margin-right-5
+                      style: 'width: calc(var(--lcars-unit) * 0.4) !important'
+                  - text: IG MCE
+                    props:
+                      class:
+                        - lcars-mule-fawn-bg
+                        - lcars-el
+                        - r-cap-5
+                        - lcars-w-1
+                        - lcars-h-unit
+                        - lcars-font-2
+                        - lcars-black-color
+                        - lcars-margin-right-5
+                        - lcars-pad-4
+                      style: 'padding-top: calc(var(--lcars-gap) * 2) !important'
+                  - text: CD MEM
+                    props:
+                      class:
+                        - lcars-paarl-bg
+                        - lcars-el
+                        - rad-5
+                        - lcars-w-1-minus
+                        - lcars-h-unit
+                        - lcars-font-2
+                        - lcars-black-color
+                        - lcars-pad-4
+                      style: 'padding-top: calc(var(--lcars-gap) * 2) !important'
+              - props:
+                  class: lcars-row  lcars-margin-bottom-7
+                children:
+                  - text: '16'
+                    props:
+                      class:
+                        - lcars-cowboy-color
+                        - lcars-el
+                        - lcars-font-15
+                        - lcars-margin-right-1
+                  - props:
+                      class:
+                        - lcars-cowboy-bg
+                        - lcars-h-unit
+                        - lcars-margin-right-5
+                      style: 'width: calc(var(--lcars-unit) * 0.4) !important'
+                  - text: BE EOH
+                    props:
+                      class:
+                        - lcars-cowboy-bg
+                        - lcars-el
+                        - r-cap-5
+                        - lcars-w-1
+                        - lcars-h-unit
+                        - lcars-font-2
+                        - lcars-black-color
+                        - lcars-margin-right-5
+                        - lcars-pad-4
+                      style: 'padding-top: calc(var(--lcars-gap) * 2) !important'
+                  - props:
+                      style: 'width: calc(var(--lcars-unit) * 2)'
+              - props:
+                  class: lcars-row  lcars-margin-bottom-7
+                children:
+                  - text: '30'
+                    props:
+                      class:
+                        - lcars-eggplant-color
+                        - lcars-el
+                        - lcars-font-15
+                        - lcars-margin-right-1
+                  - props:
+                      class:
+                        - lcars-eggplant-bg
+                        - lcars-h-unit
+                        - lcars-margin-right-5
+                      style: 'width: calc(var(--lcars-unit) * 0.4) !important'
+                  - text: BA SHA
+                    props:
+                      class:
+                        - lcars-eggplant-bg
+                        - lcars-el
+                        - r-cap-5
+                        - lcars-w-1
+                        - lcars-h-unit
+                        - lcars-font-2
+                        - lcars-black-color
+                        - lcars-margin-right-5
+                        - lcars-pad-4
+                      style: 'padding-top: calc(var(--lcars-gap) * 2) !important'
+                  - props:
+                      style: 'width: calc(var(--lcars-unit) * 2)'
+              - props:
+                  class: lcars-row  lcars-margin-bottom-7
+                children:
+                  - text: '44'
+                    props:
+                      class:
+                        - lcars-paarl-color
+                        - lcars-el
+                        - lcars-font-15
+                        - lcars-margin-right-1
+                  - props:
+                      class:
+                        - lcars-paarl-bg
+                        - lcars-h-unit
+                        - lcars-margin-right-5
+                      style: 'width: calc(var(--lcars-unit) * 0.4) !important'
+                  - text: LO FAT
+                    props:
+                      class:
+                        - lcars-paarl-bg
+                        - lcars-el
+                        - r-cap-5
+                        - lcars-w-1
+                        - lcars-h-unit
+                        - lcars-font-2
+                        - lcars-black-color
+                        - lcars-margin-right-5
+                        - lcars-pad-4
+                      style: 'padding-top: calc(var(--lcars-gap) * 2) !important'
+                  - text: BA TRO
+                    props:
+                      class:
+                        - lcars-smoky-bg
+                        - lcars-el
+                        - rad-5
+                        - lcars-w-1-minus
+                        - lcars-h-unit
+                        - lcars-font-2
+                        - lcars-black-color
+                        - lcars-pad-4
+                      style: 'padding-top: calc(var(--lcars-gap) * 2) !important'
+              - props:
+                  class: lcars-row  lcars-margin-bottom-7
+                children:
+                  - text: '6'
+                    props:
+                      class:
+                        - lcars-paarl-color
+                        - lcars-el
+                        - lcars-font-15
+                        - lcars-margin-right-1
+                  - props:
+                      class:
+                        - lcars-paarl-bg
+                        - lcars-h-unit
+                        - lcars-margin-right-5
+                      style: 'width: calc(var(--lcars-unit) * 0.4) !important'
+                  - text: KE HCC
+                    props:
+                      class:
+                        - lcars-paarl-bg
+                        - lcars-el
+                        - r-cap-5
+                        - lcars-w-1
+                        - lcars-h-unit
+                        - lcars-font-2
+                        - lcars-black-color
+                        - lcars-margin-right-5
+                        - lcars-pad-4
+                      style: 'padding-top: calc(var(--lcars-gap) * 2) !important'
+                  - text: CD GEN
+                    props:
+                      class:
+                        - lcars-eggplant-bg
+                        - lcars-el
+                        - rad-5
+                        - lcars-w-1-minus
+                        - lcars-h-unit
+                        - lcars-font-2
+                        - lcars-black-color
+                        - lcars-pad-4
+                      style: 'padding-top: calc(var(--lcars-gap) * 2) !important'
+          - props:
+              class: lcars-col lcars-w-unit

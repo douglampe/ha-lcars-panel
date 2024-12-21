@@ -1,4 +1,7 @@
-table.lcars-table 
+// LCARS table
+
+// Baseline defaults
+table 
   border: none
 
   & td,th 
@@ -8,6 +11,20 @@ table.lcars-table
 
   & th 
     font-weight: bolder
+
+  &.standard-header 
+    border-spacing: 2rem .25rem
+    margin-left: -2rem
+
+  &.standard-header th 
+    border-bottom: .1rem solid
+
+  &.standard-header tbody:before 
+    /* only works without border-collapse, note */
+    line-height: .1em 
+    content: "\00a0"
+    color: transparent
+    display: block 
 
 @keyframes rowscan 
   0%
