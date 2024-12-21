@@ -5,11 +5,12 @@ and this [LCARS HTML/CSS Framework](https://github.com/joernweissenborn/lcars), 
 to provide a LCARS-like dashboard experience for home assistant. Thanks to
 [HA Lovelace Connector](https://github.com/iva-stolnik/vue-ha-lovelace-connector) for cracking the code on wrapping a
 Vue SFC as a custom component. Shout out to [Name That Color](https://chir.ag/projects/name-that-color/) for helping
-give a name to colors I grabbed from various samples.
+give a name to colors I grabbed from various samples and [Colblindor](https://www.color-blindness.com/color-name-hue/)
+for providing the list of available colors.
 
 ## Configuration
 
 While the component provided by this project can be used as a custom card, it is best used as a custom panel so it
 effectively completely replaces Lovelace as the dashboard.
 
-Sample Configuration:
+Sample Configuration can be found in `src/assets/config/test.yaml`
