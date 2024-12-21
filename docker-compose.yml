@@ -4,9 +4,9 @@ services:
     image: homeassistant/home-assistant:stable
     volumes:
       - ./ha-config:/config
-      - ./vue/dist:/config/www/lcars
+      - ./dist:/config/www/lcars
     devices:
-      - "/dev/ttyUSB0:/dev/ttyUSB0"
+      - '/dev/ttyUSB0:/dev/ttyUSB0'
     environment:
       - TZ=America/New_York
     restart: always
@@ -14,7 +14,7 @@ services:
     group_add:
       - dialout
     ports:
-      - "8123:8123"
-      - "80:80"
-      - "8300:8300"
-      - "51827:51827"
+      - '8123:8123'
+      - '80:80'
+      - '8300:8300'
+      - '51827:51827'
