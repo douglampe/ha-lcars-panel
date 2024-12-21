@@ -2,7 +2,7 @@ name: Main Push
 on:
   push:
     branches:
-      - '*'
+      - 'main'
 
 jobs:
   build-and-publish:
