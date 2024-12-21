@@ -14,7 +14,7 @@ children:
       outerRadY: 1
       innerRadX: 2
       innerRadY: 1
-      gap: 0
+      gap: 1
     leftChildren:
       - type: el
         text: LCARS 23295
@@ -25,7 +25,6 @@ children:
           textColor: black
           height: 2
           button: true
-          margin-bottom: 0.1
       - type: el
         text: 01-23564
         config:
@@ -33,6 +32,7 @@ children:
           fill: true
           textAlign: top-right
           textColor: black
+          margin-bottom: -0.1
     bottomChildren:
       - type: el
         config:
