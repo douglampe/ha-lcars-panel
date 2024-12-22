@@ -62,6 +62,9 @@ class LCARSCustomCard extends HTMLElement {
     if (name === 'test') {
       this.loadTest = true
     }
+    if (name === 'config') {
+      this.setConfig(newValue)
+    }
   }
 
   connectedCallback() {
