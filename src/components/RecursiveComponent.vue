@@ -19,7 +19,7 @@ function isVisible() {
     v-if="isVisible()"
     :is="props.type ? components[props.type] : tag"
     v-bind="props.config"
-  >
+    >{{ text }}
     <template #left v-if="props.leftChildren">
       <RecursiveComponent
         v-for="(child, index) in props.leftChildren"
@@ -44,7 +44,7 @@ function isVisible() {
         v-bind="child"
       />
     </template>
-    {{ text }}
+
     <RecursiveComponent v-for="(child, index) in props.children" :key="index" v-bind="child" />
   </component>
 </template>
