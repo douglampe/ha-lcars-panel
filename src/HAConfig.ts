@@ -1,5 +1,3 @@
-import { ref } from 'vue'
-import { loadTestConfig } from './demo/TestConfig'
 import LCARSRow from './components/LCARSRow.vue'
 import LCARSCol from './components/LCARSCol.vue'
 import PanelBL from './components/PanelBL.vue'
@@ -12,13 +10,17 @@ import StateColor from './components/StateColor.vue'
 import AttributeTable from './components/AttributeTable.vue'
 import AttributeFlow from './components/AttributeFlow.vue'
 import AttributeList from './components/AttributeList.vue'
-import { loadTestState } from './HAState'
 import StateValue from './components/StateValue.vue'
 import ScaleHorizontal from './components/ScaleHorizontal.vue'
 import LCARSMarkdown from './components/LCARSMarkdown.vue'
+import type { ConfigItem } from './ConfigItem'
+import { ref } from 'vue'
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const haConfig = ref({} as any)
+export interface HAConfig {
+  type: string
+  vars: Record<string, string>
+  children: ConfigItem[]
+}
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const components = {} as Record<string, any>
@@ -39,13 +41,9 @@ registerComponent('attribute-flow', AttributeFlow)
 registerComponent('attribute-list', AttributeList)
 registerComponent('scale-h', ScaleHorizontal)
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function registerComponent(key: string, component: any) {
   components[key] = component
-}
-
-if (import.meta.env.DEV) {
-  loadTestConfig()
-  loadTestState()
 }
 
 export function setVariable(key: string, value: string) {
@@ -53,16 +51,9 @@ export function setVariable(key: string, value: string) {
   document.documentElement?.style.setProperty(formattedKey, value)
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function loadConfig(config: any) {
-  haConfig.value = config
-
-  loadVariables()
-}
-
-export function loadVariables() {
-  if (haConfig.value?.vars) {
-    Object.entries(haConfig.value?.vars).forEach(([key, value]) => {
+export function loadVariables(haConfig: HAConfig) {
+  if (haConfig?.vars) {
+    Object.entries(haConfig.vars).forEach(([key, value]) => {
       setVariable(key, value as string)
     })
   }
