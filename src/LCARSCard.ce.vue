@@ -23,5 +23,11 @@ onMounted(() => {
   background-color: var(--lcars-color-bg)
   color: var(--lcars-color-text)
   font-family: Antonio, "Arial", monospace
+  font-size: var(--lcars-font-size)
   text-transform: uppercase
+
+  & pre,
+  & code
+    text-transform: none
+    background-color: var(--lcars-color-code)
 </style>

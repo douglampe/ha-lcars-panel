@@ -38,30 +38,31 @@ children:
     leftPad: 1
     topCap: true
     children:
-      - tag: p
-        text: |
+      - type: md
+        content: |
           The top-level card configuration is as follows:
-      - tag: pre
-        text: |
+
+          ```
           type: custom:ha-lcars-panel
           vars:
             lcars_unit: 2vw
           children:
             - text: Hello LCARS!
-      - tag: p
-        text: |
+          ```
+
           The first line is standard for all Home Asistant custom cards an simply specifies the card type.
-      - tag: pre
-        text: |
+
+          ```
           type: custom:ha-lcars-panel
-      - tag: p
-        text: |
-          The vars key allows you to modify global variables. The following variables are available:
-      - tag: pre
-        text: |
+          ```
+
+          The `vars` key allows you to modify global variables. The following variables are available:
+
+          ```
           lcars_unit: Sets the unit size as a valid CSS size such as 50px, 3rem, 3em (Default is 2vw)
           lcars_color_bg: Sets the main background color (Default is black #000000)
           lcars_color_text: Sets the default text color (Default is periwinkle #C3CDE6)
+          ```
       - tag: p
         text: |
           You can override any global CSS variable using this vars key. Simply remove the leading dashes from the

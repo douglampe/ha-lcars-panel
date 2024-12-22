@@ -15,6 +15,7 @@ import AttributeList from './components/AttributeList.vue'
 import { loadTestState } from './HAState'
 import StateValue from './components/StateValue.vue'
 import ScaleHorizontal from './components/ScaleHorizontal.vue'
+import LCARSMarkdown from './components/LCARSMarkdown.vue'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const haConfig = ref({} as any)
@@ -30,6 +31,7 @@ registerComponent('panel-bl', PanelBL)
 registerComponent('panel-tl', PanelTL)
 registerComponent('panel-all', PanelAll)
 registerComponent('table', LCARSTable)
+registerComponent('md', LCARSMarkdown)
 registerComponent('state-color', StateColor)
 registerComponent('state-value', StateValue)
 registerComponent('attribute-table', AttributeTable)
