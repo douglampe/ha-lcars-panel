@@ -65,7 +65,12 @@ const {
       <LCARSElement :fill="fillWidth" :color="color" :height="topHeight"></LCARSElement>
       <slot name="top"></slot>
     </LCARSRow>
-    <LCARSElement v-if="title" :color="color" :fontSize="topHeight" :lineHeight="topHeight * 0.8">
+    <LCARSElement
+      v-if="title"
+      :textColor="color"
+      :fontSize="topHeight"
+      :lineHeight="topHeight * 0.8"
+    >
       {{ title }}
     </LCARSElement>
     <LCARSElement
