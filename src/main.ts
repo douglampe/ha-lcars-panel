@@ -54,15 +54,15 @@ class LCARSCustomCard extends HTMLElement {
 
 ;(window as any).customCards = (window as any).customCards || []
 
-if (!(window as any).customCards.some((card: any) => card.type === 'lcars-custom-card')) {
+if (!(window as any).customCards.some((card: any) => card.type === 'ha-lcars-panel')) {
   ;(window as any).customCards.push({
-    type: 'lcars-custom-card',
+    type: 'ha-lcars-panel',
     name: 'LCARS Custom Card',
     preview: true,
     description: 'LCARS Custom Dashboard',
   })
 }
 
-if (!customElements.get('lcars-custom-card')) {
-  customElements.define('lcars-custom-card', LCARSCustomCard)
+if (!customElements.get('ha-lcars-panel')) {
+  customElements.define('ha-lcars-panel', LCARSCustomCard)
 }

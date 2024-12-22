@@ -1,4 +1,4 @@
-type: custom:lcars-custom-card
+type: custom:ha-lcars-panel
 vars:
   lcars_unit: 2vw
 children:
@@ -43,7 +43,7 @@ children:
           The top-level card configuration is as follows:
       - tag: pre
         text: |
-          type: custom:lcars-custom-card
+          type: custom:ha-lcars-panel
           vars:
             lcars_unit: 2vw
           children:
@@ -53,7 +53,7 @@ children:
           The first line is standard for all Home Asistant custom cards an simply specifies the card type.
       - tag: pre
         text: |
-          type: custom:lcars-custom-card
+          type: custom:ha-lcars-panel
       - tag: p
         text: |
           The vars key allows you to modify global variables. The following variables are available:

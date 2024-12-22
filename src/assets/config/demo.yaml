@@ -1,4 +1,4 @@
-type: custom:lcars-custom-card
+type: custom:ha-lcars-panel
 vars:
   lcars_unit: 2vw
 children:
