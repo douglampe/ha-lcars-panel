@@ -67,12 +67,7 @@ const styleObject = computed(() => {
     <slot></slot>
     <div
       v-if="config.radXInnerTopLeft || config.radYInnerTopLeft"
-      style="
-        position: absolute;
-        background-color: var(--lcars-color-default-bg);
-        bottom: 0;
-        right: 0;
-      "
+      style="position: absolute; background-color: var(--lcars-color-bg); bottom: 0; right: 0"
       :style="{
         borderTopLeftRadius: borderStyle(config.radXInnerTopLeft, config.radXInnerTopLeft),
         width: unitSize(config.radXInnerTopLeft),
@@ -81,12 +76,7 @@ const styleObject = computed(() => {
     ></div>
     <div
       v-if="config.radXInnerTopRight || config.radYInnerTopRight"
-      style="
-        position: absolute;
-        background-color: var(--lcars-color-default-bg);
-        bottom: 0;
-        left: 0;
-      "
+      style="position: absolute; background-color: var(--lcars-color-bg); bottom: 0; left: 0"
       :style="{
         borderTopRightRadius: borderStyle(config.radXInnerTopRight, config.radXInnerTopRight),
         width: unitSize(config.radXInnerTopRight),
@@ -95,7 +85,7 @@ const styleObject = computed(() => {
     ></div>
     <div
       v-if="config.radXInnerBottomLeft || config.radYInnerBottomLeft"
-      style="position: absolute; background-color: var(--lcars-color-default-bg); top: 0; right: 0"
+      style="position: absolute; background-color: var(--lcars-color-bg); top: 0; right: 0"
       :style="{
         borderBottomLeftRadius: borderStyle(config.radXInnerBottomLeft, config.radXInnerBottomLeft),
         width: unitSize(config.radXInnerBottomLeft),
@@ -104,7 +94,7 @@ const styleObject = computed(() => {
     ></div>
     <div
       v-if="config.radXInnerBottomRight || config.radYInnerBottomRight"
-      style="position: absolute; background-color: var(--lcars-color-default-bg); top: 0; left: 0"
+      style="position: absolute; background-color: var(--lcars-color-bg); top: 0; left: 0"
       :style="{
         borderBottomRightRadius: borderStyle(
           config.radXInnerBottomRight,

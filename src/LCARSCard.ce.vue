@@ -20,8 +20,8 @@ onMounted(() => {
 @use './styles/table'
 
 .lcars-wrapper
-  background-color: var(--lcars-color-default-bg)
-  color: var(--lcars-color-default-text)
+  background-color: var(--lcars-color-bg)
+  color: var(--lcars-color-text)
   font-family: Antonio, "Arial", monospace
   text-transform: uppercase
 </style>
