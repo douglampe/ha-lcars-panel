@@ -1,16 +1,34 @@
 <script setup lang="ts">
-import { onMounted } from 'vue'
-import { haConfig, loadVariables } from './HAConfig'
+import { computed, onMounted } from 'vue'
+import type { HAConfig } from './HAConfig'
+import { loadVariables } from './HAConfig'
 import RecursiveComponent from './components/RecursiveComponent.vue'
+import testConfig from '@/assets/config/test.yaml?raw'
+import YAML from 'yaml'
+import { loadTestState } from './HAState'
+
+const { config, loadTest } = defineProps<{ config: HAConfig; loadTest: boolean }>()
+
+let testConfigParsed: any
+
+if (loadTest) {
+  testConfigParsed = YAML.parse(testConfig)
+  loadTestState()
+}
+
+const children = computed(() => {
+  const localConfig = loadTest ? testConfigParsed : config
+  return localConfig.children
+})
 
 onMounted(() => {
-  loadVariables()
+  loadVariables(config)
 })
 </script>
 
 <template>
   <div class="lcars-wrapper">
-    <RecursiveComponent :children="haConfig.children" />
+    <RecursiveComponent :children="children" />
   </div>
 </template>
 
@@ -20,8 +38,14 @@ onMounted(() => {
 @use './styles/table'
 
 .lcars-wrapper
-  background-color: var(--lcars-color-default-bg)
-  color: var(--lcars-color-default-text)
+  background-color: var(--lcars-color-bg)
+  color: var(--lcars-color-text)
   font-family: Antonio, "Arial", monospace
+  font-size: var(--lcars-font-size)
   text-transform: uppercase
+
+  & pre,
+  & code
+    text-transform: none
+    background-color: var(--lcars-color-code)
 </style>

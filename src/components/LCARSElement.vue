@@ -1,6 +1,7 @@
 <!-- eslint-disable @typescript-eslint/no-explicit-any -->
 <script setup lang="ts">
 import { computed } from 'vue'
+import { navigate } from '@/LocalNav'
 import type { ElementProps } from '../props/ElementProps'
 import {
   borderStyle,
@@ -12,11 +13,13 @@ import {
   unitSize,
 } from '@/Layout'
 
-// defineOptions({
-//   inheritAttrs: false,
-// })
-
 const config = defineProps<ElementProps>()
+
+function onClick() {
+  if (config.nav) {
+    navigate(config.nav)
+  }
+}
 
 const styleObject = computed(() => {
   return removeUndefined({
@@ -43,7 +46,7 @@ const styleObject = computed(() => {
     borderBottomRightRadius:
       borderStyle(config.radXBottomRight, config.radYBottomRight) ??
       (config.capBottom || config.capRight ? unitSize(config.height ?? 1 / 2) : undefined),
-    cursor: config.button ? 'pointer' : undefined,
+    cursor: config.button || config.nav ? 'pointer' : undefined,
     position:
       config.radXInnerTopLeft ||
       config.radYInnerTopLeft ||
@@ -60,16 +63,11 @@ const styleObject = computed(() => {
 </script>
 
 <template>
-  <div :style="styleObject">
+  <div :style="styleObject" v-on="config.nav ? { click: onClick } : {}">
     <slot></slot>
     <div
       v-if="config.radXInnerTopLeft || config.radYInnerTopLeft"
-      style="
-        position: absolute;
-        background-color: var(--lcars-color-default-bg);
-        bottom: 0;
-        right: 0;
-      "
+      style="position: absolute; background-color: var(--lcars-color-bg); bottom: 0; right: 0"
       :style="{
         borderTopLeftRadius: borderStyle(config.radXInnerTopLeft, config.radXInnerTopLeft),
         width: unitSize(config.radXInnerTopLeft),
@@ -78,12 +76,7 @@ const styleObject = computed(() => {
     ></div>
     <div
       v-if="config.radXInnerTopRight || config.radYInnerTopRight"
-      style="
-        position: absolute;
-        background-color: var(--lcars-color-default-bg);
-        bottom: 0;
-        left: 0;
-      "
+      style="position: absolute; background-color: var(--lcars-color-bg); bottom: 0; left: 0"
       :style="{
         borderTopRightRadius: borderStyle(config.radXInnerTopRight, config.radXInnerTopRight),
         width: unitSize(config.radXInnerTopRight),
@@ -92,7 +85,7 @@ const styleObject = computed(() => {
     ></div>
     <div
       v-if="config.radXInnerBottomLeft || config.radYInnerBottomLeft"
-      style="position: absolute; background-color: var(--lcars-color-default-bg); top: 0; right: 0"
+      style="position: absolute; background-color: var(--lcars-color-bg); top: 0; right: 0"
       :style="{
         borderBottomLeftRadius: borderStyle(config.radXInnerBottomLeft, config.radXInnerBottomLeft),
         width: unitSize(config.radXInnerBottomLeft),
@@ -101,7 +94,7 @@ const styleObject = computed(() => {
     ></div>
     <div
       v-if="config.radXInnerBottomRight || config.radYInnerBottomRight"
-      style="position: absolute; background-color: var(--lcars-color-default-bg); top: 0; left: 0"
+      style="position: absolute; background-color: var(--lcars-color-bg); top: 0; left: 0"
       :style="{
         borderBottomRightRadius: borderStyle(
           config.radXInnerBottomRight,

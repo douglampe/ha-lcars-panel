@@ -52,7 +52,13 @@ const {
     :margin-right="marginRight"
   >
     <LCARSCol stretch :gap="gap">
-      <LCARSElement v-if="topCap" :cap-top="true" :color="color"></LCARSElement>
+      <LCARSElement
+        v-if="topCap"
+        :cap-top="true"
+        :width="leftWidth"
+        :height="leftWidth / 2"
+        :color="color"
+      ></LCARSElement>
       <slot name="left"></slot>
       <LCARSElement :fill="fillHeight" :color="leftColor" :width="leftWidth"></LCARSElement>
     </LCARSCol>
@@ -90,6 +96,7 @@ const {
     <LCARSElement
       v-if="bottomCap"
       :height="bottomHeight"
+      :width="bottomHeight / 2"
       :color="color"
       :cap-right="true"
     ></LCARSElement>

@@ -1,297 +1,128 @@
-type: custom:lcars-custom-card
+type: custom:ha-lcars-panel
 vars:
-  lcars_unit: 3vw
+  lcars_unit: 2vw
 children:
-  - type: panel-bl
-    config:
-      fillWidth: true
-      fillHeight: true
-      marginBottom: 0.2
-      color: dodger-blue
-      leftColor: dodger-blue
-      bottomHeight: 0.5
-      outerRadX: 3
-      outerRadY: 1
-      innerRadX: 2
-      innerRadY: 1
-      gap: 0
-    leftChildren:
-      - type: el
-        text: LCARS 23295
-        nav: 'url:/'
-        config:
-          color: lilac
-          textAlign: bottom-right
-          textColor: black
-          height: 2
-          button: true
-          margin-bottom: 0.1
-      - type: el
-        text: 01-23564
-        config:
-          color: dodger-blue
-          fill: true
-          textAlign: top-right
-          textColor: black
-    bottomChildren:
-      - type: el
-        config:
-          color: golden-tainoi
-          width: 0.75
-          height: 0.5
-      - type: el
-        config:
-          color: lilac
-          width: 4
-          height: 0.5
-      - type: el
-        config:
-          color: lilac
-          width: 9
-          height: 0.5
-      - type: el
-        config:
-          color: indian-red
-          width: 3
-          height: 0.5
+  - showForNav: /home
     children:
-      - type: el
-        text: Planetary Catelog Database 93-6636
-        config:
-          fill: true
-          textColor: golden-tainoi
-          fontSize: 1
-          marginBottom: 0.5
-          textAlign: top-right
-      - type: row
+      - type: panel-bl
+        color: golden-tainoi
+        fillWidth: true
+        fillHeight: true
+        leftColor: golden-tainoi
+        leftPad: 1
         children:
-          - type: col
-            children:
-              - type: table
-                config:
-                  margin-left: 1
-                  animation: scanning
-                  fontSize: 0.5
-                  lineHeight: 0.6
-                children:
-                  - tag: tr
-                    children:
-                      - tag: td
-                        children:
-                          - type: state-value
-                            config:
-                              entity: weather.forecast_home
-                              attribute: temperature
-                      - tag: td
-                        children:
-                          - type: state-value
-                            config:
-                              entity: weather.forecast_home
-                              attribute: dew_point
-                      - tag: td
-                        children:
-                          - type: state-value
-                            config:
-                              entity: weather.forecast_home
-                              attribute: humidity
-                      - tag: td
-                        children:
-                          - type: state-value
-                            config:
-                              entity: weather.forecast_home
-                              attribute: cloud_coverage
-                  - tag: tr
-                    children:
-                      - tag: td
-                        children:
-                          - type: state-value
-                            config:
-                              entity: weather.forecast_home
-                              attribute: uv_index
-                      - tag: td
-                        children:
-                          - type: state-value
-                            config:
-                              entity: weather.forecast_home
-                              attribute: pressure
-                      - tag: td
-                        children:
-                          - type: state-value
-                            config:
-                              entity: weather.forecast_home
-                              attribute: wind_bearing
-                      - tag: td
-                        children:
-                          - type: state-value
-                            config:
-                              entity: weather.forecast_home
-                              attribute: wind_speed
-          - type: col
-            config:
-              fill: true
-              right: true
-            children:
-              - type: row
-                config:
-                  right: true
-                  margin-bottom: 0.3
-                children:
-                  - type: pill
-                    text: 07-3215
-                    config:
-                      color: dodger-blue
-                      fontSize: 0.5
-                      margin-right: 0.3
-                  - type: pill
-                    text: 03-4984
-                    config:
-                      fontSize: 0.5
-                      color: atomic-tangerine
-              - type: row
-                config:
-                  right: true
-                children:
-                  - type: pill
-                    text: 08-2501
-                    config:
-                      color: lilac
-                      fontSize: 0.5
-                      margin-right: 0.3
-                  - type: pill
-                    text: 04-2809
-                    config:
-                      color: indian-red
-                      fontSize: 0.5
-  - type: panel-tl
-    config:
-      fillWidth: true
-      fillHeight: true
-      color: indian-red
-      leftColor: indian-red
-      leftPad: 1
-      topHeight: 0.5
-      outerRadX: 3
-      innerRadX: 2
-      innerRadY: 1
-    topChildren:
-      - type: el
-        config:
-          color: golden-tainoi
-          height: .5
-          width: .75
-      - type: el
-        config:
-          color: atomic-tangerine
-          width: 4
-          height: 0.25
-      - type: el
-        config:
-          color: lilac
-          width: 9
-          height: 0.5
-      - type: el
-        config:
-          color: indian-red
-          width: 3
-          height: .5
-    leftChildren:
-      - type: el
-        text: 02-24156
-        config:
-          color: indian-red
-          height: 1
-          textAlign: bottom-right
-          textColor: black
-      - type: el
-        text: 03-41248
-        config:
-          color: indian-red
-          height: 3
-          textAlign: bottom-right
-          textColor: black
-      - type: el
-        text: 04-14702
-        config:
-          color: golden-tainoi
-          height: 1
-          textAlign: bottom-right
-          textColor: black
-      - type: el
-        text: 05-32456
-        config:
-          color: atomic-tangerine
-          height: 3
-          textAlign: top-right
-          textColor: black
+          - type: el
+            text: Welcome to ha-lcars-panel
+            textColor: golden-tainoi
+            fontSize: 1
+          - tag: p
+            text: |
+              This is not just a "custom card" for Home Assistant. It is a comprehensive LCARS system designed to allow
+              you to create complex LCARS layouts either as a single card in a dashboard using the LCARS theme, create
+              an entire Lovelace dashboard with a single card, or create a custom panel that runs full-screen without
+              the Home Assistant menu.
+          - tag: p
+            text: |
+              Click the button below to start a detailed demo
+          - type: pill
+            color: dodger-blue
+            nav: /demo/config
+            text: Start Demo
+  - showForNav: /demo/config
+    type: panel-tl
+    title: Configuration
+    color: dodger-blue
+    fillWidth: true
+    fillHeight: true
+    leftColor: dodger-blue
+    leftPad: 1
+    topCap: true
     children:
+      - type: md
+        content: |
+          The top-level card configuration is as follows:
+
+          ```
+          type: custom:ha-lcars-panel
+          vars:
+            lcars_unit: 2vw
+          children:
+            - text: Hello LCARS!
+          ```
+
+          The first line is standard for all Home Asistant custom cards an simply specifies the card type.
+
+          ```
+          type: custom:ha-lcars-panel
+          ```
+
+          The `vars` key allows you to modify global variables. The following variables are available:
+
+          ```
+          lcars_unit: Sets the unit size as a valid CSS size such as 50px, 3rem, 3em (Default is 2vw)
+          lcars_color_bg: Sets the main background color (Default is black #000000)
+          lcars_color_text: Sets the default text color (Default is periwinkle #C3CDE6)
+          ```
+      - tag: p
+        text: |
+          You can override any global CSS variable using this vars key. Simply remove the leading dashes from the
+          variable name and replace any dashes in the name with underscores.
+      - tag: p
+        text: |
+          The children key allows you to provide a list of items available for display directly in the top level 
+          container. The reason they are "available for display" is because they can be shown conditionally based
+          on navigation. Each item has the following properties:
+      - tag: pre
+        text: |
+          type: Used to specify a custom LCARS element
+          tag: Any html tag (ex: a, div, p)
+          text: Text that will be passed directly as content of the element or tag
+          showForNav: Navigation path where item is visible
+          children: List of items to be rendered inside the element or tag
+          leftChildren: List of items to be rendered inside the left portion of the element or tag if supported
+          rightChildren: List of items to be rendered inside the right portion of the element or tag if supported
+          topChildren: List of items to be rendered inside the top portion of the element or tag if supported
+          bottomChildren: List of items to be rendered inside the bottom portion of the element or tag if supported
+
       - type: row
+        gap: 1
         children:
-          - type: col
-            children:
-              - type: el
-                text: Sol
-                config:
-                  textColor: golden-tainoi
-                  fontSize: 1
-                  marginBottom: 0.5
-              - type: attribute-list
-                config:
-                  entity: sun.sun
-                  textColor: lilac
-                  fontSize: 0.5
-                  animation: row-fill
-          - type: panel-all
-            config:
-              leftWidth: 1
-              rightWidth: 1
-              radXTopLeft: 2
-              radXTopRight: 2
-              radXBottomLeft: 2
-              radXBottomRight: 2
-              topHeight: 0.5
-              bottomHeight: 0.5
-              color: indian-red
-              leftColor: indian-red
-              rightColor: indian-red
-              gap: 0
-              marginLeft: 0.5
-            topChildren:
-              - type: el
-                config:
-                  color: indian-red
-                  width: 1
-                  height: 0.5
-              - type: el
-                config:
-                  color: black
-                  fill: true
-                  height: 1
-              - type: el
-                config:
-                  color: indian-red
-                  width: 1
-                  height: 0.5
-            bottomChildren:
-              - type: el
-                config:
-                  color: indian-red
-                  width: 1
-                  height: 0.5
-              - type: el
-                config:
-                  color: black
-                  fill: true
-                  height: 1
-              - type: el
-                config:
-                  color: indian-red
-                  width: 1
-                  height: 0.5
-            children:
-              - tag: img
-                config:
-                  src: https://www.nasa.gov/wp-content/uploads/2016/07/10f0.15.gif?w=500
-                  style:
-                    width: calc(var(--lcars-unit) * 8)
-                    marginLeft: calc(var(--lcars-unit) * 2)
-                    marginRight: calc(var(--lcars-unit) * 2)
+          - type: pill
+            color: golden-tainoi
+            text: home
+            nav: /home
+          - type: pill
+            color: indian-red
+            text: layout
+            nav: /demo/layout
+  - showForNav: /demo/layout
+    type: panel-tl
+    title: Configuration
+    color: indian-red
+    fillWidth: true
+    fillHeight: true
+    leftColor: indian-red
+    leftPad: 1
+    topCap: true
+    children:
+      - tag: p
+        text: |
+          The layout system is based on LCARS Units. This is a 1 unit x 1 unti square:
+      - type: el
+        width: 1
+        height: 1
+        color: golden-tainoi
+      - tag: p
+        text: |
+          The layout system uses the "flexbox" CSS layout meaning items are flexibly displayed in rows and columns.
+      - type: row
+        gap: 1
+        children:
+          - type: pill
+            color: golden-tainoi
+            text: home
+            nav: /home
+          - type: pill
+            color: dodger-blue
+            text: config
+            nav: /demo/config

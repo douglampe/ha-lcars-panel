@@ -29,6 +29,8 @@ const {
   fillWidth,
   fillHeight,
   gap = 1,
+  topCap,
+  bottomCap,
   leftWidth = 3,
   leftPad = 1,
   topHeight = 1,
@@ -63,10 +65,21 @@ const {
       <LCARSElement :fill="fillWidth" :color="color" :height="topHeight"></LCARSElement>
       <slot name="top"></slot>
     </LCARSRow>
-    <LCARSElement v-if="title" :color="color" :fontSize="topHeight" :lineHeight="topHeight * 0.8">
+    <LCARSElement
+      v-if="title"
+      :textColor="color"
+      :fontSize="topHeight"
+      :lineHeight="topHeight * 0.8"
+    >
       {{ title }}
     </LCARSElement>
-    <LCARSElement v-if="topCap" :height="topHeight" :color="color" :cap-right="true"></LCARSElement>
+    <LCARSElement
+      v-if="topCap"
+      :height="topHeight"
+      :width="topHeight / 2"
+      :color="color"
+      :cap-right="true"
+    ></LCARSElement>
   </LCARSRow>
   <LCARSRow
     :fill="fillHeight"
@@ -77,7 +90,13 @@ const {
     <LCARSCol stretch :gap="gap">
       <slot name="left"></slot>
       <LCARSElement :fill="fillHeight" :color="leftColor" :width="leftWidth"></LCARSElement>
-      <LCARSElement v-if="bottomCap" :cap-bottom="true" :color="color"></LCARSElement>
+      <LCARSElement
+        v-if="bottomCap"
+        :width="leftWidth"
+        :height="leftWidth / 2"
+        :cap-bottom="true"
+        :color="color"
+      ></LCARSElement>
     </LCARSCol>
     <LCARSCol :fill="fillWidth" :margin-left="leftPad">
       <slot></slot>

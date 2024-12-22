@@ -1,4 +1,4 @@
-- name: lcars-custom-card
+- name: ha-lcars-panel
   url_path: lcars
   sidebar_title: LCARS Panel
   sidebar_icon: si:startrek
