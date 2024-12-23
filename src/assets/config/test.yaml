@@ -1,6 +1,6 @@
 type: custom:ha-lcars-panel
 vars:
-  lcars_unit: 10vmin
+  lcars_unit: 4vw
 children:
   - type: panel-tl
     color: golden-tainoi
@@ -35,10 +35,18 @@ children:
     children:
       - showForNav: /home
         children:
-          - type: el
-            text: Welcome to ha-lcars-panel
-            textColor: golden-tainoi
-            fontSize: 1
+          - type: row
+            bottom: true
+            children:
+              - tag: img
+                src: /ha-lcars-panel/favicon.svg
+                style:
+                  height: var(--lcars-unit)
+              - type: el
+                text: Welcome to ha-lcars-panel
+                textColor: golden-tainoi
+                fontSize: 1
+                marginLeft: 0.3
           - tag: p
             text: |
               This is not just a "custom card" for Home Assistant. It is a comprehensive LCARS system designed to allow
@@ -165,7 +173,7 @@ children:
                         height: 1
                         color: dodger-blue
 
-          - type: md
+          - type: sample
             content: |
               To create a column, set the `type` to `col`.
 
@@ -175,28 +183,8 @@ children:
               ```
 
               Any children added to a row will be arranged vertically.
-
-          - type: row
-            children:
-              - tag: pre
-                text: |
-                  - text: column
-                  - type: col
-                    children:
-                      - type: el
-                        width: 1
-                        height: 1
-                        color: atomic-tangerine
-                      - type: el
-                        width: 1
-                        height: 1
-                        color: indian-red
-                      - type: el
-                        width: 1
-                        height: 1
-                        color: dodger-blue
+            configYaml: |
               - type: col
-                marginLeft: 1
                 children:
                   - type: el
                     width: 1
@@ -211,170 +199,76 @@ children:
                     height: 1
                     color: dodger-blue
 
-          - type: md
+          - type: sample
             content: |
               As shown above, there is no spacing between children of rows or columns by default. To add a consistent gap
               between all children, set the `gap` key. The gap size is 0.1 unit so `gap: 1` would set the gap size to 1/10
               of a unit.
-
-          - type: row
-            children:
-              - tag: pre
-                text: |
-                  - type: row
-                    gap: 1
-                    children:
-                      - type: el
-                        width: 1
-                        height: 1
-                        color: atomic-tangerine
-                      - type: el
-                        width: 1
-                        height: 1
-                        color: indian-red
-                      - type: el
-                        width: 1
-                        height: 1
-                        color: dodger-blue
-              - type: col
+            configYaml: |
+              - type: row
+                gap: 1
                 children:
-                  - type: row
-                    marginLeft: 1
-                    gap: 1
-                    children:
-                      - type: el
-                        width: 1
-                        height: 1
-                        color: atomic-tangerine
-                      - type: el
-                        width: 1
-                        height: 1
-                        color: indian-red
-                      - type: el
-                        width: 1
-                        height: 1
-                        color: dodger-blue
+                  - type: el
+                    width: 1
+                    height: 1
+                    color: atomic-tangerine
+                  - type: el
+                    width: 1
+                    height: 1
+                    color: indian-red
+                  - type: el
+                    width: 1
+                    height: 1
+                    color: dodger-blue
 
-          - type: md
+          - type: sample
             content: |
               Items in a row are aligned to the top of the row by default so items of varying sizes will be aligned to the
               top of the tallest item.
-
-          - type: row
-            children:
-              - tag: pre
-                text: |
-                  - type: row
-                    gap: 1
-                    children:
-                      - type: el
-                        width: 1
-                        height: 2
-                        color: atomic-tangerine
-                      - type: el
-                        width: 1
-                        height: 0.5
-                        color: indian-red
-                      - type: el
-                        width: 1
-                        height: 1
-                        color: dodger-blue
-              - type: col
-                marginLeft: 1
+            configYaml: |
+              - type: row
+                gap: 1
                 children:
-                  - type: row
-                    gap: 1
-                    children:
-                      - type: el
-                        width: 1
-                        height: 2
-                        color: atomic-tangerine
-                      - type: el
-                        width: 1
-                        height: 0.5
-                        color: indian-red
-                      - type: el
-                        width: 1
-                        height: 1
-                        color: dodger-blue
+                  - type: el
+                    width: 1
+                    height: 2
+                    color: atomic-tangerine
+                  - type: el
+                    width: 1
+                    height: 0.5
+                    color: indian-red
+                  - type: el
+                    width: 1
+                    height: 1
+                    color: dodger-blue
 
-          - type: md
+          - type: sample
             content: |
               To align items to the bottom of the row, set the `bottom` key to `true`.
-
-          - type: row
-            children:
-              - tag: pre
-                text: |
-                  - type: row
-                    gap: 1
-                    bottom: true
-                    children:
-                      - type: el
-                        width: 1
-                        height: 2
-                        color: atomic-tangerine
-                      - type: el
-                        width: 1
-                        height: 0.5
-                        color: indian-red
-                      - type: el
-                        width: 1
-                        height: 1
-                        color: dodger-blue
-              - type: col
-                marginLeft: 1
+            configYaml: |
+              - type: row
+                gap: 1
+                bottom: true
                 children:
-                  - type: row
-                    gap: 1
-                    bottom: true
-                    children:
-                      - type: el
-                        width: 1
-                        height: 2
-                        color: atomic-tangerine
-                      - type: el
-                        width: 1
-                        height: 0.5
-                        color: indian-red
-                      - type: el
-                        width: 1
-                        height: 1
-                        color: dodger-blue
-          - type: md
+                  - type: el
+                    width: 1
+                    height: 2
+                    color: atomic-tangerine
+                  - type: el
+                    width: 1
+                    height: 0.5
+                    color: indian-red
+                  - type: el
+                    width: 1
+                    height: 1
+                    color: dodger-blue
+
+          - type: sample
             content: |
               Similarly, column items are aligned to the left by default. To align items to the right of the column, set
               the `right` key to `true`.
-
-          - type: row
-            children:
-              - tag: pre
-                text: |
-                  - type: col
-                    gap: 1
-                    style:
-                      width: calc(var(--lcars-unit) * 3)
-                    children:
-                      - type: row
-                        children:
-                          - type: el
-                            width: 3
-                            height: 1
-                            color: atomic-tangerine
-                      - type: row
-                        right: true
-                        gap: 1
-                        children:
-                          - type: el
-                            width: 1
-                            height: 1
-                            color: indian-red
-                          - type: el
-                            width: 1
-                            height: 1
-                            color: dodger-blue
+            configYaml: |
               - type: col
-                marginLeft: 1
                 gap: 1
                 style:
                   width: calc(var(--lcars-unit) * 3)
@@ -398,233 +292,117 @@ children:
                         height: 1
                         color: dodger-blue
 
-          - type: md
+          - type: sample
             content: |
               To stretch any item without a specified height to fill the available height in the row, set `stretch` to 
               `true`.
-
-          - type: row
-            children:
-              - tag: pre
-                text: |
-                  - type: row
-                    gap: 1
-                    stretch: true
-                    children:
-                      - type: el
-                        width: 1
-                        height: 2
-                        color: atomic-tangerine
-                      - type: el
-                        width: 1
-                        color: indian-red
-                      - type: el
-                        width: 1
-                        color: dodger-blue
-              - type: col
-                marginLeft: 1
+            configYaml: |
+              - type: row
+                gap: 1
+                stretch: true
                 children:
-                  - type: row
-                    gap: 1
-                    stretch: true
-                    children:
-                      - type: el
-                        width: 1
-                        height: 2
-                        color: atomic-tangerine
-                      - type: el
-                        width: 1
-                        color: indian-red
-                      - type: el
-                        width: 1
-                        color: dodger-blue
+                  - type: el
+                    width: 1
+                    height: 2
+                    color: atomic-tangerine
+                  - type: el
+                    width: 1
+                    color: indian-red
+                  - type: el
+                    width: 1
+                    color: dodger-blue
 
-          - type: md
+          - type: sample
             content: |
               By default, there are no margins between rows.
-
-          - type: row
-            children:
-              - tag: pre
-                text: |
-                  - type: row
-                    gap: 1
-                    children:
-                      - type: el
-                        width: 1
-                        height: 1
-                        color: atomic-tangerine
-                      - type: el
-                        width: 1
-                        height: 1
-                        color: indian-red
-                      - type: el
-                        width: 1
-                        height: 1
-                        color: dodger-blue
-                  - type: row
-                    gap: 1
-                    stretch: true
-                    children:
-                      - type: el
-                        width: 1
-                        height: 1
-                        color: golden-tainoi
-                      - type: el
-                        width: 1
-                        color: lilac
-                      - type: el
-                        width: 1
-                        color: fiery-orange
-              - type: col
-                marginLeft: 1
+            configYaml: |
+              - type: row
+                gap: 1
                 children:
-                  - type: row
-                    gap: 1
-                    children:
-                      - type: el
-                        width: 1
-                        height: 1
-                        color: atomic-tangerine
-                      - type: el
-                        width: 1
-                        height: 1
-                        color: indian-red
-                      - type: el
-                        width: 1
-                        height: 1
-                        color: dodger-blue
-                  - type: row
-                    gap: 1
-                    children:
-                      - type: el
-                        width: 1
-                        height: 1
-                        color: golden-tainoi
-                      - type: el
-                        width: 1
-                        color: lilac
-                      - type: el
-                        width: 1
-                        color: fiery-orange
+                  - type: el
+                    width: 1
+                    height: 1
+                    color: atomic-tangerine
+                  - type: el
+                    width: 1
+                    height: 1
+                    color: indian-red
+                  - type: el
+                    width: 1
+                    height: 1
+                    color: dodger-blue
+              - type: row
+                gap: 1
+                stretch: true
+                children:
+                  - type: el
+                    width: 1
+                    height: 1
+                    color: golden-tainoi
+                  - type: el
+                    width: 1
+                    color: lilac
+                  - type: el
+                    width: 1
+                    color: fiery-orange
 
-          - type: md
+          - type: sample
             content: |
               Margins can be added above, below, or on either side of a row with `marginTop`, `marginBottom`, `marginLeft`,
               and `marginRight`.
-
-          - type: row
-            children:
-              - tag: pre
-                text: |
-                  - type: row
-                    gap: 1
-                    marginBottom: 1
-                    stretch: true
-                    children:
-                      - type: el
-                        width: 1
-                        height: 1
-                        color: atomic-tangerine
-                      - type: el
-                        width: 1
-                        color: indian-red
-                      - type: el
-                        width: 1
-                        color: dodger-blue
-                  - type: row
-                    gap: 1
-                    stretch: true
-                    children:
-                      - type: el
-                        width: 1
-                        height: 1
-                        color: golden-tainoi
-                      - type: el
-                        width: 1
-                        color: lilac
-                      - type: el
-                        width: 1
-                        color: fiery-orange
-              - type: col
-                marginLeft: 1
+            configYaml: |
+              - type: row
+                gap: 1
+                marginBottom: 1
+                stretch: true
                 children:
-                  - type: row
-                    gap: 1
-                    marginBottom: 1
-                    stretch: true
-                    children:
-                      - type: el
-                        width: 1
-                        height: 1
-                        color: atomic-tangerine
-                      - type: el
-                        width: 1
-                        color: indian-red
-                      - type: el
-                        width: 1
-                        color: dodger-blue
-                  - type: row
-                    gap: 1
-                    stretch: true
-                    children:
-                      - type: el
-                        width: 1
-                        height: 1
-                        color: golden-tainoi
-                      - type: el
-                        width: 1
-                        color: lilac
-                      - type: el
-                        width: 1
-                        color: fiery-orange
+                  - type: el
+                    width: 1
+                    height: 1
+                    color: atomic-tangerine
+                  - type: el
+                    width: 1
+                    color: indian-red
+                  - type: el
+                    width: 1
+                    color: dodger-blue
+              - type: row
+                gap: 1
+                stretch: true
+                children:
+                  - type: el
+                    width: 1
+                    height: 1
+                    color: golden-tainoi
+                  - type: el
+                    width: 1
+                    color: lilac
+                  - type: el
+                    width: 1
+                    color: fiery-orange
 
-          - type: md
+          - type: sample
             content: |
               Padding can be added inside the border of the row using `padTop`, `padBottom`, `padLeft`, and `padRight` or
               set the same padding on all sides with `pad`.
-
-          - type: row
-            children:
-              - tag: pre
-                text: |
-                  - type: el
-                    color: golden-tainoi
-                    children:
-                      - type: row
-                        pad: 1
-                        fill: false
-                        children:
-                          - type: el
-                            width: 1
-                            height: 1
-                            color: atomic-tangerine
-                          - type: el
-                            width: 1
-                            color: indian-red
-                          - type: el
-                            width: 1
-                            color: dodger-blue
-              - type: col
-                marginLeft: 1
+            configYaml: |
+              - type: el
+                color: golden-tainoi
                 children:
-                  - type: el
-                    color: golden-tainoi
+                  - type: row
+                    pad: 1
+                    fill: false
                     children:
-                      - type: row
-                        pad: 1
-                        fill: false
-                        children:
-                          - type: el
-                            width: 1
-                            height: 1
-                            color: atomic-tangerine
-                          - type: el
-                            width: 1
-                            color: indian-red
-                          - type: el
-                            width: 1
-                            color: dodger-blue
+                      - type: el
+                        width: 1
+                        height: 1
+                        color: atomic-tangerine
+                      - type: el
+                        width: 1
+                        color: indian-red
+                      - type: el
+                        width: 1
+                        color: dodger-blue
 
           - type: pill
             color: atomic-tangerine
@@ -632,143 +410,214 @@ children:
             nav: /demo/elements
       - showForNav: /demo/elements
         children:
-          - type: md
+          - type: sample
             content: |
               The element (`type: el`) is the primary building block of the visual system. The configuration below
               renders a 1x1 unit element.
-          - type: row
-            children:
-              - tag: pre
-                text: |
-                  - type: el
-                  width: 1
-                  height: 1
-                  color: golden-tainoi
-              - type: col
-                marginLeft: 1
-                children:
-                  - type: el
-                    width: 1
-                    height: 1
-                    color: golden-tainoi
-
-          - text: color
-          - type: row
-            gap: 1
-            children:
-              - type: el
-                width: 1
-                height: 1
-                color: indian-red
-              - type: el
-                width: 1
-                height: 1
-                color: atomic-tangerine
+            configYaml: |
               - type: el
                 width: 1
                 height: 1
                 color: golden-tainoi
+
+          - type: sample
+            content: |
+              By default, elements are transparent so they can be used for layout. To fill the element with a color,
+              use the `color` key. Over 1,600 named colors are supported. You can use the 
+              [Colblindor Color Name & Hue](https://www.color-blindness.com/color-name-hue/) picker to find the name of
+               a color you want to use. Just convert the name to all lowercase and use dashes instead of spaces (ex: 
+               "Tangerine Yellow" would be `tangerine-yellow`).
+            configYaml: |
+              - type: row
+                gap: 1
+                children:
+                  - type: el
+                    width: 1
+                    height: 1
+                    color: indian-red
+                  - type: el
+                    width: 1
+                    height: 1
+                    color: atomic-tangerine
+                  - type: el
+                    width: 1
+                    height: 1
+                    color: golden-tainoi
+                  - type: el
+                    width: 1
+                    height: 1
+                    color: green
+                  - type: el
+                    width: 1
+                    height: 1
+                    color: dodger-blue
+                  - type: el
+                    width: 1
+                    height: 1
+                    color: indigo
+                  - type: el
+                    width: 1
+                    height: 1
+                    color: lilac
+
+          - type: sample
+            content: |
+              By default, elements are sized to fit their content. If you want to specify the size, use the `width` and
+              `height` keys to specify the size in LCARS Units
+            configYaml: |
+              - type: row
+                gap: 1
+                children:
+                  - type: el
+                    width: 2
+                    height: 1
+                    color: dodger-blue
+                  - type: el
+                    width: 1
+                    height: 2
+                    color: indian-red
+
+          - type: sample
+            content: |
+              The default font size is 0.6 units. Use the `fontSize` key to set the font size in LCARS Units.
+            configYaml: |
               - type: el
-                width: 1
-                height: 1
-                color: green
+                fontSize: 0.5
+                text: fontSize 0.5
               - type: el
-                width: 1
-                height: 1
+                fontSize: 1
+                text: fontSize 1
+              - type: el
+                fontSize: 2
+                text: fontSize 2
+
+          - type: sample
+            content: |
+              The default line height is 1.2 times the default font size. Use the `lineHeight` key to set the line 
+              height in LCARS Units.
+            configYaml: |
+              - type: el
+                fontSize: 1
+                lineHeight: 1
+                color: golden-tainoi
+                textColor: black
+                text: lineHeight 1
+              - type: el
+                fontSize: 1
+                lineheight: 1.2
                 color: dodger-blue
+                textColor: black
+                text: lineHeight 1.2
+
+          - type: sample
+            content: |
+              The default text color is `periwinkle` (#C3CDE6) which stands out on the standard black background. To
+              set the text color, use the `textColor` key.
+            configYaml: |
               - type: el
-                width: 1
-                height: 1
-                color: indigo
+                textColor: golden-tainoi
+                text: golden-tainoi
               - type: el
-                width: 1
-                height: 1
-                color: lilac
-          - text: size
-          - type: row
-            gap: 1
-            children:
+                textColor: indian-red
+                text: indian-red
+
+          - type: sample
+            content: |
+              The default alignment of content inside an element is to the top and left of the element. To set the 
+              content alignement, use the `alignContent` key. The following options are available:
+
+              - `top-left`: Content is aligned to the top and left of the element (Default)
+              - `top-center`: Content is aligned to the top and centered horizontally in the element
+              - `top-right`: Content is aligned to the top and right of the element
+              - `middle-left`: Content is aligned to the middle vertically and left side of the element
+              - `middle-center`: Content is aligned to the middle vertically and centered horizontally in the element
+              - `middle-right`: Content is aligned to the middle vertically and right side of the element
+              - `bottom-left`: Content is aligned to the bottom and left of the element
+              - `bottom-center`: Content is aligned to the bottom and left of the element
+              - `bottom-right`: Content is aligned to the bottom and left of the element
+            configYaml: |
+              - type: el
+                width: 10
+                height: 5
+                color: dodger-blue
+                textColor: black
+                alignContent: bottom-right
+                text: bottom-right
+
+          - type: sample
+            content: |
+              To make both corners of any side of an element rounded, set any of the following keys to `true`.
+            configYaml: |
               - type: el
                 width: 2
                 height: 1
-                color: dodger-blue
+                color: golden-tainoi
+                capRight: true
+
+          - type: sample
+            content: |
+              You can make any corner of the element rounded by setting either the X or Y radius in LCARS Units. If you
+              only set one value (X or Y), the corner will be circular. To make an elliptical corner, set the X and Y 
+              value to different values.
+
+              - radXTopLeft: Set top-left radius X value
+              - radYTopLeft: Set top-left radius Y value
+              - radXTopRight: Set top-right radius X value
+              - radYTopRight: Set top-right radius Y value
+              - radXBottomLeft: Set bottom-left radius X value
+              - radYBottomLeft: Set bottom-left radius Y value
+              - radXBottomRight: Set bottom-right radius X value
+              - radYBottomRight: Set bottom-right radius Y value
+            configYaml: |
               - type: el
-                width: 1
-                height: 2
-                color: indian-red
-          - text: font size
-          - type: el
-            fontSize: 0.5
-            text: fontSize 0.5
-          - type: el
-            fontSize: 1
-            text: fontSize 1
-          - type: el
-            fontSize: 2
-            text: fontSize 2
-          - text: line height
-          - type: el
-            fontSize: 1
-            lineHeight: 1
-            color: golden-tainoi
-            textColor: black
-            text: lineHeight 1
-          - type: el
-            fontSize: 1
-            lineheight: 1.2
-            color: dodger-blue
-            textColor: black
-            text: lineHeight 1.2
-          - text: textColor
-          - type: el
-            textColor: golden-tainoi
-            text: golden-tainoi
-          - type: el
-            textColor: indian-red
-            text: indian-red
-          - text: align
-          - type: el
-            width: 10
-            height: 5
-            color: dodger-blue
-            textColor: black
-            textAlign: bottom-right
-            text: bottom-right
-          - text: cap
-          - type: el
-            width: 2
-            height: 1
-            color: golden-tainoi
-            capRight: true
-          - text: radius
-          - type: el
-            width: 4
-            height: 4
-            radXTopLeft: 1
-            color: golden-tainoi
-          - text: inner radius
-          - type: el
-            width: 4
-            height: 4
-            radXInnerTopLeft: 1
-            radYInnerTopLeft: 1
-            color: golden-tainoi
+                width: 4
+                height: 4
+                radXTopLeft: 1
+                color: golden-tainoi
+                marginBottom: 1
+
+          - type: sample
+            configYaml: |
+              - type: el
+                width: 4
+                height: 4
+                radXTopLeft: 1
+                radYTopLeft: 2
+                color: golden-tainoi
+
+          - type: sample
+            content: |
+              You can also add a rounded inner radius following a similar convention to the outer radius shown above.
+
+              - radXInnerTopLeft: Set top-left inner radius X value
+              - radYInnerTopLeft: Set top-left inner radius Y value
+              - radXInnerTopRight: Set top-right inner radius X value
+              - radYInnerTopRight: Set top-right inner radius Y value
+              - radXInnerBottomLeft: Set bottom-left inner radius X value
+              - radYInnerBottomLeft: Set bottom-left inner radius Y value
+              - radXInnerBottomRight: Set bottom-right inner radius X value
+              - radYInnerBottomRight: Set bottom-right inner radius Y value
+            configYaml: |
+              - type: el
+                width: 4
+                height: 4
+                radXInnerTopLeft: 1
+                radYInnerTopLeft: 1
+                color: golden-tainoi
           - text: elliptical radius
-          - type: el
-            width: 4
-            height: 4
-            radXTopLeft: 1
-            radYTopLeft: 2
-            color: golden-tainoi
-          - text: button
-          - type: el
-            width: 4
-            height: 1
-            fontSize: 0.5
-            textColor: black
-            textAlign: middle-center
-            color: golden-tainoi
-            capRight: true
-            capLeft: true
-            button: true
-            text: button
+          - type: sample
+            content: |
+              On desktop devices, the pointer will be changed to a pointer to show that an element is clickable if you
+              set `button` to `true`.
+            configYaml: |
+              - type: el
+                width: 4
+                height: 1
+                fontSize: 0.5
+                textColor: black
+                alignContent: middle-center
+                color: golden-tainoi
+                capRight: true
+                capLeft: true
+                button: true
+                text: button
