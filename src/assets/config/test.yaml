@@ -1,6 +1,6 @@
 type: custom:ha-lcars-panel
 vars:
-  lcars_unit: 2vw
+  lcars_unit: 10vmin
 children:
   - type: panel-tl
     color: golden-tainoi
@@ -75,7 +75,7 @@ children:
               The `vars` key allows you to modify global variables. The following variables are available:
 
 
-              - `lcars_unit`: Sets the unit size as a valid CSS size such as 50px, 3rem, 3em (Default is 2vw)
+              - `lcars_unit`: Sets the unit size as a valid CSS size such as `50px`, `3rem`, `3em` (Default is `2vw`)
               - `lcars_color_bg`: Sets the main background color (Default is black #000000)
               - `lcars_color_text`: Sets the default text color (Default is periwinkle #C3CDE6)
               - `lcars_font_size`: Sets the default font size (Default is 0.6 units)
@@ -85,12 +85,12 @@ children:
               variable name and replace any dashes in the name with underscores. For example, you can change the Home 
               Assistant primary color (`--primary-color`) using `primary_color`.
 
-              The `children`` key allows you to provide a list of items available for display directly in the top level 
+              The `children` key allows you to provide a list of items available for display directly in the top level 
               container. The reason they are "available for display" is because they can be shown conditionally based
               on navigation. Each item has the following properties:
 
               - `type`: Used to specify a custom LCARS element
-              - `tag`: Any html tag (ex: a, div, p)
+              - `tag`: Any html tag (ex: `a`, `div`, `p`)
               - `text`: Text that will be passed directly as content of the element or tag
               - `showForNav`: Navigation path where item is visible
               - `children`: List of items to be rendered inside the element or tag
@@ -634,7 +634,7 @@ children:
         children:
           - type: md
             content: |
-              The elemtnt (`type: el`) is the primary building block of the visual system. The configuration below
+              The element (`type: el`) is the primary building block of the visual system. The configuration below
               renders a 1x1 unit element.
           - type: row
             children:
