@@ -42,6 +42,7 @@ onMounted(() => {
   color: var(--lcars-color-text)
   font-family: Antonio, "Arial", monospace
   font-size: var(--lcars-font-size)
+  line-height: calc(var(--lcars-font-size) * 1.2)
   text-transform: uppercase
 
   & pre,
