@@ -17,12 +17,12 @@ if (loadTest) {
 }
 
 const children = computed(() => {
-  const localConfig = loadTest ? testConfigParsed : config
+  const localConfig = testConfigParsed ?? config
   return localConfig.children
 })
 
 onMounted(() => {
-  loadVariables(config)
+  loadVariables(testConfigParsed ?? config)
 })
 </script>
 
