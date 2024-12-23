@@ -15,6 +15,7 @@ import ScaleHorizontal from './components/ScaleHorizontal.vue'
 import LCARSMarkdown from './components/LCARSMarkdown.vue'
 import type { ConfigItem } from './ConfigItem'
 import { ref } from 'vue'
+import LCARSSample from './components/LCARSSample.vue'
 
 export interface HAConfig {
   type: string
@@ -34,6 +35,7 @@ registerComponent('panel-tl', PanelTL)
 registerComponent('panel-all', PanelAll)
 registerComponent('table', LCARSTable)
 registerComponent('md', LCARSMarkdown)
+registerComponent('sample', LCARSSample)
 registerComponent('state-color', StateColor)
 registerComponent('state-value', StateValue)
 registerComponent('attribute-table', AttributeTable)
