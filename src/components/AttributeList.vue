@@ -25,7 +25,7 @@ const rows = computed(() => {
 <template>
   <LCARSTable :animation="animation">
     <tr v-for="(row, index) in rows" :key="index">
-      <td>{{ row.key.replace('_', ' ') }}: {{ row.value }}</td>
+      <td>{{ row.key.replace(/_/g, ' ') }}: {{ row.value }}</td>
     </tr>
   </LCARSTable>
 </template>

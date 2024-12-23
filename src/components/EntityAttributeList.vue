@@ -38,7 +38,7 @@ const rows = computed(() => {
 <template>
   <table class="lcars-table" :class="classes">
     <tr v-for="(row, index) in rows" :key="index">
-      <td>{{ row.key.replace('_', ' ') }}: {{ row.value }}</td>
+      <td>{{ row.key.replace(/_/g, ' ') }}: {{ row.value }}</td>
     </tr>
   </table>
 </template>

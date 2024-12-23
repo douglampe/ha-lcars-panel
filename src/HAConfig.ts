@@ -49,7 +49,7 @@ export function registerComponent(key: string, component: any) {
 }
 
 export function setVariable(key: string, value: string) {
-  const formattedKey = `--${key.replace('_', '-')}`
+  const formattedKey = `--${key.replace(/_/g, '-')}`
   document.documentElement?.style.setProperty(formattedKey, value)
 }
 
