@@ -20,6 +20,7 @@ function isVisible() {
     :is="props.type ? components[props.type] : tag"
     v-bind="props.config"
     >{{ text }}
+    <a v-if="showForNav" :name="showForNav"></a>
     <template #left v-if="props.leftChildren">
       <RecursiveComponent
         v-for="(child, index) in props.leftChildren"

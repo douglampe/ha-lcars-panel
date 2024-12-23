@@ -38,7 +38,7 @@ const rows = computed(() => {
       class="lcars-col"
       style="width: calc(var(--lcars-unit) * 5)"
     >
-      {{ row.key.replace('_', ' ') }}: {{ row.value }}
+      {{ row.key.replace(/_/g, ' ') }}: {{ row.value }}
     </div>
   </div>
 </template>

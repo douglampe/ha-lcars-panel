@@ -8,4 +8,7 @@ export function navigate(path: string) {
     return
   }
   currentNav.value = path
+
+  // HACK: Scroll to top until we get anchor scrolling working
+  window.scrollTo(0, 0)
 }

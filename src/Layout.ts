@@ -33,7 +33,7 @@ export function borderStyle(x?: number, y?: number) {
   }
 }
 
-export function textAlign(alignment?: string) {
+export function alignStyle(alignment?: string) {
   if (!alignment) {
     return {}
   }

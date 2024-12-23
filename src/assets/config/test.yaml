@@ -1,20 +1,54 @@
 type: custom:ha-lcars-panel
 vars:
-  lcars_unit: 2vw
+  lcars_unit: 4vw
 children:
-  - showForNav: /home
-    children:
-      - type: panel-bl
+  - type: panel-tl
+    color: golden-tainoi
+    fillWidth: true
+    fillHeight: true
+    leftColor: golden-tainoi
+    leftPad: 1
+    leftChildren:
+      - type: el
+        nav: /home
+        text: Home
         color: golden-tainoi
-        fillWidth: true
-        fillHeight: true
-        leftColor: golden-tainoi
-        leftPad: 1
+        textColor: black
+      - type: el
+        nav: /demo/config
+        text: Config
+        color: dodger-blue
+        textColor: black
+      - type: el
+        nav: /demo/layout
+        text: Layout
+        color: indian-red
+        textColor: black
+      - type: el
+        nav: /demo/elements
+        text: Elements
+        color: atomic-tangerine
+        textColor: black
+      - type: el
+        nav: /demo/panels
+        text: Panels
+        color: fiery-orange
+        textColor: black
+    children:
+      - showForNav: /home
         children:
-          - type: el
-            text: Welcome to ha-lcars-panel
-            textColor: golden-tainoi
-            fontSize: 1
+          - type: row
+            bottom: true
+            children:
+              - tag: img
+                src: /ha-lcars-panel/favicon.svg
+                style:
+                  height: var(--lcars-unit)
+              - type: el
+                text: Welcome to ha-lcars-panel
+                textColor: golden-tainoi
+                fontSize: 1
+                marginLeft: 0.3
           - tag: p
             text: |
               This is not just a "custom card" for Home Assistant. It is a comprehensive LCARS system designed to allow
@@ -28,101 +62,688 @@ children:
             color: dodger-blue
             nav: /demo/config
             text: Start Demo
-  - showForNav: /demo/config
-    type: panel-tl
-    title: Configuration
-    color: dodger-blue
-    fillWidth: true
-    fillHeight: true
-    leftColor: dodger-blue
-    leftPad: 1
-    topCap: true
-    children:
-      - type: md
-        content: |
-          The top-level card configuration is as follows:
-
-          ```
-          type: custom:ha-lcars-panel
-          vars:
-            lcars_unit: 2vw
-          children:
-            - text: Hello LCARS!
-          ```
-
-          The first line is standard for all Home Asistant custom cards an simply specifies the card type.
-
-          ```
-          type: custom:ha-lcars-panel
-          ```
-
-          The `vars` key allows you to modify global variables. The following variables are available:
-
-          ```
-          lcars_unit: Sets the unit size as a valid CSS size such as 50px, 3rem, 3em (Default is 2vw)
-          lcars_color_bg: Sets the main background color (Default is black #000000)
-          lcars_color_text: Sets the default text color (Default is periwinkle #C3CDE6)
-          ```
-      - tag: p
-        text: |
-          You can override any global CSS variable using this vars key. Simply remove the leading dashes from the
-          variable name and replace any dashes in the name with underscores.
-      - tag: p
-        text: |
-          The children key allows you to provide a list of items available for display directly in the top level 
-          container. The reason they are "available for display" is because they can be shown conditionally based
-          on navigation. Each item has the following properties:
-      - tag: pre
-        text: |
-          type: Used to specify a custom LCARS element
-          tag: Any html tag (ex: a, div, p)
-          text: Text that will be passed directly as content of the element or tag
-          showForNav: Navigation path where item is visible
-          children: List of items to be rendered inside the element or tag
-          leftChildren: List of items to be rendered inside the left portion of the element or tag if supported
-          rightChildren: List of items to be rendered inside the right portion of the element or tag if supported
-          topChildren: List of items to be rendered inside the top portion of the element or tag if supported
-          bottomChildren: List of items to be rendered inside the bottom portion of the element or tag if supported
-
-      - type: row
-        gap: 1
+      - showForNav: /demo/config
         children:
-          - type: pill
-            color: golden-tainoi
-            text: home
-            nav: /home
-          - type: pill
-            color: indian-red
-            text: layout
-            nav: /demo/layout
-  - showForNav: /demo/layout
-    type: panel-tl
-    title: Configuration
-    color: indian-red
-    fillWidth: true
-    fillHeight: true
-    leftColor: indian-red
-    leftPad: 1
-    topCap: true
-    children:
-      - tag: p
-        text: |
-          The layout system is based on LCARS Units. This is a 1 unit x 1 unti square:
-      - type: el
-        width: 1
-        height: 1
-        color: golden-tainoi
-      - tag: p
-        text: |
-          The layout system uses the "flexbox" CSS layout meaning items are flexibly displayed in rows and columns.
-      - type: row
-        gap: 1
+          - type: md
+            content: |
+              The top-level card configuration is as follows:
+
+              ```
+              type: custom:ha-lcars-panel
+              vars:
+                lcars_unit: 2vw
+              children:
+                - text: Hello LCARS!
+              ```
+
+              The first line is standard for all Home Asistant custom cards an simply specifies the card type.
+
+              ```
+              type: custom:ha-lcars-panel
+              ```
+
+              The `vars` key allows you to modify global variables. The following variables are available:
+
+
+              - `lcars_unit`: Sets the unit size as a valid CSS size such as `50px`, `3rem`, `3em` (Default is `2vw`)
+              - `lcars_color_bg`: Sets the main background color (Default is black #000000)
+              - `lcars_color_text`: Sets the default text color (Default is periwinkle #C3CDE6)
+              - `lcars_font_size`: Sets the default font size (Default is 0.6 units)
+              - `lcars_color_text`: Sets the default color for code formatted such as `code` and `pre` tags (Default is black-russian #24252B)
+
+              You can override any global CSS variable using this vars key. Simply remove the leading dashes from the
+              variable name and replace any dashes in the name with underscores. For example, you can change the Home 
+              Assistant primary color (`--primary-color`) using `primary_color`.
+
+              The `children` key allows you to provide a list of items available for display directly in the top level 
+              container. The reason they are "available for display" is because they can be shown conditionally based
+              on navigation. Each item has the following properties:
+
+              - `type`: Used to specify a custom LCARS element
+              - `tag`: Any html tag (ex: `a`, `div`, `p`)
+              - `text`: Text that will be passed directly as content of the element or tag
+              - `showForNav`: Navigation path where item is visible
+              - `children`: List of items to be rendered inside the element or tag
+              - `leftChildren`: List of items to be rendered inside the left portion of the element or tag if supported
+              - `rightChildren`: List of items to be rendered inside the right portion of the element or tag if supported
+              - `topChildren`: List of items to be rendered inside the top portion of the element or tag if supported
+              - `bottomChildren`: List of items to be rendered inside the bottom portion of the element or tag if supported
+
+          - type: row
+            gap: 1
+            children:
+              - type: pill
+                color: indian-red
+                text: layout
+                nav: /demo/layout
+      - showForNav: /demo/layout
         children:
-          - type: pill
+          - tag: p
+            text: |
+              The layout system is based on LCARS Units. This is a 1 unit x 1 unit square:
+          - type: el
+            width: 1
+            height: 1
             color: golden-tainoi
-            text: home
-            nav: /home
+          - type: md
+            content: |
+              The layout system uses the ["flexbox" CSS layout](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) 
+              meaning items are flexibly displayed in rows and columns.
+
+              To create a row, set the `type` to `row`.
+
+              ```
+              children:
+                - type: row
+              ```
+
+              Any children added to a row will be arranged horizontally.
+
+          - type: row
+            children:
+              - tag: pre
+                text: |
+                  - type: row
+                    children:
+                      - type: el
+                        width: 1
+                        height: 1
+                        color: atomic-tangerine
+                      - type: el
+                        width: 1
+                        height: 1
+                        color: indian-red
+                      - type: el
+                        width: 1
+                        height: 1
+                        color: dodger-blue
+              - type: col
+                marginLeft: 1
+                children:
+                  - type: row
+                    children:
+                      - type: el
+                        width: 1
+                        height: 1
+                        color: atomic-tangerine
+                      - type: el
+                        width: 1
+                        height: 1
+                        color: indian-red
+                      - type: el
+                        width: 1
+                        height: 1
+                        color: dodger-blue
+
+          - type: sample
+            content: |
+              To create a column, set the `type` to `col`.
+
+              ```
+              children:
+                - type: col
+              ```
+
+              Any children added to a row will be arranged vertically.
+            configYaml: |
+              - type: col
+                children:
+                  - type: el
+                    width: 1
+                    height: 1
+                    color: atomic-tangerine
+                  - type: el
+                    width: 1
+                    height: 1
+                    color: indian-red
+                  - type: el
+                    width: 1
+                    height: 1
+                    color: dodger-blue
+
+          - type: sample
+            content: |
+              As shown above, there is no spacing between children of rows or columns by default. To add a consistent gap
+              between all children, set the `gap` key. The gap size is 0.1 unit so `gap: 1` would set the gap size to 1/10
+              of a unit.
+            configYaml: |
+              - type: row
+                gap: 1
+                children:
+                  - type: el
+                    width: 1
+                    height: 1
+                    color: atomic-tangerine
+                  - type: el
+                    width: 1
+                    height: 1
+                    color: indian-red
+                  - type: el
+                    width: 1
+                    height: 1
+                    color: dodger-blue
+
+          - type: sample
+            content: |
+              Items in a row are aligned to the top of the row by default so items of varying sizes will be aligned to the
+              top of the tallest item.
+            configYaml: |
+              - type: row
+                gap: 1
+                children:
+                  - type: el
+                    width: 1
+                    height: 2
+                    color: atomic-tangerine
+                  - type: el
+                    width: 1
+                    height: 0.5
+                    color: indian-red
+                  - type: el
+                    width: 1
+                    height: 1
+                    color: dodger-blue
+
+          - type: sample
+            content: |
+              To align items to the bottom of the row, set the `bottom` key to `true`.
+            configYaml: |
+              - type: row
+                gap: 1
+                bottom: true
+                children:
+                  - type: el
+                    width: 1
+                    height: 2
+                    color: atomic-tangerine
+                  - type: el
+                    width: 1
+                    height: 0.5
+                    color: indian-red
+                  - type: el
+                    width: 1
+                    height: 1
+                    color: dodger-blue
+
+          - type: sample
+            content: |
+              Similarly, column items are aligned to the left by default. To align items to the right of the column, set
+              the `right` key to `true`.
+            configYaml: |
+              - type: col
+                gap: 1
+                style:
+                  width: calc(var(--lcars-unit) * 3)
+                children:
+                  - type: row
+                    children:
+                      - type: el
+                        width: 3
+                        height: 1
+                        color: atomic-tangerine
+                  - type: row
+                    right: true
+                    gap: 1
+                    children:
+                      - type: el
+                        width: 1
+                        height: 1
+                        color: indian-red
+                      - type: el
+                        width: 1
+                        height: 1
+                        color: dodger-blue
+
+          - type: sample
+            content: |
+              To stretch any item without a specified height to fill the available height in the row, set `stretch` to 
+              `true`.
+            configYaml: |
+              - type: row
+                gap: 1
+                stretch: true
+                children:
+                  - type: el
+                    width: 1
+                    height: 2
+                    color: atomic-tangerine
+                  - type: el
+                    width: 1
+                    color: indian-red
+                  - type: el
+                    width: 1
+                    color: dodger-blue
+
+          - type: sample
+            content: |
+              By default, there are no margins between rows.
+            configYaml: |
+              - type: row
+                gap: 1
+                children:
+                  - type: el
+                    width: 1
+                    height: 1
+                    color: atomic-tangerine
+                  - type: el
+                    width: 1
+                    height: 1
+                    color: indian-red
+                  - type: el
+                    width: 1
+                    height: 1
+                    color: dodger-blue
+              - type: row
+                gap: 1
+                stretch: true
+                children:
+                  - type: el
+                    width: 1
+                    height: 1
+                    color: golden-tainoi
+                  - type: el
+                    width: 1
+                    color: lilac
+                  - type: el
+                    width: 1
+                    color: fiery-orange
+
+          - type: sample
+            content: |
+              Margins can be added above, below, or on either side of a row with `marginTop`, `marginBottom`, `marginLeft`,
+              and `marginRight`.
+            configYaml: |
+              - type: row
+                gap: 1
+                marginBottom: 1
+                stretch: true
+                children:
+                  - type: el
+                    width: 1
+                    height: 1
+                    color: atomic-tangerine
+                  - type: el
+                    width: 1
+                    color: indian-red
+                  - type: el
+                    width: 1
+                    color: dodger-blue
+              - type: row
+                gap: 1
+                stretch: true
+                children:
+                  - type: el
+                    width: 1
+                    height: 1
+                    color: golden-tainoi
+                  - type: el
+                    width: 1
+                    color: lilac
+                  - type: el
+                    width: 1
+                    color: fiery-orange
+
+          - type: sample
+            content: |
+              Padding can be added inside the border of the row using `padTop`, `padBottom`, `padLeft`, and `padRight` or
+              set the same padding on all sides with `pad`.
+            configYaml: |
+              - type: el
+                color: golden-tainoi
+                children:
+                  - type: row
+                    pad: 1
+                    fill: false
+                    children:
+                      - type: el
+                        width: 1
+                        height: 1
+                        color: atomic-tangerine
+                      - type: el
+                        width: 1
+                        color: indian-red
+                      - type: el
+                        width: 1
+                        color: dodger-blue
+
           - type: pill
-            color: dodger-blue
-            text: config
-            nav: /demo/config
+            color: atomic-tangerine
+            text: elements
+            nav: /demo/elements
+      - showForNav: /demo/elements
+        children:
+          - type: sample
+            content: |
+              The element (`type: el`) is the primary building block of the visual system. The configuration below
+              renders a 1x1 unit element.
+            configYaml: |
+              - type: el
+                width: 1
+                height: 1
+                color: golden-tainoi
+
+          - type: sample
+            content: |
+              By default, elements are transparent so they can be used for layout. To fill the element with a color,
+              use the `color` key. Over 1,600 named colors are supported. You can use the 
+              [Colblindor Color Name & Hue](https://www.color-blindness.com/color-name-hue/) picker to find the name of
+               a color you want to use. Just convert the name to all lowercase and use dashes instead of spaces (ex: 
+               "Tangerine Yellow" would be `tangerine-yellow`).
+            configYaml: |
+              - type: row
+                gap: 1
+                children:
+                  - type: el
+                    width: 1
+                    height: 1
+                    color: indian-red
+                  - type: el
+                    width: 1
+                    height: 1
+                    color: atomic-tangerine
+                  - type: el
+                    width: 1
+                    height: 1
+                    color: golden-tainoi
+                  - type: el
+                    width: 1
+                    height: 1
+                    color: green
+                  - type: el
+                    width: 1
+                    height: 1
+                    color: dodger-blue
+                  - type: el
+                    width: 1
+                    height: 1
+                    color: indigo
+                  - type: el
+                    width: 1
+                    height: 1
+                    color: lilac
+
+          - type: sample
+            content: |
+              By default, elements are sized to fit their content. If you want to specify the size, use the `width` and
+              `height` keys to specify the size in LCARS Units
+            configYaml: |
+              - type: row
+                gap: 1
+                children:
+                  - type: el
+                    width: 2
+                    height: 1
+                    color: dodger-blue
+                  - type: el
+                    width: 1
+                    height: 2
+                    color: indian-red
+
+          - type: sample
+            content: |
+              The default font size is 0.6 units. Use the `fontSize` key to set the font size in LCARS Units.
+            configYaml: |
+              - type: el
+                fontSize: 0.5
+                text: fontSize 0.5
+              - type: el
+                fontSize: 1
+                text: fontSize 1
+              - type: el
+                fontSize: 2
+                text: fontSize 2
+
+          - type: sample
+            content: |
+              The default line height is 1.2 times the default font size. Use the `lineHeight` key to set the line 
+              height in LCARS Units.
+            configYaml: |
+              - type: el
+                fontSize: 1
+                lineHeight: 1
+                color: golden-tainoi
+                textColor: black
+                text: lineHeight 1
+              - type: el
+                fontSize: 1
+                lineheight: 1.2
+                color: dodger-blue
+                textColor: black
+                text: lineHeight 1.2
+
+          - type: sample
+            content: |
+              The default text color is `periwinkle` (#C3CDE6) which stands out on the standard black background. To
+              set the text color, use the `textColor` key.
+            configYaml: |
+              - type: el
+                textColor: golden-tainoi
+                text: golden-tainoi
+              - type: el
+                textColor: indian-red
+                text: indian-red
+
+          - type: sample
+            content: |
+              The default alignment of content inside an element is to the top and left of the element. To set the 
+              content alignement, use the `alignContent` key. The following options are available:
+
+              - `top-left`: Content is aligned to the top and left of the element (Default)
+              - `top-center`: Content is aligned to the top and centered horizontally in the element
+              - `top-right`: Content is aligned to the top and right of the element
+              - `middle-left`: Content is aligned to the middle vertically and left side of the element
+              - `middle-center`: Content is aligned to the middle vertically and centered horizontally in the element
+              - `middle-right`: Content is aligned to the middle vertically and right side of the element
+              - `bottom-left`: Content is aligned to the bottom and left of the element
+              - `bottom-center`: Content is aligned to the bottom and left of the element
+              - `bottom-right`: Content is aligned to the bottom and left of the element
+            configYaml: |
+              - type: el
+                width: 10
+                height: 5
+                color: dodger-blue
+                textColor: black
+                alignContent: bottom-right
+                text: bottom-right
+
+          - type: sample
+            content: |
+              To make both corners of any side of an element rounded, set any of the following keys to `true`.
+            configYaml: |
+              - type: el
+                width: 2
+                height: 1
+                color: golden-tainoi
+                capRight: true
+
+          - type: sample
+            content: |
+              You can make any corner of the element rounded by setting either the X or Y radius in LCARS Units. If you
+              only set one value (X or Y), the corner will be circular. To make an elliptical corner, set the X and Y 
+              value to different values.
+
+              - radXTopLeft: Set top-left radius X value
+              - radYTopLeft: Set top-left radius Y value
+              - radXTopRight: Set top-right radius X value
+              - radYTopRight: Set top-right radius Y value
+              - radXBottomLeft: Set bottom-left radius X value
+              - radYBottomLeft: Set bottom-left radius Y value
+              - radXBottomRight: Set bottom-right radius X value
+              - radYBottomRight: Set bottom-right radius Y value
+            configYaml: |
+              - type: el
+                width: 4
+                height: 4
+                radXTopLeft: 1
+                color: golden-tainoi
+                marginBottom: 1
+
+          - type: sample
+            configYaml: |
+              - type: el
+                width: 4
+                height: 4
+                radXTopLeft: 1
+                radYTopLeft: 2
+                color: golden-tainoi
+
+          - type: sample
+            content: |
+              You can also add a rounded inner radius following a similar convention to the outer radius shown above.
+
+              - radXInnerTopLeft: Set top-left inner radius X value
+              - radYInnerTopLeft: Set top-left inner radius Y value
+              - radXInnerTopRight: Set top-right inner radius X value
+              - radYInnerTopRight: Set top-right inner radius Y value
+              - radXInnerBottomLeft: Set bottom-left inner radius X value
+              - radYInnerBottomLeft: Set bottom-left inner radius Y value
+              - radXInnerBottomRight: Set bottom-right inner radius X value
+              - radYInnerBottomRight: Set bottom-right inner radius Y value
+            configYaml: |
+              - type: el
+                width: 4
+                height: 4
+                radXInnerTopLeft: 1
+                radYInnerTopLeft: 1
+                color: golden-tainoi
+          - text: elliptical radius
+          - type: sample
+            content: |
+              On desktop devices, the pointer will be changed to a pointer to show that an element is clickable if you
+              set `button` to `true`.
+            configYaml: |
+              - type: el
+                width: 4
+                height: 1
+                fontSize: 0.5
+                textColor: black
+                alignContent: middle-center
+                color: golden-tainoi
+                capRight: true
+                capLeft: true
+                button: true
+                text: button
+
+      - showForNav: /demo/panels
+        children:
+          - type: sample
+            content: |
+              Panels are containers with rounded borders.
+            configYaml: |
+              - type: panel-tl
+                color: dodger-blue
+                children:
+                  - text: content
+          - type: sample
+            configYaml: |
+              - type: panel-bl
+                color: dodger-blue
+                children:
+                  - text: content
+          - type: sample
+            configYaml: |
+              - type: panel-tr
+                color: dodger-blue
+                children:
+                  - text: content
+          - type: sample
+            configYaml: |
+              - type: panel-br
+                color: dodger-blue
+                children:
+                  - text: content
+          - type: sample
+            configYaml: |
+              - type: panel-all
+                color: dodger-blue
+                children:
+                  - text: content
+
+          - type: sample
+            content: |
+              You can add elements to the sides of a panel with `leftChildren`, `rightChildren`, `topChildren`, and
+              `bottomChildren`.
+            configYaml: |
+              - type: panel-tl
+                color: dodger-blue
+                children:
+                  - text: content
+                leftChildren:
+                  - type: el
+                    color: golden-tainoi
+                    height: 1
+
+          - type: sample
+            configYaml: |
+              - type: panel-tl
+                color: dodger-blue
+                children:
+                  - text: content
+                topChildren:
+                  - type: el
+                    color: golden-tainoi
+                    width: 4
+
+          - type: sample
+            configYaml: |
+              - type: panel-bl
+                color: dodger-blue
+                children:
+                  - text: content
+                leftChildren:
+                  - type: el
+                    color: golden-tainoi
+                    height: 1
+
+          - type: sample
+            configYaml: |
+              - type: panel-bl
+                color: dodger-blue
+                children:
+                  - text: content
+                bottomChildren:
+                  - type: el
+                    color: golden-tainoi
+                    width: 4
+
+          - type: sample
+            content: |
+              You can add rounded caps to the end of a panel with `topCap` or `bottomCap`
+              `bottomChildren`.
+            configYaml: |
+              - type: panel-tl
+                color: dodger-blue
+                topCap: true
+                bottomCap: true
+                children:
+                  - type: el
+                    width: 4
+                    height: 4
+                    text: content
+
+          - type: sample
+            content: |
+              You can add a title to the top or bottom using `title`
+              `bottomChildren`.
+            configYaml: |
+              - type: panel-tl
+                color: dodger-blue
+                title: Title
+                children:
+                  - type: el
+                    width: 4
+                    text: content
+
+          - type: sample
+            content: |
+              You can add a title to the top or bottom using `title`
+              `bottomChildren`.
+            configYaml: |
+              - type: panel-tl
+                color: dodger-blue
+                topCap: true
+                title: Title
+                children:
+                  - type: el
+                    width: 4
+                    text: content

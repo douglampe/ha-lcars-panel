@@ -21,7 +21,7 @@ children:
         nav: 'url:/'
         config:
           color: lilac
-          textAlign: bottom-right
+          alignContent: bottom-right
           textColor: black
           height: 2
           button: true
@@ -30,7 +30,7 @@ children:
         config:
           color: dodger-blue
           fill: true
-          textAlign: top-right
+          alignContent: top-right
           textColor: black
           margin-bottom: -0.1
     bottomChildren:
@@ -62,7 +62,7 @@ children:
           textColor: golden-tainoi
           fontSize: 1
           marginBottom: 0.5
-          textAlign: top-right
+          alignContent: top-right
       - type: row
         children:
           - type: col
@@ -200,28 +200,28 @@ children:
         config:
           color: indian-red
           height: 1
-          textAlign: bottom-right
+          alignContent: bottom-right
           textColor: black
       - type: el
         text: 03-41248
         config:
           color: indian-red
           height: 3
-          textAlign: bottom-right
+          alignContent: bottom-right
           textColor: black
       - type: el
         text: 04-14702
         config:
           color: golden-tainoi
           height: 1
-          textAlign: bottom-right
+          alignContent: bottom-right
           textColor: black
       - type: el
         text: 05-32456
         config:
           color: atomic-tangerine
           height: 3
-          textAlign: top-right
+          alignContent: top-right
           textColor: black
     children:
       - type: row

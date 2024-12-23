@@ -30,8 +30,8 @@ interface PanelBLProps extends MarginProps, RadiusProps {
 const {
   title,
   color,
-  fillWidth,
-  fillHeight,
+  fillWidth = true,
+  fillHeight = true,
   gap = 1,
   topHeight = 1,
   leftWidth = 3,
@@ -102,7 +102,7 @@ const {
         <slot name="left"></slot>
         <LCARSElement :fill="true" :color="leftColor ?? color" :width="leftWidth"></LCARSElement>
       </LCARSCol>
-      <LCARSCol :fill="fillWidth" :margin-left="leftPad" :margin-right="rightPad">
+      <LCARSCol :fill="true" :margin-left="leftPad" :margin-right="rightPad">
         <slot></slot>
       </LCARSCol>
       <LCARSCol :right="true">

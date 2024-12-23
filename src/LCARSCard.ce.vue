@@ -17,12 +17,12 @@ if (loadTest) {
 }
 
 const children = computed(() => {
-  const localConfig = loadTest ? testConfigParsed : config
+  const localConfig = testConfigParsed ?? config
   return localConfig.children
 })
 
 onMounted(() => {
-  loadVariables(config)
+  loadVariables(testConfigParsed ?? config)
 })
 </script>
 
@@ -42,10 +42,15 @@ onMounted(() => {
   color: var(--lcars-color-text)
   font-family: Antonio, "Arial", monospace
   font-size: var(--lcars-font-size)
+  line-height: calc(var(--lcars-font-size) * 1.2)
   text-transform: uppercase
 
   & pre,
   & code
+    margin: 0
     text-transform: none
     background-color: var(--lcars-color-code)
+
+  & a
+    color: var(--lcars-color-text)
 </style>

@@ -62,6 +62,9 @@ class LCARSCustomCard extends HTMLElement {
     if (name === 'test') {
       this.loadTest = true
     }
+    if (name === 'config') {
+      this.setConfig(newValue)
+    }
   }
 
   connectedCallback() {
@@ -70,6 +73,15 @@ class LCARSCustomCard extends HTMLElement {
       this.vueElement.config = this.haConfig ?? { children: [] }
       this.vueElement.loadTest = this.test
       this.shadowRoot?.appendChild(this.vueElement)
+
+      var head = document.head
+      var link = document.createElement('link')
+
+      link.type = 'text/css'
+      link.rel = 'stylesheet'
+      link.href = 'https://fonts.googleapis.com/css2?family=Antonio:wght@400;700&display=swap'
+
+      head.appendChild(link)
     }
   }
 
