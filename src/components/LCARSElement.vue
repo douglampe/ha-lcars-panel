@@ -27,7 +27,9 @@ const styleObject = computed(() => {
     width: unitSize(config.width),
     height: unitSize(config.height),
     fontSize: unitSize(config.fontSize),
-    lineHeight: unitSize(config.lineHeight),
+    lineHeight: unitSize(
+      config.lineHeight ?? (config.fontSize ? config.fontSize * 1.2 : undefined),
+    ),
     backgroundColor: colorVar(config.color),
     fill: config.color ? 'color' : undefined,
     color: colorVar(config.textColor),
