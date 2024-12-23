@@ -624,6 +624,10 @@ children:
                 button: true
                 text: button
 
+          - type: pill
+            nav: /demo/panels
+            color: fiery-orange
+
       - showForNav: /demo/panels
         children:
           - type: sample
@@ -709,7 +713,6 @@ children:
           - type: sample
             content: |
               You can add rounded caps to the end of a panel with `topCap` or `bottomCap`
-              `bottomChildren`.
             configYaml: |
               - type: panel-tl
                 color: dodger-blue
@@ -724,7 +727,6 @@ children:
           - type: sample
             content: |
               You can add a title to the top or bottom using `title`
-              `bottomChildren`.
             configYaml: |
               - type: panel-tl
                 color: dodger-blue
@@ -737,7 +739,6 @@ children:
           - type: sample
             content: |
               You can add a title to the top or bottom using `title`
-              `bottomChildren`.
             configYaml: |
               - type: panel-tl
                 color: dodger-blue
