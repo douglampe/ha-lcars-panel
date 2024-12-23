@@ -3,6 +3,8 @@ import LCARSCol from './components/LCARSCol.vue'
 import PanelBL from './components/PanelBL.vue'
 import LCARSElement from './components/LCARSElement.vue'
 import PanelTL from './components/PanelTL.vue'
+import PanelTR from './components/PanelTR.vue'
+import PanelBR from './components/PanelBR.vue'
 import PanelAll from './components/PanelAll.vue'
 import LCARSPill from './components/LCARSPill.vue'
 import LCARSTable from './components/LCARSTable.vue'
@@ -22,7 +24,6 @@ export interface HAConfig {
   vars: Record<string, string>
   children: ConfigItem[]
 }
-
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const components = {} as Record<string, any>
 
@@ -32,6 +33,8 @@ registerComponent('row', LCARSRow)
 registerComponent('col', LCARSCol)
 registerComponent('panel-bl', PanelBL)
 registerComponent('panel-tl', PanelTL)
+registerComponent('panel-tr', PanelTR)
+registerComponent('panel-br', PanelBR)
 registerComponent('panel-all', PanelAll)
 registerComponent('table', LCARSTable)
 registerComponent('md', LCARSMarkdown)

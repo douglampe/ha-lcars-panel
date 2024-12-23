@@ -4,15 +4,15 @@ import LCARSCol from './LCARSCol.vue'
 import LCARSElement from './LCARSElement.vue'
 import LCARSRow from './LCARSRow.vue'
 
-interface PanelBLProps extends MarginProps {
+interface PanelBRProps extends MarginProps {
   title?: string
   color: string
   fillWidth?: boolean
   fillHeight?: boolean
   gap?: number
-  leftWidth?: number
-  leftPad?: number
-  leftColor?: string
+  rightWidth?: number
+  rightPad?: number
+  rightColor?: string
   topCap?: boolean
   bottomCap?: boolean
   bottomHeight?: number
@@ -28,9 +28,9 @@ const {
   fillWidth = true,
   fillHeight = true,
   gap = 1,
-  leftWidth = 3,
-  leftPad = 1,
-  leftColor,
+  rightWidth = 3,
+  rightPad = 1,
+  rightColor,
   bottomHeight = 1,
   outerRadX = 2,
   outerRadY = 2,
@@ -40,7 +40,7 @@ const {
   marginBottom,
   marginLeft,
   marginRight,
-} = defineProps<PanelBLProps>()
+} = defineProps<PanelBRProps>()
 </script>
 
 <template>
@@ -50,23 +50,23 @@ const {
     :margin-left="marginLeft"
     :margin-right="marginRight"
   >
+    <LCARSCol :fill="fillWidth" :margin-right="rightPad">
+      <slot></slot>
+    </LCARSCol>
     <LCARSCol stretch :gap="gap">
+      <LCARSElement
+        :fill="fillHeight"
+        :color="rightColor ?? color"
+        :width="rightWidth"
+      ></LCARSElement>
+      <slot name="right"></slot>
       <LCARSElement
         v-if="topCap"
         :cap-top="true"
-        :width="leftWidth"
-        :height="leftWidth / 2"
+        :width="rightWidth"
+        :height="rightWidth / 2"
         :color="color"
       ></LCARSElement>
-      <slot name="left"></slot>
-      <LCARSElement
-        :fill="fillHeight"
-        :color="leftColor ?? color"
-        :width="leftWidth"
-      ></LCARSElement>
-    </LCARSCol>
-    <LCARSCol :fill="fillWidth" :margin-left="leftPad">
-      <slot></slot>
     </LCARSCol>
   </LCARSRow>
   <LCARSRow
@@ -76,18 +76,12 @@ const {
     :margin-bottom="marginBottom"
   >
     <LCARSElement
-      :rad-x-bottom-left="outerRadX"
-      :rad-y-bottom-left="outerRadY"
-      :rad-x-inner-bottom-left="innerRadX"
-      :rad-y-inner-bottom-left="innerRadY"
+      v-if="bottomCap"
+      :height="bottomHeight"
+      :width="bottomHeight / 2"
       :color="color"
-      :width="leftWidth + innerRadX"
-      :height="bottomHeight + innerRadY"
+      :cap-right="true"
     ></LCARSElement>
-    <LCARSRow :fill="fillWidth" :gap="gap">
-      <LCARSElement :fill="fillWidth" :color="color" :height="bottomHeight"></LCARSElement>
-      <slot name="bottom"></slot>
-    </LCARSRow>
     <LCARSElement
       v-if="title"
       :color="color"
@@ -96,12 +90,18 @@ const {
     >
       {{ title }}
     </LCARSElement>
+    <LCARSRow :fill="fillWidth" :gap="gap">
+      <LCARSElement :fill="fillWidth" :color="color" :height="bottomHeight"></LCARSElement>
+      <slot name="bottom"></slot>
+    </LCARSRow>
     <LCARSElement
-      v-if="bottomCap"
-      :height="bottomHeight"
-      :width="bottomHeight / 2"
+      :rad-x-bottom-right="outerRadX"
+      :rad-y-bottom-right="outerRadY"
+      :rad-x-inner-bottom-right="innerRadX"
+      :rad-y-inner-bottom-right="innerRadY"
       :color="color"
-      :cap-right="true"
+      :width="rightWidth + innerRadX"
+      :height="bottomHeight + innerRadY"
     ></LCARSElement>
   </LCARSRow>
 </template>

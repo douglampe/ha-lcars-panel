@@ -19,7 +19,7 @@ const parsedConfig = computed(() => {
 
 <template>
   <LCARSMarkdown :content="content"></LCARSMarkdown>
-  <LCARSRow>
+  <LCARSRow :margin-bottom="1">
     <pre>{{ configYaml }}</pre>
     <LCARSCol :margin-left="1"
       ><RecursiveComponent v-bind="parsedConfig"></RecursiveComponent>
