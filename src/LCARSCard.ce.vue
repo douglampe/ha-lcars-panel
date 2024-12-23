@@ -47,6 +47,10 @@ onMounted(() => {
 
   & pre,
   & code
+    margin: 0
     text-transform: none
     background-color: var(--lcars-color-code)
+
+  & a
+    color: var(--lcars-color-text)
 </style>
