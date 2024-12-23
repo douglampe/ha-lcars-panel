@@ -4,12 +4,12 @@ import { computed } from 'vue'
 import { navigate } from '@/LocalNav'
 import type { ElementProps } from '../props/ElementProps'
 import {
+  alignStyle,
   borderStyle,
   colorVar,
   marginStyle,
   padStyle,
   removeUndefined,
-  textAlign,
   unitSize,
 } from '@/Layout'
 
@@ -23,7 +23,7 @@ function onClick() {
 
 const styleObject = computed(() => {
   return removeUndefined({
-    ...textAlign(config.textAlign),
+    ...alignStyle(config.alignContent),
     width: unitSize(config.width),
     height: unitSize(config.height),
     fontSize: unitSize(config.fontSize),

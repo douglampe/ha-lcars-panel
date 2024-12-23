@@ -5,8 +5,8 @@ const {
   color,
   width = 3,
   textColor = 'black',
-  textAlign = 'middle-center',
-} = defineProps<{ color?: string; width?: number; textColor?: string; textAlign?: string }>()
+  alignContent = 'middle-center',
+} = defineProps<{ color?: string; width?: number; textColor?: string; alignContent?: string }>()
 </script>
 
 <template>
@@ -17,7 +17,7 @@ const {
     :height="1"
     :cap-left="true"
     :cap-right="true"
-    :text-align="textAlign"
+    :align-content="alignContent"
     ><slot></slot>
   </LCARSElement>
 </template>

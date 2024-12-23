@@ -12,5 +12,5 @@ export interface ElementProps extends MarginProps, PadProps, RadiusProps {
   height?: number
   fill?: boolean
   button?: boolean
-  textAlign?: string
+  alignContent?: string
 }
