@@ -802,6 +802,6 @@ children:
               - type: attribute-list
                 entity: sun.sun
                 textColor: lilac
-                fontSize: 1
+                fontSize: 0.5
                 lineHeight: 1
                 animation: row-fill
