@@ -16,8 +16,8 @@ If you'd prefer to jump right in, you can find sample configurations (including 
 ## Acknowledgements
 
 Inspired by this [LCARS Home Assistant Theme](https://github.com/th3jesta/ha-lcars),
-and this [LCARS HTML/CSS Framework](https://github.com/joernweissenborn/lcars). Thanks to
+and this [LCARS HTML/CSS Framework](https://github.com/joernweissenborn/lcars). [LCARS UI](https://github.com/louh/lcars) encouraged me to use Vue instead of vanilla JavaScript. Thanks to
 [HA Lovelace Connector](https://github.com/iva-stolnik/vue-ha-lovelace-connector) for cracking the code on wrapping a
 Vue SFC as a custom component. Shout out to [Name That Color](https://chir.ag/projects/name-that-color/) for helping
 give a name to colors I grabbed from various samples and for linking to [Colblindor](https://www.color-blindness.com/color-name-hue/)
-which provided the list of available colors.
+which provided the list of available colors. Thanks to [LCARS Anomations](https://youtube.com/playlist?list=PLah0JzbIlDe8vDgRiKqmX7yTxDFh4yEYA&si=UuGOlyX1Z4b-LT1n) on YouTube for inspiration for components and demos.
