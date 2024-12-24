@@ -790,6 +790,7 @@ children:
                 entity: sun.sun
                 attribute: elevation
                 color: golden-tainoi
+                txtColor: black
                 min: -360
                 max: 180
                 text: Sun
