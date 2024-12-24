@@ -789,6 +789,7 @@ children:
               - type: state-color
                 entity: sun.sun
                 attribute: elevation
+                color: golden-tainoi
                 min: -360
                 max: 180
                 text: Sun
@@ -803,17 +804,3 @@ children:
                 fontSize: 1
                 lineHeight: 1
                 animation: row-fill
-
-          - type: sample
-            content: |
-              You can display a horizontal scale using `scale-h`.
-            configYaml: |
-              - type: scale-h
-                entity: sun.sun
-                attribute: elevation
-                bgColor: atomic-tangerine
-                min: -180
-                max: 180
-                tickInterval: 30
-                stroke: 1
-    
