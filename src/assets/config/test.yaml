@@ -76,7 +76,7 @@ children:
                 - text: Hello LCARS!
               ```
 
-              The first line is standard for all Home Asistant custom cards an simply specifies the card type.
+              The first line is standard for all Home Asistant custom cards and simply specifies the card type.
 
               ```
               type: custom:ha-lcars-panel
@@ -91,7 +91,7 @@ children:
               - `lcars_font_size`: Sets the default font size (Default is 0.6 units)
               - `lcars_color_text`: Sets the default color for code formatted such as `code` and `pre` tags (Default is black-russian #24252B)
 
-              You can override any global CSS variable using this vars key. Simply remove the leading dashes from the
+              You can override any global CSS variable using this `vars` key. Simply remove the leading dashes from the
               variable name and replace any dashes in the name with underscores. For example, you can change the Home 
               Assistant primary color (`--primary-color`) using `primary_color`.
 
@@ -137,7 +137,7 @@ children:
                 - type: row
               ```
 
-              Any children added to a row will be arranged horizontally.
+              Any children added to a column will be arranged horizontally.
 
           - type: row
             children:
@@ -549,6 +549,12 @@ children:
           - type: sample
             content: |
               To make both corners of any side of an element rounded, set any of the following keys to `true`.
+
+              - `capTop`
+              - `capBottom`
+              - `capLeft`
+              - `capRight`
+              
             configYaml: |
               - type: el
                 width: 2
@@ -562,14 +568,14 @@ children:
               only set one value (X or Y), the corner will be circular. To make an elliptical corner, set the X and Y 
               value to different values.
 
-              - radXTopLeft: Set top-left radius X value
-              - radYTopLeft: Set top-left radius Y value
-              - radXTopRight: Set top-right radius X value
-              - radYTopRight: Set top-right radius Y value
-              - radXBottomLeft: Set bottom-left radius X value
-              - radYBottomLeft: Set bottom-left radius Y value
-              - radXBottomRight: Set bottom-right radius X value
-              - radYBottomRight: Set bottom-right radius Y value
+              - `radXTopLeft`: Set top-left radius X value
+              - `radYTopLeft`: Set top-left radius Y value
+              - `radXTopRight`: Set top-right radius X value
+              - `radYTopRight`: Set top-right radius Y value
+              - `radXBottomLeft`: Set bottom-left radius X value
+              - `radYBottomLeft`: Set bottom-left radius Y value
+              - `radXBottomRight`: Set bottom-right radius X value
+              - `radYBottomRight`: Set bottom-right radius Y value
             configYaml: |
               - type: el
                 width: 4
@@ -591,14 +597,14 @@ children:
             content: |
               You can also add a rounded inner radius following a similar convention to the outer radius shown above.
 
-              - radXInnerTopLeft: Set top-left inner radius X value
-              - radYInnerTopLeft: Set top-left inner radius Y value
-              - radXInnerTopRight: Set top-right inner radius X value
-              - radYInnerTopRight: Set top-right inner radius Y value
-              - radXInnerBottomLeft: Set bottom-left inner radius X value
-              - radYInnerBottomLeft: Set bottom-left inner radius Y value
-              - radXInnerBottomRight: Set bottom-right inner radius X value
-              - radYInnerBottomRight: Set bottom-right inner radius Y value
+              - `radXInnerTopLeft`: Set top-left inner radius X value
+              - `radYInnerTopLeft`: Set top-left inner radius Y value
+              - `radXInnerTopRight`: Set top-right inner radius X value
+              - `radYInnerTopRight`: Set top-right inner radius Y value
+              - `radXInnerBottomLeft`: Set bottom-left inner radius X value
+              - `radYInnerBottomLeft`: Set bottom-left inner radius Y value
+              - `radXInnerBottomRight`: Set bottom-right inner radius X value
+              - `radYInnerBottomRight`: Set bottom-right inner radius Y value
             configYaml: |
               - type: el
                 width: 4
@@ -609,7 +615,7 @@ children:
           - text: elliptical radius
           - type: sample
             content: |
-              On desktop devices, the pointer will be changed to a pointer to show that an element is clickable if you
+              On desktop devices, the pointer will be changed to show that an element is clickable if you
               set `button` to `true`.
             configYaml: |
               - type: el
@@ -623,6 +629,10 @@ children:
                 capLeft: true
                 button: true
                 text: button
+
+          - type: pill
+            nav: /demo/panels
+            color: fiery-orange
 
       - showForNav: /demo/panels
         children:
@@ -709,7 +719,6 @@ children:
           - type: sample
             content: |
               You can add rounded caps to the end of a panel with `topCap` or `bottomCap`
-              `bottomChildren`.
             configYaml: |
               - type: panel-tl
                 color: dodger-blue
@@ -724,24 +733,9 @@ children:
           - type: sample
             content: |
               You can add a title to the top or bottom using `title`
-              `bottomChildren`.
             configYaml: |
               - type: panel-tl
                 color: dodger-blue
-                title: Title
-                children:
-                  - type: el
-                    width: 4
-                    text: content
-
-          - type: sample
-            content: |
-              You can add a title to the top or bottom using `title`
-              `bottomChildren`.
-            configYaml: |
-              - type: panel-tl
-                color: dodger-blue
-                topCap: true
                 title: Title
                 children:
                   - type: el
