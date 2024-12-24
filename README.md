@@ -1,16 +1,23 @@
 # LCARS For Home Assistant
+Inspired by the iconic Star Trek user interface, LCARS for Home Assistant is intended to provide an LCARS-like dashboard experience for home assistant.
 
-Inspired by the iconic Star Trek user interface, this [LCARS Home Assistant Theme](https://github.com/th3jesta/ha-lcars),
-and this [LCARS HTML/CSS Framework](https://github.com/joernweissenborn/lcars), LCARS for Home Assistant is intended
-to provide a LCARS-like dashboard experience for home assistant. Thanks to
-[HA Lovelace Connector](https://github.com/iva-stolnik/vue-ha-lovelace-connector) for cracking the code on wrapping a
-Vue SFC as a custom component. Shout out to [Name That Color](https://chir.ag/projects/name-that-color/) for helping
-give a name to colors I grabbed from various samples and [Colblindor](https://www.color-blindness.com/color-name-hue/)
-for providing the list of available colors.
+## Installation for Home Assistant
+
+- Dowload `ha-lcars-panel-v#.#.#.js` and `ha-lcars-panel-v#.#.#.css` from the latest [release](https://github.com/douglampe/ha-lcars-panel/releases).
+- Copy both files to the `/config/www` folder of your Home Assistant installation.
+- Add `/local/ha-lcars-panel-v#.#.#.js` and `/local/ha-lcars-panel-v#.#.#.css` as resources under Settings->Dashboards->Resources
 
 ## Configuration
 
-While the component provided by this project can be used as a custom card, it is best used as a custom panel so it
-effectively completely replaces Lovelace as the dashboard.
+The best way to learn how to use this LCARS system is through this [interactive demo](https://douglampe.github.io/ha-lcars-panel/).
 
-Sample Configuration can be found in `src/assets/config/test.yaml`
+If you'd prefer to jump right in, you can find sample configurations (including the configuration for the interactive demo) [here](https://github.com/douglampe/ha-lcars-panel/tree/main/src/assets/config).
+
+## Acknowledgements
+
+Inspired by this [LCARS Home Assistant Theme](https://github.com/th3jesta/ha-lcars),
+and this [LCARS HTML/CSS Framework](https://github.com/joernweissenborn/lcars). Thanks to
+[HA Lovelace Connector](https://github.com/iva-stolnik/vue-ha-lovelace-connector) for cracking the code on wrapping a
+Vue SFC as a custom component. Shout out to [Name That Color](https://chir.ag/projects/name-that-color/) for helping
+give a name to colors I grabbed from various samples and for linking to [Colblindor](https://www.color-blindness.com/color-name-hue/)
+which provided the list of available colors.
