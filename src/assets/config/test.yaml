@@ -41,7 +41,7 @@ children:
         textColor: black
       - type: el
         nav: /demo/sun
-        text: HA State
+        text: Sun
         color: eggplant
         textColor: black
     children:
@@ -1106,3 +1106,11 @@ children:
                         width: calc(var(--lcars-unit) * 8)
                         marginLeft: calc(var(--lcars-unit) * 2)
                         marginRight: calc(var(--lcars-unit) * 2)
+      - type: md
+        content: |
+          Configuration for this demo can be found on GitHub [here](https://raw.githubusercontent.com/douglampe/ha-lcars-panel/refs/heads/main/src/assets/config/sun.yaml)
+      - type: pill
+        text: Return to Demo
+        nav: /home
+        color: golden-tainoi
+        width: 5
