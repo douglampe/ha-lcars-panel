@@ -410,6 +410,7 @@ children:
             color: atomic-tangerine
             text: elements
             nav: /demo/elements
+
       - showForNav: /demo/elements
         children:
           - type: sample
@@ -633,6 +634,7 @@ children:
           - type: pill
             nav: /demo/panels
             color: fiery-orange
+            text: Panels
 
       - showForNav: /demo/panels
         children:
