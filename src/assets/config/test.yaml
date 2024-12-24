@@ -34,6 +34,11 @@ children:
         text: Panels
         color: fiery-orange
         textColor: black
+      - type: el
+        nav: /demo/state
+        text: HA State
+        color: lilac
+        textColor: black
     children:
       - showForNav: /home
         children:
@@ -410,6 +415,7 @@ children:
             color: atomic-tangerine
             text: elements
             nav: /demo/elements
+
       - showForNav: /demo/elements
         children:
           - type: sample
@@ -633,6 +639,7 @@ children:
           - type: pill
             nav: /demo/panels
             color: fiery-orange
+            text: Panels
 
       - showForNav: /demo/panels
         children:
@@ -741,3 +748,60 @@ children:
                   - type: el
                     width: 4
                     text: content
+
+          - type: pill
+            color: lilac
+            nav: /demo/state
+            text: HA State
+
+      - showForNav: /demo/state
+        children:
+          - type: sample
+            content: |
+              Home Assistant state can be displayed using multiple custom
+              components. The simplest component is `state-value` which displays the
+              value of an entity attribute:
+            configYaml: |
+              - type: state-value
+                entity: sun.sun
+                attribute: elevation
+          - type: sample
+            content: |
+              This component can be placed inside an elemnt by specifying it as a
+              child
+            configYaml: |
+              - type: pill
+                color: golden-tainoi
+                children:
+                  - type: state-value
+                    entity: sun.sun
+                    attribute: elevation
+          - type: sample
+            content: |
+              The `state-color` component will render an element and vary the
+              brightness of the color based on a numeric state value. The brightness is set to
+              a percentage relative to the `min` and `max` value. For example, if the range
+              is 0-100 and the value is 50, then the brightness will be set to 50%.
+              If you want the minimum brightness to be geeater than zero, set the `min`
+              value less than the actual value. For example, setting the minimum to -100 if the
+              range is 0-100 will set the minimum brightness to 50%.
+            configYaml: |
+              - type: state-color
+                entity: sun.sun
+                attribute: elevation
+                color: golden-tainoi
+                textColor: black
+                min: -360
+                max: 180
+                text: Sun
+          - type: sample
+            content: |
+              To display all element attributes in a list, you can use
+              `attribute-list`.
+            configYaml: |
+              - type: attribute-list
+                entity: sun.sun
+                textColor: lilac
+                fontSize: 1
+                lineHeight: 1
+                animation: row-fill
