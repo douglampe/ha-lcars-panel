@@ -59,7 +59,7 @@ children:
                 textColor: golden-tainoi
                 fontSize: 1
                 marginLeft: 0.3
-          - tag: p
+          - type: el
             text: |
               This is not just a "custom card" for Home Assistant. It is a comprehensive LCARS system designed to allow
               you to create complex LCARS layouts either as a single card in a dashboard using the LCARS theme, create
@@ -99,7 +99,10 @@ children:
               - `lcars_color_bg`: Sets the main background color (Default is black #000000)
               - `lcars_color_text`: Sets the default text color (Default is periwinkle #C3CDE6)
               - `lcars_font_size`: Sets the default font size (Default is 0.6 units)
-              - `lcars_color_text`: Sets the default color for code formatted such as `code` and `pre` tags (Default is black-russian #24252B)
+              - `lcars_color_text`: Sets the default color for code formatted such as `code` and `pre` tags (Default is
+                black-russian #24252B)
+              - `lcars_text_transform`: Sets the CSS text-transform for the root element. Default is `uppercase` so 
+                setting text is all-caps by default so setting this variable to `none` will use default casing.
 
               You can override any global CSS variable using this `vars` key. Simply remove the leading dashes from the
               variable name and replace any dashes in the name with underscores. For example, you can change the Home 
@@ -533,6 +536,17 @@ children:
               - type: el
                 textColor: indian-red
                 text: indian-red
+
+          - type: sample
+            content: |
+              By default, all text is set to all caps unless it is in a `pre` or `code` block. To change the way text
+              is transformed, use the `textTransform` key. Any valid CSS value for `text-transform` will work, but the
+              following are the most useful:
+
+              - `capitalize` - Capitalize the first letter of each word.
+              - `uppercase` - Conveert all letters to uppercase (Default).
+              - `lowercase` - Convert all letters to lowercase.
+              - `none` - Keep all text as it was entered.
 
           - type: sample
             content: |

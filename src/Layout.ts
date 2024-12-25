@@ -101,6 +101,13 @@ export function alignStyle(alignment?: string) {
   }
 }
 
+export function textTransform(uppercase?: boolean) {
+  if (typeof uppercase == undefined) {
+    return 'var(--lcars-text-transform)'
+  }
+  return uppercase ? 'uppercase' : 'none'
+}
+
 export function removeUndefined(obj: Record<string, any>) {
   Object.keys(obj).forEach((key) => {
     if (obj[key] === undefined) {
