@@ -5,8 +5,20 @@ on:
     tags:
       - 'v*.*.*'
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: 'pages'
+  cancel-in-progress: false
+
 jobs:
-  build:
+  release:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -18,6 +30,8 @@ jobs:
           yarn
           yarn build
           mkdir release
+          cp dist/assets/index*.js release/ha-lcars-panel.js
+          cp dist/assets/index*.css release/ha-lcars-panel.css
           cp dist/assets/index*.js release/ha-lcars-panel-${{ env.RELEASE_VERSION }}.js
           cp dist/assets/index*.css release/ha-lcars-panel-${{ env.RELEASE_VERSION }}.css
       - name: Release
@@ -28,3 +42,13 @@ jobs:
             release/ha-lcars-panel-${{ env.RELEASE_VERSION }}.js
             release/ha-lcars-panel-${{ env.RELEASE_VERSION }}.css
           token: ${{ secrets.CUSTOM_GITHUB_TOKEN }}
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # Upload entire repository
+          path: './dist'
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
