@@ -812,7 +812,11 @@ children:
             content: |
               Home Assistant state can be displayed using multiple custom
               components. The simplest component is `state-value` which displays the
-              value of an entity attribute:
+              value of an entity state or attribute:
+            configYaml: |
+              - type: state-value
+                entity: sun.sun
+          - type: sample
             configYaml: |
               - type: state-value
                 entity: sun.sun

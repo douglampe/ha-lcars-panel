@@ -11,12 +11,16 @@ export interface HAState {
 
 export const haState = ref({} as HAState)
 
-export function getStateValue(state: any, entity: string, attribute: string = 'state') {
+export function getStateValue(state: any, entity: string, attribute?: string) {
   if (!state.states) {
     return
   }
 
   const entityObject: any = state.states[entity]
+
+  if (!attribute) {
+    return entityObject.state
+  }
 
   if (!entityObject?.attributes) {
     return
