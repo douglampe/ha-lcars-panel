@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { defineCustomElement } from 'vue'
 
-import { haState, loadTestState } from './HAState'
+import { haState } from './HAState'
 import LCARSCardCe from './LCARSCard.ce.vue'
 import type { HAConfig } from './HAConfig'
 

@@ -1,0 +1,229 @@
+type: custom:ha-lcars-panel
+vars:
+  lcars_unit: 3vw
+children:
+  - type: panel-bl
+    color: cosmic
+    leftWidth: 3
+    bottomHeight: 0.5
+    gap: 1
+    leftPad: 1
+    marginBottom: 0.2
+    fillBottomLeft: true
+    leftChildren:
+      - type: el
+        height: 1
+        color: cosmic
+    bottomChildren:
+      - type: el
+        width: 5
+        color: canary
+      - type: el
+        width: 9
+        color: anakiwa
+      - type: el
+        width: 5.5
+        color: danube
+      - type: el
+        width: 5
+        color: canary
+    children:
+      - type: row
+        marginBottom: -1
+        children:
+          - type: el
+            fontSize: 1
+            textColor: canary
+            style:
+              textTransform: none
+            text: Captain's log - Stardate
+          - type: el
+            fontSize: 1
+            padLeft: 0.2
+            textColor: anakiwa
+            text: '45236.4'
+          - type: el
+            fontSize: 1
+            fill: true
+            width: 12
+            alignContent: middle-right
+            textColor: canary
+            text: Jean-Luc Piccard
+            style:
+              textAlign: right
+              textTransform: none
+  - type: panel-tl
+    color: canary
+    leftWidth: 3
+    fillHeight: false
+    fillLeftTop: true
+    fillTopLeft: true
+    topHeight: 0.5
+    gap: 1
+    topChildren:
+      - type: el
+        width: 5
+        height: 0.5
+        color: canary
+      - type: el
+        width: 9
+        height: 0.5
+        color: canary
+      - type: el
+        width: 5.5
+        height: 0.5
+        color: danube
+      - type: el
+        width: 5
+        height: 0.5
+        color: canary
+    leftChildren:
+      - type: el
+        color: canary
+        fill: true
+      - type: el
+        height: 0.5
+      - type: row
+        children:
+          - type: el
+            color: anakiwa
+            width: 3
+            height: 1.5
+            capLeft: 0.75
+          - type: el
+            color: cosmic
+            width: 0.5
+            height: 1.5
+            marginRight: -0.5
+      - type: el
+        height: 0.5
+      - type: row
+        children:
+          - type: el
+            color: cosmic
+            width: 3
+            height: 1.5
+            capLeft: 0.75
+          - type: el
+            color: anakiwa
+            width: 0.5
+            height: 1.5
+            marginRight: -0.5
+      - type: el
+        height: 0.5
+    children:
+      - type: el
+        textColor: anakiwa
+        fontSize: 0.63
+        lineHeight: 0.8
+        width: 25
+        style:
+          textTransform: none
+        text: >
+          As I study the intelligence reports on Ambassador Spock's
+          disappearance, 
+
+          I cannot help but feel a deeper, more personal concern about this
+          mission. 
+
+          For I know this man through his
+      - type: el
+        textColor: canary
+        fontSize: 0.63
+        lineHeight: 0.8
+        width: 25
+        style:
+          textTransform: none
+        text: >
+          father. It was barely a year ago that I shared a mind meld with the
+          Vulcan Sarek. 
+
+          Now we must meet again, as I attempt to find an explanation for his
+          son's actions.
+      - type: el
+        textColor: canary
+        fontSize: 0.63
+        lineHeight: 0.8
+        width: 25
+        marginTop: 1.4
+        style:
+          textTransform: none
+        text: >
+          Captain's log, Stardate 45349.1. The Enterprise is on its way to
+          Penthara IV  where a type C asteroid has struck an unpopulated
+          continent. The resulting dust  cloud could very well create a
+          phenomenon not unlike the nuclear winters of 21st  century Earth.
+          Commander La Forge has begun work on a plan that would counteract  the
+          devastation.
+  - type: panel-bl
+    color: cosmic
+    gap: 1
+    leftWidth: 3
+    bottomHeight: 0.5
+    fillBottomLeft: true
+    fillLeftBottom: true
+    leftPad: 0
+    leftChildren:
+      - type: el
+        height: 2
+        color: cosmic
+    bottomChildren:
+      - type: el
+        width: 5
+        color: canary
+      - type: el
+        width: 9
+        color: anakiwa
+      - type: el
+        width: 5.5
+        color: danube
+      - type: el
+        width: 5
+        color: canary
+    children:
+      - type: el
+        color: anakiwa
+        height: 0.2
+        width: 25.7
+      - type: row
+        right: true
+        gap: 2
+        margin-top: 0.5
+        children:
+          - type: pill
+            color: anakiwa
+            width: 4
+            height: 1.5
+          - type: pill
+            color: periwinkle
+            width: 4
+            height: 1.5
+  - type: el
+    height: 0.2
+  - type: panel-tl
+    color: canary
+    leftWidth: 3
+    topHeight: 0.5
+    fillTopLeft: true
+    fillLeftTop: true
+    topChildren:
+      - type: el
+        width: 5
+        height: 0.5
+        color: canary
+      - type: el
+        width: 9
+        height: 0.5
+        color: canary
+      - type: el
+        width: 5.5
+        height: 0.5
+        color: danube
+      - type: el
+        width: 5
+        height: 0.5
+        color: canary
+    leftChildren:
+      - type: el
+        color: canary
+        height: 2
