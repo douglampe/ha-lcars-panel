@@ -3,7 +3,7 @@ Inspired by the iconic Star Trek user interface, LCARS for Home Assistant is int
 
 ## Installation for Home Assistant
 
-- Dowload `ha-lcars-panel-v#.#.#.js` and `ha-lcars-panel-v#.#.#.css` from the latest [release](https://github.com/douglampe/ha-lcars-panel/releases).
+- Download `ha-lcars-panel-v#.#.#.js` and `ha-lcars-panel-v#.#.#.css` from the latest [release](https://github.com/douglampe/ha-lcars-panel/releases).
 - Copy both files to the `/config/www` folder of your Home Assistant installation.
 - Add `/local/ha-lcars-panel-v#.#.#.js` and `/local/ha-lcars-panel-v#.#.#.css` as resources under Settings->Dashboards->Resources
 
