@@ -60,6 +60,7 @@ const styleObject = computed(() => {
       config.radYInnerBottomRight
         ? 'relative'
         : undefined,
+    textTransform: config.textTransform,
   })
 })
 </script>
