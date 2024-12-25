@@ -24,7 +24,7 @@ interface PanelTLProps extends MarginProps {
 
 const {
   title,
-  color,
+  color = 'default',
   fillWidth = true,
   fillHeight = true,
   gap = 1,

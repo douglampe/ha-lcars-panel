@@ -29,7 +29,7 @@ interface PanelBLProps extends MarginProps, RadiusProps {
 
 const {
   title,
-  color,
+  color = 'default',
   fillWidth = true,
   fillHeight = true,
   gap = 1,
