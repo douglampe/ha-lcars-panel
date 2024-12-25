@@ -565,7 +565,7 @@ children:
               - `capBottom`
               - `capLeft`
               - `capRight`
-              
+
             configYaml: |
               - type: el
                 width: 2
@@ -767,7 +767,7 @@ children:
               children visible only for certain navigation paths. The default navigation path is 
               `/home` so setting this value means the item will be visible by default but will
               be hidden when navigating to any path that does not start with `/home`.
-            configXml: |
+            configYaml: |
               - type: row
                 children:
                   - type: pill
@@ -783,16 +783,16 @@ children:
 
           - type: sample
             content: |
-               You can navigate via the browser by prefixing
-               the value with `url:`.
-            configXml: |
+              You can navigate via the browser by prefixing
+              the value with `url:`.
+            configYaml: |
               - type: pill
                 text: Google
                 nav: url:https://google.com
                 color: golden-tainoi
               - type: pill
                 text: Root Path
-                nav: url:/
+                nav: url:/ha-lcars-panel
                 color: golden-tainoi
               - tag: a
                 name: foo
@@ -800,7 +800,7 @@ children:
                 text: Anchor
                 nav: url:#foo
                 color: golden-tainoi
-    
+
           - type: pill
             color: lilac
             nav: /demo/state
