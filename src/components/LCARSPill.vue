@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { TapActionProps } from '@/props/TapActionProps'
 import LCARSElement from './LCARSElement.vue'
 
 const {
@@ -6,7 +7,12 @@ const {
   width = 3,
   textColor = 'black',
   alignContent = 'middle-center',
-} = defineProps<{ color?: string; width?: number; textColor?: string; alignContent?: string }>()
+} = defineProps<{
+  color?: string
+  width?: number
+  textColor?: string
+  alignContent?: string
+}>()
 </script>
 
 <template>

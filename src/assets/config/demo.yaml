@@ -44,6 +44,11 @@ children:
         text: HA State
         color: lilac
         textColor: black
+      - type: el
+        nav: /demo/actions
+        text: Actions
+        color: dodger-blue
+        textColor: black
     children:
       - showForNav: /home
         children:
@@ -875,3 +880,24 @@ children:
                 fontSize: 0.5
                 lineHeight: 1
                 animation: row-fill
+
+          - type: pill
+            color: dodger-blue
+            nav: /demo/actions
+            text: Actions
+
+      - showForNav: /demo/actions
+        children:
+          - type: sample
+            content: |
+              You can call services when any item is tapped by adding an `tapAction` key.
+            configYaml: |
+              - type: pill
+                color: golden-tainoi
+                text: Turn On Light
+                width: 4
+                tapAction:
+                  action: call-service
+                  service: light.turn_on
+                  data:
+                    entity_id: light.my_light

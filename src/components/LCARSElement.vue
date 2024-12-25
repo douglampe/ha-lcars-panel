@@ -12,11 +12,16 @@ import {
   removeUndefined,
   unitSize,
 } from '@/Layout'
+import { callService } from '@/HAState'
 
 const config = defineProps<ElementProps>()
 
 function onClick() {
-  if (config.nav) {
+  if (config.tapAction) {
+    if (config.tapAction.action === 'call-service' && config.tapAction.service) {
+      callService(config.tapAction.service, config.tapAction.data)
+    }
+  } else if (config.nav) {
     navigate(config.nav)
   }
 }
@@ -48,7 +53,7 @@ const styleObject = computed(() => {
     borderBottomRightRadius:
       borderStyle(config.radXBottomRight, config.radYBottomRight) ??
       (config.capBottom || config.capRight ? unitSize(config.height ?? 1 / 2) : undefined),
-    cursor: config.button || config.nav ? 'pointer' : undefined,
+    cursor: config.button || config.nav || config.tapAction ? 'pointer' : undefined,
     position:
       config.radXInnerTopLeft ||
       config.radYInnerTopLeft ||
@@ -66,7 +71,7 @@ const styleObject = computed(() => {
 </script>
 
 <template>
-  <div :style="styleObject" v-on="config.nav ? { click: onClick } : {}">
+  <div :style="styleObject" v-on="config.nav || config.tapAction ? { click: onClick } : {}">
     <slot></slot>
     <div
       v-if="config.radXInnerTopLeft || config.radYInnerTopLeft"
