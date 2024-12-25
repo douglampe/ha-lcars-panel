@@ -35,6 +35,11 @@ children:
         color: fiery-orange
         textColor: black
       - type: el
+        nav: /demo/nav
+        text: Navigation
+        color: anakiwa
+        textColor: black
+      - type: el
         nav: /demo/state
         text: HA State
         color: lilac
@@ -749,6 +754,53 @@ children:
                     width: 4
                     text: content
 
+          - type: pill
+            color: anakiwa
+            nav: /demo/nav
+            text: Navigation
+
+      - showForNav: /demo/nav
+        children:
+          - type: sample
+            content: |
+              Local navigation uses the `showForNav` key to have any item and its
+              children visible only for certain navigation paths. The default navigation path is 
+              `/home` so setting this value means the item will be visible by default but will
+              be hidden when navigating to any path that does not start with `/home`.
+            configXml: |
+              - type: row
+                children:
+                  - type: pill
+                    text: Nav
+                    nav: /demo/nav/test
+                    color: golden-tainoi
+                  - type: el
+                    showForNav: /demo/nav/test
+                    marginLeft: 0.5
+                    pad: 0.2
+                    color: indian-red
+                    text: Khaaaan!!!!
+
+          - type: sample
+            content: |
+               You can navigate via the browser by prefixing
+               the value with `url:`.
+            configXml: |
+              - type: pill
+                text: Google
+                nav: url:https://google.com
+                color: golden-tainoi
+              - type: pill
+                text: Root Path
+                nav: url:/
+                color: golden-tainoi
+              - tag: a
+                name: foo
+              - type: pill
+                text: Anchor
+                nav: url:#foo
+                color: golden-tainoi
+    
           - type: pill
             color: lilac
             nav: /demo/state
