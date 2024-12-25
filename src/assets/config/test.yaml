@@ -1,0 +1,575 @@
+type: custom:ha-lcars-panel
+vars:
+  lcars_unit: 4vw
+children:
+  - type: panel-tl
+    color: golden-tainoi
+    fillWidth: true
+    fillHeight: true
+    leftColor: golden-tainoi
+    leftPad: 1
+    leftChildren:
+      - type: el
+        nav: /home
+        text: Layout
+        color: indian-red
+        textColor: black
+      - type: el
+        nav: /demo/elements
+        text: Elements
+        color: atomic-tangerine
+        textColor: black
+      - type: el
+        nav: /demo/panels
+        text: Panels
+        color: fiery-orange
+        textColor: black
+      - type: el
+        nav: /demo/nav
+        text: Navigation
+        color: anakiwa
+        textColor: black
+      - type: el
+        nav: /demo/state
+        text: HA State
+        color: lilac
+        textColor: black
+    children:
+      - showForNav: /home
+        children:
+          - type: sample
+            configYaml: |
+              - type: col
+                children:
+                  - type: el
+                    width: 1
+                    height: 1
+                    color: atomic-tangerine
+                  - type: el
+                    width: 1
+                    height: 1
+                    color: indian-red
+                  - type: el
+                    width: 1
+                    height: 1
+                    color: dodger-blue
+
+          - type: sample
+            configYaml: |
+              - type: row
+                gap: 1
+                children:
+                  - type: el
+                    width: 1
+                    height: 1
+                    color: atomic-tangerine
+                  - type: el
+                    width: 1
+                    height: 1
+                    color: indian-red
+                  - type: el
+                    width: 1
+                    height: 1
+                    color: dodger-blue
+
+          - type: sample
+            configYaml: |
+              - type: row
+                gap: 1
+                children:
+                  - type: el
+                    width: 1
+                    height: 2
+                    color: atomic-tangerine
+                  - type: el
+                    width: 1
+                    height: 0.5
+                    color: indian-red
+                  - type: el
+                    width: 1
+                    height: 1
+                    color: dodger-blue
+
+          - type: sample
+            configYaml: |
+              - type: row
+                gap: 1
+                bottom: true
+                children:
+                  - type: el
+                    width: 1
+                    height: 2
+                    color: atomic-tangerine
+                  - type: el
+                    width: 1
+                    height: 0.5
+                    color: indian-red
+                  - type: el
+                    width: 1
+                    height: 1
+                    color: dodger-blue
+
+          - type: sample
+            configYaml: |
+              - type: col
+                gap: 1
+                style:
+                  width: calc(var(--lcars-unit) * 3)
+                children:
+                  - type: row
+                    children:
+                      - type: el
+                        width: 3
+                        height: 1
+                        color: atomic-tangerine
+                  - type: row
+                    right: true
+                    gap: 1
+                    children:
+                      - type: el
+                        width: 1
+                        height: 1
+                        color: indian-red
+                      - type: el
+                        width: 1
+                        height: 1
+                        color: dodger-blue
+
+          - type: sample
+            configYaml: |
+              - type: row
+                gap: 1
+                stretch: true
+                children:
+                  - type: el
+                    width: 1
+                    height: 2
+                    color: atomic-tangerine
+                  - type: el
+                    width: 1
+                    color: indian-red
+                  - type: el
+                    width: 1
+                    color: dodger-blue
+
+          - type: sample
+            configYaml: |
+              - type: row
+                gap: 1
+                children:
+                  - type: el
+                    width: 1
+                    height: 1
+                    color: atomic-tangerine
+                  - type: el
+                    width: 1
+                    height: 1
+                    color: indian-red
+                  - type: el
+                    width: 1
+                    height: 1
+                    color: dodger-blue
+              - type: row
+                gap: 1
+                stretch: true
+                children:
+                  - type: el
+                    width: 1
+                    height: 1
+                    color: golden-tainoi
+                  - type: el
+                    width: 1
+                    color: lilac
+                  - type: el
+                    width: 1
+                    color: fiery-orange
+
+          - type: sample
+            configYaml: |
+              - type: row
+                gap: 1
+                marginBottom: 1
+                stretch: true
+                children:
+                  - type: el
+                    width: 1
+                    height: 1
+                    color: atomic-tangerine
+                  - type: el
+                    width: 1
+                    color: indian-red
+                  - type: el
+                    width: 1
+                    color: dodger-blue
+              - type: row
+                gap: 1
+                stretch: true
+                children:
+                  - type: el
+                    width: 1
+                    height: 1
+                    color: golden-tainoi
+                  - type: el
+                    width: 1
+                    color: lilac
+                  - type: el
+                    width: 1
+                    color: fiery-orange
+
+          - type: sample
+            configYaml: |
+              - type: el
+                color: golden-tainoi
+                children:
+                  - type: row
+                    pad: 1
+                    fill: false
+                    children:
+                      - type: el
+                        width: 1
+                        height: 1
+                        color: atomic-tangerine
+                      - type: el
+                        width: 1
+                        color: indian-red
+                      - type: el
+                        width: 1
+                        color: dodger-blue
+
+          - type: pill
+            color: atomic-tangerine
+            text: elements
+            nav: /demo/elements
+
+      - showForNav: /demo/elements
+        children:
+          - type: sample
+            configYaml: |
+              - type: el
+                width: 1
+                height: 1
+                color: golden-tainoi
+
+          - type: sample
+            configYaml: |
+              - type: row
+                gap: 1
+                children:
+                  - type: el
+                    width: 1
+                    height: 1
+                    color: indian-red
+                  - type: el
+                    width: 1
+                    height: 1
+                    color: atomic-tangerine
+                  - type: el
+                    width: 1
+                    height: 1
+                    color: golden-tainoi
+                  - type: el
+                    width: 1
+                    height: 1
+                    color: green
+                  - type: el
+                    width: 1
+                    height: 1
+                    color: dodger-blue
+                  - type: el
+                    width: 1
+                    height: 1
+                    color: indigo
+                  - type: el
+                    width: 1
+                    height: 1
+                    color: lilac
+
+          - type: sample
+            configYaml: |
+              - type: row
+                gap: 1
+                children:
+                  - type: el
+                    width: 2
+                    height: 1
+                    color: dodger-blue
+                  - type: el
+                    width: 1
+                    height: 2
+                    color: indian-red
+
+          - type: sample
+            configYaml: |
+              - type: el
+                fontSize: 0.5
+                text: fontSize 0.5
+              - type: el
+                fontSize: 1
+                text: fontSize 1
+              - type: el
+                fontSize: 2
+                text: fontSize 2
+
+          - type: sample
+            configYaml: |
+              - type: el
+                fontSize: 1
+                lineHeight: 1
+                color: golden-tainoi
+                textColor: black
+                text: lineHeight 1
+              - type: el
+                fontSize: 1
+                lineheight: 1.2
+                color: dodger-blue
+                textColor: black
+                text: lineHeight 1.2
+
+          - type: sample
+            configYaml: |
+              - type: el
+                textColor: golden-tainoi
+                text: golden-tainoi
+              - type: el
+                textColor: indian-red
+                text: indian-red
+
+          - type: sample
+            configYaml: |
+              - type: el
+                width: 10
+                height: 5
+                color: dodger-blue
+                textColor: black
+                alignContent: bottom-right
+                text: bottom-right
+
+          - type: sample
+            configYaml: |
+              - type: el
+                width: 2
+                height: 1
+                color: golden-tainoi
+                capRight: true
+
+          - type: sample
+            configYaml: |
+              - type: el
+                width: 4
+                height: 4
+                radXTopLeft: 1
+                color: golden-tainoi
+                marginBottom: 1
+
+          - type: sample
+            configYaml: |
+              - type: el
+                width: 4
+                height: 4
+                radXTopLeft: 1
+                radYTopLeft: 2
+                color: golden-tainoi
+
+          - type: sample
+            configYaml: |
+              - type: el
+                width: 4
+                height: 4
+                radXInnerTopLeft: 1
+                radYInnerTopLeft: 1
+                color: golden-tainoi
+          - type: sample
+            configYaml: |
+              - type: el
+                width: 4
+                height: 1
+                fontSize: 0.5
+                textColor: black
+                alignContent: middle-center
+                color: golden-tainoi
+                capRight: true
+                capLeft: true
+                button: true
+                text: button
+
+          - type: pill
+            nav: /demo/panels
+            color: fiery-orange
+            text: Panels
+
+      - showForNav: /demo/panels
+        children:
+          - type: sample
+            configYaml: |
+              - type: panel-tl
+                color: dodger-blue
+                children:
+                  - text: content
+          - type: sample
+            configYaml: |
+              - type: panel-bl
+                color: dodger-blue
+                children:
+                  - text: content
+          - type: sample
+            configYaml: |
+              - type: panel-tr
+                color: dodger-blue
+                children:
+                  - text: content
+          - type: sample
+            configYaml: |
+              - type: panel-br
+                color: dodger-blue
+                children:
+                  - text: content
+          - type: sample
+            configYaml: |
+              - type: panel-all
+                color: dodger-blue
+                children:
+                  - text: content
+
+          - type: sample
+            configYaml: |
+              - type: panel-tl
+                color: dodger-blue
+                children:
+                  - text: content
+                leftChildren:
+                  - type: el
+                    color: golden-tainoi
+                    height: 1
+
+          - type: sample
+            configYaml: |
+              - type: panel-tl
+                color: dodger-blue
+                children:
+                  - text: content
+                topChildren:
+                  - type: el
+                    color: golden-tainoi
+                    width: 4
+
+          - type: sample
+            configYaml: |
+              - type: panel-bl
+                color: dodger-blue
+                children:
+                  - text: content
+                leftChildren:
+                  - type: el
+                    color: golden-tainoi
+                    height: 1
+
+          - type: sample
+            configYaml: |
+              - type: panel-bl
+                color: dodger-blue
+                children:
+                  - text: content
+                bottomChildren:
+                  - type: el
+                    color: golden-tainoi
+                    width: 4
+
+          - type: sample
+            configYaml: |
+              - type: panel-tl
+                color: dodger-blue
+                topCap: true
+                bottomCap: true
+                children:
+                  - type: el
+                    width: 4
+                    height: 4
+                    text: content
+
+          - type: sample
+            configYaml: |
+              - type: panel-tl
+                color: dodger-blue
+                title: Title
+                children:
+                  - type: el
+                    width: 4
+                    text: content
+
+          - type: pill
+            color: anakiwa
+            nav: /demo/nav
+            text: Navigation
+
+      - showForNav: /demo/nav
+        children:
+          - type: sample
+            configYaml: |
+              - type: row
+                children:
+                  - type: pill
+                    text: Nav
+                    nav: /demo/nav/test
+                    color: golden-tainoi
+                  - type: el
+                    showForNav: /demo/nav/test
+                    marginLeft: 0.5
+                    pad: 0.2
+                    color: indian-red
+                    text: Khaaaan!!!!
+
+          - type: sample
+            configYaml: |
+              - type: pill
+                text: Google
+                nav: url:https://google.com
+                color: golden-tainoi
+              - type: pill
+                text: Root Path
+                nav: url:/ha-lcars-panel
+                color: golden-tainoi
+              - tag: a
+                name: foo
+              - type: pill
+                text: Anchor
+                nav: url:#foo
+                color: golden-tainoi
+
+          - type: pill
+            color: lilac
+            nav: /demo/state
+            text: HA State
+
+      - showForNav: /demo/state
+        children:
+          - type: sample
+            configYaml: |
+              - type: state-value
+                entity: sun.sun
+                attribute: elevation
+          - type: sample
+            configYaml: |
+              - type: pill
+                color: golden-tainoi
+                children:
+                  - type: state-value
+                    entity: sun.sun
+                    attribute: elevation
+          - type: sample
+            configYaml: |
+              - type: state-color
+                entity: sun.sun
+                attribute: elevation
+                color: golden-tainoi
+                textColor: black
+                min: -360
+                max: 180
+                text: Sun
+          - type: sample
+            configYaml: |
+              - type: attribute-list
+                entity: sun.sun
+                textColor: lilac
+                fontSize: 0.5
+                lineHeight: 1
+                animation: row-fill

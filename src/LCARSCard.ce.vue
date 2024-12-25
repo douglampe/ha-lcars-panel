@@ -3,7 +3,7 @@ import { computed, onMounted } from 'vue'
 import type { HAConfig } from './HAConfig'
 import { loadVariables } from './HAConfig'
 import RecursiveComponent from './components/RecursiveComponent.vue'
-import testConfig from '@/assets/config/demo.yaml?raw'
+import testConfig from '@/assets/config/test.yaml?raw'
 import YAML from 'yaml'
 import { loadTestState } from './HAState'
 
