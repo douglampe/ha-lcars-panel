@@ -643,7 +643,6 @@ children:
             configYaml: |
               - type: state-value
                 entity: sun.sun
-                attribute: elevation
           - type: sample
             configYaml: |
               - type: pill
