@@ -1,6 +1,6 @@
 type: custom:ha-lcars-panel
 vars:
-  lcars_unit: 4vw
+  lcars_unit: 3vw
 children:
   - type: panel-tl
     color: golden-tainoi
@@ -35,7 +35,7 @@ children:
         color: lilac
         textColor: black
     children:
-      - showForNav: /home
+      - showForNav: /home2
         children:
           - type: sample
             configYaml: |
@@ -397,103 +397,200 @@ children:
             color: fiery-orange
             text: Panels
 
-      - showForNav: /demo/panels
+      - showForNav: /home
         children:
           - type: sample
             configYaml: |
               - type: panel-tl
                 color: dodger-blue
                 children:
-                  - text: content
+                  - type: el
+                    width: 4
+                    height: 4
+                    color: eggplant
+                    alignContent: middle-center
+                    text: content
+          - type: sample
+            configYaml: |
+              - type: panel-tl
+                title: title
+                color: dodger-blue
+                gap: 1
+                leftWidth: 1
+                leftColor: golden-tainoi
+                topCap: true
+                bottomCap: true
+                leftChildren:
+                  - type: el
+                    color: atomic-tangerine
+                    height: 1
+                topChildren:
+                  - type: el
+                    color: lilac
+                    width: 1
+                children:
+                  - type: el
+                    width: 8
+                    height: 4
+                    color: eggplant
+                    alignContent: middle-center
+                    text: content
+
           - type: sample
             configYaml: |
               - type: panel-bl
                 color: dodger-blue
                 children:
-                  - text: content
+                  - type: el
+                    width: 4
+                    height: 4
+                    color: eggplant
+                    alignContent: middle-center
+                    text: content
+          - type: sample
+            configYaml: |
+              - type: panel-bl
+                title: title
+                color: dodger-blue
+                gap: 1
+                leftWidth: 1
+                leftColor: golden-tainoi
+                topCap: true
+                bottomCap: true
+                leftChildren:
+                  - type: el
+                    color: atomic-tangerine
+                    height: 1
+                bottomChildren:
+                  - type: el
+                    color: lilac
+                    width: 1
+                children:
+                  - type: el
+                    width: 8
+                    height: 4
+                    color: eggplant
+                    alignContent: middle-center
+                    text: content
+
           - type: sample
             configYaml: |
               - type: panel-tr
                 color: dodger-blue
                 children:
-                  - text: content
+                  - type: el
+                    width: 4
+                    height: 4
+                    color: eggplant
+                    alignContent: middle-center
+                    text: content
+          - type: sample
+            configYaml: |
+              - type: panel-tr
+                title: title
+                color: dodger-blue
+                gap: 1
+                rightWidth: 1
+                rightColor: golden-tainoi
+                topCap: true
+                bottomCap: true
+                rightChildren:
+                  - type: el
+                    color: atomic-tangerine
+                    height: 1
+                topChildren:
+                  - type: el
+                    color: lilac
+                    width: 1
+                children:
+                  - type: el
+                    width: 8
+                    height: 4
+                    color: eggplant
+                    alignContent: middle-center
+                    text: content
+
           - type: sample
             configYaml: |
               - type: panel-br
                 color: dodger-blue
                 children:
-                  - text: content
+                  - type: el
+                    width: 4
+                    height: 4
+                    color: eggplant
+                    alignContent: middle-center
+                    text: content
+          - type: sample
+            configYaml: |
+              - type: panel-br
+                title: title
+                color: dodger-blue
+                gap: 1
+                rightWidth: 1
+                rightColor: golden-tainoi
+                topCap: true
+                bottomCap: true
+                rightChildren:
+                  - type: el
+                    color: atomic-tangerine
+                    height: 1
+                bottomChildren:
+                  - type: el
+                    color: lilac
+                    width: 1
+                children:
+                  - type: el
+                    width: 8
+                    height: 4
+                    color: eggplant
+                    alignContent: middle-center
+                    text: content
+
           - type: sample
             configYaml: |
               - type: panel-all
                 color: dodger-blue
                 children:
-                  - text: content
-
-          - type: sample
-            configYaml: |
-              - type: panel-tl
-                color: dodger-blue
-                children:
-                  - text: content
-                leftChildren:
-                  - type: el
-                    color: golden-tainoi
-                    height: 1
-
-          - type: sample
-            configYaml: |
-              - type: panel-tl
-                color: dodger-blue
-                children:
-                  - text: content
-                topChildren:
-                  - type: el
-                    color: golden-tainoi
-                    width: 4
-
-          - type: sample
-            configYaml: |
-              - type: panel-bl
-                color: dodger-blue
-                children:
-                  - text: content
-                leftChildren:
-                  - type: el
-                    color: golden-tainoi
-                    height: 1
-
-          - type: sample
-            configYaml: |
-              - type: panel-bl
-                color: dodger-blue
-                children:
-                  - text: content
-                bottomChildren:
-                  - type: el
-                    color: golden-tainoi
-                    width: 4
-
-          - type: sample
-            configYaml: |
-              - type: panel-tl
-                color: dodger-blue
-                topCap: true
-                bottomCap: true
-                children:
                   - type: el
                     width: 4
                     height: 4
+                    color: eggplant
+                    alignContent: middle-center
                     text: content
 
           - type: sample
             configYaml: |
-              - type: panel-tl
+              - type: panel-all
                 color: dodger-blue
+                leftWidth: 1
+                rightWidth: 1
+                topHeight: 1
+                bottomHeight: 1
+                gap: 1
                 title: Title
+                topChildren:
+                  - type: el
+                    color: golden-tainoi
+                    width: 1
+                bottomChildren:
+                  - type: el
+                    color: golden-tainoi
+                    width: 1
+                leftChildren:
+                  - type: el
+                    color: golden-tainoi
+                    height: 1
+                rightChildren:
+                  - type: el
+                    color: golden-tainoi
+                    height: 1
                 children:
                   - type: el
-                    width: 4
+                    width: 8
+                    height: 4
+                    color: eggplant
+                    alignContent: middle-center
                     text: content
 
           - type: pill

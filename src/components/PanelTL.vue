@@ -64,25 +64,28 @@ const {
       :width="leftWidth + innerRadX"
       :height="topHeight + innerRadY"
     ></LCARSElement>
-    <LCARSRow :fill="true" :gap="topGap ?? gap" :height="topHeight">
-      <LCARSElement :fill="fillWidth" :color="color"></LCARSElement>
-      <slot name="top"></slot>
-    </LCARSRow>
-    <LCARSElement
-      v-if="title"
-      :textColor="color"
-      :fontSize="topHeight"
-      :lineHeight="topHeight * 0.8"
-    >
-      {{ title }}
-    </LCARSElement>
-    <LCARSElement
-      v-if="topCap"
-      :height="topHeight"
-      :width="topHeight / 2"
-      :color="color"
-      :cap-right="true"
-    ></LCARSElement>
+    <LCARSRow :height="topHeight" :fill="fillWidth">
+      <LCARSElement :fill="fillWidth" :height="topHeight" :color="color"></LCARSElement>
+      <LCARSRow
+        v-if="$slots.top"
+        :margin-left="(gap || topGap || 0) / 10"
+        :margin-right="(gap || topGap || 0) / 10"
+        :gap="topGap ?? gap"
+        :height="topHeight"
+      >
+        <slot name="top"></slot>
+      </LCARSRow>
+      <LCARSElement v-if="title" :textColor="color" :fontSize="topHeight" :lineHeight="topHeight">
+        {{ title }}
+      </LCARSElement>
+      <LCARSElement
+        v-if="topCap"
+        :height="topHeight"
+        :width="topHeight / 2"
+        :color="color"
+        :cap-right="true"
+      ></LCARSElement
+    ></LCARSRow>
   </LCARSRow>
   <LCARSRow
     :fill="fillHeight"
@@ -90,8 +93,16 @@ const {
     :margin-right="marginRight"
     :margin-bottom="marginBottom"
   >
-    <LCARSCol stretch :gap="leftGap ?? gap">
-      <slot name="left"></slot>
+    <LCARSCol>
+      <LCARSCol
+        v-if="$slots.left"
+        :margin-top="(leftGap || gap || 0) / 10"
+        :margin-bottom="(leftGap || gap || 0) / 10"
+        stretch
+        :gap="leftGap ?? gap"
+      >
+        <slot name="left"></slot>
+      </LCARSCol>
       <LCARSElement
         :fill="fillHeight"
         :color="leftColor ?? color"
@@ -102,7 +113,7 @@ const {
         :width="leftWidth"
         :height="leftWidth / 2"
         :cap-bottom="true"
-        :color="color"
+        :color="leftColor ?? color"
       ></LCARSElement>
     </LCARSCol>
     <LCARSCol :fill="fillWidth" :margin-left="leftPad">

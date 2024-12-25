@@ -13,9 +13,11 @@ interface PanelTLProps extends MarginProps {
   rightWidth?: number
   rightPad?: number
   rightColor?: string
+  rightGap?: number
   topCap?: boolean
-  bottomCap?: boolean
   topHeight?: number
+  topGap: number
+  bottomCap?: boolean
   outerRadX?: number
   outerRadY?: number
   innerRadX?: number
@@ -29,9 +31,11 @@ const {
   fillHeight = true,
   gap = 1,
   topCap,
+  topGap,
   bottomCap,
   rightWidth = 3,
   rightPad = 1,
+  rightGap,
   topHeight = 1,
   outerRadX = 2,
   outerRadY = 2,
@@ -51,23 +55,31 @@ const {
     :margin-left="marginLeft"
     :margin-right="marginRight"
   >
-    <LCARSElement
-      v-if="topCap"
-      :height="topHeight"
-      :width="topHeight / 2"
-      :color="color"
-      :cap-right="true"
-    ></LCARSElement>
-    <LCARSElement
-      v-if="title"
-      :textColor="color"
-      :fontSize="topHeight"
-      :lineHeight="topHeight * 0.8"
-    >
-      {{ title }}
-    </LCARSElement>
-    <LCARSRow :fill="true" :gap="gap">
-      <slot name="top"></slot>
+    <LCARSRow :height="topHeight" :fill="fillWidth">
+      <LCARSElement
+        v-if="topCap"
+        :height="topHeight"
+        :width="topHeight / 2"
+        :color="color"
+        :cap-left="true"
+      ></LCARSElement>
+      <LCARSElement
+        v-if="title"
+        :textColor="color"
+        :fontSize="topHeight"
+        :lineHeight="topHeight * 0.8"
+      >
+        {{ title }}
+      </LCARSElement>
+      <LCARSRow
+        v-if="$slots.top"
+        :margin-left="(rightGap || gap || 0) / 10"
+        :margin-right="(rightGap || gap || 0) / 10"
+        :gap="topGap ?? gap"
+        :height="topHeight"
+      >
+        <slot name="top"></slot>
+      </LCARSRow>
       <LCARSElement :fill="fillWidth" :color="color" :height="topHeight"></LCARSElement>
     </LCARSRow>
     <LCARSElement
@@ -89,8 +101,16 @@ const {
     <LCARSCol :fill="fillWidth" :margin-right="rightPad">
       <slot></slot>
     </LCARSCol>
-    <LCARSCol stretch :gap="gap">
-      <slot name="right"></slot>
+    <LCARSCol>
+      <LCARSCol
+        v-if="$slots.right"
+        :margin-top="(rightGap || gap || 0) / 10"
+        :margin-bottom="(rightGap || gap || 0) / 10"
+        stretch
+        :gap="rightGap ?? gap"
+      >
+        <slot name="right"></slot>
+      </LCARSCol>
       <LCARSElement
         :fill="fillHeight"
         :color="rightColor ?? color"
@@ -101,7 +121,7 @@ const {
         :width="rightWidth"
         :height="rightWidth / 2"
         :cap-bottom="true"
-        :color="color"
+        :color="rightColor ?? color"
       ></LCARSElement>
     </LCARSCol>
   </LCARSRow>
