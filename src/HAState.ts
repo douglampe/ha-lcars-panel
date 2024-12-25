@@ -4,7 +4,7 @@ import { ref } from 'vue'
 export interface HAState {
   states: Record<string, any>
   user: any
-  callService: (service: string, data?: any) => Promise<any>
+  callService: (domain: string, service: string, data?: any) => Promise<any>
   callWS: (message: any) => Promise<any>
   callApi: (method: string, path: string, data?: any) => Promise<any>
 }
@@ -29,9 +29,26 @@ export function getStateValue(state: any, entity: string, attribute?: string) {
   return entityObject.attributes[attribute]
 }
 
+export function callService(serviceName: string, data: any) {
+  if (!haState.value) {
+    throw new Error('State not set')
+  }
+
+  if (serviceName.indexOf('.') === -1) {
+    throw new Error('Value for serviceName ust be in format domain.service')
+  }
+
+  const [domain, service] = serviceName.split('.')
+
+  haState.value.callService(domain, service, data)
+}
+
 export function loadTestState() {
   haState.value = {
-    callService: (_service: string, _data?: any) => Promise.reject('Thisis a test state.'),
+    callService: (domain: string, service: string, data?: any) => {
+      alert(`Service called: ${domain}.${service} with data\n${JSON.stringify(data, null, 2)}`)
+      return Promise.resolve('OK')
+    },
     callWS: (_message: any) => Promise.reject('Thisis a test state.'),
     callApi: (_method: string, _path: string, _data?: any) =>
       Promise.reject('Thisis a test state.'),
