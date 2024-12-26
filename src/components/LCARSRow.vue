@@ -5,7 +5,7 @@ import type { PadProps } from '@/props/PadProps'
 import { computed } from 'vue'
 
 interface Props extends MarginProps, PadProps {
-  height?: number
+  height?: number | string
   fill?: boolean
   stretch?: boolean
   right?: boolean

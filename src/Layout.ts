@@ -1,8 +1,11 @@
 import type { MarginProps } from './props/MarginProps'
 import type { PadProps } from './props/PadProps'
 
-export function unitSize(val?: number) {
+export function unitSize(val?: number | string) {
   if (val) {
+    if (typeof val !== 'number') {
+      return val
+    }
     return `calc(var(--lcars-unit) * ${val})`
   }
 }
