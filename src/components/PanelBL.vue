@@ -83,6 +83,7 @@ const {
       <LCARSCol
         v-if="$slots.left"
         :stretch="leftStretch"
+        :gap="leftGap ?? gap"
         :margin-top="(leftGap || gap || 0) / 10"
         :margin-bottom="(leftGap || gap || 0) / 10"
       >
@@ -95,7 +96,7 @@ const {
         :width="leftWidth"
       ></LCARSElement>
     </LCARSCol>
-    <LCARSCol :fill="fillWidth" :margin-left="leftPad" :gap="leftGap ?? gap">
+    <LCARSCol :fill="fillWidth" :margin-left="leftPad">
       <slot></slot>
     </LCARSCol>
   </LCARSRow>
