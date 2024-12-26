@@ -484,7 +484,7 @@ children:
           - type: sample
             content: |
               By default, elements are sized to fit their content. If you want to specify the size, use the `width` and
-              `height` keys to specify the size in LCARS Units
+              `height` keys to specify the size in LCARS Units.
             configYaml: |
               - type: row
                 gap: 1
@@ -496,6 +496,23 @@ children:
                   - type: el
                     width: 1
                     height: 2
+                    color: indian-red
+
+          - type: sample
+            content: |
+              If you pass a non-numeric value as the `width` or `height`, then it is assumed that this is a valid CSS 
+              size and the value is passed through to the CSS.
+            configYaml: |
+              - type: row
+                gap: 1
+                children:
+                  - type: el
+                    width: 100px
+                    height: 100px
+                    color: dodger-blue
+                  - type: el
+                    width: 2vmax
+                    height: 2vmax
                     color: indian-red
 
           - type: sample

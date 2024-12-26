@@ -9,8 +9,8 @@ export interface ElementProps extends MarginProps, PadProps, RadiusProps {
   textColor?: string
   fontSize?: number
   lineHeight?: number
-  width?: number
-  height?: number
+  width?: number | string
+  height?: number | string
   fill?: boolean
   button?: boolean
   alignContent?: string
