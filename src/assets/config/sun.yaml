@@ -240,58 +240,60 @@ children:
                   textColor: lilac
                   fontSize: 0.5
                   animation: row-fill
-          - type: panel-all
-            config:
-              leftWidth: 1
-              rightWidth: 1
-              radXTopLeft: 2
-              radXTopRight: 2
-              radXBottomLeft: 2
-              radXBottomRight: 2
-              topHeight: 0.5
-              bottomHeight: 0.5
-              color: indian-red
-              leftColor: indian-red
-              rightColor: indian-red
-              gap: 0
-              marginLeft: 0.5
-            topChildren:
-              - type: el
-                config:
-                  color: indian-red
-                  width: 1
-                  height: 0.5
-              - type: el
-                config:
-                  color: black
-                  fill: true
-                  height: 1
-              - type: el
-                config:
-                  color: indian-red
-                  width: 1
-                  height: 0.5
-            bottomChildren:
-              - type: el
-                config:
-                  color: indian-red
-                  width: 1
-                  height: 0.5
-              - type: el
-                config:
-                  color: black
-                  fill: true
-                  height: 1
-              - type: el
-                config:
-                  color: indian-red
-                  width: 1
-                  height: 0.5
+          - type: row
             children:
-              - tag: img
+              - type: panel-all
                 config:
-                  src: https://www.nasa.gov/wp-content/uploads/2016/07/10f0.15.gif?w=500
-                  style:
-                    width: calc(var(--lcars-unit) * 8)
-                    marginLeft: calc(var(--lcars-unit) * 2)
-                    marginRight: calc(var(--lcars-unit) * 2)
+                  leftWidth: 1
+                  rightWidth: 1
+                  radXTopLeft: 2
+                  radXTopRight: 2
+                  radXBottomLeft: 2
+                  radXBottomRight: 2
+                  topHeight: 0.5
+                  bottomHeight: 0.5
+                  color: indian-red
+                  leftColor: indian-red
+                  rightColor: indian-red
+                  gap: 0
+                  marginLeft: 0.5
+                topChildren:
+                  - type: el
+                    config:
+                      color: indian-red
+                      width: 1
+                      height: 0.5
+                  - type: el
+                    config:
+                      color: black
+                      fill: true
+                      height: 1
+                  - type: el
+                    config:
+                      color: indian-red
+                      width: 1
+                      height: 0.5
+                bottomChildren:
+                  - type: el
+                    config:
+                      color: indian-red
+                      width: 1
+                      height: 0.5
+                  - type: el
+                    config:
+                      color: black
+                      fill: true
+                      height: 1
+                  - type: el
+                    config:
+                      color: indian-red
+                      width: 1
+                      height: 0.5
+                children:
+                  - tag: img
+                    config:
+                      src: https://www.nasa.gov/wp-content/uploads/2016/07/10f0.15.gif?w=500
+                      style:
+                        width: calc(var(--lcars-unit) * 8)
+                        marginLeft: calc(var(--lcars-unit) * 2)
+                        marginRight: calc(var(--lcars-unit) * 2)

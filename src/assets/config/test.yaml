@@ -35,7 +35,7 @@ children:
         color: lilac
         textColor: black
     children:
-      - showForNav: /home2
+      - showForNav: /home
         children:
           - type: sample
             configYaml: |
@@ -397,7 +397,7 @@ children:
             color: fiery-orange
             text: Panels
 
-      - showForNav: /home
+      - showForNav: /demo/panels
         children:
           - type: sample
             configYaml: |

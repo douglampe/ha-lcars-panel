@@ -20,9 +20,10 @@ children:
             radXInnerTopRight: 1.5
             radYInnerTopRight: 1
           - type: col
-            width: 4
+            width: 5.5
             gap: 1
             marginLeft: 1
+            right: true
             children:
               - type: row
                 children:
@@ -34,8 +35,9 @@ children:
                   - type: el
                     width: 1
                     fontSize: 1
+                    lineHeight: 0.8
                     textColor: indian-red
-                    text: "01"
+                    text: '01'
                   - type: el
                     width: 3.8
                     fontSize: 0.5
@@ -54,8 +56,9 @@ children:
                   - type: el
                     width: 1
                     fontSize: 1
+                    lineHeight: 0.8
                     textColor: atomic-tangerine
-                    text: "02"
+                    text: '02'
                   - type: el
                     width: 3.8
                     fontSize: 0.5
@@ -74,8 +77,9 @@ children:
                   - type: el
                     width: 1
                     fontSize: 1
+                    lineHeight: 0.8
                     textColor: peiwinkle
-                    text: "03"
+                    text: '03'
                   - type: el
                     width: 3.8
                     fontSize: 0.5
@@ -94,8 +98,9 @@ children:
                   - type: el
                     width: 1
                     fontSize: 1
+                    lineHeight: 0.8
                     textColor: dodger-blue
-                    text: "04"
+                    text: '04'
                   - type: el
                     width: 3.8
                     fontSize: 0.5
@@ -114,8 +119,9 @@ children:
                   - type: el
                     width: 1
                     fontSize: 1
+                    lineHeight: 0.8
                     textColor: lilac
-                    text: "05"
+                    text: '05'
                   - type: el
                     width: 3.8
                     fontSize: 0.5
@@ -134,8 +140,9 @@ children:
                   - type: el
                     width: 1
                     fontSize: 1
+                    lineHeight: 0.8
                     textColor: pot-pourri
-                    text: "06"
+                    text: '06'
                   - type: el
                     width: 3.8
                     fontSize: 0.5
@@ -154,8 +161,9 @@ children:
                   - type: el
                     width: 1
                     fontSize: 1
+                    lineHeight: 0.8
                     textColor: dodger-blue
-                    text: "07"
+                    text: '07'
                   - type: el
                     width: 3.8
                     fontSize: 0.5
@@ -174,8 +182,9 @@ children:
                   - type: el
                     width: 1
                     fontSize: 1
+                    lineHeight: 0.8
                     textColor: indian-red
-                    text: "08"
+                    text: '08'
                   - type: el
                     width: 3.8
                     fontSize: 0.5
@@ -194,8 +203,9 @@ children:
                   - type: el
                     width: 1
                     fontSize: 1
+                    lineHeight: 0.8
                     textColor: atomic-tangerine
-                    text: "09"
+                    text: '09'
                   - type: el
                     width: 3.8
                     fontSize: 0.5
@@ -214,8 +224,9 @@ children:
                   - type: el
                     width: 1
                     fontSize: 1
+                    lineHeight: 0.8
                     textColor: dodger-blue
-                    text: "10"
+                    text: '10'
                   - type: el
                     width: 3.8
                     fontSize: 0.5
@@ -234,8 +245,9 @@ children:
                   - type: el
                     width: 1
                     fontSize: 1
+                    lineHeight: 0.8
                     textColor: indian-red
-                    text: "11"
+                    text: '11'
                   - type: el
                     width: 3.8
                     fontSize: 0.5
