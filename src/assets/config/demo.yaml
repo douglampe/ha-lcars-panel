@@ -886,10 +886,10 @@ children:
                 min: -360
                 max: 180
                 text: Sun
+
           - type: sample
             content: |
-              To display all element attributes in a list, you can use
-              `attribute-list`.
+              To display all element attributes in a list, you can use `attribute-list`.
             configYaml: |
               - type: attribute-list
                 entity: sun.sun
@@ -897,6 +897,26 @@ children:
                 fontSize: 0.5
                 lineHeight: 1
                 animation: row-fill
+
+          - type: sample
+            content: |
+              To display a horizontal bar for a state or attrivbute value, use `scale-h`.
+            configYaml: |
+              - type: scale-h
+                entity: sun.sun
+                attribute: elevation
+                min: -180
+                max: 180
+                color: golden-tainoi
+          - type: sample
+            configYaml: |
+              - type: scale-h
+                entity: sun.sun
+                attribute: elevation
+                min: -180
+                max: 180
+                color: golden-tainoi
+                showGrid: false
 
           - type: pill
             color: dodger-blue

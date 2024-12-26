@@ -18,6 +18,7 @@ const {
   min = 0,
   max = 100,
   tickInterval = 10,
+  showGrid = true,
 } = defineProps<{
   entity: string
   attribute: string
@@ -29,6 +30,7 @@ const {
   min?: number
   max?: number
   tickInterval?: number
+  showGrid?: boolean
 }>()
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -38,7 +40,7 @@ function getData(state: any) {
     width: unitSize(width),
     height: unitSize(height),
     tickWidth: (width * tickInterval) / (max - min),
-    tickCount: (max - min) / tickInterval,
+    tickCount: showGrid ? (max - min) / tickInterval : 0,
     value,
     valueX: ((value - min) * width) / (max - min),
   }
@@ -86,13 +88,13 @@ watch(
 animateValue(data.value)
 </script>
 <template>
-  <LCARSElement
-    :color="bgColor"
-    style="position: absolute; top: 0; left: 0"
-    :width="reactiveValueX.number"
-    :height="height"
-  />
-  <LCARSRow style="align-content: space-between">
+  <LCARSRow style="align-content: space-between; position: relative">
+    <LCARSElement
+      :color="bgColor"
+      style="position: absolute; top: 0; left: 0"
+      :width="reactiveValueX.number"
+      :height="height"
+    />
     <LCARSElement
       v-for="n in data.tickCount"
       :width="data.tickWidth"
@@ -102,6 +104,7 @@ animateValue(data.value)
         borderWidth: `${stroke}px`,
         borderColor: color,
         boxSizing: 'border-box',
+        position: 'absolotue',
         zIndex: 1,
       }"
     />
