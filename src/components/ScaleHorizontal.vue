@@ -20,6 +20,7 @@ const {
   min = 0,
   max = 100,
   tickInterval = 10,
+  decimalPlaces,
   showGrid = true,
   service,
   serviceKey,
@@ -36,6 +37,7 @@ const {
   min?: number
   max?: number
   tickInterval?: number
+  decimalPlaces?: number
   showGrid?: boolean
   service?: string
   serviceKey?: string
@@ -128,9 +130,21 @@ if (service) {
 }
 
 function setValue(val: number) {
+  let checkedValue = val
+
+  if (checkedValue < min) {
+    checkedValue
+  } else if (checkedValue > max) {
+    checkedValue = max
+  }
+
+  if (decimalPlaces) {
+    checkedValue = Number(checkedValue.toFixed(decimalPlaces))
+  }
+
   if (service && serviceKey && entity) {
     const serviceData = { ...data, entity_id: entity } as any
-    serviceData[serviceKey] = val
+    serviceData[serviceKey] = checkedValue
     callService(service, serviceData)
   }
 }
