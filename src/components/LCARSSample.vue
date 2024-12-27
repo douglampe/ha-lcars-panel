@@ -6,7 +6,7 @@ import LCARSRow from './LCARSRow.vue'
 import RecursiveComponent from './RecursiveComponent.vue'
 import YAML from 'yaml'
 
-const { content, configYaml } = defineProps<{ content: string; configYaml: string }>()
+const { content, configYaml } = defineProps<{ content?: string; configYaml: string }>()
 
 const parsedConfig = computed(() => {
   if (!configYaml) {
@@ -18,7 +18,7 @@ const parsedConfig = computed(() => {
 </script>
 
 <template>
-  <LCARSMarkdown :content="content"></LCARSMarkdown>
+  <LCARSMarkdown v-if="content" :content="content"></LCARSMarkdown>
   <LCARSRow :margin-bottom="1">
     <pre>{{ configYaml }}</pre>
     <LCARSCol :margin-left="1"
