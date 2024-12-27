@@ -916,16 +916,30 @@ children:
 
           - type: sample
             content: |
-              To display a horizontal bar for a state or attrivbute value, use `scale-h`.
+              To display a horizontal bar for a state or attrivbute value, use `scale-h`. To call a service when the 
+              scale is tapped or dragged, set the `service` key to the service name and the `serviceKey` to the service
+              parameter to set to the new value. Dragging will increase or decrease by the amount you drag while 
+              tapping will set the value to the location of the tap. In the example below, the service will be called
+              as follows: 
+              ```
+              service: light.turn_on
+              data:
+                entity_id: light.test
+                brightness: {{ value }}
+              ```
+
+              To add additional static data values to the service call, use the `data` key.
             configYaml: |
               - type: scale-h
-                entity: sun.sun
-                attribute: elevation
-                min: -180
-                max: 180
-                tickInterval: 30
+                entity: light.test
+                attribute: brightness
+                min: 0
+                max: 255
+                tickInterval: 25.5
                 color: golden-tainoi
                 gridColor: dodger-blue
+                service: light.turn_on
+                serviceKey: brightness
           - type: sample
             configYaml: |
               - type: scale-h

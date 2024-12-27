@@ -46,7 +46,11 @@ export function callService(serviceName: string, data: any) {
 export function loadTestState() {
   haState.value = {
     callService: (domain: string, service: string, data?: any) => {
-      alert(`Service called: ${domain}.${service} with data\n${JSON.stringify(data, null, 2)}`)
+      if (domain === 'light' && service === 'turn_on') {
+        haState.value.states['light.test'].attributes.brightness = data.brightness
+      } else {
+        alert(`Service called: ${domain}.${service} with data\n${JSON.stringify(data, null, 2)}`)
+      }
       return Promise.resolve('OK')
     },
     callWS: (_message: any) => Promise.reject('Thisis a test state.'),
@@ -74,6 +78,13 @@ export function loadTestState() {
           device_trackers: [],
           user_id: '123',
           friendly_name: 'Doug',
+        },
+      },
+      'light.test': {
+        entity_id: 'light.test',
+        state: 'on',
+        attributes: {
+          brightness: 50,
         },
       },
       'sun.sun': {

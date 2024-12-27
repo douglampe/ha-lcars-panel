@@ -1,11 +1,13 @@
 <script setup lang="ts">
-import { computed, reactive, watch } from 'vue'
+import { computed, reactive, ref, watch } from 'vue'
 import gsap from 'gsap'
 
-import { getStateValue, haState } from '../HAState'
+import { callService, getStateValue, haState } from '../HAState'
 import { colorVar, unitSize } from '@/Layout'
 import LCARSElement from './LCARSElement.vue'
 import LCARSRow from './LCARSRow.vue'
+import { useGesture } from '@vueuse/gesture'
+import { useMotionProperties, useSpring } from '@vueuse/motion'
 
 const {
   entity,
@@ -19,6 +21,9 @@ const {
   max = 100,
   tickInterval = 10,
   showGrid = true,
+  service,
+  serviceKey,
+  data,
 } = defineProps<{
   entity: string
   attribute: string
@@ -32,6 +37,9 @@ const {
   max?: number
   tickInterval?: number
   showGrid?: boolean
+  service?: string
+  serviceKey?: string
+  data?: any
 }>()
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -47,7 +55,7 @@ function getData(state: any) {
   }
 }
 
-const data = computed(() => {
+const scaleConfig = computed(() => {
   return getData(haState.value)
 })
 
@@ -56,12 +64,10 @@ function getValue(state: any) {
   return getStateValue(state, entity, attribute) ?? min
 }
 
-const reactiveValue = reactive({ number: 0 })
 const reactiveValueX = reactive({ number: 0 })
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function animateValue(newData: any) {
-  gsap.to(reactiveValue, { duration: 1, number: newData.value })
   gsap.to(reactiveValueX, { duration: 1, number: newData.valueX })
 }
 
@@ -75,28 +81,82 @@ watch(
   },
 )
 
-animateValue(data.value)
+animateValue(scaleConfig.value)
+
+const scale = ref()
+
+if (service) {
+  const { motionProperties } = useMotionProperties(scale, {
+    cursor: 'grab',
+    x: 0,
+    y: 0,
+  })
+
+  const { set } = useSpring(motionProperties as any)
+
+  useGesture(
+    {
+      onDrag: ({ dragging }) => {
+        if (!dragging) {
+          set({ x: 0, y: 0, cursor: 'grab' })
+          return
+        }
+
+        set({
+          cursor: 'grabbing',
+          x: 0,
+          y: 0,
+        })
+      },
+      onDragStart: (state) => {
+        console.log(state)
+      },
+      onDragEnd: ({ movement: [x, y], tap, xy: [tapX, tapY] }) => {
+        if (tap) {
+          const bounds = scale.value.getBoundingClientRect()
+          const newValue = ((tapX - bounds.x) / scale.value.clientWidth) * (max - min) + min
+          setValue(newValue)
+        } else {
+          setValue(scaleConfig.value.value + (x / scale.value.clientWidth) * (max - min))
+        }
+      },
+    },
+    {
+      domTarget: scale,
+    },
+  )
+}
+
+function setValue(val: number) {
+  if (service && serviceKey && entity) {
+    const serviceData = { ...data, entity_id: entity } as any
+    serviceData[serviceKey] = val
+    callService(service, serviceData)
+  }
+}
 </script>
 <template>
-  <LCARSRow style="align-content: space-between; position: relative">
-    <LCARSElement
-      :color="bgColor ?? color"
-      style="position: absolute; top: 0; left: 0"
-      :width="reactiveValueX.number"
-      :height="height"
-    />
-    <LCARSElement
-      v-for="n in data.tickCount"
-      :width="data.tickWidth"
-      :height="height"
-      :style="{
-        borderStyle: 'solid',
-        borderWidth: `${stroke}px`,
-        borderColor: colorVar(gridColor),
-        boxSizing: 'border-box',
-        position: 'absolotue',
-        zIndex: 1,
-      }"
-    />
-  </LCARSRow>
+  <div ref="scale">
+    <LCARSRow style="align-content: space-between; position: relative">
+      <LCARSElement
+        :color="bgColor ?? color"
+        style="position: absolute; top: 0; left: 0"
+        :width="reactiveValueX.number"
+        :height="height"
+      />
+      <LCARSElement
+        v-for="n in scaleConfig.tickCount"
+        :width="scaleConfig.tickWidth"
+        :height="height"
+        :style="{
+          borderStyle: 'solid',
+          borderWidth: `${stroke}px`,
+          borderColor: colorVar(gridColor),
+          boxSizing: 'border-box',
+          position: 'absolotue',
+          zIndex: 1,
+        }"
+      />
+    </LCARSRow>
+  </div>
 </template>
