@@ -1,0 +1,352 @@
+type: custom:ha-lcars-panel
+vars:
+  lcars_unit: 3vw
+children:
+  - type: panel-bl
+    color: light-slate-blue
+    leftWidth: 3
+    bottomHeight: 0.5
+    gap: 1
+    leftPad: 1
+    marginBottom: 0.2
+    fillBottomLeft: true
+    leftChildren:
+      - type: el
+        height: 1
+        color: lilac
+        fontSize: 0.4
+        alignContent: bottom-right
+        textColor: black
+        text: LCARS 19720
+      - type: el
+        height: 1
+        color: light-slate-blue
+        fontSize: 0.4
+        alignContent: top-right
+        textColor: black
+        text: 01-29116
+        marginBottom: -0.1
+    bottomChildren:
+      - type: el
+        width: 1
+        color: orange-peel
+      - type: el
+        width: 5
+        color: lilac
+      - type: el
+        width: 9
+        color: lilac
+      - type: el
+        width: 2
+        color: indian-red
+    children:
+      - type: row
+        children:
+          - type: el
+            fontSize: 1
+            alignContent: top-right
+            textColor: orange-peel
+            text: Spacecraft Systems Priority Allocation
+      - type: row
+        fill: true
+        children:
+          - type: table
+            fontSize: 0.4
+            textColor: orange-peel
+            lineHeight: 0.4
+            marginTop: 0.2
+            children:
+              - tag: tr
+                children:
+                  - tag: td
+                    text: 8065
+                  - tag: td
+                    text: 76537820
+                  - tag: td
+                    text: 2
+                  - tag: td
+                    text: 54809262
+                  - tag: td
+                    text: 5489
+                  - tag: td
+                    text: 3972
+                  - tag: td
+                    text: 5472
+                  - tag: td
+                    text: 3592
+                  - tag: td
+                    text: 9031
+                  - tag: td
+                    text: 6380
+                  - tag: td
+                    text: 7860
+                  - tag: td
+                    text: 6396
+                  - tag: td
+                    text: 31
+              - tag: tr
+                children:
+                  - tag: td
+                    text: 8470
+                  - tag: td
+                    text: 80830232
+                  - tag: td
+                    text: 1
+                  - tag: td
+                    text: 750232
+                  - tag: td
+                    text: 32
+                  - tag: td
+                    text: 986
+                  - tag: td
+                    text: 80
+                  - tag: td
+                    text: 43
+                  - tag: td
+                    text: 34
+                  - tag: td
+                    text: 231
+                  - tag: td
+                    text: '097'
+                  - tag: td
+                    text: 866
+                  - tag: td
+                    text: 6
+              - tag: tr
+                children:
+                  - tag: td
+                    text: 2
+                  - tag: td
+                    text: 863
+                  - tag: td
+                    text: ' '
+                  - tag: td
+                    text: 2664920
+                  - tag: td
+                    text: '089'
+                  - tag: td
+                    text: 3254
+                  - tag: td
+                    text: 784
+                  - tag: td
+                    text: 9032
+                  - tag: td
+                    text: 749
+                  - tag: td
+                    text: 26
+                  - tag: td
+                    text: 78
+                  - tag: td
+                    text: 865
+                  - tag: td
+                    text: 2
+          - type: col
+            fill: true
+            right: true
+            gap: 2
+            children:
+              - type: row
+                gap: 4
+                children:
+                  - type: pill
+                    color: light-slate-blue
+                    text: 05-8521
+                  - type: pill
+                    color: orange-peel
+                    text: exit
+              - type: row
+                children:
+                  - type: pill
+                    marginRight: 3.4
+                    color: lilac
+                    text: 06-3824
+  - type: panel-tl
+    color: indian-red
+    leftWidth: 3
+    fillTopLeft: true
+    topHeight: 0.5
+    gap: 1
+    topChildren:
+      - type: el
+        width: 1
+        color: orange-peel
+      - type: el
+        width: 5
+        height: 0.25
+        color: atomic-tangerine
+      - type: el
+        width: 9
+        color: lilac
+      - type: el
+        width: 2
+        color: indian-red
+    leftChildren:
+      - type: el
+        height: 1
+        marginTop: -0.1
+        color: indian-red
+        fontSize: 0.4
+        alignContent: bottom-right
+        textColor: black
+        text: 02-28732
+      - type: el
+        height: 2
+        color: orange-peel
+        fontSize: 0.4
+        alignContent: bottom-right
+        textColor: black
+        text: 10-53798
+      - type: el
+        height: 2
+        color: atomic-tangerine
+        fontSize: 0.4
+        alignContent: bottom-right
+        textColor: black
+        text: 20-87093
+      - type: el
+        height: 2
+        color: orange-peel
+        fontSize: 0.4
+        alignContent: bottom-right
+        textColor: black
+        text: 30-63628
+      - type: el
+        height: 2
+        color: orange-peel
+        fontSize: 0.4
+        alignContent: bottom-right
+        textColor: black
+        text: 40-58703
+      - type: el
+        height: 2
+        color: canary
+        fontSize: 0.4
+        alignContent: bottom-right
+        textColor: black
+        text: Scan Analysis
+    children:
+      - type: row
+        marginTop: 1.1
+        children:
+          - type: scale-h
+            width: 10
+            height: 2
+            entity: sun.sun
+            attribute: azimuth
+            min: 0
+            max: 360
+            tickInterval: 30
+            stroke: 1
+            color: atomic-tangerine
+            gridColor: slate-blue
+          - type: scale-h
+            width: 10
+            height: 2
+            entity: sun.sun
+            attribute: azimuth
+            min: 0
+            max: 360
+            tickInterval: 30
+            stroke: 1
+            color: canary
+            gridColor: slate-blue
+      - type: row
+        marginTop: 0.1
+        children:
+          - type: scale-h
+            width: 10
+            height: 2
+            entity: sun.sun
+            attribute: azimuth
+            min: 0
+            max: 360
+            tickInterval: 30
+            stroke: 1
+            color: indian-red
+            gridColor: slate-blue
+          - type: scale-h
+            width: 10
+            height: 2
+            entity: sun.sun
+            attribute: azimuth
+            min: 0
+            max: 360
+            tickInterval: 30
+            stroke: 1
+            color: magenta
+            gridColor: slate-blue
+      - type: row
+        marginTop: 0.1
+        children:
+          - type: scale-h
+            width: 10
+            height: 2
+            entity: sun.sun
+            attribute: azimuth
+            min: 0
+            max: 360
+            tickInterval: 30
+            stroke: 1
+            color: lilac
+            gridColor: slate-blue
+          - type: scale-h
+            width: 10
+            height: 2
+            entity: sun.sun
+            attribute: azimuth
+            min: 0
+            max: 360
+            tickInterval: 30
+            stroke: 1
+            color: orange-peel
+            gridColor: slate-blue
+      - type: row
+        marginTop: 0.1
+        children:
+          - type: scale-h
+            width: 10
+            height: 2
+            entity: sun.sun
+            attribute: azimuth
+            min: 0
+            max: 360
+            tickInterval: 30
+            stroke: 1
+            color: cosmic
+            gridColor: slate-blue
+          - type: scale-h
+            width: 10
+            height: 2
+            entity: sun.sun
+            attribute: azimuth
+            min: 0
+            max: 360
+            tickInterval: 30
+            stroke: 1
+            color: free-speech-red
+            gridColor: slate-blue
+      - type: row
+        marginTop: 0.1
+        children:
+          - type: scale-h
+            width: 10
+            height: 2
+            entity: sun.sun
+            attribute: azimuth
+            min: 0
+            max: 360
+            tickInterval: 30
+            stroke: 1
+            color: chetwode-blue
+            gridColor: slate-blue
+          - type: scale-h
+            width: 10
+            height: 2
+            entity: sun.sun
+            attribute: azimuth
+            min: 0
+            max: 360
+            tickInterval: 30
+            stroke: 1
+            color: silver
+            gridColor: slate-blue
