@@ -895,8 +895,24 @@ children:
                 entity: sun.sun
                 textColor: lilac
                 fontSize: 0.5
-                lineHeight: 1
+                lineHeight: 0.5
                 animation: row-fill
+          - type: sample
+            configYaml: |
+              - type: attribute-list
+                entity: sun.sun
+                textColor: lilac
+                fontSize: 0.5
+                lineHeight: 0.5
+                animation: scanning
+          - type: sample
+            configYaml: |
+              - type: attribute-list
+                entity: sun.sun
+                textColor: lilac
+                fontSize: 0.5
+                lineHeight: 0.5
+                animation: scanning-fast
 
           - type: sample
             content: |
@@ -907,7 +923,9 @@ children:
                 attribute: elevation
                 min: -180
                 max: 180
+                tickInterval: 30
                 color: golden-tainoi
+                gridColor: dodger-blue
           - type: sample
             configYaml: |
               - type: scale-h
@@ -915,7 +933,8 @@ children:
                 attribute: elevation
                 min: -180
                 max: 180
-                color: golden-tainoi
+                tickInterval: 30
+                gridColor: blue
                 showGrid: false
 
           - type: pill
