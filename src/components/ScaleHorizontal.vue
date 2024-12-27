@@ -129,7 +129,7 @@ if (service) {
 
 function setValue(val: number) {
   if (service && serviceKey && entity) {
-    const serviceData = { ...data, target: { entity_id: entity } } as any
+    const serviceData = { ...data, entity_id: entity } as any
     serviceData[serviceKey] = val
     callService(service, serviceData)
   }
