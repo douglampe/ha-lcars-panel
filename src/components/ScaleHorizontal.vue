@@ -2,8 +2,8 @@
 import { computed, reactive, watch } from 'vue'
 import gsap from 'gsap'
 
-import { haState } from '../HAState'
-import { unitSize } from '@/Layout'
+import { getStateValue, haState } from '../HAState'
+import { colorVar, unitSize } from '@/Layout'
 import LCARSElement from './LCARSElement.vue'
 import LCARSRow from './LCARSRow.vue'
 
@@ -12,8 +12,8 @@ const {
   attribute,
   width = 10,
   height = 3,
-  color = 'periwinkle',
-  bgColor = 'golden-tainoi',
+  color = 'golden-tainoi',
+  gridColor = 'periwinkle',
   stroke = 2,
   min = 0,
   max = 100,
@@ -26,6 +26,7 @@ const {
   height?: number
   color?: string
   bgColor?: string
+  gridColor?: string
   stroke?: number
   min?: number
   max?: number
@@ -52,18 +53,7 @@ const data = computed(() => {
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function getValue(state: any) {
-  if (!state?.states) {
-    return min
-  }
-
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const entityObject: any = state.states[entity]
-
-  if (!entityObject?.attributes) {
-    return min
-  }
-
-  return entityObject.attributes[attribute]
+  return getStateValue(state, entity, attribute) ?? min
 }
 
 const reactiveValue = reactive({ number: 0 })
@@ -90,7 +80,7 @@ animateValue(data.value)
 <template>
   <LCARSRow style="align-content: space-between; position: relative">
     <LCARSElement
-      :color="bgColor"
+      :color="bgColor ?? color"
       style="position: absolute; top: 0; left: 0"
       :width="reactiveValueX.number"
       :height="height"
@@ -102,7 +92,7 @@ animateValue(data.value)
       :style="{
         borderStyle: 'solid',
         borderWidth: `${stroke}px`,
-        borderColor: color,
+        borderColor: colorVar(gridColor),
         boxSizing: 'border-box',
         position: 'absolotue',
         zIndex: 1,
