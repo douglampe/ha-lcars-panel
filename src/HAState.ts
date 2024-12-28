@@ -19,7 +19,7 @@ export function getStateValue(state: any, entity: string, attribute?: string) {
   const entityObject: any = state.states[entity]
 
   if (!attribute) {
-    return entityObject.state
+    return entityObject?.state
   }
 
   if (!entityObject?.attributes) {
