@@ -19,7 +19,7 @@ export function getStateValue(state: any, entity: string, attribute?: string) {
   const entityObject: any = state.states[entity]
 
   if (!attribute) {
-    return entityObject.state
+    return entityObject?.state
   }
 
   if (!entityObject?.attributes) {
@@ -46,11 +46,18 @@ export function callService(serviceName: string, data: any) {
 export function loadTestState() {
   haState.value = {
     callService: (domain: string, service: string, data?: any) => {
-      if (domain === 'light' && service === 'turn_on') {
-        haState.value.states['light.test'].attributes.brightness = data.brightness
-      } else {
-        alert(`Service called: ${domain}.${service} with data\n${JSON.stringify(data, null, 2)}`)
+      if (domain === 'light') {
+        if (service === 'turn_on') {
+          haState.value.states['light.test'].attributes.brightness = data.brightness
+          return Promise.resolve('OK')
+        } else if (service === 'toggle') {
+          haState.value.states['light.test'].state =
+            haState.value.states['light.test'].state === 'on' ? 'off' : 'on'
+          return Promise.resolve('OK')
+        }
       }
+
+      alert(`Service called: ${domain}.${service} with data\n${JSON.stringify(data, null, 2)}`)
       return Promise.resolve('OK')
     },
     callWS: (_message: any) => Promise.reject('Thisis a test state.'),

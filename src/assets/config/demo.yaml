@@ -986,6 +986,28 @@ children:
                 gridColor: blue
                 showGrid: false
 
+          - type: sample
+            content: |
+              To conditionally set properties based on entity state, you can add a `stateMap` key and add an entry for
+              each state to set properties when the entity has that state.
+            configYaml: |
+              - type: pill
+                color: blue
+                textColor: black
+                text: test
+                tapAction:
+                  action: call-service
+                  service: light.toggle
+                stateMap:
+                  entity: light.test
+                  states:
+                    on:
+                      color: orange-peel
+                      text: Active
+                    off:
+                      color: cosmic
+                      text: Inactive
+
           - type: pill
             color: dodger-blue
             nav: /demo/actions
