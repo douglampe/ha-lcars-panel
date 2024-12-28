@@ -110,9 +110,6 @@ if (service) {
           y: 0,
         })
       },
-      onDragStart: (state) => {
-        console.log(state)
-      },
       onDragEnd: ({ movement: [x, y], tap, xy: [tapX, tapY] }) => {
         if (tap) {
           const bounds = scale.value.getBoundingClientRect()
