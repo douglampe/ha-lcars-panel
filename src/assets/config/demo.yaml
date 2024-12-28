@@ -1,6 +1,15 @@
 type: custom:ha-lcars-panel
 vars:
   lcars_unit: 4vw
+mixins:
+  myText:
+    type: el
+    fontSize: 0.4
+    alignContent: bottom-right
+    height: 2
+    width: 3
+    radXTopLeft: 1
+    radXBottomLeft: 1
 children:
   - type: panel-tl
     color: golden-tainoi
@@ -126,6 +135,32 @@ children:
               - `rightChildren`: List of items to be rendered inside the right portion of the element or tag if supported
               - `topChildren`: List of items to be rendered inside the top portion of the element or tag if supported
               - `bottomChildren`: List of items to be rendered inside the bottom portion of the element or tag if supported
+
+              Another global configuration is `mixins`. A mixin allows you to specify static values that can then be
+              applied to multiple elements. For example given the following `mixins` configuration:
+
+              ```
+              mixins:
+                myText:
+                  type: el
+                  fontSize: 0.4
+                  alignContent: bottom-right
+                  height: 2
+                  width: 3
+                  radXTopLeft: 1
+                  radXBottomLeft: 1
+              ```
+
+          - type: sample
+            content: |
+              The mixin `myText` can then be used to define elements using the mixin with additional config added.
+            configYaml: |
+              - mixin: myText
+                text: Item 1
+                color: orange-peel
+              - mixin: myText
+                text: Item 2
+                color: cosmic
 
           - type: row
             gap: 1

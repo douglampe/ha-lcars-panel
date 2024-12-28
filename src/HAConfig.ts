@@ -22,8 +22,14 @@ import LCARSSample from './components/LCARSSample.vue'
 export interface HAConfig {
   type: string
   vars: Record<string, string>
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  mixins: Record<string, any>
   children: ConfigItem[]
 }
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const mixins = ref({} as any)
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const components = {} as Record<string, any>
 
@@ -61,5 +67,11 @@ export function loadVariables(haConfig: HAConfig) {
     Object.entries(haConfig.vars).forEach(([key, value]) => {
       setVariable(key, value as string)
     })
+  }
+}
+
+export function loadMixins(haConfig: HAConfig) {
+  if (haConfig?.mixins) {
+    mixins.value = haConfig.mixins
   }
 }

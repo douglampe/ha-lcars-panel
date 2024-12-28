@@ -9,4 +9,5 @@ export interface ConfigItem {
   topChildren?: ConfigItem[]
   bottomChildren?: ConfigItem[]
   config?: Record<string, any>
+  mixin?: string
 }

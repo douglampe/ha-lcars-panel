@@ -3,7 +3,7 @@ import { defineCustomElement } from 'vue'
 
 import { haState } from './HAState'
 import LCARSCardCe from './LCARSCard.ce.vue'
-import type { HAConfig } from './HAConfig'
+import { loadMixins, type HAConfig } from './HAConfig'
 
 customElements.define('lcars-card', defineCustomElement(LCARSCardCe))
 
@@ -53,6 +53,7 @@ class LCARSCustomCard extends HTMLElement {
     }
 
     this.haConfig = config
+    loadMixins(config.mixins)
     if (this.vueElement) {
       this.vueElement.config = config
     }
