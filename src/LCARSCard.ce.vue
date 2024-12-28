@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, onMounted } from 'vue'
 import type { HAConfig } from './HAConfig'
-import { loadVariables } from './HAConfig'
+import { loadMixins, loadVariables } from './HAConfig'
 import RecursiveComponent from './components/RecursiveComponent.vue'
 import testConfig from '@/assets/config/demo.yaml?raw'
 import YAML from 'yaml'
@@ -13,6 +13,7 @@ let testConfigParsed: any
 
 if (loadTest) {
   testConfigParsed = YAML.parse(testConfig)
+  loadMixins(testConfigParsed)
   loadTestState()
 }
 
