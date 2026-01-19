@@ -111,6 +111,8 @@ children:
 
               - `lcars_unit`: Sets the unit size as a valid CSS size such as `50px`, `3rem`, `3em` (Default is `2vw`)
               - `lcars_color_bg`: Sets the main background color (Default is black #000000)
+              - `lcars_color_inner_rad_bg`: Sets the background color for the inner radius of curved elements (Default 
+                is black #000000)
               - `lcars_color_text`: Sets the default text color (Default is periwinkle #C3CDE6)
               - `lcars_font_size`: Sets the default font size (Default is 0.6 units)
               - `lcars_color_text`: Sets the default color for code formatted such as `code` and `pre` tags (Default is
