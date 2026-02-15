@@ -18,6 +18,7 @@ import LCARSMarkdown from './components/LCARSMarkdown.vue'
 import type { ConfigItem } from './ConfigItem'
 import { ref } from 'vue'
 import LCARSSample from './components/LCARSSample.vue'
+import StateValueTable from './components/StateValueTable.vue'
 
 export interface HAConfig {
   type: string
@@ -47,6 +48,7 @@ registerComponent('md', LCARSMarkdown)
 registerComponent('sample', LCARSSample)
 registerComponent('state-color', StateColor)
 registerComponent('state-value', StateValue)
+registerComponent('state-value-table', StateValueTable)
 registerComponent('attribute-table', AttributeTable)
 registerComponent('attribute-flow', AttributeFlow)
 registerComponent('attribute-list', AttributeList)
