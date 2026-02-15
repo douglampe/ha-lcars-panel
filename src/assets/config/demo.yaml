@@ -953,7 +953,27 @@ children:
 
           - type: sample
             content: |
-              To display a horizontal bar for a state or attrivbute value, use `scale-h`. To call a service when the 
+              To display a table of entity states or attributes, you can use `state-value-table`.
+            configYaml: |
+              - type: state-value-table
+                rows:
+                  - cells:
+                      - entity: sun.sun
+                        attribute: elevation
+                      - entity: sun.sun
+                        attribute: azimuth
+                  - cells:
+                      - entity: light.test
+                      - entity: light.test
+                        attribute: brightness
+                textColor: lilac
+                fontSize: 0.5
+                lineHeight: 0.5
+                animation: row-fill
+
+          - type: sample
+            content: |
+              To display a horizontal bar for a state or attribute value, use `scale-h`. To call a service when the 
               scale is tapped or dragged, set the `service` key to the service name and the `serviceKey` to the service
               parameter to set to the new value. Dragging will increase or decrease by the amount you drag while 
               tapping will set the value to the location of the tap. In the example below, the service will be called
