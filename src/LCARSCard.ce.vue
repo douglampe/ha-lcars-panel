@@ -22,19 +22,29 @@ const children = computed(() => {
   return localConfig.children
 })
 
+function getCssRoot() {
+  const scripts = document.querySelectorAll('script')
+
+  scripts.forEach((script) => {
+    const index = script.src.indexOf('ha-lcars-panel.js')
+    if (index > -1) {
+      return script.src.substring(0, index)
+    }
+  })
+  return false
+}
+
 function addCssLink(href: string) {
-  console.log('Adding CSS link:', href)
   let file = document.createElement('link')
   file.rel = 'stylesheet'
-  file.href = href
+  file.href = `${getCssRoot()}${href}`
   document.head.appendChild(file)
 }
 
 onMounted(() => {
   loadVariables(testConfigParsed ?? config)
   if (process.env.VITE_ENVIRONMENT === 'production') {
-    addCssLink('/hacsfiles/ha-lcars-panel/ha-lcars-panel.css')
-    addCssLink('/local/ha-lcars-panel.css')
+    addCssLink('ha-lcars-panel.css')
   }
 })
 </script>
