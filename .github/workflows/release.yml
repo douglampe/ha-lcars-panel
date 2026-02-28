@@ -38,6 +38,8 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/')
         with:
           files: |
+            release/ha-lcars-panel.js
+            release/ha-lcars-panel.css
             release/ha-lcars-panel-${{ env.RELEASE_VERSION }}.js
             release/ha-lcars-panel-${{ env.RELEASE_VERSION }}.css
           token: ${{ secrets.CUSTOM_GITHUB_TOKEN }}
