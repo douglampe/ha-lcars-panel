@@ -25,13 +25,16 @@ const children = computed(() => {
 function getCssRoot() {
   const scripts = document.querySelectorAll('script')
 
+  let cssRoot: string | undefined = undefined
+
   scripts.forEach((script) => {
     const index = script.src.indexOf('ha-lcars-panel.js')
     if (index > -1) {
-      return script.src.substring(0, index)
+      cssRoot = script.src.substring(0, index)
+      return false
     }
   })
-  return false
+  return cssRoot
 }
 
 function addCssLink(href: string) {
