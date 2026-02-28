@@ -43,8 +43,9 @@ function addCssLink(href: string) {
 
 onMounted(() => {
   loadVariables(testConfigParsed ?? config)
-  if (process.env.VITE_ENVIRONMENT === 'production') {
-    addCssLink('ha-lcars-panel.css')
+  const cssRoot = getCssRoot()
+  if (cssRoot) {
+    addCssLink(`${cssRoot}ha-lcars-panel.css`)
   }
 })
 </script>
