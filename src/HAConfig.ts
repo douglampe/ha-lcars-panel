@@ -18,7 +18,10 @@ import LCARSMarkdown from './components/LCARSMarkdown.vue'
 import type { ConfigItem } from './ConfigItem'
 import { ref } from 'vue'
 import LCARSSample from './components/LCARSSample.vue'
+import LCARSThemeSample from './components/LCARSThemeSample.vue'
 import StateValueTable from './components/StateValueTable.vue'
+import themeConfig from '@/assets/themes/themes.yaml?raw'
+import YAML from 'yaml'
 
 export interface HAConfig {
   type: string
@@ -26,6 +29,7 @@ export interface HAConfig {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   mixins: Record<string, any>
   children: ConfigItem[]
+  theme?: string
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -46,6 +50,7 @@ registerComponent('panel-all', PanelAll)
 registerComponent('table', LCARSTable)
 registerComponent('md', LCARSMarkdown)
 registerComponent('sample', LCARSSample)
+registerComponent('theme-sample', LCARSThemeSample)
 registerComponent('state-color', StateColor)
 registerComponent('state-value', StateValue)
 registerComponent('state-value-table', StateValueTable)
@@ -69,6 +74,15 @@ export function loadVariables(haConfig: HAConfig) {
     Object.entries(haConfig.vars).forEach(([key, value]) => {
       setVariable(key, value as string)
     })
+  }
+}
+
+export function loadTheme(theme: string) {
+  const themes = YAML.parse(themeConfig)
+  const colors = themes[theme]
+  for (let i = 0; i < 10; i++) {
+    const index = i % colors.length
+    setVariable(`lcars-color-${i + 1}`, `var(--lcars-color-${colors[index] as string})`)
   }
 }
 

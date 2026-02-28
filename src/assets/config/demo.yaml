@@ -58,6 +58,11 @@ children:
         text: Actions
         color: dodger-blue
         textColor: black
+      - type: el
+        nav: /demo/themes
+        text: Themes
+        color: indian-red
+        textColor: black
     children:
       - showForNav: /home
         children:
@@ -1050,3 +1055,21 @@ children:
                   service: light.turn_on
                   data:
                     entity_id: light.my_light
+
+      - showForNav: /demo/themes
+        children:
+          - type: sample
+            content: |
+              You can select a theme by setting the `theme` top-level config key.
+
+              Themes provide 10 numbered colors that can be set by simply specifying the number 1-10. You can create
+              your own custom theme by using the `vars` top-level configuration key to set the values of variables
+              `lcars-color-1` through `lcars-color-10` to any valid CSS color.
+
+              Supported themes are shown below.
+            configYaml: |
+              - type: pill
+                color: 1
+                text: Color 1
+                width: 4
+          - type: theme-sample

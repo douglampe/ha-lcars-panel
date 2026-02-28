@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, onMounted } from 'vue'
 import type { HAConfig } from './HAConfig'
-import { loadMixins, loadVariables } from './HAConfig'
+import { loadMixins, loadTheme, loadVariables } from './HAConfig'
 import RecursiveComponent from './components/RecursiveComponent.vue'
 import testConfig from '@/assets/config/demo.yaml?raw'
 import YAML from 'yaml'
@@ -46,6 +46,11 @@ function addCssLink(href: string) {
 
 onMounted(() => {
   loadVariables(testConfigParsed ?? config)
+  if (config.theme) {
+    loadTheme(config.theme)
+  } else {
+    loadTheme('default')
+  }
   const cssRoot = getCssRoot()
   if (cssRoot) {
     addCssLink(`${cssRoot}ha-lcars-panel.css`)
