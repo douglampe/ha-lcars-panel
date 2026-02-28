@@ -15,6 +15,9 @@ export default defineConfig({
       mangle: false,
     },
   },
+  define: {
+    'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+  },
   plugins: [vue(), vueJsx(), vueDevTools()],
   resolve: {
     alias: {
