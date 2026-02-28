@@ -1,6 +1,6 @@
 type: custom:ha-lcars-panel
 vars:
-  lcars_unit: 4vw
+  lcars_unit: 30pt
 mixins:
   myText:
     type: el
