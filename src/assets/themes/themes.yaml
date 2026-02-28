@@ -1,0 +1,28 @@
+default:
+  - mauve #c9f
+  - flushed-mahogany #c44
+  - pizazz #f80
+  - atomic-tangerine #f96
+  - malibu #89f
+  - wax-flower #fba
+  - heliotrope #96f
+nemesis:
+  - tan #ca8
+  - zircon #ebf0ff
+  - blue-ribbon #26f
+  - malibu #69f
+  - crusta #f83
+  - peach-orange #fc9
+  - blue #23f
+  - comet #52526a
+lower-decks:
+  - vermilion #f40
+  - flush-orange #f70
+  - peach-orange #fc9
+  - yellow-orange #fa4
+  - west-side #f91
+lower-decks-padd:
+  - cornflower-blue #58e
+  - anakiwa #8ff
+  - danube #79d
+  - malibu #6cf

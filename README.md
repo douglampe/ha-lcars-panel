@@ -47,3 +47,4 @@ If you'd prefer to jump right in, you can find sample configurations (including 
   which provided the list of available colors.
 - Thanks to [LCARS Anomations](https://youtube.com/playlist?list=PLah0JzbIlDe8vDgRiKqmX7yTxDFh4yEYA&si=UuGOlyX1Z4b-LT1n)
   on YouTube for inspiration for components and demos.
+- Thanks to [The LCARS](https://www.thelcars.com/) for coming up with some cool themes that are supported here.
