@@ -37,14 +37,15 @@ function getCssRoot() {
 function addCssLink(href: string) {
   let file = document.createElement('link')
   file.rel = 'stylesheet'
-  file.href = `${getCssRoot()}${href}`
+  file.href = href
   document.head.appendChild(file)
 }
 
 onMounted(() => {
   loadVariables(testConfigParsed ?? config)
-  if (process.env.VITE_ENVIRONMENT === 'production') {
-    addCssLink('ha-lcars-panel.css')
+  const cssRoot = getCssRoot()
+  if (cssRoot) {
+    addCssLink(`${cssRoot}ha-lcars-panel.css`)
   }
 })
 </script>
