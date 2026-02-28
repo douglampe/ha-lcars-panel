@@ -22,8 +22,20 @@ const children = computed(() => {
   return localConfig.children
 })
 
+function addCssLink(href: string) {
+  console.log('Adding CSS link:', href)
+  let file = document.createElement('link')
+  file.rel = 'stylesheet'
+  file.href = href
+  document.head.appendChild(file)
+}
+
 onMounted(() => {
   loadVariables(testConfigParsed ?? config)
+  if (process.env.VITE_ENVIRONMENT === 'production') {
+    addCssLink('/hacsfiles/ha-lcars-panel/ha-lcars-panel.css')
+    addCssLink('/local/ha-lcars-panel.css')
+  }
 })
 </script>
 
