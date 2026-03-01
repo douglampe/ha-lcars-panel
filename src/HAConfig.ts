@@ -58,6 +58,7 @@ registerComponent('attribute-table', AttributeTable)
 registerComponent('attribute-flow', AttributeFlow)
 registerComponent('attribute-list', AttributeList)
 registerComponent('scale-h', ScaleHorizontal)
+registerComponent('remote', LCARSElement)
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function registerComponent(key: string, component: any) {
@@ -89,5 +90,35 @@ export function loadTheme(theme: string) {
 export function loadMixins(haConfig: HAConfig) {
   if (haConfig?.mixins) {
     mixins.value = haConfig.mixins
+  }
+}
+
+export async function loadRemoteConfigs(config: HAConfig) {
+  for (const item of config.children) {
+    if (item.url) {
+      await loadRemoteConfig(item)
+    }
+  }
+}
+
+export async function loadRemoteConfig(item: ConfigItem) {
+  if (item.url) {
+    try {
+      const response = await fetch(item.url)
+      const text = await response.text()
+      //HACK: If remote config is a top-level panel, make it an element.
+      const remoteConfig = YAML.parse(text.replace('custom:ha-lcars-panel', 'el'))
+      if (!item.children) {
+        item.children = []
+      }
+      item.children.push(remoteConfig)
+    } catch (error) {
+      console.error(`Error loading remote config from ${item.url}:`, error)
+    }
+  }
+  if (item.children) {
+    for (const child of item.children) {
+      await loadRemoteConfig(child)
+    }
   }
 }

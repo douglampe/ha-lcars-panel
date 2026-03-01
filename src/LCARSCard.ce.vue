@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, onMounted } from 'vue'
 import type { HAConfig } from './HAConfig'
-import { loadMixins, loadTheme, loadVariables } from './HAConfig'
+import { loadMixins, loadRemoteConfig, loadTheme, loadVariables } from './HAConfig'
 import RecursiveComponent from './components/RecursiveComponent.vue'
 import testConfig from '@/assets/config/demo.yaml?raw'
 import YAML from 'yaml'
@@ -9,16 +9,18 @@ import { loadTestState } from './HAState'
 
 const { config, loadTest } = defineProps<{ config: HAConfig; loadTest: boolean }>()
 
-let testConfigParsed: any
-
-if (loadTest) {
-  testConfigParsed = YAML.parse(testConfig)
-  loadMixins(testConfigParsed)
-  loadTestState()
+function getTestConfig() {
+  if (loadTest) {
+    const testConfigParsed = YAML.parse(testConfig)
+    loadMixins(testConfigParsed)
+    loadTestState()
+    return testConfigParsed
+  }
 }
 
+const localConfig = loadTest ? getTestConfig() : config
+
 const children = computed(() => {
-  const localConfig = testConfigParsed ?? config
   return localConfig.children
 })
 
@@ -44,8 +46,9 @@ function addCssLink(href: string) {
   document.head.appendChild(file)
 }
 
-onMounted(() => {
-  loadVariables(testConfigParsed ?? config)
+onMounted(async () => {
+  await loadRemoteConfig(localConfig)
+  loadVariables(localConfig)
   if (config.theme) {
     loadTheme(config.theme)
   } else {
