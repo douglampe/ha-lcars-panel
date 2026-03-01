@@ -1,19 +1,24 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { onMounted, ref } from 'vue'
 import LCARSCol from './LCARSCol.vue'
 import LCARSMarkdown from './LCARSMarkdown.vue'
 import LCARSRow from './LCARSRow.vue'
 import RecursiveComponent from './RecursiveComponent.vue'
 import YAML from 'yaml'
+import { loadRemoteConfig } from '@/HAConfig'
+import type { ConfigItem } from '@/ConfigItem'
 
 const { content, configYaml } = defineProps<{ content?: string; configYaml: string }>()
+const parsedConfig = ref<ConfigItem>({})
 
-const parsedConfig = computed(() => {
+onMounted(async () => {
   if (!configYaml) {
-    return {}
+    parsedConfig.value = {}
+  } else {
+    const yamlConfig = YAML.parse(`children:\n${configYaml}`)
+    await loadRemoteConfig(yamlConfig)
+    parsedConfig.value = yamlConfig
   }
-
-  return YAML.parse(`children:\n${configYaml}`)
 })
 </script>
 
@@ -22,7 +27,7 @@ const parsedConfig = computed(() => {
   <LCARSRow :margin-bottom="1">
     <pre>{{ configYaml }}</pre>
     <LCARSCol :margin-left="1"
-      ><RecursiveComponent v-bind="parsedConfig"></RecursiveComponent>
+      ><RecursiveComponent v-if="parsedConfig" v-bind="parsedConfig"></RecursiveComponent>
     </LCARSCol>
   </LCARSRow>
 </template>

@@ -17,6 +17,7 @@ children:
     fillHeight: true
     leftColor: golden-tainoi
     leftPad: 1
+    leftWidth: 4
     leftChildren:
       - type: el
         nav: /home
@@ -62,6 +63,11 @@ children:
         nav: /demo/themes
         text: Themes
         color: indian-red
+        textColor: black
+      - type: el
+        nav: /demo/remote
+        text: Remote Config
+        color: fiery-orange
         textColor: black
     children:
       - showForNav: /home
@@ -1056,6 +1062,11 @@ children:
                   data:
                     entity_id: light.my_light
 
+          - type: pill
+            color: indian-red
+            nav: /demo/themes
+            text: Themes
+
       - showForNav: /demo/themes
         children:
           - type: sample
@@ -1073,3 +1084,22 @@ children:
                 text: Color 1
                 width: 4
           - type: theme-sample
+          - type: pill
+            color: fiery-orange
+            nav: /demo/remote
+            width: 6
+            text: Remote Config
+
+      - showForNav: /demo/remote
+        children:
+          - type: md
+            content: |
+              You can load a configuration from a remote URL by adding an element with type `remote` and a `url` key. 
+              The URL must point to a valid YAML configuration file. This is useful for sharing configurations or 
+              breaking up a large configuration into multiple files.
+              ```
+              - type: remote
+                url: https://raw.githubusercontent.com/douglampe/ha-lcars-panel/refs/heads/main/src/assets/config/menu.yaml
+              ```
+          - type: remote
+            url: https://raw.githubusercontent.com/douglampe/ha-lcars-panel/refs/heads/main/src/assets/config/menu.yaml

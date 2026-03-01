@@ -12,4 +12,5 @@ export interface ConfigItem {
   bottomChildren?: ConfigItem[]
   config?: Record<string, any>
   mixin?: string
+  url?: string
 }
