@@ -4,6 +4,7 @@ export interface ConfigItem {
   text?: string
   visible?: boolean
   showForNav?: string
+  showForOrientation?: string
   stateMap?: { entity: string; attribute?: string; states: Record<string, any> }
   children?: ConfigItem[]
   leftChildren?: ConfigItem[]
@@ -13,4 +14,5 @@ export interface ConfigItem {
   config?: Record<string, any>
   mixin?: string
   url?: string
+  class?: string | Object
 }

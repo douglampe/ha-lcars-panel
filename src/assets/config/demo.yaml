@@ -472,6 +472,36 @@ children:
                         width: 1
                         color: dodger-blue
 
+          - type: sample
+            content: |
+              You can conditionally show and hide elements based on the orientation of the screen using 
+              `showForOrientation` which can be set to either `portrait` or `landscape`.
+            configYaml: |
+              - type: row
+                showForOrientation: landscape
+                children:
+                  - type: pill
+                    color: indian-red
+                    text: Landscape
+                  - type: pill
+                    color: indian-red
+                    text: Landscape
+                  - type: pill
+                    color: indian-red
+                    text: Landscape
+              - type: col
+                showForOrientation: portrait
+                children:
+                  - type: pill
+                    color: dodger-blue
+                    text: Portrait
+                  - type: pill
+                    color: dodger-blue
+                    text: Portrait
+                  - type: pill
+                    color: dodger-blue
+                    text: Portrait
+
           - type: pill
             color: atomic-tangerine
             text: elements

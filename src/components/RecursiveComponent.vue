@@ -4,6 +4,7 @@ import { components, mixins } from '../HAConfig'
 import { currentNav } from '@/LocalNav'
 import type { ConfigItem } from '@/ConfigItem'
 import { getStateValue, haState } from '@/HAState'
+import { computed } from 'vue'
 
 const props = withDefaults(defineProps<ConfigItem>(), { tag: 'div' })
 
@@ -31,6 +32,13 @@ function processItem(item: ConfigItem) {
   return processedItem
 }
 
+const classes = computed(() => {
+  return {
+    'lcars-portrait-only': props.showForOrientation === 'portrait',
+    'lcars-landscape-only': props.showForOrientation === 'landscape',
+  }
+})
+
 function isVisible() {
   if (props.showForNav && !currentNav?.value.startsWith(props.showForNav)) {
     return false
@@ -50,6 +58,7 @@ function isVisible() {
       <RecursiveComponent
         v-for="(child, index) in props.leftChildren"
         :key="index"
+        :class="classes"
         v-bind="processItem(child)"
       />
     </template>
@@ -57,6 +66,7 @@ function isVisible() {
       <RecursiveComponent
         v-for="(child, index) in props.topChildren"
         :key="index"
+        :class="classes"
         v-bind="processItem(child)"
       />
     </template>
@@ -64,6 +74,7 @@ function isVisible() {
       <RecursiveComponent
         v-for="(child, index) in props.bottomChildren"
         :key="index"
+        :class="classes"
         v-bind="processItem(child)"
       />
     </template>
@@ -71,6 +82,7 @@ function isVisible() {
       <RecursiveComponent
         v-for="(child, index) in props.rightChildren"
         :key="index"
+        :class="classes"
         v-bind="processItem(child)"
       />
     </template>
@@ -78,6 +90,7 @@ function isVisible() {
     <RecursiveComponent
       v-for="(child, index) in props.children"
       :key="index"
+      :class="classes"
       v-bind="processItem(child)"
     />
   </component>
