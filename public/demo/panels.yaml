@@ -1,0 +1,111 @@
+children:
+  - type: sample
+    content: |
+      Panels are containers with rounded borders.
+    configYaml: |
+      - type: panel-tl
+        color: dodger-blue
+        children:
+          - text: content
+  - type: sample
+    configYaml: |
+      - type: panel-bl
+        color: dodger-blue
+        children:
+          - text: content
+  - type: sample
+    configYaml: |
+      - type: panel-tr
+        color: dodger-blue
+        children:
+          - text: content
+  - type: sample
+    configYaml: |
+      - type: panel-br
+        color: dodger-blue
+        children:
+          - text: content
+  - type: sample
+    configYaml: |
+      - type: panel-all
+        color: dodger-blue
+        children:
+          - text: content
+
+  - type: sample
+    content: |
+      You can add elements to the sides of a panel with `leftChildren`, `rightChildren`, `topChildren`, and
+      `bottomChildren`.
+    configYaml: |
+      - type: panel-tl
+        color: dodger-blue
+        children:
+          - text: content
+        leftChildren:
+          - type: el
+            color: golden-tainoi
+            height: 1
+
+  - type: sample
+    configYaml: |
+      - type: panel-tl
+        color: dodger-blue
+        children:
+          - text: content
+        topChildren:
+          - type: el
+            color: golden-tainoi
+            width: 4
+
+  - type: sample
+    configYaml: |
+      - type: panel-bl
+        color: dodger-blue
+        children:
+          - text: content
+        leftChildren:
+          - type: el
+            color: golden-tainoi
+            height: 1
+
+  - type: sample
+    configYaml: |
+      - type: panel-bl
+        color: dodger-blue
+        children:
+          - text: content
+        bottomChildren:
+          - type: el
+            color: golden-tainoi
+            width: 4
+
+  - type: sample
+    content: |
+      You can add rounded caps to the end of a panel with `topCap` or `bottomCap`
+    configYaml: |
+      - type: panel-tl
+        color: dodger-blue
+        topCap: true
+        bottomCap: true
+        children:
+          - type: el
+            width: 4
+            height: 4
+            text: content
+
+  - type: sample
+    content: |
+      You can add a title to the top or bottom using `title`
+    configYaml: |
+      - type: panel-tl
+        color: dodger-blue
+        title: Title
+        children:
+          - type: el
+            width: 4
+            text: content
+
+  - type: pill
+    color: anakiwa
+    nav: /demo/nav
+    text: Navigation

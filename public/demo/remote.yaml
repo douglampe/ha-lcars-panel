@@ -1,0 +1,23 @@
+children:
+  - type: md
+    content: |
+      You can load a configuration from a remote URL by adding an element with type `remote` and a `url` key. 
+      The URL must point to a valid YAML configuration file. This is useful for sharing configurations or 
+      breaking up a large configuration into multiple files.
+      ```
+      - type: remote
+        url: ~/demo/sample-remote.yaml
+      ```
+
+      The remote YAML must have a single top level element. To load a list of elements, use the `children` key and
+      list the eleements. Note that the default element type is `el`.
+      ```
+      children:
+        - type: pill
+          text: button
+          color: dodger-blue
+        - type: md
+          content: This is loaded remotely
+      ```
+  - type: remote
+    url: ~/demo/sample-remote.yaml

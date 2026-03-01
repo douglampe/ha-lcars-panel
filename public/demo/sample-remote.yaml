@@ -1,0 +1,6 @@
+children:
+  - type: pill
+    text: button
+    color: dodger-blue
+  - type: md
+    content: This is loaded remotely

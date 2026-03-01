@@ -13,4 +13,5 @@ export interface ConfigItem {
   config?: Record<string, any>
   mixin?: string
   url?: string
+  remoteLoaded?: boolean
 }

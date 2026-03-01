@@ -93,18 +93,16 @@ export function loadMixins(haConfig: HAConfig) {
   }
 }
 
-export async function loadRemoteConfigs(config: HAConfig) {
-  for (const item of config.children) {
-    if (item.url) {
-      await loadRemoteConfig(item)
-    }
-  }
-}
-
 export async function loadRemoteConfig(item: ConfigItem) {
   if (item.url) {
+    if (item.remoteLoaded) {
+      return
+    }
+
+    item.remoteLoaded = true
+
     try {
-      const response = await fetch(item.url)
+      const response = await fetch(item.url.replace('~', import.meta.env.BASE_URL))
       const text = await response.text()
       //HACK: If remote config is a top-level panel, make it an element.
       const remoteConfig = YAML.parse(text.replace('custom:ha-lcars-panel', 'el'))

@@ -1,0 +1,154 @@
+children:
+  - type: sample
+    content: |
+      Home Assistant state can be displayed using multiple custom
+      components. The simplest component is `state-value` which displays the
+      value of an entity state or attribute:
+    configYaml: |
+      - type: state-value
+        entity: sun.sun
+  - type: sample
+    configYaml: |
+      - type: state-value
+        entity: sun.sun
+        attribute: elevation
+  - type: sample
+    content: |
+      This component can be placed inside an elemnt by specifying it as a
+      child
+    configYaml: |
+      - type: pill
+        color: golden-tainoi
+        children:
+          - type: state-value
+            entity: sun.sun
+            attribute: elevation
+  - type: sample
+    content: |
+      The `state-color` component will render an element and vary the
+      brightness of the color based on a numeric state value. The brightness is set to
+      a percentage relative to the `min` and `max` value. For example, if the range
+      is 0-100 and the value is 50, then the brightness will be set to 50%.
+      If you want the minimum brightness to be geeater than zero, set the `min`
+      value less than the actual value. For example, setting the minimum to -100 if the
+      range is 0-100 will set the minimum brightness to 50%.
+    configYaml: |
+      - type: state-color
+        entity: sun.sun
+        attribute: elevation
+        color: golden-tainoi
+        textColor: black
+        min: -360
+        max: 180
+        text: Sun
+
+  - type: sample
+    content: |
+      To display all element attributes in a list, you can use `attribute-list`.
+    configYaml: |
+      - type: attribute-list
+        entity: sun.sun
+        textColor: lilac
+        fontSize: 0.5
+        lineHeight: 0.5
+        animation: row-fill
+  - type: sample
+    configYaml: |
+      - type: attribute-list
+        entity: sun.sun
+        textColor: lilac
+        fontSize: 0.5
+        lineHeight: 0.5
+        animation: scanning
+  - type: sample
+    configYaml: |
+      - type: attribute-list
+        entity: sun.sun
+        textColor: lilac
+        fontSize: 0.5
+        lineHeight: 0.5
+        animation: scanning-fast
+
+  - type: sample
+    content: |
+      To display a table of entity states or attributes, you can use `state-value-table`.
+    configYaml: |
+      - type: state-value-table
+        rows:
+          - cells:
+              - entity: sun.sun
+                attribute: elevation
+              - entity: sun.sun
+                attribute: azimuth
+          - cells:
+              - entity: light.test
+              - entity: light.test
+                attribute: brightness
+        textColor: lilac
+        fontSize: 0.5
+        lineHeight: 0.5
+        animation: row-fill
+
+  - type: sample
+    content: |
+      To display a horizontal bar for a state or attribute value, use `scale-h`. To call a service when the 
+      scale is tapped or dragged, set the `service` key to the service name and the `serviceKey` to the service
+      parameter to set to the new value. Dragging will increase or decrease by the amount you drag while 
+      tapping will set the value to the location of the tap. In the example below, the service will be called
+      as follows: 
+      ```
+      service: light.turn_on
+      data:
+        entity_id: light.test
+        brightness: {{ value }}
+      ```
+
+      To add additional static data values to the service call, use the `data` key.
+    configYaml: |
+      - type: scale-h
+        entity: light.test
+        attribute: brightness
+        min: 0
+        max: 255
+        tickInterval: 25.5
+        color: golden-tainoi
+        gridColor: dodger-blue
+        service: light.turn_on
+        serviceKey: brightness
+  - type: sample
+    configYaml: |
+      - type: scale-h
+        entity: sun.sun
+        attribute: elevation
+        min: -180
+        max: 180
+        tickInterval: 30
+        gridColor: blue
+        showGrid: false
+
+  - type: sample
+    content: |
+      To conditionally set properties based on entity state, you can add a `stateMap` key and add an entry for
+      each state to set properties when the entity has that state.
+    configYaml: |
+      - type: pill
+        color: blue
+        textColor: black
+        text: test
+        tapAction:
+          action: call-service
+          service: light.toggle
+        stateMap:
+          entity: light.test
+          states:
+            on:
+              color: orange-peel
+              text: Active
+            off:
+              color: cosmic
+              text: Inactive
+
+  - type: pill
+    color: dodger-blue
+    nav: /demo/actions
+    text: Actions

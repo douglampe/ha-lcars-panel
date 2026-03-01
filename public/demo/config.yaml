@@ -1,0 +1,84 @@
+children:
+  - type: md
+    content: |
+      The top-level card configuration is as follows:
+
+      ```
+      type: custom:ha-lcars-panel
+      vars:
+        lcars_unit: 2vw
+      children:
+        - text: Hello LCARS!
+      ```
+
+      The first line is standard for all Home Asistant custom cards and simply specifies the card type.
+
+      ```
+      type: custom:ha-lcars-panel
+      ```
+
+      The `vars` key allows you to modify global variables. The following variables are available:
+
+
+      - `lcars_unit`: Sets the unit size as a valid CSS size such as `50px`, `3rem`, `3em` (Default is `2vw`)
+      - `lcars_color_bg`: Sets the main background color (Default is black #000000)
+      - `lcars_color_inner_rad_bg`: Sets the background color for the inner radius of curved elements (Default 
+        is black #000000)
+      - `lcars_color_text`: Sets the default text color (Default is periwinkle #C3CDE6)
+      - `lcars_font_size`: Sets the default font size (Default is 0.6 units)
+      - `lcars_color_text`: Sets the default color for code formatted such as `code` and `pre` tags (Default is
+        black-russian #24252B)
+      - `lcars_text_transform`: Sets the CSS text-transform for the root element. Default is `uppercase` so 
+        setting text is all-caps by default so setting this variable to `none` will use default casing.
+
+      You can override any global CSS variable using this `vars` key. Simply remove the leading dashes from the
+      variable name and replace any dashes in the name with underscores. For example, you can change the Home 
+      Assistant primary color (`--primary-color`) using `primary_color`.
+
+      The `children` key allows you to provide a list of items available for display directly in the top level 
+      container. The reason they are "available for display" is because they can be shown conditionally based
+      on navigation. Each item has the following properties:
+
+      - `type`: Used to specify a custom LCARS element
+      - `tag`: Any html tag (ex: `a`, `div`, `p`)
+      - `text`: Text that will be passed directly as content of the element or tag
+      - `showForNav`: Navigation path where item is visible
+      - `children`: List of items to be rendered inside the element or tag
+      - `leftChildren`: List of items to be rendered inside the left portion of the element or tag if supported
+      - `rightChildren`: List of items to be rendered inside the right portion of the element or tag if supported
+      - `topChildren`: List of items to be rendered inside the top portion of the element or tag if supported
+      - `bottomChildren`: List of items to be rendered inside the bottom portion of the element or tag if supported
+
+      Another global configuration is `mixins`. A mixin allows you to specify static values that can then be
+      applied to multiple elements. For example given the following `mixins` configuration:
+
+      ```
+      mixins:
+        myText:
+          type: el
+          fontSize: 0.4
+          alignContent: bottom-right
+          height: 2
+          width: 3
+          radXTopLeft: 1
+          radXBottomLeft: 1
+      ```
+
+  - type: sample
+    content: |
+      The mixin `myText` can then be used to define elements using the mixin with additional config added.
+    configYaml: |
+      - mixin: myText
+        text: Item 1
+        color: orange-peel
+      - mixin: myText
+        text: Item 2
+        color: cosmic
+
+  - type: row
+    gap: 1
+    children:
+      - type: pill
+        color: indian-red
+        text: layout
+        nav: /demo/layout

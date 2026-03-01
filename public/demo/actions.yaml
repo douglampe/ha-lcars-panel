@@ -1,0 +1,28 @@
+children:
+  - type: sample
+    content: |
+      You can call services when any item is tapped by adding an `tapAction` key.
+    configYaml: |
+      - type: row
+        bottom: true
+        children:
+          - type: pill
+            color: golden-tainoi
+            text: Toggle Light
+            width: 4
+            margin-right: 0.1
+            tapAction:
+              action: call-service
+              service: light.toggle
+              data:
+                entity_id: light.test
+          - type: el
+            text: Light is
+            pad-right: 0.1
+          - type: state-value
+            entity: light.test
+
+  - type: pill
+    color: indian-red
+    nav: /demo/themes
+    text: Themes

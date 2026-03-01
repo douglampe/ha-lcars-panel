@@ -5,7 +5,6 @@ import LCARSMarkdown from './LCARSMarkdown.vue'
 import LCARSRow from './LCARSRow.vue'
 import RecursiveComponent from './RecursiveComponent.vue'
 import YAML from 'yaml'
-import { loadRemoteConfig } from '@/HAConfig'
 import type { ConfigItem } from '@/ConfigItem'
 
 const { content, configYaml } = defineProps<{ content?: string; configYaml: string }>()
@@ -16,7 +15,6 @@ onMounted(async () => {
     parsedConfig.value = {}
   } else {
     const yamlConfig = YAML.parse(`children:\n${configYaml}`)
-    await loadRemoteConfig(yamlConfig)
     parsedConfig.value = yamlConfig
   }
 })

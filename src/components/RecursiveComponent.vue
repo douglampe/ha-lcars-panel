@@ -1,11 +1,19 @@
 <!-- eslint-disable @typescript-eslint/no-explicit-any -->
 <script setup lang="ts">
-import { components, mixins } from '../HAConfig'
+import { components, loadRemoteConfig, mixins } from '../HAConfig'
 import { currentNav } from '@/LocalNav'
 import type { ConfigItem } from '@/ConfigItem'
 import { getStateValue, haState } from '@/HAState'
+import { onMounted, ref } from 'vue'
 
 const props = withDefaults(defineProps<ConfigItem>(), { tag: 'div' })
+
+const processedProps = ref<ConfigItem>({})
+
+onMounted(async () => {
+  await loadRemoteConfig(props)
+  processedProps.value = processItem(props)
+})
 
 function processItem(item: ConfigItem) {
   let processedItem = { ...item }
@@ -32,53 +40,56 @@ function processItem(item: ConfigItem) {
 }
 
 function isVisible() {
-  if (props.showForNav && !currentNav?.value.startsWith(props.showForNav)) {
+  if (
+    processedProps.value.showForNav &&
+    !currentNav?.value.startsWith(processedProps.value.showForNav)
+  ) {
     return false
   }
-  return true
+  return processedProps.value
 }
 </script>
 
 <template>
   <component
     v-if="isVisible()"
-    :is="props.type ? components[props.type] : tag"
+    :is="processedProps.type ? components[processedProps.type] : tag"
     v-bind="props.config"
     >{{ text }}
     <a v-if="showForNav" :name="showForNav"></a>
-    <template #left v-if="props.leftChildren">
+    <template #left v-if="processedProps.leftChildren">
       <RecursiveComponent
-        v-for="(child, index) in props.leftChildren"
+        v-for="(child, index) in processedProps.leftChildren"
         :key="index"
-        v-bind="processItem(child)"
+        v-bind="child"
       />
     </template>
-    <template #top v-if="props.topChildren">
+    <template #top v-if="processedProps.topChildren">
       <RecursiveComponent
-        v-for="(child, index) in props.topChildren"
+        v-for="(child, index) in processedProps.topChildren"
         :key="index"
-        v-bind="processItem(child)"
+        v-bind="child"
       />
     </template>
-    <template #bottom v-if="props.bottomChildren">
+    <template #bottom v-if="processedProps.bottomChildren">
       <RecursiveComponent
-        v-for="(child, index) in props.bottomChildren"
+        v-for="(child, index) in processedProps.bottomChildren"
         :key="index"
-        v-bind="processItem(child)"
+        v-bind="child"
       />
     </template>
-    <template #right v-if="props.rightChildren">
+    <template #right v-if="processedProps.rightChildren">
       <RecursiveComponent
-        v-for="(child, index) in props.rightChildren"
+        v-for="(child, index) in processedProps.rightChildren"
         :key="index"
-        v-bind="processItem(child)"
+        v-bind="child"
       />
     </template>
 
     <RecursiveComponent
-      v-for="(child, index) in props.children"
+      v-for="(child, index) in processedProps.children"
       :key="index"
-      v-bind="processItem(child)"
+      v-bind="child"
     />
   </component>
 </template>
