@@ -23,5 +23,5 @@ children:
       Click the button below to start a detailed demo
   - type: pill
     color: dodger-blue
-    nav: /demo/config
+    nav: /demo/config/globals
     text: Start Demo

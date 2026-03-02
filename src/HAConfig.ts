@@ -104,8 +104,10 @@ export async function loadRemoteConfig(item: ConfigItem) {
     try {
       const response = await fetch(item.url.replace('~', import.meta.env.BASE_URL))
       const text = await response.text()
-      //HACK: If remote config is a top-level panel, make it an element.
-      const remoteConfig = YAML.parse(text.replace('custom:ha-lcars-panel', 'el'))
+      const remoteConfig = YAML.parse(text)
+      if (remoteConfig.type === 'custom:ha-lcars-panel') {
+        remoteConfig.type = 'el'
+      }
       if (!item.children) {
         item.children = []
       }

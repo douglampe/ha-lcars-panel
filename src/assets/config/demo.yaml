@@ -10,6 +10,13 @@ mixins:
     width: 3
     radXTopLeft: 1
     radXBottomLeft: 1
+  myMixin:
+    color: orange-peel
+  menuTab:
+    type: el
+    alignContent: middle-center
+    width: 4
+    textColor: black
 children:
   - type: panel-tl
     color: golden-tainoi
@@ -27,6 +34,7 @@ children:
             color: golden-tainoi
             textColor: black
             width: 4
+            height: 1
           - type: pill
             width: 1
             color: golden-tainoi
@@ -34,15 +42,12 @@ children:
       - type: row
         children:
           - type: el
-            nav: /demo/config
+            nav: /demo/config/globals
             text: Config
             color: dodger-blue
             textColor: black
             width: 4
-          - type: pill
-            width: 1
-            color: dodger-blue
-            showForNav: /demo/config
+            height: 1
       - type: row
         children:
           - type: el
@@ -51,6 +56,7 @@ children:
             color: indian-red
             textColor: black
             width: 4
+            height: 1
           - type: pill
             width: 1
             color: indian-red
@@ -63,6 +69,7 @@ children:
             color: atomic-tangerine
             textColor: black
             width: 4
+            height: 1
           - type: pill
             width: 1
             color: atomic-tangerine
@@ -75,6 +82,7 @@ children:
             color: fiery-orange
             textColor: black
             width: 4
+            height: 1
           - type: pill
             width: 1
             color: fiery-orange
@@ -87,6 +95,7 @@ children:
             color: anakiwa
             textColor: black
             width: 4
+            height: 1
           - type: pill
             width: 1
             color: anakiwa
@@ -99,6 +108,7 @@ children:
             color: lilac
             textColor: black
             width: 4
+            height: 1
           - type: pill
             width: 1
             color: lilac
@@ -111,6 +121,7 @@ children:
             color: dodger-blue
             textColor: black
             width: 4
+            height: 1
           - type: pill
             width: 1
             color: dodger-blue
@@ -123,6 +134,7 @@ children:
             color: indian-red
             textColor: black
             width: 4
+            height: 1
           - type: pill
             width: 1
             color: indian-red
@@ -135,6 +147,7 @@ children:
             color: fiery-orange
             textColor: black
             width: 4
+            height: 1
           - type: pill
             width: 1
             color: fiery-orange
