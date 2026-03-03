@@ -20,6 +20,23 @@ children:
 
       Any children added to a column will be arranged horizontally.
 
+  - type: sample
+    content: ''
+    configYaml: |
+      - type: row
+        children:
+          - type: el
+            width: 1
+            height: 1
+            color: atomic-tangerine
+          - type: el
+            width: 1
+            height: 1
+            color: indian-red
+          - type: el
+            width: 1
+            height: 1
+            color: dodger-blue
   - type: row
     children:
       - tag: pre

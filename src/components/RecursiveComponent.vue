@@ -18,11 +18,13 @@ onMounted(async () => {
   removeUndefined(processedItem)
 
   if (props.mixin && mixins.value[props.mixin]) {
+    console.log(processedItem)
     const mixin = mixins.value[props.mixin]
     processedItem = {
       ...mixin,
       ...processedItem,
     }
+    console.log(processedItem)
   }
 
   if (props.stateMap) {
@@ -38,11 +40,14 @@ onMounted(async () => {
     }
   }
 
+  processedItem.tag = components[processedItem.type ?? ''] ?? processedItem.tag
+  processedItem.parsed = true
+
   processedProps.value = processedItem
 })
 
 function isVisible() {
-  if (!processedProps.value) {
+  if (!processedProps.value.parsed) {
     return false
   }
   if (
@@ -56,10 +61,7 @@ function isVisible() {
 </script>
 
 <template>
-  <component
-    v-if="isVisible()"
-    :is="processedProps.type ? components[processedProps.type] : tag"
-    v-bind="processedProps.config ?? processedProps"
+  <component v-if="isVisible()" :is="processedProps.type ? components[processedProps.type] : tag"
     >{{ text }}
     <a v-if="showForNav" :name="showForNav"></a>
     <template #left v-if="processedProps.leftChildren">

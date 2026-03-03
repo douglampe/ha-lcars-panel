@@ -4,7 +4,8 @@ children:
     marginTop: -0.9
     marginBottom: 1
     color: dodger-blue
-    radXTopLeft: 1
+    outerRadX: 0.9
+    outerRadY: 0.9
     title: Config
     topChildren:
       - type: row
@@ -32,6 +33,10 @@ children:
             nav: /demo/config/children
             text: Children
             color: indian-red
+          - type: el
+            color: dodger-blue
+            width: 4
+            height: 1
     children:
       - type: el
         showForNav: /demo/config/globals
@@ -70,6 +75,7 @@ children:
                       text: Hello LCARS!
                   ```
               - type: pill
+                marginLeft: 1
                 mixin: myMixin
                 text: Hello LCARS!
 

@@ -7,16 +7,17 @@ import RecursiveComponent from './RecursiveComponent.vue'
 import YAML from 'yaml'
 import type { ConfigItem } from '@/ConfigItem'
 
-const { content, configYaml } = defineProps<{ content?: string; configYaml: string }>()
+const { content, configYaml } = defineProps<{ content?: string; configYaml?: string }>()
 const parsedConfig = ref<ConfigItem>({})
 
-onMounted(async () => {
+onMounted(() => {
   if (!configYaml) {
     parsedConfig.value = {}
   } else {
-    const yamlConfig = YAML.parse(`children:\n${configYaml}`)
-    parsedConfig.value = yamlConfig
+    const yamlConfig = YAML.parse(configYaml)
+    parsedConfig.value = Array.isArray(yamlConfig) ? { children: yamlConfig } : { ...yamlConfig }
   }
+  parsedConfig.value.parsed = true
 })
 </script>
 
@@ -25,7 +26,7 @@ onMounted(async () => {
   <LCARSRow :margin-bottom="1">
     <pre>{{ configYaml }}</pre>
     <LCARSCol :margin-left="1"
-      ><RecursiveComponent v-if="parsedConfig" v-bind="parsedConfig"></RecursiveComponent>
+      ><RecursiveComponent v-if="parsedConfig.parsed" v-bind="parsedConfig"></RecursiveComponent>
     </LCARSCol>
   </LCARSRow>
 </template>

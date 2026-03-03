@@ -162,31 +162,24 @@ children:
       - showForNav: /demo/layout
         type: remote
         url: ~/demo/layout.yaml
-
       - showForNav: /demo/elements
         type: remote
         url: ~/demo/elements.yaml
-
       - showForNav: /demo/panels
         type: remote
         url: ~/demo/panels.yaml
-
       - showForNav: /demo/nav
         type: remote
         url: ~/demo/nav.yaml
-
       - showForNav: /demo/state
         type: remote
         url: ~/demo/state.yaml
-
       - showForNav: /demo/actions
         type: remote
         url: ~/demo/actions.yaml
-
       - showForNav: /demo/themes
         type: remote
         url: ~/demo/themes.yaml
-
       - showForNav: /demo/remote
         type: remote
         url: ~/demo/remote.yaml

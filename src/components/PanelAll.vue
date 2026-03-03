@@ -27,7 +27,7 @@ interface PanelBLProps extends MarginProps, RadiusProps {
   leftPad?: number
   leftColor?: string
   leftGap?: number
-  leftStretch: boolean
+  leftStretch?: boolean
   rightWidth?: number
   rightPad?: number
   rightColor?: string

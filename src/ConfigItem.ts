@@ -2,7 +2,6 @@ export interface ConfigItem {
   type?: string
   tag?: string
   text?: string
-  visible?: boolean
   showForNav?: string
   stateMap?: { entity: string; attribute?: string; states: Record<string, any> }
   children?: ConfigItem[]
@@ -14,4 +13,5 @@ export interface ConfigItem {
   mixin?: string
   url?: string
   remoteLoaded?: boolean
+  parsed?: boolean
 }

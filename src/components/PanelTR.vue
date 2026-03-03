@@ -21,7 +21,7 @@ interface PanelTLProps extends MarginProps {
   rightStretch?: boolean
   topCap?: boolean
   topHeight?: number
-  topGap: number
+  topGap?: number
   topStretch?: boolean
   bottomCap?: boolean
   outerRadX?: number
