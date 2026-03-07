@@ -1,5 +1,5 @@
 export interface TapActionProps {
-  action: string
+  action?: string
   entity?: string
   target?: string
   navigationPath?: string

@@ -2,7 +2,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { navigate } from '@/LocalNav'
-import type { ElementProps } from '../props/ElementProps'
 import {
   alignStyle,
   borderStyle,
@@ -13,11 +12,16 @@ import {
   unitSize,
 } from '@/Layout'
 import { callService } from '@/HAState'
+import type { ConfigItem } from '@/ConfigItem'
 
-const config = defineProps<ElementProps>()
+const config = defineProps<ConfigItem>()
+
+defineOptions({
+  inheritAttrs: false,
+})
 
 function onClick() {
-  if (config.tapAction) {
+  if (config.tapAction?.action) {
     if (config.tapAction.action === 'call-service' && config.tapAction.service) {
       callService(config.tapAction.service, config.tapAction.data)
     }

@@ -1,0 +1,288 @@
+children:
+  - type: panel-tl
+    marginLeft: -0.9
+    marginTop: -0.9
+    marginBottom: 1
+    color: dodger-blue
+    outerRadX: 0.9
+    outerRadY: 0.9
+    title: Config
+    topChildren:
+      - type: row
+        gap: 1
+        children:
+          - type: el
+            mixin: menuTab
+            nav: /demo/config/globals
+            text: Globals
+            color: golden-tainoi
+          - type: el
+            mixin: menuTab
+            nav: /demo/config/vars
+            text: Variables
+            color: anakiwa
+          - type: el
+            mixin: menuTab
+            nav: /demo/config/themes
+            text: Themes
+            color: fiery-orange
+          - type: el
+            mixin: menuTab
+            nav: /demo/config/mixins
+            text: Mixins
+            color: lilac
+          - type: el
+            mixin: menuTab
+            nav: /demo/config/children
+            text: Children
+            color: indian-red
+          - type: el
+            mixin: menuTab
+            nav: /demo/config/remote
+            text: Remote
+            color: golden-tainoi
+          - type: el
+            color: dodger-blue
+            width: 1
+            height: 1
+    children:
+      - type: el
+        showForNav: /demo/config/globals
+        children:
+          - type: md
+            content: |
+              Global configuration keys are set at the top level of the YAML conmfiguration and they apply to the
+              entire panel. The following keys are supported:
+
+              - `type`: Defines the card type for Home Assistant and must be `custom:ha-lcars-panel`
+              - `vars`: Defines global variables
+              - `theme`: Specifies the theme to use for the panel (default is `default`)
+              - `mixins`: Defines reusable configurations that can be applied to elements
+              - `children`: Lists the elements to display in the panel
+
+          - type: md
+            content: |
+              The example below will display a rectangle with rounded ends and color `orange-peel` displaying text
+              "Hello LCARS!".
+
+          - type: row
+            children:
+              - type: md
+                content: |
+                  ```
+                  type: custom:ha-lcars-panel
+                  theme: default
+                  vars:
+                    lcars_unit: 2vw
+                  mixins:
+                    myMixin:
+                      color: orange-peel
+                  children:
+                    - type: pill
+                      mixin: myMixin
+                      text: Hello LCARS!
+                  ```
+              - type: pill
+                marginLeft: 1
+                mixin: myMixin
+                text: Hello LCARS!
+
+      - showForNav: /demo/config/vars
+        children:
+          - type: md
+            content: |
+              The `vars` key allows you to modify global variables. The following variables are available:
+          - tag: table
+            children:
+              - tag: tr
+                children:
+                  - tag: th
+                    text: Variable
+                  - tag: th
+                    text: Description
+                  - tag: th
+                    text: Default Value
+              - tag: tr
+                children:
+                  - tag: td
+                    children:
+                      - tag: code
+                        text: lcars_unit
+                  - tag: td
+                    text: 'Unit size as a valid CSS size such as `50px`, `3rem`, `3em`'
+                  - tag: td
+                    text: 2vw
+              - tag: tr
+                children:
+                  - tag: td
+                    children:
+                      - tag: code
+                        text: 'lcars_color_bg'
+                  - tag: td
+                    text: 'Main background color'
+                  - tag: td
+                    text: 'black (#000000)'
+              - tag: tr
+                children:
+                  - tag: td
+                    children:
+                      - tag: code
+                        text: 'lcars_color_inner_rad_bg'
+                  - tag: td
+                    text: 'Background color for the inner radius of curved elements'
+                  - tag: td
+                    text: 'black (#000000)'
+              - tag: tr
+                children:
+                  - tag: td
+                    children:
+                      - tag: code
+                        text: 'lcars_color_outer_rad_bg'
+                  - tag: td
+                    text: 'Background color for the outer radius of curved elements'
+                  - tag: td
+                    text: 'periwinkle (#C3CDE6)'
+              - tag: tr
+                children:
+                  - tag: td
+                    children:
+                      - tag: code
+                        text: 'lcars_font_size'
+                  - tag: td
+                    text: 'Default font size'
+                  - tag: td
+                    text: '0.6 units'
+              - tag: tr
+                children:
+                  - tag: td
+                    children:
+                      - tag: code
+                        text: 'lcars_color_text'
+                  - tag: td
+                    text: 'Default color for code formatted such as `code` and `pre` tags'
+                  - tag: td
+                    text: 'black-russian (#24252B)'
+              - tag: tr
+                children:
+                  - tag: td
+                    children:
+                      - tag: code
+                        text: 'lcars_text_transform'
+                  - tag: td
+                    text: |
+                      CSS text-transform for the root element. Default is `uppercase` so setting text is all-caps by default so setting this variable to `none` will use default casing.
+                  - tag: td
+                    text: 'uppercase'
+          - type: md
+            content: |
+
+              You can override any global CSS variable using this `vars` key. Simply remove the leading dashes from the
+              variable name and replace any dashes in the name with underscores. For example, you can change the Home 
+              Assistant primary color (`--primary-color`) using `primary_color`.
+
+              ```
+              vars:
+                primary_color: #0000FF
+              ```
+
+      - showForNav: /demo/config/themes
+        children:
+          - type: sample
+            content: |
+              You can select a theme by setting the `theme` top-level config key.
+
+              Themes provide 10 numbered colors that can be set by simply specifying the number 1-10. You can create
+              your own custom theme by using the `vars` top-level configuration key to set the values of variables
+              `lcars-color-1` through `lcars-color-10` to any valid CSS color.
+
+              Supported themes are shown below.
+            configYaml: |
+              - type: pill
+                color: "1"
+                text: Color 1
+                width: 4
+
+      - showForNav: /demo/config/mixins
+        children:
+          - type: md
+            content: |
+              Another global configuration is `mixins`. A mixin allows you to specify static values that can then be
+              applied to multiple elements. 
+
+              Note that you cannot change the `type` of an element using a mixin.
+
+              For example given the following `mixins` configuration:
+
+              ```
+              mixins:
+                myText:
+                  fontSize: 0.4
+                  alignContent: bottom-right
+                  height: 2
+                  width: 3
+                  radXTopLeft: 1
+                  radXBottomLeft: 1
+              ```
+          - type: sample
+            content: |
+              The mixin `myText` can then be used to define elements using the mixin with additional config added.
+            configYaml: |
+              - type: el
+                mixin: myText
+                text: Item 1
+                color: orange-peel
+              - type: el
+                mixin: myText
+                text: Item 2
+                color: cosmic
+
+      - showForNav: /demo/config/children
+        children:
+          - type: md
+            content: |
+              The `children` key allows you to provide a list of items available for display directly in the top level 
+              container. The reason they are "available for display" is because they can be shown conditionally based
+              on navigation. Each item has the following properties:
+
+              - `type`: Used to specify a custom LCARS element
+              - `tag`: Any html tag (ex: `a`, `div`, `p`)
+              - `text`: Text that will be passed directly as content of the element or tag
+              - `showForNav`: Navigation path where item is visible
+              - `children`: List of items to be rendered inside the element or tag
+              - `leftChildren`: List of items to be rendered inside the left portion of the element or tag if supported
+              - `rightChildren`: List of items to be rendered inside the right portion of the element or tag if supported
+              - `topChildren`: List of items to be rendered inside the top portion of the element or tag if supported
+              - `bottomChildren`: List of items to be rendered inside the bottom portion of the element or tag if supported
+
+      - showForNav: /demo/config/remote
+        children:
+          - type: md
+            content: |
+              You can load a configuration from a remote URL by adding an element with type `remote` and a `url` key. 
+              The URL must point to a valid YAML configuration file. This is useful for sharing configurations or 
+              breaking up a large configuration into multiple files.
+              ```
+              - type: remote
+                url: ~/demo/sample-remote.yaml
+              ```
+
+              The remote YAML must have a single top level element. To load a list of elements, use the `children` key and
+              list the eleements. Note that the default element type is `el`.
+              ```
+              children:
+                - type: pill
+                  text: button
+                  color: dodger-blue
+                - type: md
+                  content: This is loaded remotely
+              ```
+  - type: remote
+    url: ~/demo/sample-remote.yaml
+
+  - type: row
+    gap: 1
+    children:
+      - type: pill
+        color: indian-red
+        text: layout
+        nav: /demo/layout

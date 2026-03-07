@@ -4,12 +4,12 @@ import { haState } from '../HAState'
 import LCARSTable from './LCARSTable.vue'
 
 const { entity, animation } = defineProps<{
-  entity: string
+  entity?: string
   animation?: string
 }>()
 
 const rows = computed(() => {
-  if (!haState?.value?.states) {
+  if (!haState?.value?.states || !entity) {
     return
   }
   const rowList: Array<{ key: string; value: string }> = []

@@ -1,0 +1,78 @@
+children:
+  - type: panel-tl
+    marginLeft: -0.9
+    marginTop: -0.9
+    marginBottom: 1
+    color: anakiwa
+    outerRadX: 0.9
+    outerRadY: 0.9
+    title: Navigation
+    topChildren:
+      - type: row
+        gap: 1
+        children:
+          - type: el
+            mixin: menuTab
+            nav: /demo/nav/local
+            text: Local
+            color: golden-tainoi
+          - type: el
+            mixin: menuTab
+            nav: /demo/nav/browser
+            text: Browser
+            color: lilac
+          - type: el
+            color: anakiwa
+            width: 1
+            height: 1
+    children:
+      - showForNav: /demo/nav/local
+        children:
+          - type: sample
+            content: |
+              Local navigation uses the `showForNav` key to have any item and its
+              children visible only for certain navigation paths. The default navigation path is 
+              `/home` so setting this value means the item will be visible by default but will
+              be hidden when navigating to any path that does not start with `/home`.
+            configYaml: |
+              - type: row
+                children:
+                  - type: pill
+                    text: Nav
+                    nav: /demo/nav/test
+                    color: golden-tainoi
+                  - type: el
+                    showForNav: /demo/nav/test
+                    marginLeft: 0.5
+                    pad: 0.2
+                    color: indian-red
+                    text: Khaaaan!!!!
+      - showForNav: /demo/nav/browser
+        children:
+          - type: sample
+            content: |
+              You can navigate via the browser by prefixing
+              the value with `url:`.
+            configYaml: |
+              - type: col
+                gap: 1
+                children:
+                - type: pill
+                  text: Google
+                  nav: url:https://google.com
+                  color: golden-tainoi
+                - type: pill
+                  text: Root Path
+                  nav: url:/ha-lcars-panel
+                  color: golden-tainoi
+                - tag: a
+                  name: foo
+                - type: pill
+                  text: Anchor
+                  nav: url:#foo
+                  color: golden-tainoi
+
+  - type: pill
+    color: lilac
+    nav: /demo/state
+    text: HA State

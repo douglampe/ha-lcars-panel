@@ -5,29 +5,33 @@ import LCARSMarkdown from './LCARSMarkdown.vue'
 import LCARSRow from './LCARSRow.vue'
 import RecursiveComponent from './RecursiveComponent.vue'
 import YAML from 'yaml'
-import { loadRemoteConfig } from '@/HAConfig'
 import type { ConfigItem } from '@/ConfigItem'
 
-const { content, configYaml } = defineProps<{ content?: string; configYaml: string }>()
-const parsedConfig = ref<ConfigItem>({})
+const { content, configYaml } = defineProps<{ content?: string; configYaml?: string }>()
+const parsedConfig = ref<ConfigItem>()
 
-onMounted(async () => {
+defineOptions({
+  inheritAttrs: false,
+})
+
+onMounted(() => {
   if (!configYaml) {
     parsedConfig.value = {}
   } else {
-    const yamlConfig = YAML.parse(`children:\n${configYaml}`)
-    await loadRemoteConfig(yamlConfig)
-    parsedConfig.value = yamlConfig
+    const yamlConfig = YAML.parse(configYaml)
+    parsedConfig.value = Array.isArray(yamlConfig) ? { children: yamlConfig } : { ...yamlConfig }
   }
 })
 </script>
 
 <template>
-  <LCARSMarkdown v-if="content" :content="content"></LCARSMarkdown>
-  <LCARSRow :margin-bottom="1">
-    <pre>{{ configYaml }}</pre>
-    <LCARSCol :margin-left="1"
-      ><RecursiveComponent v-if="parsedConfig" v-bind="parsedConfig"></RecursiveComponent>
-    </LCARSCol>
-  </LCARSRow>
+  <div>
+    <LCARSMarkdown v-if="content" :content="content"></LCARSMarkdown>
+    <LCARSRow :margin-bottom="1">
+      <pre>{{ configYaml }}</pre>
+      <LCARSCol :margin-left="1"
+        ><RecursiveComponent v-if="parsedConfig" v-bind="parsedConfig"></RecursiveComponent>
+      </LCARSCol>
+    </LCARSRow>
+  </div>
 </template>

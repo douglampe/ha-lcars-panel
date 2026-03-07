@@ -89,7 +89,7 @@ children:
             color: anakiwa
             width: 3
             height: 1.5
-            capLeft: 0.75
+            capLeft: true
           - type: el
             color: cosmic
             width: 0.5
@@ -103,7 +103,7 @@ children:
             color: cosmic
             width: 3
             height: 1.5
-            capLeft: 0.75
+            capLeft: true
           - type: el
             color: anakiwa
             width: 0.5
