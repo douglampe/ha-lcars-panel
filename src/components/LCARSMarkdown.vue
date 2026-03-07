@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { marked } from 'marked'
 import { computed } from 'vue'
+import LCARSElement from './LCARSElement.vue'
 
 const { content } = defineProps<{ content?: string }>()
 
@@ -16,5 +17,7 @@ const html = computed(() => {
 </script>
 
 <template>
-  <div v-if="html" v-html="html"></div>
+  <LCARSElement v-bind="$attrs">
+    <div v-if="html" v-html="html"></div>
+  </LCARSElement>
 </template>

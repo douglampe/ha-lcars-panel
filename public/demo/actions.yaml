@@ -1,28 +1,69 @@
 children:
-  - type: sample
-    content: |
-      You can call services when any item is tapped by adding an `tapAction` key.
-    configYaml: |
+  - type: panel-tl
+    marginLeft: -0.9
+    marginTop: -0.9
+    marginBottom: 1
+    color: dodger-blue
+    outerRadX: 0.9
+    outerRadY: 0.9
+    title: Actions
+    topChildren:
       - type: row
-        bottom: true
+        gap: 1
         children:
-          - type: pill
-            color: golden-tainoi
-            text: Toggle Light
-            width: 4
-            margin-right: 0.1
-            tapAction:
-              action: call-service
-              service: light.toggle
-              data:
-                entity_id: light.test
           - type: el
-            text: Light is
-            pad-right: 0.1
-          - type: state-value
-            entity: light.test
-
-  - type: pill
-    color: indian-red
-    nav: /demo/themes
-    text: Themes
+            mixin: menuTab
+            nav: /demo/actions/tap
+            text: Tap
+            color: golden-tainoi
+          - type: el
+            mixin: menuTab
+            nav: /demo/actions/button
+            text: Button
+            color: fiery-orange
+          - type: el
+            width: 1
+            color: dodger-blue
+    children:
+      - showForNav: /demo/actions/tap
+        children:
+          - type: sample
+            content: |
+              You can call services when any item is tapped by adding an `tapAction` key.
+            configYaml: |
+              - type: row
+                bottom: true
+                children:
+                  - type: pill
+                    color: golden-tainoi
+                    text: Toggle Light
+                    width: 4
+                    margin-right: 0.1
+                    tapAction:
+                      action: call-service
+                      service: light.toggle
+                      data:
+                        entity_id: light.test
+                  - type: el
+                    text: Light is
+                    pad-right: 0.1
+                  - type: state-value
+                    entity: light.test
+      - showForNav: /demo/actions/button
+        children:
+          - type: sample
+            content: |
+              On desktop devices, the pointer will be changed to show that an element is clickable if you
+              set `button` to `true`.
+            configYaml: |
+              - type: el
+                width: 4
+                height: 1
+                fontSize: 0.5
+                textColor: black
+                alignContent: middle-center
+                color: golden-tainoi
+                capRight: true
+                capLeft: true
+                button: true
+                text: button

@@ -1,6 +1,6 @@
 type: custom:ha-lcars-panel
 vars:
-  lcars_unit: 30pt
+  lcars_unit: 3vw
 mixins:
   myText:
     type: el
@@ -15,7 +15,7 @@ mixins:
   menuTab:
     type: el
     alignContent: middle-center
-    width: 4
+    width: 3
     textColor: black
 children:
   - type: panel-tl
@@ -35,10 +35,6 @@ children:
             textColor: black
             width: 4
             height: 1
-          - type: pill
-            width: 1
-            color: golden-tainoi
-            showForNav: /home
       - type: row
         children:
           - type: el
@@ -51,107 +47,57 @@ children:
       - type: row
         children:
           - type: el
-            nav: /demo/layout
+            nav: /demo/layout/unit
             text: Layout
             color: indian-red
             textColor: black
             width: 4
             height: 1
-          - type: pill
-            width: 1
-            color: indian-red
-            showForNav: /demo/layout
       - type: row
         children:
           - type: el
-            nav: /demo/elements
+            nav: /demo/elements/element
             text: Elements
             color: atomic-tangerine
             textColor: black
             width: 4
             height: 1
-          - type: pill
-            width: 1
-            color: atomic-tangerine
-            showForNav: /demo/elements
       - type: row
         children:
           - type: el
-            nav: /demo/panels
+            nav: /demo/panels/types
             text: Panels
             color: fiery-orange
             textColor: black
             width: 4
             height: 1
-          - type: pill
-            width: 1
-            color: fiery-orange
-            showForNav: /demo/panels
       - type: row
         children:
           - type: el
-            nav: /demo/nav
+            nav: /demo/nav/local
             text: Navigation
             color: anakiwa
             textColor: black
             width: 4
             height: 1
-          - type: pill
-            width: 1
-            color: anakiwa
-            showForNav: /demo/nav
       - type: row
         children:
           - type: el
-            nav: /demo/state
+            nav: /demo/state/value
             text: HA State
             color: lilac
             textColor: black
             width: 4
             height: 1
-          - type: pill
-            width: 1
-            color: lilac
-            showForNav: /demo/state
       - type: row
         children:
           - type: el
-            nav: /demo/actions
+            nav: /demo/actions/tap
             text: Actions
             color: dodger-blue
             textColor: black
             width: 4
             height: 1
-          - type: pill
-            width: 1
-            color: dodger-blue
-            showForNav: /demo/actions
-      - type: row
-        children:
-          - type: el
-            nav: /demo/themes
-            text: Themes
-            color: indian-red
-            textColor: black
-            width: 4
-            height: 1
-          - type: pill
-            width: 1
-            color: indian-red
-            showForNav: /demo/themes
-      - type: row
-        children:
-          - type: el
-            nav: /demo/remote
-            text: Remote Config
-            color: fiery-orange
-            textColor: black
-            width: 4
-            height: 1
-          - type: pill
-            width: 1
-            color: fiery-orange
-            showForNav: /demo/remote
     children:
       - showForNav: /home
         type: remote

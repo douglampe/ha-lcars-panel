@@ -12,21 +12,20 @@ children:
         gap: 1
         children:
           - type: el
-            color: dodger-blue
-            marginLeft: -0.1
-            width: 1
-            height: 1
-          - type: el
             mixin: menuTab
             nav: /demo/config/globals
             text: Globals
-            margninTop: -0.9
             color: golden-tainoi
           - type: el
             mixin: menuTab
             nav: /demo/config/vars
             text: Variables
             color: anakiwa
+          - type: el
+            mixin: menuTab
+            nav: /demo/config/themes
+            text: Themes
+            color: fiery-orange
           - type: el
             mixin: menuTab
             nav: /demo/config/mixins
@@ -38,8 +37,13 @@ children:
             text: Children
             color: indian-red
           - type: el
+            mixin: menuTab
+            nav: /demo/config/remote
+            text: Remote
+            color: golden-tainoi
+          - type: el
             color: dodger-blue
-            width: 4
+            width: 1
             height: 1
     children:
       - type: el
@@ -51,8 +55,8 @@ children:
               entire panel. The following keys are supported:
 
               - `type`: Defines the card type for Home Assistant and must be `custom:ha-lcars-panel`
-              - `theme`: Specifies the theme to use for the panel (default is `default`)
               - `vars`: Defines global variables
+              - `theme`: Specifies the theme to use for the panel (default is `default`)
               - `mixins`: Defines reusable configurations that can be applied to elements
               - `children`: Lists the elements to display in the panel
 
@@ -181,12 +185,31 @@ children:
                 primary_color: #0000FF
               ```
 
+      - showForNav: /demo/config/themes
+        children:
+          - type: sample
+            content: |
+              You can select a theme by setting the `theme` top-level config key.
+
+              Themes provide 10 numbered colors that can be set by simply specifying the number 1-10. You can create
+              your own custom theme by using the `vars` top-level configuration key to set the values of variables
+              `lcars-color-1` through `lcars-color-10` to any valid CSS color.
+
+              Supported themes are shown below.
+            configYaml: |
+              - type: pill
+                color: "1"
+                text: Color 1
+                width: 4
+
       - showForNav: /demo/config/mixins
         children:
           - type: md
             content: |
               Another global configuration is `mixins`. A mixin allows you to specify static values that can then be
-              applied to multiple elements. Note that you cannot change the `type` of an element using a mixin.
+              applied to multiple elements. 
+
+              Note that you cannot change the `type` of an element using a mixin.
 
               For example given the following `mixins` configuration:
 
@@ -230,6 +253,31 @@ children:
               - `rightChildren`: List of items to be rendered inside the right portion of the element or tag if supported
               - `topChildren`: List of items to be rendered inside the top portion of the element or tag if supported
               - `bottomChildren`: List of items to be rendered inside the bottom portion of the element or tag if supported
+
+      - showForNav: /demo/config/remote
+        children:
+          - type: md
+            content: |
+              You can load a configuration from a remote URL by adding an element with type `remote` and a `url` key. 
+              The URL must point to a valid YAML configuration file. This is useful for sharing configurations or 
+              breaking up a large configuration into multiple files.
+              ```
+              - type: remote
+                url: ~/demo/sample-remote.yaml
+              ```
+
+              The remote YAML must have a single top level element. To load a list of elements, use the `children` key and
+              list the eleements. Note that the default element type is `el`.
+              ```
+              children:
+                - type: pill
+                  text: button
+                  color: dodger-blue
+                - type: md
+                  content: This is loaded remotely
+              ```
+  - type: remote
+    url: ~/demo/sample-remote.yaml
 
   - type: row
     gap: 1
