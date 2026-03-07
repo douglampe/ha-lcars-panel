@@ -13,7 +13,7 @@ const {
   min = 0,
   max = 100,
 } = defineProps<{
-  entity: string
+  entity?: string
   attribute?: string
   color?: string
   textColor?: string
@@ -22,6 +22,9 @@ const {
 }>()
 
 function brightnessFactor() {
+  if (!entity) {
+    return 1
+  }
   const value = getStateValue(haState.value, entity, attribute) ?? min
   return (value - min) / (max - min)
 }
@@ -37,7 +40,7 @@ function animateValue(newValue: number) {
 }
 
 watch(
-  () => getStateValue(haState.value, entity, attribute),
+  () => (entity ? getStateValue(haState.value, entity, attribute) : undefined),
   (v) => {
     if (v) {
       const newData = brightnessFactor()
@@ -55,6 +58,7 @@ animateValue(brightness.value)
     :style="{
       filter: `brightness(${reactiveValue.number})`,
     }"
+    v-bind="$attrs"
   >
     <slot></slot>
   </LCARSElement>

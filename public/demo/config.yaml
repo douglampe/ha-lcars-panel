@@ -16,20 +16,24 @@ children:
             marginLeft: -0.1
             width: 1
             height: 1
-          - mixin: menuTab
+          - type: el
+            mixin: menuTab
             nav: /demo/config/globals
             text: Globals
             margninTop: -0.9
             color: golden-tainoi
-          - mixin: menuTab
+          - type: el
+            mixin: menuTab
             nav: /demo/config/vars
             text: Variables
             color: anakiwa
-          - mixin: menuTab
+          - type: el
+            mixin: menuTab
             nav: /demo/config/mixins
             text: Mixins
             color: lilac
-          - mixin: menuTab
+          - type: el
+            mixin: menuTab
             nav: /demo/config/children
             text: Children
             color: indian-red
@@ -182,12 +186,13 @@ children:
           - type: md
             content: |
               Another global configuration is `mixins`. A mixin allows you to specify static values that can then be
-              applied to multiple elements. For example given the following `mixins` configuration:
+              applied to multiple elements. Note that you cannot change the `type` of an element using a mixin.
+
+              For example given the following `mixins` configuration:
 
               ```
               mixins:
                 myText:
-                  type: el
                   fontSize: 0.4
                   alignContent: bottom-right
                   height: 2
@@ -199,10 +204,12 @@ children:
             content: |
               The mixin `myText` can then be used to define elements using the mixin with additional config added.
             configYaml: |
-              - mixin: myText
+              - type: el
+                mixin: myText
                 text: Item 1
                 color: orange-peel
-              - mixin: myText
+              - type: el
+                mixin: myText
                 text: Item 2
                 color: cosmic
 

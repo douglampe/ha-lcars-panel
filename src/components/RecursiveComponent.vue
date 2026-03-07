@@ -3,7 +3,7 @@
 import { components, mixins } from '../HAConfig'
 import { currentNav } from '@/LocalNav'
 import type { ConfigItem } from '@/ConfigItem'
-import { computed, onMounted, ref, useAttrs } from 'vue'
+import { computed, onMounted, ref, useAttrs, watch } from 'vue'
 import { removeUndefined } from '@/Layout'
 import { getStateValue, haState } from '@/HAState'
 import HTMLComponent from './HTMLComponent.vue'
@@ -29,6 +29,18 @@ function removeFalse(obj: Record<string, any>) {
   return obj
 }
 
+function applyState(item: ConfigItem) {
+  if (item.stateMap) {
+    const val = getStateValue(haState.value, item.stateMap.entity, item.stateMap.attribute)
+    if (val) {
+      const stateMapValues = item.stateMap.states[val]
+      if (stateMapValues) {
+        Object.assign(item, stateMapValues)
+      }
+    }
+  }
+}
+
 function processItem(item: ConfigItem) {
   let processedItem = { ...item }
 
@@ -40,22 +52,7 @@ function processItem(item: ConfigItem) {
     }
   }
 
-  if (processedItem.stateMap) {
-    const val = getStateValue(
-      haState.value,
-      processedItem.stateMap.entity,
-      processedItem.stateMap.attribute,
-    )
-    if (val) {
-      const stateMapValues = processedItem.stateMap.states[val]
-      if (stateMapValues) {
-        processedItem = {
-          ...processedItem,
-          ...stateMapValues,
-        }
-      }
-    }
-  }
+  applyState(processedItem)
 
   if (processedItem.tag) {
     const { showForNav, stateMap, children, mixin, ...rest } = processedItem
@@ -87,6 +84,16 @@ function getComponentType(cmps: Record<string, any>) {
   }
 
   return props.tag ? HTMLComponent : 'div'
+}
+
+if (props.stateMap) {
+  watch(
+    () => haState.value,
+    (v) => {
+      processedProps.value = processItem(props)
+    },
+    { deep: true },
+  )
 }
 
 const isVisible = computed(() => {

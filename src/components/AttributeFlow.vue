@@ -3,7 +3,7 @@ import { computed } from 'vue'
 import { haState } from '../HAState'
 
 const { entity, scanning, fast } = defineProps<{
-  entity: string
+  entity?: string
   scanning?: boolean
   fast?: boolean
 }>()
@@ -17,7 +17,7 @@ const classes = computed(() => {
 })
 
 const rows = computed(() => {
-  if (!haState?.value?.states) {
+  if (!haState?.value?.states || !entity) {
     return
   }
   const rowList: Array<{ key: string; value: string }> = []
