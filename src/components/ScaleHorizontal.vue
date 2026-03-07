@@ -26,8 +26,8 @@ const {
   serviceKey,
   data,
 } = defineProps<{
-  entity: string
-  attribute: string
+  entity?: string
+  attribute?: string
   width?: number
   height?: number
   color?: string
@@ -43,6 +43,10 @@ const {
   serviceKey?: string
   data?: any
 }>()
+
+defineOptions({
+  inheritAttrs: false,
+})
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function getData(state: any) {
@@ -63,7 +67,7 @@ const scaleConfig = computed(() => {
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function getValue(state: any) {
-  return getStateValue(state, entity, attribute) ?? min
+  return entity ? (getStateValue(state, entity, attribute) ?? min) : min
 }
 
 const reactiveValueX = reactive({ number: 0 })
@@ -147,7 +151,7 @@ function setValue(val: number) {
 }
 </script>
 <template>
-  <div ref="scale">
+  <div ref="scale" v-bind="$attrs">
     <LCARSRow style="align-content: space-between; position: relative">
       <LCARSElement
         :color="bgColor ?? color"

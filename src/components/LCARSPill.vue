@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import type { TapActionProps } from '@/props/TapActionProps'
 import LCARSElement from './LCARSElement.vue'
 
 const {
@@ -13,6 +12,10 @@ const {
   textColor?: string
   alignContent?: string
 }>()
+
+defineOptions({
+  inheritAttrs: false,
+})
 </script>
 
 <template>
@@ -24,6 +27,8 @@ const {
     :cap-left="true"
     :cap-right="true"
     :align-content="alignContent"
-    ><slot></slot>
+    v-bind="$attrs"
+  >
+    <slot></slot>
   </LCARSElement>
 </template>

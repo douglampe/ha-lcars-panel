@@ -3,10 +3,11 @@ import type { MarginProps } from '@/props/MarginProps'
 import LCARSCol from './LCARSCol.vue'
 import LCARSElement from './LCARSElement.vue'
 import LCARSRow from './LCARSRow.vue'
+import type { ConfigItem } from '@/ConfigItem'
 
-interface PanelTLProps extends MarginProps {
+interface PanelTLProps extends ConfigItem, MarginProps {
   title?: string
-  color: string
+  color?: string
   fillWidth?: boolean
   fillHeight?: boolean
   fillLeftTop?: boolean
@@ -59,6 +60,10 @@ const {
   marginLeft,
   marginRight,
 } = defineProps<PanelTLProps>()
+
+defineOptions({
+  inheritAttrs: false,
+})
 </script>
 
 <template>

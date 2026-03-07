@@ -15,6 +15,10 @@ interface Props extends MarginProps, PadProps {
 
 const config = defineProps<Props>()
 
+defineOptions({
+  inheritAttrs: false,
+})
+
 const style = computed(() => {
   return removeUndefined({
     height: unitSize(config.height),

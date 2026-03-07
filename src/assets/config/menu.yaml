@@ -31,7 +31,7 @@ children:
                     width: 0.5
                     height: 1
                     color: indian-red
-                    capLeft: 0.5
+                    capLeft: true
                   - type: el
                     width: 1
                     fontSize: 1
@@ -52,7 +52,7 @@ children:
                     width: 0.5
                     height: 1
                     color: atomic-tangerine
-                    capLeft: 0.5
+                    capLeft: true
                   - type: el
                     width: 1
                     fontSize: 1
@@ -73,7 +73,7 @@ children:
                     width: 0.5
                     height: 1
                     color: periwinkle
-                    capLeft: 0.5
+                    capLeft: true
                   - type: el
                     width: 1
                     fontSize: 1
@@ -94,7 +94,7 @@ children:
                     width: 0.5
                     height: 1
                     color: dodger-blue
-                    capLeft: 0.5
+                    capLeft: true
                   - type: el
                     width: 1
                     fontSize: 1
@@ -115,7 +115,7 @@ children:
                     width: 0.5
                     height: 1
                     color: lilac
-                    capLeft: 0.5
+                    capLeft: true
                   - type: el
                     width: 1
                     fontSize: 1
@@ -136,7 +136,7 @@ children:
                     width: 0.5
                     height: 1
                     color: pot-pourri
-                    capLeft: 0.5
+                    capLeft: true
                   - type: el
                     width: 1
                     fontSize: 1
@@ -157,7 +157,7 @@ children:
                     width: 0.5
                     height: 1
                     color: dodger-blue
-                    capLeft: 0.5
+                    capLeft: true
                   - type: el
                     width: 1
                     fontSize: 1
@@ -178,7 +178,7 @@ children:
                     width: 0.5
                     height: 1
                     color: indian-red
-                    capLeft: 0.5
+                    capLeft: true
                   - type: el
                     width: 1
                     fontSize: 1
@@ -199,7 +199,7 @@ children:
                     width: 0.5
                     height: 1
                     color: atomic-tangerine
-                    capLeft: 0.5
+                    capLeft: true
                   - type: el
                     width: 1
                     fontSize: 1
@@ -220,7 +220,7 @@ children:
                     width: 0.5
                     height: 1
                     color: dodger-blue
-                    capLeft: 0.5
+                    capLeft: true
                   - type: el
                     width: 1
                     fontSize: 1
@@ -241,7 +241,7 @@ children:
                     width: 0.5
                     height: 1
                     color: indian-red
-                    capLeft: 0.5
+                    capLeft: true
                   - type: el
                     width: 1
                     fontSize: 1

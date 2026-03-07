@@ -6,7 +6,7 @@ import LCARSRow from './LCARSRow.vue'
 
 interface PanelBLProps extends MarginProps {
   title?: string
-  color: string
+  color?: string
   fillWidth?: boolean
   fillHeight?: boolean
   fillLeftTop?: boolean
@@ -57,6 +57,10 @@ const {
   marginLeft,
   marginRight,
 } = defineProps<PanelBLProps>()
+
+defineOptions({
+  inheritAttrs: false,
+})
 </script>
 
 <template>
