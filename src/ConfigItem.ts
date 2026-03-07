@@ -1,4 +1,9 @@
-export interface ConfigItem {
+import type { ElementProps } from './props/ElementProps'
+import type { PanelProps } from './props/PanelProps'
+import type { RowProps } from './props/RowProps'
+import type { TapActionProps } from './props/TapActionProps'
+
+export interface ConfigItem extends ElementProps, PanelProps, RowProps, TapActionProps {
   type?: string
   tag?: string
   text?: string
@@ -13,5 +18,6 @@ export interface ConfigItem {
   mixin?: string
   url?: string
   remoteLoaded?: boolean
-  parsed?: boolean
+  style?: Record<string, string>
+  class?: string | string[]
 }

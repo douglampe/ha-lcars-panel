@@ -7,7 +7,7 @@ import LCARSElement from './LCARSElement.vue'
 
 interface PanelBLProps extends MarginProps, RadiusProps {
   title?: string
-  color: string
+  color?: string
   fillWidth?: boolean
   fillHeight?: boolean
   fillTopLeft?: boolean
@@ -94,6 +94,10 @@ const {
   marginLeft,
   marginRight,
 } = defineProps<PanelBLProps>()
+
+defineOptions({
+  inheritAttrs: false,
+})
 </script>
 
 <template>

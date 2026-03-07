@@ -10,7 +10,7 @@ children:
       Supported themes are shown below.
     configYaml: |
       - type: pill
-        color: 1
+        color: "1"
         text: Color 1
         width: 4
   - type: theme-sample

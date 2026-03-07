@@ -1,6 +1,10 @@
 <script setup lang="ts">
-import { haState, loadTestState } from '../HAState'
+import { haState } from '../HAState'
 import LCARSElement from './LCARSElement.vue'
+
+defineOptions({
+  inheritAttrs: false,
+})
 </script>
 
 <template>

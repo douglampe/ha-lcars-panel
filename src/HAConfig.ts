@@ -8,6 +8,7 @@ import PanelBR from './components/PanelBR.vue'
 import PanelAll from './components/PanelAll.vue'
 import LCARSPill from './components/LCARSPill.vue'
 import LCARSTable from './components/LCARSTable.vue'
+import RecursiveComponent from './components/RecursiveComponent.vue'
 import StateColor from './components/StateColor.vue'
 import AttributeTable from './components/AttributeTable.vue'
 import AttributeFlow from './components/AttributeFlow.vue'
@@ -22,6 +23,7 @@ import LCARSThemeSample from './components/LCARSThemeSample.vue'
 import StateValueTable from './components/StateValueTable.vue'
 import themeConfig from '@/assets/themes/themes.yaml?raw'
 import YAML from 'yaml'
+import Remote from './components/Remote.vue'
 
 export interface HAConfig {
   type: string
@@ -38,6 +40,7 @@ export const mixins = ref({} as any)
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const components = {} as Record<string, any>
 
+registerComponent('default', RecursiveComponent)
 registerComponent('el', LCARSElement)
 registerComponent('pill', LCARSPill)
 registerComponent('row', LCARSRow)
@@ -58,7 +61,7 @@ registerComponent('attribute-table', AttributeTable)
 registerComponent('attribute-flow', AttributeFlow)
 registerComponent('attribute-list', AttributeList)
 registerComponent('scale-h', ScaleHorizontal)
-registerComponent('remote', LCARSElement)
+registerComponent('remote', Remote)
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function registerComponent(key: string, component: any) {
@@ -90,35 +93,5 @@ export function loadTheme(theme: string) {
 export function loadMixins(haConfig: HAConfig) {
   if (haConfig?.mixins) {
     mixins.value = haConfig.mixins
-  }
-}
-
-export async function loadRemoteConfig(item: ConfigItem) {
-  if (item.url) {
-    if (item.remoteLoaded) {
-      return
-    }
-
-    item.remoteLoaded = true
-
-    try {
-      const response = await fetch(item.url.replace('~', import.meta.env.BASE_URL))
-      const text = await response.text()
-      const remoteConfig = YAML.parse(text)
-      if (remoteConfig.type === 'custom:ha-lcars-panel') {
-        remoteConfig.type = 'el'
-      }
-      if (!item.children) {
-        item.children = []
-      }
-      item.children.push(remoteConfig)
-    } catch (error) {
-      console.error(`Error loading remote config from ${item.url}:`, error)
-    }
-  }
-  if (item.children) {
-    for (const child of item.children) {
-      await loadRemoteConfig(child)
-    }
   }
 }

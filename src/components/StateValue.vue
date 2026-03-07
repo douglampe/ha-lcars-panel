@@ -3,10 +3,16 @@ import { computed } from 'vue'
 
 import { getStateValue, haState } from '../HAState'
 
-const { entity, attribute } = defineProps<{ entity: string; attribute?: string }>()
+const { entity, attribute } = defineProps<{ entity?: string; attribute?: string }>()
+
+defineOptions({
+  inheritAttrs: false,
+})
 
 const value = computed(() => {
-  return getStateValue(haState.value, entity, attribute)
+  if (entity) {
+    return getStateValue(haState.value, entity, attribute)
+  }
 })
 </script>
 <template>{{ value }}</template>

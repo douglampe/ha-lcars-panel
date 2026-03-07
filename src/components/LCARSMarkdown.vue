@@ -2,7 +2,11 @@
 import { marked } from 'marked'
 import { computed } from 'vue'
 
-const { content } = defineProps<{ content: string }>()
+const { content } = defineProps<{ content?: string }>()
+
+defineOptions({
+  inheritAttrs: false,
+})
 
 const html = computed(() => {
   if (content) {

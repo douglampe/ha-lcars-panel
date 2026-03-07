@@ -2,10 +2,10 @@
 import { computed, onMounted } from 'vue'
 import type { HAConfig } from './HAConfig'
 import { loadMixins, loadTheme, loadVariables } from './HAConfig'
-import RecursiveComponent from './components/RecursiveComponent.vue'
 import testConfig from '@/assets/config/demo.yaml?raw'
 import YAML from 'yaml'
 import { loadTestState } from './HAState'
+import ParentComponent from './components/ParentComponent.vue'
 
 const { config, loadTest } = defineProps<{ config: HAConfig; loadTest: boolean }>()
 
@@ -62,7 +62,7 @@ onMounted(async () => {
 
 <template>
   <div class="lcars-wrapper">
-    <RecursiveComponent :children="children" />
+    <ParentComponent :children="children" />
   </div>
 </template>
 

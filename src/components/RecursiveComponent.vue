@@ -1,36 +1,53 @@
 <!-- eslint-disable @typescript-eslint/no-explicit-any -->
 <script setup lang="ts">
-import { components, loadRemoteConfig, mixins } from '../HAConfig'
+import { components, mixins } from '../HAConfig'
 import { currentNav } from '@/LocalNav'
 import type { ConfigItem } from '@/ConfigItem'
-import { getStateValue, haState } from '@/HAState'
-import { onMounted, ref } from 'vue'
+import { computed, onMounted, ref, useAttrs } from 'vue'
 import { removeUndefined } from '@/Layout'
+import { getStateValue, haState } from '@/HAState'
+import HTMLComponent from './HTMLComponent.vue'
+import ParentComponent from './ParentComponent.vue'
+import LoadingComponent from './LoadingComponent.vue'
 
-const props = withDefaults(defineProps<ConfigItem>(), { tag: 'div' })
+const props = useAttrs()
 
-const processedProps = ref<ConfigItem>({})
+const processedProps = ref<ConfigItem>()
+const renderKey = ref(0)
 
-onMounted(async () => {
-  let processedItem = { ...props }
-  await loadRemoteConfig(processedItem)
+defineOptions({
+  inheritAttrs: false,
+})
 
-  removeUndefined(processedItem)
+function removeFalse(obj: Record<string, any>) {
+  Object.keys(obj).forEach((key) => {
+    if (obj[key] === false) {
+      delete obj[key]
+    }
+  })
 
-  if (props.mixin && mixins.value[props.mixin]) {
-    console.log(processedItem)
-    const mixin = mixins.value[props.mixin]
+  return obj
+}
+
+function processItem(item: ConfigItem) {
+  let processedItem = { ...item }
+
+  if (processedItem.mixin && mixins.value[processedItem.mixin]) {
+    const mixin = mixins.value[processedItem.mixin]
     processedItem = {
       ...mixin,
       ...processedItem,
     }
-    console.log(processedItem)
   }
 
-  if (props.stateMap) {
-    const val = getStateValue(haState.value, props.stateMap.entity, props.stateMap.attribute)
+  if (processedItem.stateMap) {
+    const val = getStateValue(
+      haState.value,
+      processedItem.stateMap.entity,
+      processedItem.stateMap.attribute,
+    )
     if (val) {
-      const stateMapValues = props.stateMap.states[val]
+      const stateMapValues = processedItem.stateMap.states[val]
       if (stateMapValues) {
         processedItem = {
           ...processedItem,
@@ -40,63 +57,77 @@ onMounted(async () => {
     }
   }
 
-  processedItem.tag = components[processedItem.type ?? ''] ?? processedItem.tag
-  processedItem.parsed = true
+  if (processedItem.tag) {
+    const { showForNav, stateMap, children, mixin, ...rest } = processedItem
+    return { ...rest }
+  }
 
-  processedProps.value = processedItem
+  removeUndefined(processedItem)
+  removeFalse(processedItem)
+
+  if (processedItem.children) {
+    delete processedItem.children
+  }
+
+  renderKey.value++
+
+  return processedItem
+}
+
+function getComponentType(cmps: Record<string, any>) {
+  if (!cmps) {
+    return LoadingComponent
+  }
+
+  if (props.type) {
+    const cmpType = cmps[props.type as any as string]
+    if (cmpType) {
+      return cmpType
+    }
+  }
+
+  return props.tag ? HTMLComponent : 'div'
+}
+
+const isVisible = computed(() => {
+  if (
+    components &&
+    (!processedProps?.value?.showForNav ||
+      currentNav?.value.startsWith(processedProps.value.showForNav))
+  ) {
+    return true
+  }
+  return false
 })
 
-function isVisible() {
-  if (!processedProps.value.parsed) {
-    return false
+onMounted(() => {
+  if (!processedProps.value) {
+    processedProps.value = processItem(props as ConfigItem)
   }
-  if (
-    processedProps.value.showForNav &&
-    !currentNav?.value.startsWith(processedProps.value.showForNav)
-  ) {
-    return false
-  }
-  return true
-}
+})
 </script>
 
 <template>
-  <component v-if="isVisible()" :is="processedProps.type ? components[processedProps.type] : tag"
-    >{{ text }}
-    <a v-if="showForNav" :name="showForNav"></a>
-    <template #left v-if="processedProps.leftChildren">
-      <RecursiveComponent
-        v-for="(child, index) in processedProps.leftChildren"
-        :key="index"
-        v-bind="child"
-      />
+  <component
+    v-if="isVisible"
+    :is="getComponentType(components)"
+    v-bind="processedProps"
+    :key="renderKey"
+  >
+    {{ processedProps?.text }}
+    <a v-if="props.showForNav" :name="props.showForNav"></a>
+    <template #left v-if="props.leftChildren">
+      <ParentComponent :children="props.leftChildren as Array<ConfigItem>" />
     </template>
-    <template #top v-if="processedProps.topChildren">
-      <RecursiveComponent
-        v-for="(child, index) in processedProps.topChildren"
-        :key="index"
-        v-bind="child"
-      />
+    <template #top v-if="props.topChildren">
+      <ParentComponent :children="props.topChildren as Array<ConfigItem>" />
     </template>
-    <template #bottom v-if="processedProps.bottomChildren">
-      <RecursiveComponent
-        v-for="(child, index) in processedProps.bottomChildren"
-        :key="index"
-        v-bind="child"
-      />
+    <template #bottom v-if="props.bottomChildren">
+      <ParentComponent :children="props.bottomChildren as Array<ConfigItem>" />
     </template>
-    <template #right v-if="processedProps.rightChildren">
-      <RecursiveComponent
-        v-for="(child, index) in processedProps.rightChildren"
-        :key="index"
-        v-bind="child"
-      />
+    <template #right v-if="props.rightChildren">
+      <ParentComponent :children="props.rightChildren as Array<ConfigItem>" />
     </template>
-
-    <RecursiveComponent
-      v-for="(child, index) in processedProps.children"
-      :key="index"
-      v-bind="child"
-    />
+    <ParentComponent v-if="props.children" :children="props.children as Array<ConfigItem>" />
   </component>
 </template>
