@@ -53,7 +53,7 @@ class LCARSCustomCard extends HTMLElement {
     }
 
     this.haConfig = config
-    loadMixins(config.mixins)
+    loadMixins(config)
     if (this.vueElement) {
       this.vueElement.config = config
     }
