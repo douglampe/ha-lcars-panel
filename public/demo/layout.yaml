@@ -32,6 +32,11 @@ children:
             text: Spacing
             color: lilac
           - type: el
+            mixin: menuTab
+            nav: /demo/layout/orientation
+            text: Orientation
+            color: fiery-orange
+          - type: el
             color: indian-red
             width: 1
             height: 1
@@ -338,6 +343,19 @@ children:
                       - type: el
                         width: 1
                         color: dodger-blue
+      - showForNav: /demo/layout/orientation
+        children:
+          - type: sample
+            content: |
+              You can make your panel responsive by using the `showForOrientation` key to only show certain items when
+              the device is in portrait or landscape mode.
+            configYaml: |
+              - type: el
+                text: Portrait
+                showForOrientation: portrait
+              - type: el
+                text: Landscape
+                showForOrientation: landscape
 
       - type: pill
         color: atomic-tangerine

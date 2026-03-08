@@ -8,6 +8,7 @@ export interface ConfigItem extends ElementProps, PanelProps, RowProps, TapActio
   tag?: string
   text?: string
   showForNav?: string
+  showForOrientation?: string
   stateMap?: { entity: string; attribute?: string; states: Record<string, any> }
   children?: ConfigItem[]
   leftChildren?: ConfigItem[]
@@ -17,5 +18,6 @@ export interface ConfigItem extends ElementProps, PanelProps, RowProps, TapActio
   config?: Record<string, any>
   mixin?: string
   url?: string
-  remoteLoaded?: boolean
+  style?: Record<string, any>
+  class?: string | string[] | Record<string, boolean>
 }
