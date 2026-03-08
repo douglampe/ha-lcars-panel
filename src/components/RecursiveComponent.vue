@@ -1,8 +1,8 @@
 <!-- eslint-disable @typescript-eslint/no-explicit-any -->
 <script setup lang="ts">
-import { components, mixins } from '../HAConfig'
+import { components } from '../HAConfig'
 import { currentNav } from '@/LocalNav'
-import type { ConfigItem } from '@/ConfigItem'
+import { applyMixin, applyOrientationClass, applyState, type ConfigItem } from '@/ConfigItem'
 import { computed, onMounted, ref, useAttrs, watch } from 'vue'
 import { removeUndefined } from '@/Layout'
 import { getStateValue, haState } from '@/HAState'
@@ -29,56 +29,26 @@ function removeFalse(obj: Record<string, any>) {
   return obj
 }
 
-function applyState(item: ConfigItem) {
-  if (item.stateMap) {
-    const val = getStateValue(haState.value, item.stateMap.entity, item.stateMap.attribute)
-    if (val) {
-      const stateMapValues = item.stateMap.states[val]
-      if (stateMapValues) {
-        Object.assign(item, stateMapValues)
-      }
-    }
-  }
-}
-
 function processItem(item: ConfigItem) {
   let processedItem = { ...item }
 
-  if (processedItem.mixin && mixins.value[processedItem.mixin]) {
-    const mixin = mixins.value[processedItem.mixin]
-    processedItem = {
-      ...mixin,
-      ...processedItem,
-    }
-  }
+  removeUndefined(processedItem)
+
+  applyMixin(processedItem)
 
   applyState(processedItem)
+
+  applyOrientationClass(processedItem)
 
   if (processedItem.tag) {
     const { showForNav, stateMap, children, mixin, ...rest } = processedItem
     return { ...rest }
   }
 
-  removeUndefined(processedItem)
   removeFalse(processedItem)
 
   if (processedItem.children) {
     delete processedItem.children
-  }
-
-  if (processedItem.showForOrientation) {
-    const className = `lcars-${processedItem.showForOrientation}-only`
-    if (processedItem.class) {
-      if (typeof processedItem.class === 'string') {
-        processedItem.class += ` ${className}`
-      } else if (Array.isArray(processedItem.class)) {
-        processedItem.class.push(className)
-      } else if (typeof processedItem.class === 'object') {
-        processedItem.class[className] = true
-      }
-    } else {
-      processedItem.class = [className]
-    }
   }
 
   renderKey.value++
