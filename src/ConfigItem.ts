@@ -18,4 +18,6 @@ export interface ConfigItem extends ElementProps, PanelProps, RowProps, TapActio
   config?: Record<string, any>
   mixin?: string
   url?: string
+  style?: Record<string, string>
+  class?: string | string[] | Record<string, boolean>
 }

@@ -89,10 +89,10 @@ onMounted(async () => {
     color: var(--lcars-color-text)
 
 @media all and (orientation: landscape)
-.lcars-portrait-only
-  display: none
+  .lcars-portrait-only
+    display: none
 
 @media all and (orientation: portrait)
-.lcars-landscape-only
-  display: none
+  .lcars-landscape-only
+    display: none
 </style>

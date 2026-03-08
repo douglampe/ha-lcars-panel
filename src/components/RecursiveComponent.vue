@@ -66,17 +66,25 @@ function processItem(item: ConfigItem) {
     delete processedItem.children
   }
 
+  if (processedItem.showForOrientation) {
+    const className = `lcars-${processedItem.showForOrientation}-only`
+    if (processedItem.class) {
+      if (typeof processedItem.class === 'string') {
+        processedItem.class += ` ${className}`
+      } else if (Array.isArray(processedItem.class)) {
+        processedItem.class.push(className)
+      } else if (typeof processedItem.class === 'object') {
+        processedItem.class[className] = true
+      }
+    } else {
+      processedItem.class = [className]
+    }
+  }
+
   renderKey.value++
 
   return processedItem
 }
-
-const classes = computed(() => {
-  return {
-    'lcars-portrait-only': props.showForOrientation === 'portrait',
-    'lcars-landscape-only': props.showForOrientation === 'landscape',
-  }
-})
 
 function getComponentType(cmps: Record<string, any>) {
   if (!cmps) {
@@ -127,6 +135,8 @@ onMounted(() => {
     :is="getComponentType(components)"
     v-bind="processedProps"
     :key="renderKey"
+    :style="processedProps?.style ?? {}"
+    :class="processedProps?.class ?? []"
   >
     {{ processedProps?.text }}
     <a v-if="props.showForNav" :name="props.showForNav"></a>
