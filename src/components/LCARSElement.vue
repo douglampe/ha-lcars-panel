@@ -70,12 +70,17 @@ const styleObject = computed(() => {
         ? 'relative'
         : undefined,
     textTransform: config.textTransform,
+    ...(config.style ?? {}),
   })
 })
 </script>
 
 <template>
-  <div :style="styleObject" v-on="config.nav || config.tapAction ? { click: onClick } : {}">
+  <div
+    :style="styleObject"
+    :class="config.class ?? []"
+    v-on="config.nav || config.tapAction ? { click: onClick } : {}"
+  >
     <slot></slot>
     <div
       v-if="config.radXInnerTopLeft || config.radYInnerTopLeft"
