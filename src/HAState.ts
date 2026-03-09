@@ -43,6 +43,47 @@ export function callService(serviceName: string, data: any) {
   haState.value.callService(domain, service, data)
 }
 
+export function getAllStateValues() {
+  if (!haState.value) {
+    return [] as { entity: string; key: string; value: string }[]
+  }
+
+  const stateValues = [] as { entity: string; key: string; value: string }[]
+  for (const entityId in haState.value.states) {
+    pushStateValue(stateValues, entityId, 'state', haState.value.states[entityId].state)
+    for (const attrKey in haState.value.states[entityId].attributes) {
+      pushStateValue(
+        stateValues,
+        entityId,
+        attrKey,
+        haState.value.states[entityId].attributes[attrKey],
+      )
+    }
+  }
+
+  return stateValues
+}
+
+function pushStateValue(
+  stateValues: { entity: string; key: string; value: string }[],
+  entity: string,
+  key: string,
+  entityObject: any,
+) {
+  if (typeof entityObject === 'string') {
+    stateValues.push({ entity, key, value: entityObject })
+    return
+  }
+  for (const key in entityObject) {
+    const val = entityObject[key]
+    if (typeof val === 'object') {
+      pushStateValue(stateValues, entity, key, val)
+    } else {
+      stateValues.push({ entity, key, value: val.toString() })
+    }
+  }
+}
+
 export function loadTestState() {
   haState.value = {
     callService: (domain: string, service: string, data?: any) => {
@@ -146,6 +187,87 @@ export function loadTestState() {
         },
         last_changed: '2024-12-19T17:49:14.001Z',
         last_updated: '2024-12-19T17:49:14.001Z',
+      },
+      'sensor.denon_avr': {
+        entity_id: 'sensor.denon_avr',
+        state: 'ON',
+        attributes: {
+          friendly_name: 'Denon AVR',
+          channel_volume: { FL: '50', FR: '50', SW: '50' },
+          digital_input: 'AUTO',
+          main_power: 'ON',
+          max_volume: 98,
+          mute: 'OFF',
+          parameters: {
+            DRC: 'OFF',
+            LFE: '00',
+            BAS: '50',
+            TRE: '50',
+            TONE_CTRL: 'OFF',
+            CLV: '50',
+            SWL: '50',
+            CEN: '03',
+            DIM: '03',
+          },
+          power: 'ON',
+          sd: 'AUTO',
+          sleep: 'OFF',
+          source: 'SAT/CBL',
+          ss_levels: {
+            C: '50',
+            FL: '50',
+            FR: '50',
+            SL: '50',
+            SR: '50',
+            SBL: '50',
+            SBR: '50',
+            SB: '50',
+            FHL: '50',
+            FHR: '50',
+            TFL: '50',
+            TFR: '50',
+            TML: '50',
+            TMR: '50',
+            FDL: '50',
+            FDR: '50',
+            SDL: '50',
+            SDR: '50',
+            FWL: '50',
+            FWR: '50',
+            TRL: '50',
+            TRR: '50',
+            RHL: '50',
+            RHR: '50',
+            BDL: '50',
+            BDR: '50',
+            SHL: '50',
+            SHR: '50',
+            TS: '50',
+            SW: '50',
+            SW2: '50',
+          },
+          ss_speakers: {
+            FRO: 'SMA',
+            CEN: 'SMA',
+            SUA: 'SMA',
+            SBK: '2SP',
+            FRH: 'NON',
+            TFR: 'NON',
+            TPM: 'NON',
+            FRD: 'NON',
+            SUD: 'NON',
+            TPR: 'NON',
+            RHE: 'NON',
+            BKD: 'NON',
+            SHE: 'NON',
+            TPS: 'NON',
+            SWF: '1SP',
+          },
+          standby: 'OFF',
+          surround_mode: 'DOLBY AUDIO-DSUR',
+          video_select: 'OFF',
+          volume: 48,
+        },
       },
     },
   }

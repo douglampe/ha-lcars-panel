@@ -115,6 +115,20 @@ children:
         children:
           - type: sample
             content: |
+              To display a table of all entity states and attributes, you can use `state-table`. By default,
+              the table will display entity names and state/attribute keys. These can be disabled with 
+              `entities` and `keys` respectively.
+            configYaml: |
+              - type: state-table
+                textColor: lilac
+                fontSize: 0.5
+                lineHeight: 0.5
+                animation: row-fill
+                entities: true
+                keys: false
+                pageSize: 5
+          - type: sample
+            content: |
               To display a table of entity states or attributes, you can use `state-value-table`.
             configYaml: |
               - type: state-value-table

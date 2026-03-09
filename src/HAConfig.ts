@@ -10,6 +10,7 @@ import LCARSPill from './components/LCARSPill.vue'
 import LCARSTable from './components/LCARSTable.vue'
 import RecursiveComponent from './components/RecursiveComponent.vue'
 import StateColor from './components/StateColor.vue'
+import StateTable from './components/StateTable.vue'
 import AttributeTable from './components/AttributeTable.vue'
 import AttributeFlow from './components/AttributeFlow.vue'
 import AttributeList from './components/AttributeList.vue'
@@ -57,6 +58,7 @@ registerComponent('theme-sample', LCARSThemeSample)
 registerComponent('state-color', StateColor)
 registerComponent('state-value', StateValue)
 registerComponent('state-value-table', StateValueTable)
+registerComponent('state-table', StateTable)
 registerComponent('attribute-table', AttributeTable)
 registerComponent('attribute-flow', AttributeFlow)
 registerComponent('attribute-list', AttributeList)
