@@ -45,8 +45,6 @@ function processItem(item: ConfigItem) {
     return { ...rest }
   }
 
-  removeFalse(processedItem)
-
   if (processedItem.children) {
     delete processedItem.children
   }
