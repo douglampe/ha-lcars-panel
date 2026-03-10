@@ -100,32 +100,61 @@ children:
             height: 1
     children:
       - showForNav: /home
-        type: remote
-        url: ~/demo/home.yaml
+        children:
+          - type: remote
+            url: ~/demo/home.yaml
+          - type: pill
+            color: dodger-blue
+            nav: /demo/config/globals
+            text: Start Demo
       - showForNav: /demo/config
-        type: remote
-        url: ~/demo/config.yaml
+        children:
+          - type: remote
+            url: ~/demo/config.yaml
+          - type: pill
+            color: indian-red
+            text: layout
+            nav: /demo/layout/unit
       - showForNav: /demo/layout
-        type: remote
-        url: ~/demo/layout.yaml
+        children:
+          - type: remote
+            url: ~/demo/layout.yaml
+          - type: pill
+            color: atomic-tangerine
+            text: elements
+            nav: /demo/elements/element
       - showForNav: /demo/elements
-        type: remote
-        url: ~/demo/elements.yaml
+        children:
+          - type: remote
+            url: ~/demo/elements.yaml
+          - type: pill
+            nav: /demo/panels/types
+            color: fiery-orange
+            text: Panels
       - showForNav: /demo/panels
-        type: remote
-        url: ~/demo/panels.yaml
+        children:
+          - type: remote
+            url: ~/demo/panels.yaml
+          - type: pill
+            color: anakiwa
+            nav: /demo/nav/local
+            text: Navigation
       - showForNav: /demo/nav
-        type: remote
-        url: ~/demo/nav.yaml
+        children:
+          - type: remote
+            url: ~/demo/nav.yaml
+          - type: pill
+            color: lilac
+            nav: /demo/state/value
+            text: HA State
       - showForNav: /demo/state
-        type: remote
-        url: ~/demo/state.yaml
+        children:
+          - type: remote
+            url: ~/demo/state.yaml
+          - type: pill
+            color: dodger-blue
+            nav: /demo/actions/tap
+            text: Actions
       - showForNav: /demo/actions
         type: remote
         url: ~/demo/actions.yaml
-      - showForNav: /demo/themes
-        type: remote
-        url: ~/demo/themes.yaml
-      - showForNav: /demo/remote
-        type: remote
-        url: ~/demo/remote.yaml

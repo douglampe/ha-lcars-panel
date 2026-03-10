@@ -146,8 +146,3 @@ children:
                   - type: el
                     width: 4
                     text: content
-
-      - type: pill
-        color: anakiwa
-        nav: /demo/nav
-        text: Navigation

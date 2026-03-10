@@ -356,8 +356,3 @@ children:
               - type: el
                 text: Landscape
                 showForOrientation: landscape
-
-      - type: pill
-        color: atomic-tangerine
-        text: elements
-        nav: /demo/elements
