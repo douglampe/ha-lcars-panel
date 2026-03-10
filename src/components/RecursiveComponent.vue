@@ -19,16 +19,6 @@ defineOptions({
   inheritAttrs: false,
 })
 
-function removeFalse(obj: Record<string, any>) {
-  Object.keys(obj).forEach((key) => {
-    if (obj[key] === false) {
-      delete obj[key]
-    }
-  })
-
-  return obj
-}
-
 function processItem(item: ConfigItem) {
   let processedItem = { ...item }
 
@@ -44,8 +34,6 @@ function processItem(item: ConfigItem) {
     const { showForNav, stateMap, children, mixin, ...rest } = processedItem
     return { ...rest }
   }
-
-  removeFalse(processedItem)
 
   if (processedItem.children) {
     delete processedItem.children
