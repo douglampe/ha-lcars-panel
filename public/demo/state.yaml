@@ -206,8 +206,3 @@ children:
                     off:
                       color: cosmic
                       text: Inactive
-
-      - type: pill
-        color: dodger-blue
-        nav: /demo/actions
-        text: Actions

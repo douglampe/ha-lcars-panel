@@ -39,10 +39,10 @@ children:
                 children:
                   - type: pill
                     text: Nav
-                    nav: /demo/nav/test
+                    nav: /demo/nav/local/test
                     color: golden-tainoi
                   - type: el
-                    showForNav: /demo/nav/test
+                    showForNav: /demo/nav/local/test
                     marginLeft: 0.5
                     pad: 0.2
                     color: indian-red
@@ -71,8 +71,3 @@ children:
                   text: Anchor
                   nav: url:#foo
                   color: golden-tainoi
-
-  - type: pill
-    color: lilac
-    nav: /demo/state
-    text: HA State

@@ -293,8 +293,3 @@ children:
                 radXInnerTopLeft: 1
                 radYInnerTopLeft: 1
                 color: golden-tainoi
-
-      - type: pill
-        nav: /demo/panels
-        color: fiery-orange
-        text: Panels
