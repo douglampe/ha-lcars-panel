@@ -1,15 +1,15 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { defineCustomElement } from 'vue'
+import { defineCustomElement, watch } from 'vue'
 
 import { haState } from './HAState'
 import LCARSCardCe from './LCARSCard.ce.vue'
-import { loadMixins, type HAConfig } from './HAConfig'
+import { haConfig, loadMixins, loadTheme, loadVariables, type HAConfig } from './HAConfig'
+import './editor.ts'
 
 customElements.define('lcars-card', defineCustomElement(LCARSCardCe))
 
 class LCARSCustomCard extends HTMLElement {
   private vueElement: any
-  private haConfig?: HAConfig
   private test: boolean = false
 
   static get observedAttributes() {
@@ -21,6 +21,11 @@ class LCARSCustomCard extends HTMLElement {
     this.attachShadow({ mode: 'open' })
     this.vueElement = null
   }
+
+  // TODO: Turn on once editor is ready
+  // static getConfigElement() {
+  //   return document.createElement('ha-lcars-panel-editor')
+  // }
 
   set loadTest(test: any) {
     this.setLoadTest(test)
@@ -52,8 +57,15 @@ class LCARSCustomCard extends HTMLElement {
       return
     }
 
-    this.haConfig = config
+    haConfig.value = config
     loadMixins(config)
+    loadVariables(haConfig.value)
+    if (config.theme) {
+      loadTheme(config.theme)
+    } else {
+      loadTheme('default')
+    }
+
     if (this.vueElement) {
       this.vueElement.config = config
     }
@@ -71,7 +83,7 @@ class LCARSCustomCard extends HTMLElement {
   connectedCallback() {
     if (!this.vueElement) {
       this.vueElement = document.createElement('lcars-card')
-      this.vueElement.config = this.haConfig ?? { children: [] }
+      this.vueElement.config = haConfig.value ?? { children: [] }
       this.vueElement.loadTest = this.test
       this.shadowRoot?.appendChild(this.vueElement)
 
@@ -83,6 +95,17 @@ class LCARSCustomCard extends HTMLElement {
       link.href = 'https://fonts.googleapis.com/css2?family=Antonio:wght@400;700&display=swap'
 
       head.appendChild(link)
+
+      const me = this
+      watch(haConfig, (newConfig) => {
+        me.setConfig(newConfig)
+        const event = new Event('config-changed', {
+          bubbles: true,
+          composed: true,
+        }) as any
+        event.detail = { config: newConfig }
+        me.dispatchEvent(event)
+      })
     }
   }
 
