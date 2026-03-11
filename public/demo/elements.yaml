@@ -319,8 +319,3 @@ children:
                 padRight: 1
                 color: dodger-blue
                 text: I'm automatically sized but still have curves!
-
-      - type: pill
-        nav: /demo/panels
-        color: fiery-orange
-        text: Panels

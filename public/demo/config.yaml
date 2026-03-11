@@ -276,13 +276,5 @@ children:
                 - type: md
                   content: This is loaded remotely
               ```
-  - type: remote
-    url: ~/demo/sample-remote.yaml
-
-  - type: row
-    gap: 1
-    children:
-      - type: pill
-        color: indian-red
-        text: layout
-        nav: /demo/layout
+          - type: remote
+            url: ~/demo/sample-remote.yaml
