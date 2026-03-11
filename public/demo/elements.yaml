@@ -294,6 +294,32 @@ children:
                 radYInnerTopLeft: 1
                 color: golden-tainoi
 
+          - type: md
+            content: |
+              Curves even work for elements that are sized automatically.
+              ```
+              - type: el
+                height: 2
+                radXTopLeft: 1
+                radYTopLeft: 2
+                color: golden-tainoi
+                text: I'm automatically sized but still have curves!
+              ```
+
+          - type: row
+            children:
+              - type: el
+                width: 2
+                height: 2
+                color: golden-tainoi
+              - type: el
+                height: 4
+                radXTopRight: 1
+                radYTopRight: 2
+                padRight: 1
+                color: dodger-blue
+                text: I'm automatically sized but still have curves!
+
       - type: pill
         nav: /demo/panels
         color: fiery-orange

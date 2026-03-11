@@ -1,6 +1,6 @@
 <!-- eslint-disable @typescript-eslint/no-explicit-any -->
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import { navigate } from '@/LocalNav'
 import { alignStyle, colorVar, marginStyle, padStyle, removeUndefined, unitSize } from '@/Layout'
 import { callService } from '@/HAState'
@@ -8,6 +8,7 @@ import type { ConfigItem } from '@/ConfigItem'
 import { createRadiusSvg } from '@/props/RadiusProps'
 
 const config = defineProps<ConfigItem>()
+const elementRef = ref<HTMLElement | null>(null)
 
 defineOptions({
   inheritAttrs: false,
@@ -24,7 +25,11 @@ function onClick() {
 }
 
 const styleObject = computed(() => {
-  const backgroundImageSvg = createRadiusSvg(config)
+  const backgroundImageSvg = createRadiusSvg(
+    config,
+    elementRef.value?.offsetWidth,
+    elementRef.value?.offsetHeight,
+  )
 
   return removeUndefined({
     ...alignStyle(config.alignContent),
@@ -67,6 +72,7 @@ const styleObject = computed(() => {
   <div
     :style="styleObject"
     :class="config.class ?? []"
+    ref="elementRef"
     v-on="config.nav || config.tapAction ? { click: onClick } : {}"
   >
     <slot></slot>

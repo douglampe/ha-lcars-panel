@@ -28,6 +28,10 @@ function scaleValue(value?: number, defaultValue = 0) {
   return (value ?? defaultValue) * 10
 }
 
+function unscale(value?: number, defaultValue = 0) {
+  return (value ?? defaultValue) / 10
+}
+
 //TODO: Resolve color names to hex values
 function resolveColor(color?: string) {
   if (color) {
@@ -112,43 +116,67 @@ function createPath(config: ConfigItem, width: number, height: number) {
   } else if (config.radXInnerTopRight) {
     path.push(`q 0 ${-offsetLB} ${-offsetBL} ${-offsetLB}`)
   }
-
   path.push('Z')
+
   return path.join(' ')
 }
 
-export function createRadiusSvg(config: ConfigItem): string | undefined {
+export function createRadiusSvg(
+  config: ConfigItem,
+  actualWidth: number | undefined,
+  actualHeight: number | undefined,
+): string | undefined {
   if (!Object.keys(config).some((key) => key.startsWith('radX') || key.startsWith('radY'))) {
     return
   }
 
-  if (typeof config.width !== 'number' || typeof config.height !== 'number') {
+  let width = typeof config.width === 'number' ? scaleValue(config.width) : undefined
+  let height = typeof config.height === 'number' ? scaleValue(config.height) : undefined
+
+  if (actualWidth && actualHeight) {
+    if (width && height) {
+      if (
+        parseFloat((actualWidth / width).toFixed(2)) >
+        parseFloat((actualHeight / height).toFixed(2))
+      ) {
+        width = (actualWidth * height) / actualHeight
+      } else if (
+        parseFloat((actualWidth / width).toFixed(2)) <
+        parseFloat((actualHeight / height).toFixed(2))
+      ) {
+        height = (actualHeight * width) / actualWidth
+      }
+    } else if (width) {
+      height = (actualHeight * width) / actualWidth
+    } else if (height) {
+      width = (actualWidth * height) / actualHeight
+    }
+  }
+
+  if (typeof width !== 'number' || typeof height !== 'number') {
     return
   }
 
-  const width = scaleValue(config.width)
-  const height = scaleValue(config.height)
   const fill = resolveColor(config.color)
-  console.log(config.color, fill)
 
   const processedConfig = {
     ...config,
   }
 
   if (config.capLeft) {
-    processedConfig.radXTopLeft = config.height / 2
+    processedConfig.radXTopLeft = unscale(height / 2)
     processedConfig.radXBottomLeft = processedConfig.radXTopLeft
   }
   if (config.capRight) {
-    processedConfig.radXTopRight = config.height / 2
+    processedConfig.radXTopRight = unscale(height / 2)
     processedConfig.radXBottomRight = processedConfig.radXTopRight
   }
   if (config.capTop) {
-    processedConfig.radYTopLeft = config.width / 2
+    processedConfig.radYTopLeft = unscale(width / 2)
     processedConfig.radYTopRight = processedConfig.radYTopLeft
   }
   if (config.capBottom) {
-    processedConfig.radYBottomLeft = config.width / 2
+    processedConfig.radYBottomLeft = unscale(width / 2)
     processedConfig.radYBottomRight = processedConfig.radYBottomLeft
   }
 
