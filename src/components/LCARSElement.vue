@@ -6,6 +6,7 @@ import { alignStyle, colorVar, marginStyle, padStyle, removeUndefined, unitSize 
 import { callService } from '@/HAState'
 import type { ConfigItem } from '@/ConfigItem'
 import { createRadiusSvg } from '@/props/RadiusProps'
+import { haConfig } from '@/HAConfig'
 
 const config = defineProps<ConfigItem>()
 const elementRef = ref<HTMLElement | null>(null)
@@ -33,6 +34,8 @@ const styleObject = computed(() => {
 
   return removeUndefined({
     ...alignStyle(config.alignContent),
+    top: unitSize(config.top),
+    left: unitSize(config.left),
     width: unitSize(config.width),
     height: unitSize(config.height),
     fontSize: unitSize(config.fontSize),
@@ -51,17 +54,7 @@ const styleObject = computed(() => {
     margin: marginStyle(config),
     padding: padStyle(config),
     cursor: config.button || config.nav || config.tapAction ? 'pointer' : undefined,
-    position:
-      config.radXInnerTopLeft ||
-      config.radYInnerTopLeft ||
-      config.radXInnerTopRight ||
-      config.radYInnerTopRight ||
-      config.radXInnerBottomLeft ||
-      config.radYInnerBottomLeft ||
-      config.radXInnerBottomRight ||
-      config.radYInnerBottomRight
-        ? 'relative'
-        : undefined,
+    position: config.positioning ?? haConfig.value.positioning ?? undefined,
     textTransform: config.textTransform,
     ...(config.style ?? {}),
   })
