@@ -32,6 +32,7 @@ export interface HAConfig {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   mixins: Record<string, any>
   children: ConfigItem[]
+  positioning?: string
   theme?: string
 }
 
