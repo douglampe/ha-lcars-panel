@@ -35,6 +35,13 @@ export interface HAConfig {
   theme?: string
 }
 
+export const haConfig = ref<HAConfig>({
+  type: 'ha-lcars-panel',
+  vars: {},
+  mixins: {},
+  children: [],
+} as HAConfig)
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const mixins = ref({} as any)
 
