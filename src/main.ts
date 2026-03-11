@@ -22,9 +22,10 @@ class LCARSCustomCard extends HTMLElement {
     this.vueElement = null
   }
 
-  static getConfigElement() {
-    return document.createElement('ha-lcars-panel-editor')
-  }
+  // TODO: Turn on once editor is ready
+  // static getConfigElement() {
+  //   return document.createElement('ha-lcars-panel-editor')
+  // }
 
   set loadTest(test: any) {
     this.setLoadTest(test)
