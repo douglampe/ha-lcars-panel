@@ -4,6 +4,7 @@ import { defineCustomElement, watch } from 'vue'
 import { haState } from './HAState'
 import LCARSCardCe from './LCARSCard.ce.vue'
 import { haConfig, loadMixins, loadTheme, loadVariables, type HAConfig } from './HAConfig'
+import './editor.ts'
 
 customElements.define('lcars-card', defineCustomElement(LCARSCardCe))
 

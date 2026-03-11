@@ -1,23 +1,33 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { defineCustomElement, watch } from 'vue'
 
-import { haState } from './HAState'
 import LCARSCardEditorCe from './LCARSCardEditor.ce.vue'
-import { haConfig, loadMixins, type HAConfig } from './HAConfig'
+import { haConfig } from './HAConfig'
 
 customElements.define('lcars-card-editor', defineCustomElement(LCARSCardEditorCe))
 
 class LCARSCustomCardEditor extends HTMLElement {
-  private vueElement: any
-  private haConfig?: HAConfig
-  private test: boolean = false
-
   setConfig(config: any) {
     if (!config) {
       return
     }
 
-    this.haConfig = config
+    haConfig.value = config
+  }
+
+  static getStubConfig() {
+    return {
+      type: 'ha-lcars-panel',
+      vars: {},
+      mixins: {},
+      children: [
+        {
+          type: 'panel-tl',
+          color: 'dodger-blue',
+          children: [{ type: 'pill', color: 'dodgerblue', text: 'Hello LCARS World' }],
+        },
+      ],
+    }
   }
 
   configChanged(newConfig: any) {

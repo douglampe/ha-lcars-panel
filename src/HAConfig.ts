@@ -25,7 +25,6 @@ import StateValueTable from './components/StateValueTable.vue'
 import themeConfig from '@/assets/themes/themes.yaml?raw'
 import YAML from 'yaml'
 import Remote from './components/Remote.vue'
-import ConfigEditor from './components/ConfigEditor.vue'
 
 export interface HAConfig {
   type: string
