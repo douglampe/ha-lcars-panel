@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { computed, onMounted } from 'vue'
+import { onMounted } from 'vue'
 import type { HAConfig } from './HAConfig'
-import { loadMixins, loadTheme, loadVariables } from './HAConfig'
+import { haConfig, loadMixins } from './HAConfig'
 import testConfig from '@/assets/config/demo.yaml?raw'
 import YAML from 'yaml'
 import { loadTestState } from './HAState'
@@ -17,12 +17,6 @@ function getTestConfig() {
     return testConfigParsed
   }
 }
-
-const localConfig = loadTest ? getTestConfig() : config
-
-const children = computed(() => {
-  return localConfig.children
-})
 
 function getCssRoot() {
   const scripts = document.querySelectorAll('script')
@@ -47,11 +41,8 @@ function addCssLink(href: string) {
 }
 
 onMounted(async () => {
-  loadVariables(localConfig)
-  if (config.theme) {
-    loadTheme(config.theme)
-  } else {
-    loadTheme('default')
+  if (loadTest && config.children.length === 0) {
+    haConfig.value = getTestConfig()
   }
   const cssRoot = getCssRoot()
   if (cssRoot) {
@@ -62,7 +53,7 @@ onMounted(async () => {
 
 <template>
   <div class="lcars-wrapper">
-    <ParentComponent :children="children" />
+    <ParentComponent :children="haConfig.children" />
   </div>
 </template>
 

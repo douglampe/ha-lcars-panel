@@ -25,6 +25,7 @@ import StateValueTable from './components/StateValueTable.vue'
 import themeConfig from '@/assets/themes/themes.yaml?raw'
 import YAML from 'yaml'
 import Remote from './components/Remote.vue'
+import ConfigEditor from './components/ConfigEditor.vue'
 
 export interface HAConfig {
   type: string
@@ -34,6 +35,13 @@ export interface HAConfig {
   children: ConfigItem[]
   theme?: string
 }
+
+export const haConfig = ref<HAConfig>({
+  type: 'ha-lcars-panel',
+  vars: {},
+  mixins: {},
+  children: [],
+} as HAConfig)
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const mixins = ref({} as any)
