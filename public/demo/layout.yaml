@@ -23,6 +23,11 @@ children:
             color: anakiwa
           - type: el
             mixin: menuTab
+            nav: /demo/layout/absolute
+            text: Absolute
+            color: atomic-tangerine
+          - type: el
+            mixin: menuTab
             nav: /demo/layout/alignment
             text: Alignment
             color: dodger-blue
@@ -70,6 +75,16 @@ children:
                   height: 1
                   color: indian-red
               ````
+          - type: sample
+            content: |
+              You can access the LCARS unit in native CSS by using the `--lcars-unit` variable.
+            configYaml: |
+              children:
+                - tag: div
+                  style:
+                    width: calc(var(--lcars-unit) * 3)
+                    height: calc(var(--lcars-unit) * 3)
+                    background-color: var(--lcars-color-lilac)
           - type: el
             width: 20px
             height: 20px
@@ -135,6 +150,63 @@ children:
                     width: 1
                     height: 1
                     color: dodger-blue
+
+      - showForNav: /demo/layout/absolute
+        children:
+          - type: sample
+            content: |
+              Positioning can be set for individual elements. For elements such as panels that contain children, you
+              can set the default positioning for all children by setting `childPositioning`. In the example below,
+              the panel renders children relative to itself in absolute coordinates.
+            configYaml: |
+              - type: panel-all
+                fillWidth: true
+                leftWidth: 1
+                topHeight: 0.5
+                rightWidth: 1
+                bottomHeight: 1
+                childPositioning: absolute
+                color: dodger-blue
+                children:
+                  - type: absolute-container
+                    width: 3
+                    height: 3
+                    children:
+                      - type: el
+                        width: 1
+                        height: 1
+                        left: 0
+                        top: 0
+                        color: golden-tainoi
+                        position: absolute
+                      - type: el
+                        width: 1
+                        height: 1
+                        left: 2
+                        top: 0
+                        color: golden-tainoi
+                        position: absolute
+                      - type: el
+                        width: 1
+                        height: 1
+                        left: 1
+                        top: 1
+                        color: golden-tainoi
+                        position: absolute
+                      - type: el
+                        width: 1
+                        height: 1
+                        left: 0
+                        top: 2
+                        color: golden-tainoi
+                        position: absolute
+                      - type: el
+                        width: 1
+                        height: 1
+                        left: 2
+                        top: 2
+                        color: golden-tainoi
+                        position: absolute
 
       - showForNav: /demo/layout/alignment
         children:

@@ -24,12 +24,14 @@ export interface RadiusProps {
   radYInnerBottomRight?: number
 }
 
+const scaleFactor = 10
+
 function scaleValue(value?: number, defaultValue = 0) {
-  return (value ?? defaultValue) * 10
+  return (value ?? defaultValue) * scaleFactor
 }
 
 function unscale(value?: number, defaultValue = 0) {
-  return (value ?? defaultValue) / 10
+  return (value ?? defaultValue) / scaleFactor
 }
 
 //TODO: Resolve color names to hex values
@@ -126,7 +128,13 @@ export function createRadiusSvg(
   actualWidth: number | undefined,
   actualHeight: number | undefined,
 ): string | undefined {
-  if (!Object.keys(config).some((key) => key.startsWith('radX') || key.startsWith('radY'))) {
+  if (
+    !Object.keys(config).some(
+      (key) =>
+        (key.startsWith('radX') || key.startsWith('radY') || key.startsWith('cap')) &&
+        typeof config[key as keyof ConfigItem] !== 'undefined',
+    )
+  ) {
     return
   }
 

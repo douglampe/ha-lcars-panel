@@ -25,6 +25,7 @@ import StateValueTable from './components/StateValueTable.vue'
 import themeConfig from '@/assets/themes/themes.yaml?raw'
 import YAML from 'yaml'
 import Remote from './components/Remote.vue'
+import AbsoluteContainer from './components/AbsoluteContainer.vue'
 
 export interface HAConfig {
   type: string
@@ -32,6 +33,7 @@ export interface HAConfig {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   mixins: Record<string, any>
   children: ConfigItem[]
+  positioning?: string
   theme?: string
 }
 
@@ -71,6 +73,7 @@ registerComponent('attribute-flow', AttributeFlow)
 registerComponent('attribute-list', AttributeList)
 registerComponent('scale-h', ScaleHorizontal)
 registerComponent('remote', Remote)
+registerComponent('absolute-container', AbsoluteContainer)
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function registerComponent(key: string, component: any) {

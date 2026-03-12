@@ -33,9 +33,14 @@ children:
             color: lilac
           - type: el
             mixin: menuTab
+            nav: /demo/config/positioning
+            text: Positioning
+            color: indian-red
+          - type: el
+            mixin: menuTab
             nav: /demo/config/children
             text: Children
-            color: indian-red
+            color: dodger-blue
           - type: el
             mixin: menuTab
             nav: /demo/config/remote
@@ -58,6 +63,7 @@ children:
               - `vars`: Defines global variables
               - `theme`: Specifies the theme to use for the panel (default is `default`)
               - `mixins`: Defines reusable configurations that can be applied to elements
+              - `positioning`: Default positioning (`relative` or `absolute`) for all elements in the panel (default is `relative`)
               - `children`: Lists the elements to display in the panel
 
           - type: md
@@ -235,6 +241,36 @@ children:
                 mixin: myText
                 text: Item 2
                 color: cosmic
+
+      - showForNav: /demo/config/positioning
+        children:
+          - type: sample
+            content: |
+              You can set the default positioning for all elements in the panel using the `positioning` top-level 
+              config key as either `relative` or `absolute`. The default is `relative` which means that elements will 
+              be positioned automatically, typically based on the flow direction of the parent container.
+
+              When using absolute positioning, you can specify the exact position of each element using the `top` and 
+              `left` keys on each element which can be set in LCARS units.
+
+              Note that absolute positioning uses CSS standards. Therefore if the immediate parent has its CSS 
+              `position` set to `relative`, the element will be positioned relative to the parent.
+            configYaml: |
+              children:
+                - tag: div
+                  style:
+                    width: calc(var(--lcars-unit) * 3)
+                    height: calc(var(--lcars-unit) * 3)
+                    background-color: var(--lcars-color-lilac)
+                    position: relative
+                  children:
+                    - type: el
+                      positioning: absolute
+                      top: 1
+                      left: 1
+                      width: 1
+                      height: 1
+                      color: golden-tainoi
 
       - showForNav: /demo/config/children
         children:
