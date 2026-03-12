@@ -1,5 +1,6 @@
 import { colorList } from '@/ColorList'
 import type { ConfigItem } from '../ConfigItem'
+import { removeUndefined } from '@/Layout'
 
 export interface RadiusProps {
   capLeft?: boolean
@@ -126,7 +127,13 @@ export function createRadiusSvg(
   actualWidth: number | undefined,
   actualHeight: number | undefined,
 ): string | undefined {
-  if (!Object.keys(config).some((key) => key.startsWith('radX') || key.startsWith('radY'))) {
+  if (
+    !Object.keys(config).some(
+      (key) =>
+        (key.startsWith('radX') || key.startsWith('radY')) &&
+        typeof config[key as keyof ConfigItem] !== 'undefined',
+    )
+  ) {
     return
   }
 
