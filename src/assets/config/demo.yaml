@@ -1,26 +1,57 @@
 type: custom:ha-lcars-panel
 vars:
   lcars_unit: 2vw
+remoteRoot: /ha-lcars-panel/demo
 nav:
-  - key: home
-    text: Home
-  - key: config
-    text: Config
+  - text: Home
+  - text: Config
     children:
-      - key: globals
-        text: Globals
-  - key: layout
-    text: Layout
-  - key: elements
-    text: Elements
-  - key: panels
-    text: Panels
+      - text: Globals
+      - text: Variables
+      - text: Themes
+      - text: Mixins
+      - text: Positioning
+      - text: Children
+      - text: Remote
+  - text: Layout
+    children:
+      - text: Unit
+      - text: Flex
+      - text: Absolute
+      - text: Alignment
+      - text: Spacing
+      - text: Orientation
+  - text: Elements
+    children:
+      - text: Element
+      - text: Color
+      - text: Size
+      - text: Text
+      - text: Alignment
+      - text: Curves
+  - text: Panels
+    children:
+      - text: Types
+      - text: Children
+      - text: Caps
+      - text: Title
   - key: nav
     text: Navigation
+    children:
+      - text: Local
+      - text: Browser
   - key: state
     text: HA State
-  - key: actions
-    text: Actions
+    children:
+      - text: Value
+      - text: Color
+      - text: List
+      - text: Table
+      - text: Scale
+  - text: Actions
+    children:
+      - text: Tap
+      - text: Action
 mixins:
   myText:
     type: el
@@ -51,62 +82,5 @@ children:
         height: 1
         navToFirstChild: true
     children:
-      - showForNav: /home
-        children:
-          - type: remote
-            url: ~/demo/home.yaml
-          - type: pill
-            color: dodger-blue
-            nav: /config/globals
-            text: Start Demo
-      - showForNav: /config
-        children:
-          - type: remote
-            url: ~/demo/config.yaml
-          - type: pill
-            color: indian-red
-            text: layout
-            nav: /layout/unit
-      - showForNav: /layout
-        children:
-          - type: remote
-            url: ~/demo/layout.yaml
-          - type: pill
-            color: atomic-tangerine
-            text: elements
-            nav: /elements/element
-      - showForNav: /elements
-        children:
-          - type: remote
-            url: ~/demo/elements.yaml
-          - type: pill
-            nav: /panels/types
-            color: fiery-orange
-            text: Panels
-      - showForNav: /panels
-        children:
-          - type: remote
-            url: ~/demo/panels.yaml
-          - type: pill
-            color: anakiwa
-            nav: /nav/local
-            text: Navigation
-      - showForNav: /nav
-        children:
-          - type: remote
-            url: ~/demo/nav.yaml
-          - type: pill
-            color: lilac
-            nav: /state/value
-            text: HA State
-      - showForNav: /state
-        children:
-          - type: remote
-            url: ~/demo/state.yaml
-          - type: pill
-            color: dodger-blue
-            nav: /actions/tap
-            text: Actions
-      - showForNav: /actions
-        type: remote
-        url: ~/demo/actions.yaml
+      - type: nav-remote
+        rootPath: /

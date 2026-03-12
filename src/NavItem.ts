@@ -1,10 +1,12 @@
 import { haConfig } from './HAConfig'
+import { currentNav } from './LocalNav'
 
 export interface NavItem {
-  key: string
   text: string
+  key?: string
   children?: NavItem[]
   path?: string
+  url?: string
 }
 
 export function findByPath(path: string, item?: NavItem): NavItem | undefined {
@@ -27,8 +29,15 @@ export function findByPath(path: string, item?: NavItem): NavItem | undefined {
   }
 }
 
+function setKey(item: NavItem) {
+  if (!item.key) {
+    item.key = item.text.toLowerCase().replace(/\s+/g, '-')
+  }
+}
+
 export function loadMenu() {
   for (const item of haConfig.value.nav || []) {
+    setKey(item)
     item.path = `/${item.key}`
     loadItem(item)
   }
@@ -36,6 +45,7 @@ export function loadMenu() {
 
 function loadItem(item: NavItem) {
   for (const child of item.children || []) {
+    setKey(child)
     child.path = `${item.path === '/' ? '' : item.path}/${child.key}`
     loadItem(child)
   }

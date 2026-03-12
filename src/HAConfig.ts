@@ -28,6 +28,7 @@ import Remote from './components/Remote.vue'
 import AbsoluteContainer from './components/AbsoluteContainer.vue'
 import { loadMenu, type NavItem } from './NavItem'
 import MenuVertical from './components/MenuVertical.vue'
+import NavRemote from './components/NavRemote.vue'
 
 export interface HAConfig {
   type: string
@@ -38,6 +39,7 @@ export interface HAConfig {
   positioning?: string
   nav?: NavItem[]
   theme?: string
+  remoteRoot?: string
 }
 
 export const haConfig = ref<HAConfig>({
@@ -78,6 +80,7 @@ registerComponent('scale-h', ScaleHorizontal)
 registerComponent('remote', Remote)
 registerComponent('absolute-container', AbsoluteContainer)
 registerComponent('menu-vertical', MenuVertical)
+registerComponent('nav-remote', NavRemote)
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function registerComponent(key: string, component: any) {
