@@ -5,7 +5,7 @@ import { currentNav } from '@/LocalNav'
 import { applyMixin, applyOrientationClass, applyState, type ConfigItem } from '@/ConfigItem'
 import { computed, onMounted, ref, useAttrs, watch } from 'vue'
 import { removeUndefined } from '@/Layout'
-import { getStateValue, haState } from '@/HAState'
+import { haState } from '@/HAState'
 import HTMLComponent from './HTMLComponent.vue'
 import ParentComponent from './ParentComponent.vue'
 import LoadingComponent from './LoadingComponent.vue'
@@ -110,6 +110,10 @@ onMounted(() => {
     <template #right v-if="props.rightChildren">
       <ParentComponent :children="props.rightChildren as Array<ConfigItem>" />
     </template>
-    <ParentComponent v-if="props.children" :children="props.children as Array<ConfigItem>" />
+    <ParentComponent
+      v-if="props.children"
+      :children="props.children as Array<ConfigItem>"
+      :childPositioning="props.childPositioning as string | undefined"
+    />
   </component>
 </template>

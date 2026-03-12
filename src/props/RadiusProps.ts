@@ -1,6 +1,5 @@
 import { colorList } from '@/ColorList'
 import type { ConfigItem } from '../ConfigItem'
-import { removeUndefined } from '@/Layout'
 
 export interface RadiusProps {
   capLeft?: boolean
@@ -25,12 +24,14 @@ export interface RadiusProps {
   radYInnerBottomRight?: number
 }
 
+const scaleFactor = 10
+
 function scaleValue(value?: number, defaultValue = 0) {
-  return (value ?? defaultValue) * 10
+  return (value ?? defaultValue) * scaleFactor
 }
 
 function unscale(value?: number, defaultValue = 0) {
-  return (value ?? defaultValue) / 10
+  return (value ?? defaultValue) / scaleFactor
 }
 
 //TODO: Resolve color names to hex values
@@ -130,7 +131,7 @@ export function createRadiusSvg(
   if (
     !Object.keys(config).some(
       (key) =>
-        (key.startsWith('radX') || key.startsWith('radY')) &&
+        (key.startsWith('radX') || key.startsWith('radY') || key.startsWith('cap')) &&
         typeof config[key as keyof ConfigItem] !== 'undefined',
     )
   ) {
