@@ -13,22 +13,22 @@ children:
         children:
           - type: el
             mixin: menuTab
-            nav: /demo/panels/types
+            nav: /panels/types
             text: Types
             color: golden-tainoi
           - type: el
             mixin: menuTab
-            nav: /demo/panels/children
+            nav: /panels/children
             text: Children
             color: anakiwa
           - type: el
             mixin: menuTab
-            nav: /demo/panels/caps
+            nav: /panels/caps
             text: Caps
             color: dodger-blue
           - type: el
             mixin: menuTab
-            nav: /demo/panels/title
+            nav: /panels/title
             text: Title
             color: lilac
           - type: el
@@ -36,7 +36,7 @@ children:
             width: 1
             height: 1
     children:
-      - showForNav: /demo/panels/types
+      - showForNav: /panels/types
         children:
           - type: sample
             content: |
@@ -70,7 +70,7 @@ children:
                 color: dodger-blue
                 children:
                   - text: content
-      - showForNav: /demo/panels/children
+      - showForNav: /panels/children
         children:
           - type: sample
             content: |
@@ -118,7 +118,7 @@ children:
                   - type: el
                     color: golden-tainoi
                     width: 4
-      - showForNav: /demo/panels/caps
+      - showForNav: /panels/caps
         children:
           - type: sample
             content: |
@@ -133,7 +133,7 @@ children:
                     width: 4
                     height: 4
                     text: content
-      - showForNav: /demo/panels/title
+      - showForNav: /panels/title
         children:
           - type: sample
             content: |

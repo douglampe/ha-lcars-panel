@@ -13,31 +13,31 @@ children:
         children:
           - type: el
             mixin: menuTab
-            nav: /demo/state/value
+            nav: /state/value
             text: Value
             color: golden-tainoi
           - type: el
             mixin: menuTab
-            nav: /demo/state/color
+            nav: /state/color
             text: Color
             color: dodger-blue
           - type: el
             mixin: menuTab
-            nav: /demo/state/list
+            nav: /state/list
             text: List
             color: atomic-tangerine
           - type: el
             mixin: menuTab
-            nav: /demo/state/table
+            nav: /state/table
             text: Table
             color: fiery-orange
           - type: el
             mixin: menuTab
-            nav: /demo/state/scale
+            nav: /state/scale
             text: Scale
             color: anakiwa
     children:
-      - showForNav: /demo/state/value
+      - showForNav: /state/value
         children:
           - type: sample
             content: |
@@ -63,7 +63,7 @@ children:
                   - type: state-value
                     entity: sun.sun
                     attribute: elevation
-      - showForNav: /demo/state/color
+      - showForNav: /state/color
         children:
           - type: sample
             content: |
@@ -83,7 +83,7 @@ children:
                 min: -360
                 max: 180
                 text: Sun
-      - showForNav: /demo/state/list
+      - showForNav: /state/list
         children:
           - type: sample
             content: |
@@ -111,7 +111,7 @@ children:
                 fontSize: 0.5
                 lineHeight: 0.5
                 animation: scanning-fast
-      - showForNav: /demo/state/table
+      - showForNav: /state/table
         children:
           - type: sample
             content: |
@@ -146,7 +146,7 @@ children:
                 fontSize: 0.5
                 lineHeight: 0.5
                 animation: row-fill
-      - showForNav: /demo/state/scale
+      - showForNav: /state/scale
         children:
           - type: sample
             content: |

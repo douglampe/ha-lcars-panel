@@ -13,32 +13,32 @@ children:
         children:
           - type: el
             mixin: menuTab
-            nav: /demo/elements/element
+            nav: /elements/element
             text: Element
             color: golden-tainoi
           - type: el
             mixin: menuTab
-            nav: /demo/elements/color
+            nav: /elements/color
             text: Color
             color: anakiwa
           - type: el
             mixin: menuTab
-            nav: /demo/elements/size
+            nav: /elements/size
             text: Size
             color: dodger-blue
           - type: el
             mixin: menuTab
-            nav: /demo/elements/text
+            nav: /elements/text
             text: Text
             color: lilac
           - type: el
             mixin: menuTab
-            nav: /demo/elements/alignment
+            nav: /elements/alignment
             text: Alignment
             color: fiery-orange
           - type: el
             mixin: menuTab
-            nav: /demo/elements/curves
+            nav: /elements/curves
             text: Curves
             color: indian-red
           - type: el
@@ -46,7 +46,7 @@ children:
             width: 1
             height: 1
     children:
-      - showForNav: /demo/elements/element
+      - showForNav: /elements/element
         children:
           - type: sample
             content: |
@@ -58,7 +58,7 @@ children:
                 height: 1
                 color: golden-tainoi
 
-      - showForNav: /demo/elements/color
+      - showForNav: /elements/color
         children:
           - type: sample
             content: |
@@ -99,7 +99,7 @@ children:
                     width: 1
                     height: 1
                     color: lilac
-      - showForNav: /demo/elements/size
+      - showForNav: /elements/size
         children:
           - type: sample
             content: |
@@ -135,7 +135,7 @@ children:
                     height: 2vmax
                     color: indian-red
 
-      - showForNav: /demo/elements/text
+      - showForNav: /elements/text
         children:
           - type: sample
             content: |
@@ -192,7 +192,7 @@ children:
               - `lowercase` - Convert all letters to lowercase.
               - `none` - Keep all text as it was entered.
 
-      - showForNav: /demo/elements/alignment
+      - showForNav: /elements/alignment
         children:
           - type: sample
             content: |
@@ -217,7 +217,7 @@ children:
                 alignContent: bottom-right
                 text: bottom-right
 
-      - showForNav: /demo/elements/curves
+      - showForNav: /elements/curves
         children:
           - type: sample
             content: |

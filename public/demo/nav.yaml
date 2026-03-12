@@ -13,12 +13,12 @@ children:
         children:
           - type: el
             mixin: menuTab
-            nav: /demo/nav/local
+            nav: /nav/local
             text: Local
             color: golden-tainoi
           - type: el
             mixin: menuTab
-            nav: /demo/nav/browser
+            nav: /nav/browser
             text: Browser
             color: lilac
           - type: el
@@ -26,7 +26,7 @@ children:
             width: 1
             height: 1
     children:
-      - showForNav: /demo/nav/local
+      - showForNav: /nav/local
         children:
           - type: sample
             content: |
@@ -39,15 +39,15 @@ children:
                 children:
                   - type: pill
                     text: Nav
-                    nav: /demo/nav/local/test
+                    nav: /nav/local/test
                     color: golden-tainoi
                   - type: el
-                    showForNav: /demo/nav/local/test
+                    showForNav: /nav/local/test
                     marginLeft: 0.5
                     pad: 0.2
                     color: indian-red
                     text: Khaaaan!!!!
-      - showForNav: /demo/nav/browser
+      - showForNav: /nav/browser
         children:
           - type: sample
             content: |

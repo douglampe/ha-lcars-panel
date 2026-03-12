@@ -26,6 +26,8 @@ import themeConfig from '@/assets/themes/themes.yaml?raw'
 import YAML from 'yaml'
 import Remote from './components/Remote.vue'
 import AbsoluteContainer from './components/AbsoluteContainer.vue'
+import { loadMenu, type NavItem } from './NavItem'
+import MenuVertical from './components/MenuVertical.vue'
 
 export interface HAConfig {
   type: string
@@ -34,6 +36,7 @@ export interface HAConfig {
   mixins: Record<string, any>
   children: ConfigItem[]
   positioning?: string
+  nav?: NavItem[]
   theme?: string
 }
 
@@ -74,10 +77,26 @@ registerComponent('attribute-list', AttributeList)
 registerComponent('scale-h', ScaleHorizontal)
 registerComponent('remote', Remote)
 registerComponent('absolute-container', AbsoluteContainer)
+registerComponent('menu-vertical', MenuVertical)
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function registerComponent(key: string, component: any) {
   components[key] = component
+}
+
+export function loadConfig(config: any) {
+  if (!config) {
+    return
+  }
+  haConfig.value = config
+  loadMixins(config)
+  loadVariables(config)
+  if (config.theme) {
+    loadTheme(config.theme)
+  } else {
+    loadTheme('default')
+  }
+  loadMenu()
 }
 
 export function setVariable(key: string, value: string) {

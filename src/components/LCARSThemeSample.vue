@@ -4,7 +4,6 @@ import YAML from 'yaml'
 import themeConfig from '@/assets/themes/themes.yaml?raw'
 import LCARSElement from './LCARSElement.vue'
 import PanelTL from './PanelTL.vue'
-import LCARSCol from './LCARSCol.vue'
 
 const selectedTheme = ref<string>('default')
 

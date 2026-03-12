@@ -13,32 +13,32 @@ children:
         children:
           - type: el
             mixin: menuTab
-            nav: /demo/layout/unit
+            nav: /layout/unit
             text: Unit
             color: golden-tainoi
           - type: el
             mixin: menuTab
-            nav: /demo/layout/flex
+            nav: /layout/flex
             text: Flex
             color: anakiwa
           - type: el
             mixin: menuTab
-            nav: /demo/layout/absolute
+            nav: /layout/absolute
             text: Absolute
             color: atomic-tangerine
           - type: el
             mixin: menuTab
-            nav: /demo/layout/alignment
+            nav: /layout/alignment
             text: Alignment
             color: dodger-blue
           - type: el
             mixin: menuTab
-            nav: /demo/layout/spacing
+            nav: /layout/spacing
             text: Spacing
             color: lilac
           - type: el
             mixin: menuTab
-            nav: /demo/layout/orientation
+            nav: /layout/orientation
             text: Orientation
             color: fiery-orange
           - type: el
@@ -46,7 +46,7 @@ children:
             width: 1
             height: 1
     children:
-      - showForNav: /demo/layout/unit
+      - showForNav: /layout/unit
         children:
           - type: sample
             content: |
@@ -91,7 +91,7 @@ children:
             color: indian-red
             marginBottom: 1
 
-      - showForNav: /demo/layout/flex
+      - showForNav: /layout/flex
         children:
           - type: md
             content: |
@@ -151,7 +151,7 @@ children:
                     height: 1
                     color: dodger-blue
 
-      - showForNav: /demo/layout/absolute
+      - showForNav: /layout/absolute
         children:
           - type: sample
             content: |
@@ -208,7 +208,7 @@ children:
                         color: golden-tainoi
                         position: absolute
 
-      - showForNav: /demo/layout/alignment
+      - showForNav: /layout/alignment
         children:
           - type: sample
             content: |
@@ -301,7 +301,7 @@ children:
                     width: 1
                     color: dodger-blue
 
-      - showForNav: /demo/layout/spacing
+      - showForNav: /layout/spacing
         children:
           - type: sample
             content: |
@@ -415,7 +415,7 @@ children:
                       - type: el
                         width: 1
                         color: dodger-blue
-      - showForNav: /demo/layout/orientation
+      - showForNav: /layout/orientation
         children:
           - type: sample
             content: |

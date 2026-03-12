@@ -3,24 +3,10 @@ import { defineCustomElement, watch } from 'vue'
 
 import { haState } from './HAState'
 import LCARSCardCe from './LCARSCard.ce.vue'
-import { haConfig, loadMixins, loadTheme, loadVariables, type HAConfig } from './HAConfig'
+import { haConfig, loadConfig } from './HAConfig'
 import './editor.ts'
 
 customElements.define('lcars-card', defineCustomElement(LCARSCardCe))
-
-export function loadConfig(config: any) {
-  if (!config) {
-    return
-  }
-  haConfig.value = config
-  loadMixins(config)
-  loadVariables(config)
-  if (config.theme) {
-    loadTheme(config.theme)
-  } else {
-    loadTheme('default')
-  }
-}
 
 class LCARSCustomCard extends HTMLElement {
   private vueElement: any

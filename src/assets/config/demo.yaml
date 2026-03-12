@@ -1,6 +1,26 @@
 type: custom:ha-lcars-panel
 vars:
   lcars_unit: 2vw
+nav:
+  - key: home
+    text: Home
+  - key: config
+    text: Config
+    children:
+      - key: globals
+        text: Globals
+  - key: layout
+    text: Layout
+  - key: elements
+    text: Elements
+  - key: panels
+    text: Panels
+  - key: nav
+    text: Navigation
+  - key: state
+    text: HA State
+  - key: actions
+    text: Actions
 mixins:
   myText:
     type: el
@@ -26,78 +46,10 @@ children:
     leftPad: 1
     leftWidth: 4
     leftChildren:
-      - type: row
-        children:
-          - type: el
-            nav: /home
-            text: Home
-            color: golden-tainoi
-            textColor: black
-            width: 4
-            height: 1
-      - type: row
-        children:
-          - type: el
-            nav: /demo/config/globals
-            text: Config
-            color: dodger-blue
-            textColor: black
-            width: 4
-            height: 1
-      - type: row
-        children:
-          - type: el
-            nav: /demo/layout/unit
-            text: Layout
-            color: indian-red
-            textColor: black
-            width: 4
-            height: 1
-      - type: row
-        children:
-          - type: el
-            nav: /demo/elements/element
-            text: Elements
-            color: atomic-tangerine
-            textColor: black
-            width: 4
-            height: 1
-      - type: row
-        children:
-          - type: el
-            nav: /demo/panels/types
-            text: Panels
-            color: fiery-orange
-            textColor: black
-            width: 4
-            height: 1
-      - type: row
-        children:
-          - type: el
-            nav: /demo/nav/local
-            text: Navigation
-            color: anakiwa
-            textColor: black
-            width: 4
-            height: 1
-      - type: row
-        children:
-          - type: el
-            nav: /demo/state/value
-            text: HA State
-            color: lilac
-            textColor: black
-            width: 4
-            height: 1
-      - type: row
-        children:
-          - type: el
-            nav: /demo/actions/tap
-            text: Actions
-            color: dodger-blue
-            textColor: black
-            width: 4
-            height: 1
+      - type: menu-vertical
+        width: 4
+        height: 1
+        navToFirstChild: true
     children:
       - showForNav: /home
         children:
@@ -105,56 +57,56 @@ children:
             url: ~/demo/home.yaml
           - type: pill
             color: dodger-blue
-            nav: /demo/config/globals
+            nav: /config/globals
             text: Start Demo
-      - showForNav: /demo/config
+      - showForNav: /config
         children:
           - type: remote
             url: ~/demo/config.yaml
           - type: pill
             color: indian-red
             text: layout
-            nav: /demo/layout/unit
-      - showForNav: /demo/layout
+            nav: /layout/unit
+      - showForNav: /layout
         children:
           - type: remote
             url: ~/demo/layout.yaml
           - type: pill
             color: atomic-tangerine
             text: elements
-            nav: /demo/elements/element
-      - showForNav: /demo/elements
+            nav: /elements/element
+      - showForNav: /elements
         children:
           - type: remote
             url: ~/demo/elements.yaml
           - type: pill
-            nav: /demo/panels/types
+            nav: /panels/types
             color: fiery-orange
             text: Panels
-      - showForNav: /demo/panels
+      - showForNav: /panels
         children:
           - type: remote
             url: ~/demo/panels.yaml
           - type: pill
             color: anakiwa
-            nav: /demo/nav/local
+            nav: /nav/local
             text: Navigation
-      - showForNav: /demo/nav
+      - showForNav: /nav
         children:
           - type: remote
             url: ~/demo/nav.yaml
           - type: pill
             color: lilac
-            nav: /demo/state/value
+            nav: /state/value
             text: HA State
-      - showForNav: /demo/state
+      - showForNav: /state
         children:
           - type: remote
             url: ~/demo/state.yaml
           - type: pill
             color: dodger-blue
-            nav: /demo/actions/tap
+            nav: /actions/tap
             text: Actions
-      - showForNav: /demo/actions
+      - showForNav: /actions
         type: remote
         url: ~/demo/actions.yaml

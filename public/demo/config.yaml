@@ -13,37 +13,37 @@ children:
         children:
           - type: el
             mixin: menuTab
-            nav: /demo/config/globals
+            nav: /config/globals
             text: Globals
             color: golden-tainoi
           - type: el
             mixin: menuTab
-            nav: /demo/config/vars
+            nav: /config/vars
             text: Variables
             color: anakiwa
           - type: el
             mixin: menuTab
-            nav: /demo/config/themes
+            nav: /config/themes
             text: Themes
             color: fiery-orange
           - type: el
             mixin: menuTab
-            nav: /demo/config/mixins
+            nav: /config/mixins
             text: Mixins
             color: lilac
           - type: el
             mixin: menuTab
-            nav: /demo/config/positioning
+            nav: /config/positioning
             text: Positioning
             color: indian-red
           - type: el
             mixin: menuTab
-            nav: /demo/config/children
+            nav: /config/children
             text: Children
             color: dodger-blue
           - type: el
             mixin: menuTab
-            nav: /demo/config/remote
+            nav: /config/remote
             text: Remote
             color: golden-tainoi
           - type: el
@@ -52,7 +52,7 @@ children:
             height: 1
     children:
       - type: el
-        showForNav: /demo/config/globals
+        showForNav: /config/globals
         children:
           - type: md
             content: |
@@ -93,7 +93,7 @@ children:
                 mixin: myMixin
                 text: Hello LCARS!
 
-      - showForNav: /demo/config/vars
+      - showForNav: /config/vars
         children:
           - type: md
             content: |
@@ -191,7 +191,7 @@ children:
                 primary_color: #0000FF
               ```
 
-      - showForNav: /demo/config/themes
+      - showForNav: /config/themes
         children:
           - type: sample
             content: |
@@ -208,7 +208,7 @@ children:
                 text: Color 1
                 width: 4
 
-      - showForNav: /demo/config/mixins
+      - showForNav: /config/mixins
         children:
           - type: md
             content: |
@@ -242,7 +242,7 @@ children:
                 text: Item 2
                 color: cosmic
 
-      - showForNav: /demo/config/positioning
+      - showForNav: /config/positioning
         children:
           - type: sample
             content: |
@@ -272,7 +272,7 @@ children:
                       height: 1
                       color: golden-tainoi
 
-      - showForNav: /demo/config/children
+      - showForNav: /config/children
         children:
           - type: md
             content: |
@@ -290,7 +290,7 @@ children:
               - `topChildren`: List of items to be rendered inside the top portion of the element or tag if supported
               - `bottomChildren`: List of items to be rendered inside the bottom portion of the element or tag if supported
 
-      - showForNav: /demo/config/remote
+      - showForNav: /config/remote
         children:
           - type: md
             content: |
