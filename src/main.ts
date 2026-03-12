@@ -8,6 +8,20 @@ import './editor.ts'
 
 customElements.define('lcars-card', defineCustomElement(LCARSCardCe))
 
+export function loadConfig(config: any) {
+  if (!config) {
+    return
+  }
+  haConfig.value = config
+  loadMixins(config)
+  loadVariables(config)
+  if (config.theme) {
+    loadTheme(config.theme)
+  } else {
+    loadTheme('default')
+  }
+}
+
 class LCARSCustomCard extends HTMLElement {
   private vueElement: any
   private test: boolean = false
@@ -53,18 +67,7 @@ class LCARSCustomCard extends HTMLElement {
   }
 
   setConfig(config: any) {
-    if (!config) {
-      return
-    }
-
-    haConfig.value = config
-    loadMixins(config)
-    loadVariables(haConfig.value)
-    if (config.theme) {
-      loadTheme(config.theme)
-    } else {
-      loadTheme('default')
-    }
+    loadConfig(config)
 
     if (this.vueElement) {
       this.vueElement.config = config
