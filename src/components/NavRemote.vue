@@ -1,10 +1,8 @@
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue'
-import LCARSElement from './LCARSElement.vue'
-import LCARSRow from './LCARSRow.vue'
 import { haConfig } from '@/HAConfig'
-import { findByPath, type NavItem } from '@/NavItem'
-import Remote from './Remote.vue'
+import { findByPath } from '@/NavItem'
+import RemoteConfig from './RemoteConfig.vue'
 import { currentNav } from '@/LocalNav'
 
 defineOptions({
@@ -28,6 +26,8 @@ const url = computed<string | undefined>(() => {
       ? item.url.replace('~', haConfig.value?.remoteRoot ?? import.meta.env.BASE_URL)
       : `${haConfig.value?.remoteRoot ?? import.meta.env.BASE_URL}${item.path}.yaml?raw`
   }
+
+  return undefined
 })
 
 watch(currentNav, () => {
@@ -36,5 +36,5 @@ watch(currentNav, () => {
 </script>
 
 <template>
-  <Remote v-if="url" :url="url" :key="renderKey" />
+  <RemoteConfig v-if="url" :url="url" :key="renderKey" />
 </template>

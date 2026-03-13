@@ -117,6 +117,12 @@ defineOptions({
       :color="color"
       :height="topHeight"
     ></LCARSElement>
+    <LCARSElement
+      v-if="fillWidth"
+      :fill="fillWidth"
+      :color="color"
+      :height="topHeight"
+    ></LCARSElement>
     <LCARSRow
       v-if="$slots.top"
       :margin-left="(gap || topGap || 0) / 10"
@@ -222,6 +228,12 @@ defineOptions({
       :fill="fillBottomLeft"
       :color="color"
       :height="bottomHeight"
+    ></LCARSElement>
+    <LCARSElement
+      v-if="fillWidth"
+      :fill="fillWidth"
+      :color="color"
+      :height="topHeight"
     ></LCARSElement>
     <LCARSRow
       v-if="$slots.bottom"

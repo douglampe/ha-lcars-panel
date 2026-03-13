@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { haConfig, type HAConfig } from './HAConfig'
+import { haConfig } from './HAConfig'
 import ParentComponent from './components/ParentComponent.vue'
 import LCARSConfigEditor from './components/ConfigEditor.vue'
 </script>

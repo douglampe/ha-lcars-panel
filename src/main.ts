@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { defineCustomElement, watch } from 'vue'
 
 import { haState } from './HAState'
@@ -76,8 +75,8 @@ class LCARSCustomCard extends HTMLElement {
       this.vueElement.loadTest = this.test
       this.shadowRoot?.appendChild(this.vueElement)
 
-      var head = document.head
-      var link = document.createElement('link')
+      const head = document.head
+      const link = document.createElement('link')
 
       link.type = 'text/css'
       link.rel = 'stylesheet'
@@ -85,15 +84,14 @@ class LCARSCustomCard extends HTMLElement {
 
       head.appendChild(link)
 
-      const me = this
       watch(haConfig, (newConfig) => {
-        me.setConfig(newConfig)
+        this.setConfig(newConfig)
         const event = new Event('config-changed', {
           bubbles: true,
           composed: true,
         }) as any
         event.detail = { config: newConfig }
-        me.dispatchEvent(event)
+        this.dispatchEvent(event)
       })
     }
   }

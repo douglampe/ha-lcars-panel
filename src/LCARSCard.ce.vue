@@ -32,7 +32,7 @@ function getCssRoot() {
 }
 
 function addCssLink(href: string) {
-  let file = document.createElement('link')
+  const file = document.createElement('link')
   file.rel = 'stylesheet'
   file.href = href
   document.head.appendChild(file)

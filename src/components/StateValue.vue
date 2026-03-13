@@ -13,6 +13,7 @@ const value = computed(() => {
   if (entity) {
     return getStateValue(haState.value, entity, attribute)
   }
+  return ''
 })
 </script>
 <template>{{ value }}</template>

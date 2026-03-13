@@ -1,5 +1,4 @@
 import { haConfig } from './HAConfig'
-import { currentNav } from './LocalNav'
 
 export interface NavItem {
   text: string

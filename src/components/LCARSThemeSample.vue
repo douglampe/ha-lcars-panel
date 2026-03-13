@@ -4,6 +4,7 @@ import YAML from 'yaml'
 import themeConfig from '@/assets/themes/themes.yaml?raw'
 import LCARSElement from './LCARSElement.vue'
 import PanelTL from './PanelTL.vue'
+import LCARSCol from './LCARSCol.vue'
 
 const selectedTheme = ref<string>('default')
 
@@ -24,7 +25,7 @@ const themeNames = computed(() => {
 })
 
 const theme = computed(() => {
-  let colors = []
+  const colors = []
   if (selectedTheme.value) {
     const themeConfig = parsedConfig.value[selectedTheme.value]
     for (let i = 0; i < 10; i++) {
@@ -52,17 +53,18 @@ const theme = computed(() => {
         >{{ name }}</LCARSElement
       >
     </template>
-    <LCARSElement
-      v-if="theme"
-      v-for="(color, index) in theme"
-      :key="index"
-      :color="color"
-      :width="5"
-      :pad-left="0.1"
-      text-color="black"
-      text-align="center"
-    >
-      Color {{ index + 1 }}
-    </LCARSElement>
+    <LCARSCol v-if="theme">
+      <LCARSElement
+        v-for="(color, index) in theme"
+        :key="index"
+        :color="color"
+        :width="5"
+        :pad-left="0.1"
+        text-color="black"
+        text-align="center"
+      >
+        Color {{ index + 1 }}
+      </LCARSElement>
+    </LCARSCol>
   </PanelTL>
 </template>

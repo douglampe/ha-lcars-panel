@@ -4,5 +4,5 @@ defineOptions({
   inheritAttrs: false,
 })
 </script>
-
+<!-- eslint-disable vue/valid-template-root -->
 <template></template>

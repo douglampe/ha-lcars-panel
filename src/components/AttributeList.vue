@@ -16,7 +16,7 @@ const rows = computed(() => {
   const entityObject = haState?.value?.states[entity]
 
   if (entityObject) {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+     
     Object.entries((entityObject as any)?.attributes).forEach(([key, value]) => {
       rowList.push({ key, value: value as string })
     })

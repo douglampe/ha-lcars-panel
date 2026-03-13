@@ -48,7 +48,6 @@ defineOptions({
   inheritAttrs: false,
 })
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function getData(state: any) {
   const value = getValue(state)
   return {
@@ -65,14 +64,12 @@ const scaleConfig = computed(() => {
   return getData(haState.value)
 })
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function getValue(state: any) {
   return entity ? (getStateValue(state, entity, attribute) ?? min) : min
 }
 
 const reactiveValueX = reactive({ number: 0 })
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function animateValue(newData: any) {
   gsap.to(reactiveValueX, { duration: 1, number: newData.valueX })
 }
@@ -114,7 +111,7 @@ if (service) {
           y: 0,
         })
       },
-      onDragEnd: ({ movement: [x, y], tap, xy: [tapX, tapY] }) => {
+      onDragEnd: ({ movement: [x, _y], tap, xy: [tapX, _tapY] }) => {
         if (tap) {
           const bounds = scale.value.getBoundingClientRect()
           const newValue = ((tapX - bounds.x) / scale.value.clientWidth) * (max - min) + min
@@ -134,7 +131,7 @@ function setValue(val: number) {
   let checkedValue = val
 
   if (checkedValue < min) {
-    checkedValue
+    checkedValue = min
   } else if (checkedValue > max) {
     checkedValue = max
   }
@@ -160,7 +157,8 @@ function setValue(val: number) {
         :height="height"
       />
       <LCARSElement
-        v-for="n in scaleConfig.tickCount"
+        v-for="(_n, index) in scaleConfig.tickCount"
+        :key="index"
         :width="scaleConfig.tickWidth"
         :height="height"
         :style="{
@@ -168,7 +166,7 @@ function setValue(val: number) {
           borderWidth: `${stroke}px`,
           borderColor: colorVar(gridColor),
           boxSizing: 'border-box',
-          position: 'absolotue',
+          position: 'absolute',
           zIndex: 1,
         }"
       />

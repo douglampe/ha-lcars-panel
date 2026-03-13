@@ -5,7 +5,7 @@ import { currentNav } from '@/LocalNav'
 import { applyMixin, applyOrientationClass, applyState, type ConfigItem } from '@/ConfigItem'
 import { computed, onMounted, ref, useAttrs, watch } from 'vue'
 import { removeUndefined } from '@/Layout'
-import { getStateValue, haState } from '@/HAState'
+import { haState } from '@/HAState'
 import HTMLComponent from './HTMLComponent.vue'
 import ParentComponent from './ParentComponent.vue'
 import LoadingComponent from './LoadingComponent.vue'
@@ -20,7 +20,7 @@ defineOptions({
 })
 
 function processItem(item: ConfigItem) {
-  let processedItem = { ...item }
+  const processedItem = { ...item }
 
   removeUndefined(processedItem)
 
@@ -31,6 +31,7 @@ function processItem(item: ConfigItem) {
   applyOrientationClass(processedItem)
 
   if (processedItem.tag) {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars
     const { showForNav, stateMap, children, mixin, ...rest } = processedItem
     return { ...rest }
   }
@@ -62,7 +63,7 @@ function getComponentType(cmps: Record<string, any>) {
 if (props.stateMap) {
   watch(
     () => haState.value,
-    (v) => {
+    () => {
       processedProps.value = processItem(props)
     },
     { deep: true },

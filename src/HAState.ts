@@ -1,11 +1,13 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { ref } from 'vue'
 
 export interface HAState {
   states: Record<string, any>
   user: any
+  // eslint-disable-next-line no-unused-vars
   callService: (domain: string, service: string, data?: any) => Promise<any>
+  // eslint-disable-next-line no-unused-vars
   callWS: (message: any) => Promise<any>
+  // eslint-disable-next-line no-unused-vars
   callApi: (method: string, path: string, data?: any) => Promise<any>
 }
 
