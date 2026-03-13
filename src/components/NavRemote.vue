@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, ref, watch } from 'vue'
 import LCARSElement from './LCARSElement.vue'
 import LCARSRow from './LCARSRow.vue'
 import { haConfig } from '@/HAConfig'
@@ -11,22 +11,30 @@ defineOptions({
   inheritAttrs: false,
 })
 
+const renderKey = ref(0)
+
 const { rootPath = '/' } = defineProps<{
   rootPath?: string
 }>()
 
-const items = computed<NavItem[]>(() => {
+const url = computed<string | undefined>(() => {
   if (!haConfig.value?.nav) {
-    return [] as NavItem[]
+    return undefined
   }
   const rootItem = findByPath(rootPath)
-  return (
-    rootItem?.children?.filter((i) => !i.path || currentNav?.value.startsWith(i.path)) ||
-    ([] as NavItem[])
-  )
+  const item = rootItem?.children?.find((i) => !i.path || currentNav?.value.startsWith(i.path))
+  if (item) {
+    return item.url
+      ? item.url.replace('~', haConfig.value?.remoteRoot ?? import.meta.env.BASE_URL)
+      : `${haConfig.value?.remoteRoot ?? import.meta.env.BASE_URL}${item.path}.yaml?raw`
+  }
+})
+
+watch(currentNav, () => {
+  renderKey.value++
 })
 </script>
 
 <template>
-  <Remote v-for="(item, index) in items" :key="index" :url="item.url ?? `~${item.path}.yaml?raw`" />
+  <Remote v-if="url" :url="url" :key="renderKey" />
 </template>
