@@ -5,6 +5,7 @@ import { haConfig, loadConfig } from './HAConfig'
 import testConfig from '@/assets/config/demo.yaml?raw'
 import YAML from 'yaml'
 import ParentComponent from './components/ParentComponent.vue'
+import { loadTestState } from './HAState'
 
 const { config, loadTest } = defineProps<{ config: HAConfig; loadTest: boolean }>()
 
@@ -12,6 +13,7 @@ function getTestConfig() {
   if (loadTest) {
     const testConfigParsed = YAML.parse(testConfig)
     loadConfig(testConfigParsed)
+    loadTestState()
     return testConfigParsed
   }
 }
