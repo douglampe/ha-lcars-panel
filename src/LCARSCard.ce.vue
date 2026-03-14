@@ -6,6 +6,7 @@ import testConfig from '@/assets/config/demo.yaml?raw'
 import YAML from 'yaml'
 import ParentComponent from './components/ParentComponent.vue'
 import { loadTestState } from './HAState'
+import { currentNav } from './LocalNav'
 
 const { config, loadTest } = defineProps<{ config: HAConfig; loadTest: boolean }>()
 

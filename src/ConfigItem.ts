@@ -7,6 +7,7 @@ import type { TapActionProps } from './props/TapActionProps'
 
 export interface ConfigItem extends ElementProps, PanelProps, RowProps, TapActionProps {
   type?: string
+  id?: string
   tag?: string
   text?: string
   positioning?: string

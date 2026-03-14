@@ -180,12 +180,12 @@ export function createRadiusSvg(
     processedConfig.radXBottomRight = processedConfig.radXTopRight
   }
   if (config.capTop) {
-    processedConfig.radYTopLeft = unscale(width / 2)
-    processedConfig.radYTopRight = processedConfig.radYTopLeft
+    processedConfig.radXTopLeft = unscale(width / 2)
+    processedConfig.radXTopRight = processedConfig.radYTopLeft
   }
   if (config.capBottom) {
-    processedConfig.radYBottomLeft = unscale(width / 2)
-    processedConfig.radYBottomRight = processedConfig.radYBottomLeft
+    processedConfig.radXBottomLeft = unscale(width / 2)
+    processedConfig.radXBottomRight = processedConfig.radXBottomLeft
   }
 
   const pathData = createPath(processedConfig, width, height)

@@ -200,13 +200,15 @@ children:
               Themes provide 10 numbered colors that can be set by simply specifying the number 1-10. You can create
               your own custom theme by using the `vars` top-level configuration key to set the values of variables
               `lcars-color-1` through `lcars-color-10` to any valid CSS color.
-
-              Supported themes are shown below.
             configYaml: |
               - type: pill
                 color: "1"
                 text: Color 1
                 width: 4
+          - type: md
+            content: |
+              Supported themes are shown below.
+          - type: theme-sample
 
       - showForNav: /config/mixins
         children:
@@ -290,7 +292,7 @@ children:
               - `topChildren`: List of items to be rendered inside the top portion of the element or tag if supported
               - `bottomChildren`: List of items to be rendered inside the bottom portion of the element or tag if supported
 
-      - showForNav: /config/remote
+      - showForNav: remote
         children:
           - type: md
             content: |
