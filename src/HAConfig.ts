@@ -34,13 +34,13 @@ import NavRemote from './components/NavRemote.vue'
 export interface HAConfig {
   type: string
   vars: Record<string, string>
-
   mixins: Record<string, any>
   children: ConfigItem[]
   positioning?: string
   nav?: NavItem[]
   theme?: string
   remoteRoot?: string
+  editorEnabled?: boolean
 }
 
 export const haConfig = ref<HAConfig>({
