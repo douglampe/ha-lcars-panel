@@ -27,7 +27,7 @@ function onClick() {
 
 const styleObject = computed(() => {
   const backgroundImageSvg = createRadiusSvg(
-    config,
+    removeUndefined({ ...config }),
     elementRef.value?.offsetWidth,
     elementRef.value?.offsetHeight,
   )

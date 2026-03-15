@@ -292,7 +292,7 @@ children:
               - `topChildren`: List of items to be rendered inside the top portion of the element or tag if supported
               - `bottomChildren`: List of items to be rendered inside the bottom portion of the element or tag if supported
 
-      - showForNav: remote
+      - showForNav: /config/remote
         children:
           - type: md
             content: |
@@ -315,4 +315,4 @@ children:
                   content: This is loaded remotely
               ```
           - type: remote
-            url: ~/demo/sample-remote.yaml?raw
+            url: ~/sample-remote.yaml?raw

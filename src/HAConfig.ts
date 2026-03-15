@@ -28,6 +28,7 @@ import RemoteConfig from './components/RemoteConfig.vue'
 import AbsoluteContainer from './components/AbsoluteContainer.vue'
 import { loadMenu, type NavItem } from './NavItem'
 import MenuVertical from './components/MenuVertical.vue'
+import MenuHorizontal from './components/MenuHorizontal.vue'
 import NavRemote from './components/NavRemote.vue'
 
 export interface HAConfig {
@@ -78,6 +79,7 @@ registerComponent('scale-h', ScaleHorizontal)
 registerComponent('remote', RemoteConfig)
 registerComponent('absolute-container', AbsoluteContainer)
 registerComponent('menu-vertical', MenuVertical)
+registerComponent('menu-horizontal', MenuHorizontal)
 registerComponent('nav-remote', NavRemote)
 
 export function registerComponent(key: string, component: any) {

@@ -11,31 +11,10 @@ children:
       - type: col
         gap: 1
         children:
-          - type: el
+          - type: menu-vertical
+            rootPath: /state
             mixin: menuTab
-            nav: /state/value
-            text: Value
-            color: golden-tainoi
-          - type: el
-            mixin: menuTab
-            nav: /state/color
-            text: Color
-            color: dodger-blue
-          - type: el
-            mixin: menuTab
-            nav: /state/list
-            text: List
-            color: atomic-tangerine
-          - type: el
-            mixin: menuTab
-            nav: /state/table
-            text: Table
-            color: fiery-orange
-          - type: el
-            mixin: menuTab
-            nav: /state/scale
-            text: Scale
-            color: anakiwa
+            gap: 1
     children:
       - showForNav: /state/value
         children:
@@ -184,7 +163,8 @@ children:
                 tickInterval: 30
                 gridColor: blue
                 showGrid: false
-
+      - showForNav: /state/map
+        children:
           - type: sample
             content: |
               To conditionally set properties based on entity state, you can add a `stateMap` key and add an entry for

@@ -17,7 +17,6 @@ nav:
     children:
       - text: Unit
       - text: Flex
-      - text: Absolute
       - text: Alignment
       - text: Spacing
       - text: Orientation
@@ -38,11 +37,25 @@ nav:
   - key: nav
     text: Navigation
     children:
+      - text: Config
       - text: Local
       - text: Browser
+      - text: Menu
+        children:
+          - text: Vertical Sample
+            children:
+              - text: These
+              - text: Are
+              - text: Vertical
+          - text: Horizontal Sample
+            children:
+              - text: These
+              - text: Are
+              - text: Horizontal
   - key: state
     text: HA State
     children:
+      - text: Map
       - text: Value
       - text: Color
       - text: List
@@ -54,7 +67,6 @@ nav:
       - text: Action
 mixins:
   myText:
-    type: el
     fontSize: 0.4
     alignContent: bottom-right
     height: 2
@@ -64,7 +76,6 @@ mixins:
   myMixin:
     color: orange-peel
   menuTab:
-    type: el
     alignContent: middle-center
     width: 3
     textColor: black
@@ -80,6 +91,8 @@ children:
       - type: menu-vertical
         width: 4
         height: 1
+        gap: 1
+        aligntContent: middle-left
         navToFirstChild: true
     children:
       - type: nav-remote

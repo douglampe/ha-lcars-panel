@@ -131,9 +131,13 @@ export function createRadiusSvg(
   if (
     !Object.keys(config).some(
       (key) =>
-        (key.startsWith('radX') || key.startsWith('radY') || key.startsWith('cap')) &&
+        (key.startsWith('radX') || key.startsWith('radY')) &&
         typeof config[key as keyof ConfigItem] !== 'undefined',
-    )
+    ) &&
+    !config.capLeft &&
+    !config.capRight &&
+    !config.capTop &&
+    !config.capBottom
   ) {
     return
   }

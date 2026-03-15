@@ -11,21 +11,56 @@ children:
       - type: row
         gap: 1
         children:
-          - type: el
+          - type: menu-horizontal
+            rootPath: /nav
             mixin: menuTab
-            nav: /nav/local
-            text: Local
-            color: golden-tainoi
-          - type: el
-            mixin: menuTab
-            nav: /nav/browser
-            text: Browser
-            color: lilac
+            gap: 1
           - type: el
             color: anakiwa
             width: 1
             height: 1
     children:
+      - showForNav: /nav/config
+        children:
+          - type: md
+            content: >
+              Navigation can be configured via the top-level `nav` variable.
+
+              This defined a navigation hierarchy thay can be used to generate
+              navigation elements
+
+              usable across your dashboard. The configuration of a nav item is as
+              follows:
+
+
+              ```
+
+              - text: Home
+                key: home
+                url: /home.yaml
+                children:
+                  - text: Bridge
+                  - text: Crew
+                  - text: 10 Fwd
+              ```
+
+
+              Note that only the `text` key is required. The `key` will be generated
+              from the text by converting to lowercase and replacing spaces with `-`
+
+              so in the examole above, `10 Fwd` would havethe key `10-fwd`.
+
+
+              Paths generated from the nav config use forward slashes so the folowing
+              config would navigate to the `10 Fwd` item:
+
+
+              ```
+
+              - type: pill
+                text: 10 Fwd
+                nav: /home/10-fwd
+              ```
       - showForNav: /nav/local
         children:
           - type: sample
@@ -71,3 +106,23 @@ children:
                   text: Anchor
                   nav: url:#foo
                   color: golden-tainoi
+      - showForNav: /nav/menu
+        children:
+          - type: sample
+            content: >
+              You can create menus from the `nav` config using the `menu-vertical` and
+              `menu-horizontal` components.
+            configYaml: |
+              - type: menu-vertical
+                rootPath: /nav/menu/vertical-sample
+                width: 4
+                gap: 1
+                aligntContent: middle-left
+          - type: sample
+            configYaml: |
+              - type: menu-horizontal
+                rootPath: /nav/menu/horizontal-sample
+                height: 1
+                width: 3
+                gap: 1
+                alignContent: middle-center

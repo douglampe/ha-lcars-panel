@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import LCARSElement from './LCARSElement.vue'
+import LCARSRow from './LCARSRow.vue'
 import { haConfig } from '@/HAConfig'
 import { findByPath, type NavItem } from '@/NavItem'
 import { getTheme, getThemeColor } from '@/ThemeConfig'
-import LCARSCol from './LCARSCol.vue'
 
 defineOptions({
   inheritAttrs: false,
@@ -47,7 +47,7 @@ function getNavPath(item: NavItem) {
 </script>
 
 <template>
-  <LCARSCol :gap="gap">
+  <LCARSRow :gap="gap">
     <LCARSElement
       v-for="(item, index) in items"
       :key="item.text"
@@ -57,7 +57,8 @@ function getNavPath(item: NavItem) {
       :width="width"
       :height="height"
       :color="getThemeColor(index)"
+      :alignContent="alignContent"
       >{{ item.text }}</LCARSElement
     >
-  </LCARSCol>
+  </LCARSRow>
 </template>

@@ -32,6 +32,8 @@ const styleObject = computed(() => {
 
 <template>
   <div :style="styleObject" v-bind="filteredAttrs">
-    <ParentComponent :children="children" childPositioning="absolute" />
+    <ParentComponent :children="children" childPositioning="absolute"
+      ><slot></slot
+    ></ParentComponent>
   </div>
 </template>

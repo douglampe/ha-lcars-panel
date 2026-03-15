@@ -11,36 +11,10 @@ children:
       - type: row
         gap: 1
         children:
-          - type: el
+          - type: menu-horizontal
+            rootPath: /layout
             mixin: menuTab
-            nav: /layout/unit
-            text: Unit
-            color: golden-tainoi
-          - type: el
-            mixin: menuTab
-            nav: /layout/flex
-            text: Flex
-            color: anakiwa
-          - type: el
-            mixin: menuTab
-            nav: /layout/absolute
-            text: Absolute
-            color: atomic-tangerine
-          - type: el
-            mixin: menuTab
-            nav: /layout/alignment
-            text: Alignment
-            color: dodger-blue
-          - type: el
-            mixin: menuTab
-            nav: /layout/spacing
-            text: Spacing
-            color: lilac
-          - type: el
-            mixin: menuTab
-            nav: /layout/orientation
-            text: Orientation
-            color: fiery-orange
+            gap: 1
           - type: el
             color: indian-red
             width: 1

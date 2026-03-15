@@ -12,3 +12,11 @@ export function getTheme(name?: string) {
   }
   return themeConfig.value[name ?? haConfig.value.theme ?? 'default']
 }
+
+export function getThemeColor(index: number) {
+  const theme = getTheme()
+  if (!theme || theme.length === 0) {
+    return themeConfig.value?.default?.[0] || '#ffc152'
+  }
+  return theme[index % theme.length]
+}
