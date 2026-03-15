@@ -129,16 +129,16 @@ children:
         children:
           - type: sample
             content: |
-              Positioning can be set for individual elements. For elements such as panels that contain children, you
-              can set the default positioning for all children by setting `childPositioning`. In the example below,
-              the panel renders children relative to itself in absolute coordinates.
+              To position items using absolut coordinates, add an `absolute-container` and add absolute-positioned items
+              as children. You will need to set the `width` and `height` of the `absolute-container` to the desired size
+              of the coordinate system of the children.
             configYaml: |
               - type: panel-all
                 fillWidth: true
                 leftWidth: 1
                 topHeight: 0.5
                 rightWidth: 1
-                bottomHeight: 1
+                bottomHeight: 0.5
                 childPositioning: absolute
                 color: dodger-blue
                 children:
