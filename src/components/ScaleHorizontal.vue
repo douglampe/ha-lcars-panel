@@ -3,9 +3,7 @@ import { computed, reactive, ref, watch } from 'vue'
 import gsap from 'gsap'
 
 import { callService, getStateValue, haState } from '../HAState'
-import { colorVar, unitSize } from '@/Layout'
-import LCARSElement from './LCARSElement.vue'
-import LCARSRow from './LCARSRow.vue'
+import { colorVar, removeUndefined, unitSize } from '@/Layout'
 import { useGesture } from '@vueuse/gesture'
 import { useMotionProperties, useSpring } from '@vueuse/motion'
 
@@ -146,30 +144,53 @@ function setValue(val: number) {
     callService(service, serviceData)
   }
 }
+
+const scaleData = computed(() => getData(haState.value))
+
+const styleObject = computed(() => {
+  return removeUndefined({
+    position: 'relative',
+    width: unitSize(width),
+    height: unitSize(height),
+  })
+})
+
+const barStyle = computed(() => {
+  if (!scaleData.value) return {}
+
+  return removeUndefined({
+    top: `${stroke ?? 0}px`,
+    left: 0,
+    position: 'absolute',
+    width: scaleData.value.valueX ? unitSize(scaleData.value.valueX) : 0,
+    height: unitSize(height),
+    backgroundColor: colorVar(color),
+  })
+})
+
+const ticks = computed(() => {
+  if (!scaleData.value || !showGrid) return []
+
+  const { tickCount, tickWidth } = scaleData.value
+  const ticksArray = []
+  for (let i = 0; i < tickCount; i++) {
+    ticksArray.push({
+      top: 0,
+      left: unitSize(i * tickWidth),
+      width: unitSize(tickWidth),
+      height: unitSize(height),
+      borderColor: colorVar(gridColor),
+      borderStyle: 'solid',
+      borderWidth: `${stroke}px ${stroke}px ${stroke}px ${i === 0 ? stroke : 0}px`,
+      position: 'absolute',
+    })
+  }
+  return ticksArray
+})
 </script>
 <template>
-  <div ref="scale" v-bind="$attrs">
-    <LCARSRow style="align-content: space-between; position: relative">
-      <LCARSElement
-        :color="bgColor ?? color"
-        style="position: absolute; top: 0; left: 0"
-        :width="reactiveValueX.number"
-        :height="height"
-      />
-      <LCARSElement
-        v-for="(_n, index) in scaleConfig.tickCount"
-        :key="index"
-        :width="scaleConfig.tickWidth"
-        :height="height"
-        :style="{
-          borderStyle: 'solid',
-          borderWidth: `${stroke}px`,
-          borderColor: colorVar(gridColor),
-          boxSizing: 'border-box',
-          position: 'absolute',
-          zIndex: 1,
-        }"
-      />
-    </LCARSRow>
+  <div ref="scale" :style="styleObject">
+    <div :style="barStyle"></div>
+    <div v-for="(tick, index) in ticks" :key="index" :style="tick as any"></div>
   </div>
 </template>
