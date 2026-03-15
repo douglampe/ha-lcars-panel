@@ -6,7 +6,7 @@ import testConfig from '@/assets/config/demo.yaml?raw'
 import YAML from 'yaml'
 import ParentComponent from './components/ParentComponent.vue'
 import { loadTestState } from './HAState'
-import { currentNav } from './LocalNav'
+import ConfigEditor from './components/ConfigEditor.vue'
 
 const { config, loadTest } = defineProps<{ config: HAConfig; loadTest: boolean }>()
 
@@ -55,6 +55,7 @@ onMounted(async () => {
 <template>
   <div class="lcars-wrapper">
     <ParentComponent :children="haConfig.children" />
+    <ConfigEditor v-if="haConfig.editorEnabled" />
   </div>
 </template>
 

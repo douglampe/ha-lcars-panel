@@ -6,8 +6,8 @@ import LCARSConfigEditor from './components/ConfigEditor.vue'
 
 <template>
   <div class="lcars-wrapper">
-    <ParentComponent :children="haConfig.children" />
-    <LCARSConfigEditor />
+    This component includes an integrated editor. To use the editor, set `editorEnabled: true` in
+    the YAML config.
   </div>
 </template>
 
