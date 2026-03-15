@@ -14,6 +14,7 @@ const attrs = useAttrs() as any
 const { children = [] } = defineProps<{ children?: ConfigItem[] }>()
 
 const filteredAttrs = computed(() => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars
   const { tag, type, showForNav, stateMap, children, mixin, ...rest } = attrs
   return rest
 })
@@ -31,6 +32,8 @@ const styleObject = computed(() => {
 
 <template>
   <div :style="styleObject" v-bind="filteredAttrs">
-    <ParentComponent :children="children" childPositioning="absolute" />
+    <ParentComponent :children="children" childPositioning="absolute"
+      ><slot></slot
+    ></ParentComponent>
   </div>
 </template>

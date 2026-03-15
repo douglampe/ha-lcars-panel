@@ -24,17 +24,23 @@ import LCARSThemeSample from './components/LCARSThemeSample.vue'
 import StateValueTable from './components/StateValueTable.vue'
 import themeConfig from '@/assets/themes/themes.yaml?raw'
 import YAML from 'yaml'
-import Remote from './components/Remote.vue'
+import RemoteConfig from './components/RemoteConfig.vue'
 import AbsoluteContainer from './components/AbsoluteContainer.vue'
+import { loadMenu, type NavItem } from './NavItem'
+import MenuVertical from './components/MenuVertical.vue'
+import MenuHorizontal from './components/MenuHorizontal.vue'
+import NavRemote from './components/NavRemote.vue'
 
 export interface HAConfig {
   type: string
   vars: Record<string, string>
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+
   mixins: Record<string, any>
   children: ConfigItem[]
   positioning?: string
+  nav?: NavItem[]
   theme?: string
+  remoteRoot?: string
 }
 
 export const haConfig = ref<HAConfig>({
@@ -44,10 +50,8 @@ export const haConfig = ref<HAConfig>({
   children: [],
 } as HAConfig)
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const mixins = ref({} as any)
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const components = {} as Record<string, any>
 
 registerComponent('default', RecursiveComponent)
@@ -72,12 +76,29 @@ registerComponent('attribute-table', AttributeTable)
 registerComponent('attribute-flow', AttributeFlow)
 registerComponent('attribute-list', AttributeList)
 registerComponent('scale-h', ScaleHorizontal)
-registerComponent('remote', Remote)
+registerComponent('remote', RemoteConfig)
 registerComponent('absolute-container', AbsoluteContainer)
+registerComponent('menu-vertical', MenuVertical)
+registerComponent('menu-horizontal', MenuHorizontal)
+registerComponent('nav-remote', NavRemote)
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function registerComponent(key: string, component: any) {
   components[key] = component
+}
+
+export function loadConfig(config: any) {
+  if (!config) {
+    return
+  }
+  haConfig.value = config
+  loadMixins(config)
+  loadVariables(config)
+  if (config.theme) {
+    loadTheme(config.theme)
+  } else {
+    loadTheme('default')
+  }
+  loadMenu()
 }
 
 export function setVariable(key: string, value: string) {

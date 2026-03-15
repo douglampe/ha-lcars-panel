@@ -5,6 +5,7 @@ import type { TapActionProps } from './TapActionProps'
 
 export interface ElementProps extends MarginProps, PadProps, RadiusProps {
   nav?: string
+  rootPath?: string
   color?: string
   textColor?: string
   fontSize?: number

@@ -1,6 +1,6 @@
 import { ref } from 'vue'
 
-export const currentNav = ref('/home')
+export const currentNav = ref<string>('/home')
 
 export function navigate(path: string) {
   if (path.startsWith('url:')) {
@@ -10,5 +10,5 @@ export function navigate(path: string) {
   currentNav.value = path
 
   // HACK: Scroll to top until we get anchor scrolling working
-  window.scrollTo(0, 0)
+  // window.scrollTo(0, 0)
 }

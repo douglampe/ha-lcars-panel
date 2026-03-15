@@ -1,4 +1,12 @@
 default:
+  - golden-tainoi
+  - dodger-blue
+  - indian-red
+  - atomic-tangerine
+  - fiery-orange
+  - anakiwa
+  - lilac
+the-lcars-classic:
   - mauve #c9f
   - flushed-mahogany #c44
   - pizazz #f80
@@ -6,7 +14,7 @@ default:
   - malibu #89f
   - wax-flower #fba
   - heliotrope #96f
-nemesis:
+the-lcars-nemesis:
   - tan #ca8
   - zircon #ebf0ff
   - blue-ribbon #26f
@@ -15,13 +23,13 @@ nemesis:
   - peach-orange #fc9
   - blue #23f
   - comet #52526a
-lower-decks:
+the-lcars-lower-decks:
   - vermilion #f40
   - flush-orange #f70
   - peach-orange #fc9
   - yellow-orange #fa4
   - west-side #f91
-lower-decks-padd:
+the-lcars-lower-decks-padd:
   - cornflower-blue #58e
   - anakiwa #8ff
   - danube #79d

@@ -1,5 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { defineCustomElement, watch } from 'vue'
+import { defineCustomElement } from 'vue'
 
 import LCARSCardEditorCe from './LCARSCardEditor.ce.vue'
 import { haConfig } from './HAConfig'

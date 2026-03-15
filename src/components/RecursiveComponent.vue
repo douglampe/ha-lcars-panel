@@ -20,7 +20,7 @@ defineOptions({
 })
 
 function processItem(item: ConfigItem) {
-  let processedItem = { ...item }
+  const processedItem = { ...item }
 
   removeUndefined(processedItem)
 
@@ -31,6 +31,7 @@ function processItem(item: ConfigItem) {
   applyOrientationClass(processedItem)
 
   if (processedItem.tag) {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars
     const { showForNav, stateMap, children, mixin, ...rest } = processedItem
     return { ...rest }
   }
@@ -62,7 +63,7 @@ function getComponentType(cmps: Record<string, any>) {
 if (props.stateMap) {
   watch(
     () => haState.value,
-    (v) => {
+    () => {
       processedProps.value = processItem(props)
     },
     { deep: true },
@@ -73,7 +74,7 @@ const isVisible = computed(() => {
   if (
     components &&
     (!processedProps?.value?.showForNav ||
-      currentNav?.value.startsWith(processedProps.value.showForNav))
+      currentNav.value?.startsWith(processedProps.value.showForNav))
   ) {
     return true
   }
@@ -110,10 +111,6 @@ onMounted(() => {
     <template #right v-if="props.rightChildren">
       <ParentComponent :children="props.rightChildren as Array<ConfigItem>" />
     </template>
-    <ParentComponent
-      v-if="props.children"
-      :children="props.children as Array<ConfigItem>"
-      :childPositioning="props.childPositioning as string | undefined"
-    />
+    <ParentComponent v-if="props.children" :children="props.children as Array<ConfigItem>" />
   </component>
 </template>

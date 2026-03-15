@@ -13,6 +13,7 @@ const html = computed(() => {
   if (content) {
     return marked.parse(content)
   }
+  return undefined
 })
 </script>
 

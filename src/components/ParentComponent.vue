@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import type { ConfigItem } from '@/ConfigItem'
 import RecursiveComponent from './RecursiveComponent.vue'
-import { computed } from 'vue'
 
 defineOptions({
   inheritAttrs: false,

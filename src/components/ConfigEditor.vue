@@ -22,6 +22,6 @@ watch(haConfig, (newConfig) => {
 
 <template>
   <div style="position: absolute; bottom: 0; left: 0; right: 0; height: 25%; z-index: 99">
-    <textarea style="width: 100%; height: 100%" @input="onConfigChange">{{ config }}</textarea>
+    <textarea style="width: 100%; height: 100%" @input="onConfigChange" v-model="config"></textarea>
   </div>
 </template>

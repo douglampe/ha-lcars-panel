@@ -9,9 +9,7 @@ defineOptions({
 
 <template>
   <div class="lcars-col">
-    <LCARSElement class="lcars-w-2 rounded centered""
-      >Load Test State</LCARSElement
-    >
+    <LCARSElement class="lcars-w-2 rounded centered">Load Test State</LCARSElement>
     <pre style="text-transform: none; overflow-y: scroll; flex: 1">{{ haState.states }}</pre>
   </div>
 </template>

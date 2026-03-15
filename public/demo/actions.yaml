@@ -13,19 +13,19 @@ children:
         children:
           - type: el
             mixin: menuTab
-            nav: /demo/actions/tap
+            nav: /actions/tap
             text: Tap
             color: golden-tainoi
           - type: el
             mixin: menuTab
-            nav: /demo/actions/button
+            nav: /actions/button
             text: Button
             color: fiery-orange
           - type: el
             width: 1
             color: dodger-blue
     children:
-      - showForNav: /demo/actions/tap
+      - showForNav: /actions/tap
         children:
           - type: sample
             content: |
@@ -49,7 +49,7 @@ children:
                     pad-right: 0.1
                   - type: state-value
                     entity: light.test
-      - showForNav: /demo/actions/button
+      - showForNav: /actions/button
         children:
           - type: sample
             content: |

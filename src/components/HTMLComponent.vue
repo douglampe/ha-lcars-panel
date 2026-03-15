@@ -9,6 +9,7 @@ defineOptions({
 const attrs = useAttrs() as any
 
 const filteredAttrs = computed(() => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars
   const { tag, type, showForNav, stateMap, children, mixin, ...rest } = attrs
   return rest
 })

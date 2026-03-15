@@ -12,12 +12,18 @@ children:
         textColor: golden-tainoi
         fontSize: 1
         marginLeft: 0.3
-  - type: el
-    text: |
+  - type: md
+    content: |
       This is not just a "custom card" for Home Assistant. It is a comprehensive LCARS system designed to allow
       you to create complex LCARS layouts either as a single card in a dashboard using the LCARS theme, create
       an entire Lovelace dashboard with a single card, or create a custom panel that runs full-screen without
       the Home Assistant menu.
-  - tag: p
-    text: |
+  - type: md
+    delay: 4
+    content: |
       Click the button below to start a detailed demo
+  - type: pill
+    text: Start Demo
+    color: dodger-blue
+    nav: /config/globals
+    marginTop: 0.5

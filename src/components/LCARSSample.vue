@@ -27,6 +27,7 @@ onMounted(() => {
 <template>
   <div>
     <LCARSMarkdown v-if="content" :content="content"></LCARSMarkdown>
+    <p v-if="content"></p>
     <LCARSRow :margin-bottom="1">
       <pre>{{ configYaml }}</pre>
       <LCARSCol :margin-left="1"

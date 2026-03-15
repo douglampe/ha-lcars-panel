@@ -15,22 +15,22 @@ children:
         color: indian-red
         textColor: black
       - type: el
-        nav: /demo/elements
+        nav: /elements
         text: Elements
         color: atomic-tangerine
         textColor: black
       - type: el
-        nav: /demo/panels
+        nav: /panels
         text: Panels
         color: fiery-orange
         textColor: black
       - type: el
-        nav: /demo/nav
+        nav: /nav
         text: Navigation
         color: anakiwa
         textColor: black
       - type: el
-        nav: /demo/state
+        nav: /state
         text: HA State
         color: lilac
         textColor: black
@@ -239,9 +239,9 @@ children:
           - type: pill
             color: atomic-tangerine
             text: elements
-            nav: /demo/elements
+            nav: /elements
 
-      - showForNav: /demo/elements
+      - showForNav: /elements
         children:
           - type: sample
             configYaml: |
@@ -393,11 +393,11 @@ children:
                 text: button
 
           - type: pill
-            nav: /demo/panels
+            nav: /panels
             color: fiery-orange
             text: Panels
 
-      - showForNav: /demo/panels
+      - showForNav: /panels
         children:
           - type: sample
             configYaml: |
@@ -595,10 +595,10 @@ children:
 
           - type: pill
             color: anakiwa
-            nav: /demo/nav
+            nav: /nav
             text: Navigation
 
-      - showForNav: /demo/nav
+      - showForNav: /nav
         children:
           - type: sample
             configYaml: |
@@ -606,10 +606,10 @@ children:
                 children:
                   - type: pill
                     text: Nav
-                    nav: /demo/nav/test
+                    nav: /nav/test
                     color: golden-tainoi
                   - type: el
-                    showForNav: /demo/nav/test
+                    showForNav: /nav/test
                     marginLeft: 0.5
                     pad: 0.2
                     color: indian-red
@@ -634,10 +634,10 @@ children:
 
           - type: pill
             color: lilac
-            nav: /demo/state
+            nav: /state
             text: HA State
 
-      - showForNav: /demo/state
+      - showForNav: /state
         children:
           - type: sample
             configYaml: |

@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import { onMounted } from 'vue'
 import type { HAConfig } from './HAConfig'
-import { haConfig } from './HAConfig'
+import { haConfig, loadConfig } from './HAConfig'
 import testConfig from '@/assets/config/demo.yaml?raw'
 import YAML from 'yaml'
 import ParentComponent from './components/ParentComponent.vue'
-import { loadConfig } from './main'
+import { loadTestState } from './HAState'
+import { currentNav } from './LocalNav'
 
 const { config, loadTest } = defineProps<{ config: HAConfig; loadTest: boolean }>()
 
@@ -13,6 +14,7 @@ function getTestConfig() {
   if (loadTest) {
     const testConfigParsed = YAML.parse(testConfig)
     loadConfig(testConfigParsed)
+    loadTestState()
     return testConfigParsed
   }
 }
@@ -33,7 +35,7 @@ function getCssRoot() {
 }
 
 function addCssLink(href: string) {
-  let file = document.createElement('link')
+  const file = document.createElement('link')
   file.rel = 'stylesheet'
   file.href = href
   document.head.appendChild(file)
