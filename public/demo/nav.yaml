@@ -109,9 +109,30 @@ children:
       - showForNav: /nav/menu
         children:
           - type: sample
-            content: >
+            content: |
               You can create menus from the `nav` config using the `menu-vertical` and
               `menu-horizontal` components.
+
+              ```
+              nav:
+                - text: Navigation
+                  key: nav
+                  children:
+                    - text: Menu
+                      key: menu
+                      children:
+                        - text: Vertical Sample
+                          children:
+                            - text: These
+                            - text: Are
+                            - text: Vertical
+                        - text: Horizontal Sample
+                          children:
+                            - text: These
+                            - text: Are
+                            - text: Horizontal
+              ```
+
             configYaml: |
               - type: menu-vertical
                 rootPath: /nav/menu/vertical-sample
