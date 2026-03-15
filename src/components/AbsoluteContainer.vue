@@ -4,6 +4,7 @@ import type { ConfigItem } from '@/ConfigItem'
 import { unitSize } from '@/Layout'
 import { computed, useAttrs } from 'vue'
 import ParentComponent from './ParentComponent.vue'
+import LCARSElement from './LCARSElement.vue'
 
 defineOptions({
   inheritAttrs: false,
@@ -18,22 +19,10 @@ const filteredAttrs = computed(() => {
   const { tag, type, showForNav, stateMap, children, mixin, ...rest } = attrs
   return rest
 })
-
-const styleObject = computed(() => {
-  const { width, height, ...rest } = filteredAttrs.value
-  return {
-    position: 'absolute',
-    width: unitSize(width),
-    height: unitSize(height),
-    ...rest.style,
-  }
-})
 </script>
 
 <template>
-  <div :style="styleObject" v-bind="filteredAttrs">
-    <ParentComponent :children="children" childPositioning="absolute"
-      ><slot></slot
-    ></ParentComponent>
-  </div>
+  <LCARSElement positioning="relative" style="display: inline-block" v-bind="filteredAttrs">
+    <ParentComponent :children="children" childPositioning="absolute"> ></ParentComponent>
+  </LCARSElement>
 </template>

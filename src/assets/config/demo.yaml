@@ -17,6 +17,7 @@ nav:
     children:
       - text: Unit
       - text: Flex
+      - text: Absolute
       - text: Alignment
       - text: Spacing
       - text: Orientation

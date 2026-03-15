@@ -36,7 +36,7 @@ function processItem(item: ConfigItem) {
     return { ...rest }
   }
 
-  if (processedItem.children) {
+  if (processedItem.children && !processedItem.type?.endsWith('-container')) {
     delete processedItem.children
   }
 
