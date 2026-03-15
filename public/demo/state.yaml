@@ -160,8 +160,6 @@ children:
                 attribute: elevation
                 min: -180
                 max: 180
-                tickInterval: 30
-                gridColor: blue
                 showGrid: false
       - showForNav: /state/map
         children:
