@@ -2,7 +2,6 @@ type: custom:ha-lcars-panel
 vars:
   lcars_unit: 2vw
 remoteRoot: /ha-lcars-panel/demo
-editorEnabled: true
 nav:
   - text: Home
   - text: Config
