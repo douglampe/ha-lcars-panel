@@ -39,6 +39,9 @@ const items = computed(() => {
 })
 
 function getNavPath(item: NavItem) {
+  if (item.url) {
+    return item.url
+  }
   if (navToFirstChild && item.children && item.children.length > 0) {
     return item.children[0].path
   }
@@ -57,6 +60,7 @@ function getNavPath(item: NavItem) {
       :width="width"
       :height="height"
       :color="getThemeColor(index)"
+      :alignContent="alignContent"
       >{{ item.text }}</LCARSElement
     >
   </LCARSCol>

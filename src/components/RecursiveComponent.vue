@@ -9,6 +9,7 @@ import { haState } from '@/HAState'
 import HTMLComponent from './HTMLComponent.vue'
 import ParentComponent from './ParentComponent.vue'
 import LoadingComponent from './LoadingComponent.vue'
+import LCARSMarkdown from './LCARSMarkdown.vue'
 
 const props = useAttrs()
 
@@ -36,7 +37,11 @@ function processItem(item: ConfigItem) {
     return { ...rest }
   }
 
-  if (processedItem.children && !processedItem.type?.endsWith('-container')) {
+  if (
+    processedItem.children &&
+    !processedItem.type?.endsWith('-container') &&
+    processedItem.type !== 'lcars-modal'
+  ) {
     delete processedItem.children
   }
 
@@ -98,6 +103,7 @@ onMounted(() => {
     :class="processedProps?.class ?? []"
   >
     {{ processedProps?.text }}
+    <LCARSMarkdown v-if="processedProps?.md" :content="processedProps.md" />
     <a v-if="props.showForNav" :name="props.showForNav"></a>
     <template #left v-if="props.leftChildren">
       <ParentComponent :children="props.leftChildren as Array<ConfigItem>" />

@@ -188,7 +188,7 @@ children:
               following are the most useful:
 
               - `capitalize` - Capitalize the first letter of each word.
-              - `uppercase` - Conveert all letters to uppercase (Default).
+              - `uppercase` - Convert all letters to uppercase (Default).
               - `lowercase` - Convert all letters to lowercase.
               - `none` - Keep all text as it was entered.
 

@@ -1,0 +1,142 @@
+children:
+  - type: api-docs
+    topics:
+      General:
+        - topic: Colors
+      Layout:
+        - topic: Element
+          key: el
+          properties:
+            - name: alignContent
+              description: |
+                Aligns the content relative to the element boundary
+              action: Options
+              modalContent: |
+                - `top-left`: Content is aligned to the top and left of the element (Default)
+                - `top-center`: Content is aligned to the top and centered horizontally in the element
+                - `top-right`: Content is aligned to the top and right of the element
+                - `middle-left`: Content is aligned to the middle vertically and left side of the element
+                - `middle-center`: Content is aligned to the middle vertically and centered horizontally in the element
+                - `middle-right`: Content is aligned to the middle vertically and right side of the element
+                - `bottom-left`: Content is aligned to the bottom and left of the element
+                - `bottom-center`: Content is aligned to the bottom and left of the element
+                - `bottom-right`: Content is aligned to the bottom and left of the element
+            - name: button
+              description: |
+                Sets to `true` to set the cursor to a pointer to indicate the element is clickable
+            - name: capBottom
+              description: |
+                Sets to `true` to add a semicircular cap to the bottom of the element
+            - name: capLeft
+              description: |
+                Sets to `true` to add a semicircular cap to the left of the element
+            - name: capRight
+              description: |
+                Sets to `true` to add a semicircular cap to the right of the element
+            - name: capTop
+              description: |
+                Sets to `true` to add a semicircular cap to the top of the element
+            - name: color
+              description: |
+                Sets the fill color of the element
+              action: Colors
+              actionTopic: General/Colors
+            - name: fill
+              description: |
+                Set to `true` to fill available space in the parent row or column
+            - name: height
+              description: |
+                Sets the height in LCARS units of the element
+            - name: left
+              description: |
+                Sets the horizontal position in LCARS units of the left of the element for absolute-positioned elements
+            - name: lineHeight
+              description: |
+                Sets the line height of text in LCARS units (Default is 1.2 times the `fontSize` value)
+            - name: nav
+              description: |
+                Sets the target to navigate to when the element is clicked
+            - name: marginBottom
+              description: |
+                Sets the bottom margin in LCARS units
+            - name: marginLeft
+              description: |
+                Sets the left margin in LCARS units
+            - name: marginRight
+              description: |
+                Sets the right margin in LCARS units
+            - name: marginTop
+              description: |
+                Sets the top margin in LCARS units
+            - name: padBottom
+              description: |
+                Sets the bottom padding in LCARS units
+            - name: padLeft
+              description: |
+                Sets the left padding in LCARS units
+            - name: padRight
+              description: |
+                Sets the right padding in LCARS units
+            - name: padTop
+              description: |
+                Sets the top padding in LCARS units
+            - name: positioning
+              description: |
+                Sets the positioning strategy of the element as either `relative` (default) or `absolute`
+            - name: radXBottomLeft
+              description: |
+                Sets the X value bottom-left corner radius of the element
+            - name: radXBottomRight
+              description: |
+                Sets the X value bottom-right corner radius of the element
+            - name: radXTopLeft
+              description: |
+                Sets the X value top-left corner radius of the element
+            - name: radXTopRight
+              description: |
+                Sets the X value top-right corner radius of the element
+            - name: radYBottomLeft
+              description: |
+                Sets the Y value bottom-left corner radius of the element (Default is same as X value)
+            - name: radYBottomRight
+              description: |
+                Sets the Y value bottom-right corner radius of the element (Default is same as X value)
+            - name: radYTopLeft
+              description: |
+                Sets the Y value top-left corner radius of the element (Default is same as X value)
+            - name: radYTopRight
+              description: |
+                Sets the Y value top-right corner radius of the element (Default is same as X value)
+            - name: tapAction
+              description: |
+                Defines the configuration of an action to perform when the element is clicked
+              action: Details
+              modalContent: |
+                Example:
+                ```
+                tapAction:
+                  action: call-service
+                  service: light.toggle
+                  data:
+                    entity_id: light.test
+                ```
+            - name: textColor
+              description: |
+                Sets text color
+              action: Colors
+              actionTopic: General/Colors
+            - name: textTransform
+              description: |
+                Sets the text transform for the text of the element
+              action: Options
+              modalContent: |
+                - `capitalize` - Capitalize the first letter of each word.
+                - `uppercase` - Convert all letters to uppercase (Default).
+                - `lowercase` - Convert all letters to lowercase.
+                - `none` - Keep all text as it was entered.
+            - name: top
+              description: |
+                Sets the vertical position in LCARS units of the top of the element for absolute-positioned elements
+            - name: width
+              description: |
+                Sets the width in LCARS units of the element

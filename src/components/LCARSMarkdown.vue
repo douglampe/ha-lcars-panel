@@ -11,6 +11,9 @@ defineOptions({
 
 const html = computed(() => {
   if (content) {
+    if (!new RegExp(/\n\n|\n-|```/g).test(content.trim())) {
+      return marked.parseInline(content)
+    }
     return marked.parse(content)
   }
   return undefined
