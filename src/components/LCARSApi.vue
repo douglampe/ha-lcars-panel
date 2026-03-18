@@ -3,7 +3,7 @@ import LCARSElement from '@/components/LCARSElement.vue'
 import LCARSMarkdown from '@/components/LCARSMarkdown.vue'
 import LCARSRow from '@/components/LCARSRow.vue'
 import { currentNav } from '@/LocalNav'
-import { computed, ref, useAttrs } from 'vue'
+import { computed, useAttrs } from 'vue'
 import LCARSTable from './LCARSTable.vue'
 import LCARSPill from './LCARSPill.vue'
 import LCARSModal from './LCARSModal.vue'
@@ -11,11 +11,11 @@ import PanelTL from './PanelTL.vue'
 
 interface APIProperty {
   name: string
-  description: string
+  description?: string
   category?: string
   action?: string
   modalContent?: string
-  actionTopic?: string
+  actionNav?: string
 }
 
 interface APITopic {
@@ -27,7 +27,10 @@ interface APITopic {
 
 defineOptions({ inheritAttrs: false })
 
-const { topics } = useAttrs() as { topics?: Record<string, APITopic[]> }
+const { topics, properties } = useAttrs() as {
+  topics?: Record<string, APITopic[]>
+  properties?: Record<string, string>
+}
 
 const categories = computed(() => {
   if (!topics) return []
@@ -37,9 +40,9 @@ const categories = computed(() => {
 const topicContent = computed(() => {
   if (!topic.value) return ''
 
-  const parts: string[] = [`# ${topic.value.topic}`]
+  const parts: string[] = [`# ${topic.value.topic}\n`]
   if (topic.value.key) {
-    parts.push(`type: \`${topic.value.key}\``)
+    parts.push(`type: \`${topic.value.key}\`\n`)
   }
   if (topic.value.content) {
     parts.push(topic.value.content)
@@ -51,7 +54,6 @@ const topic = computed(() => {
   const parts = currentNav.value.split('/')
   if (parts.length < 3) return undefined
   const catName = parts[2]
-  console.log(catName)
   if (!topics) return undefined
   return topics[catName]?.find((t) => t.topic === parts[3])
 })
@@ -59,6 +61,11 @@ const topic = computed(() => {
 function getTopics(category: string): APITopic[] {
   if (!topics) return []
   return topics[category] ?? []
+}
+
+function getPropertyDescription(property: APIProperty): string | undefined {
+  if (!properties || !property) return undefined
+  return properties[property.name] ?? property.description
 }
 </script>
 
@@ -68,7 +75,7 @@ function getTopics(category: string): APITopic[] {
     <LCARSElement
       v-for="(t, index) in getTopics(category)"
       :key="index"
-      :width="3"
+      :width="Math.floor(t.topic.length / 5) + 2"
       :color="((index % 10) + 1).toString()"
       alignContent="middle-center"
       textColor="black"
@@ -77,7 +84,7 @@ function getTopics(category: string): APITopic[] {
       >{{ t.topic }}</LCARSElement
     >
   </LCARSRow>
-  <LCARSMarkdown :content="topicContent" />
+  <LCARSMarkdown :content="topicContent" :marginTop="1" />
   <LCARSTable v-if="topic?.properties">
     <tr>
       <th>Property</th>
@@ -87,7 +94,9 @@ function getTopics(category: string): APITopic[] {
       <td>
         <code>{{ property.name }}</code>
       </td>
-      <td>{{ property.description }}</td>
+      <td>
+        <LCARSMarkdown :content="getPropertyDescription(property)" />
+      </td>
       <td v-if="property.action">
         <LCARSModal v-if="property.modalContent" :text="property.action">
           <PanelTL :color="'golden-tainoi'" :fillWidth="true">
@@ -96,7 +105,7 @@ function getTopics(category: string): APITopic[] {
             </LCARSElement>
           </PanelTL>
         </LCARSModal>
-        <LCARSPill v-else>{{ property.action }}</LCARSPill>
+        <LCARSPill :nav="property.actionNav" v-else>{{ property.action }}</LCARSPill>
       </td>
     </tr>
   </LCARSTable>

@@ -1,9 +1,0 @@
-children:
-  - type: md
-    content: |
-      # LCARS Colors
-
-      LCARS supports thousands of named colors thanks to [Colorblindor Color Name & Hue Picker](https://www.color-blindness.com/color-name-hue/).
-
-      For any property that accepts a color, you can use a named color value. Simply convert the name to lowercase and
-      replace spaces qith `-` (ex: `Dodger Blue` = LCARS color `dodger-blue`).

@@ -3,6 +3,15 @@ import { marked } from 'marked'
 import { computed } from 'vue'
 import LCARSElement from './LCARSElement.vue'
 
+marked.use({
+  renderer: {
+    link: ({ href, title, text }) => {
+      const external = href.startsWith('http') ? ' target="_blank" rel="noopener"' : ''
+      return `<a href="${href}"${title ? `'title="${title}"` : ''}${external}>${text}</a>`
+    },
+  },
+})
+
 const { content } = defineProps<{ content?: string }>()
 
 defineOptions({

@@ -1,15 +1,115 @@
 children:
   - type: api-docs
+    properties:
+      alignContent: |
+        Aligns the content relative to the element boundary
+      button: |
+        Sets to `true` to set the cursor to a pointer to indicate the element is clickable
+      capBottom: |
+        Sets to `true` to add a semicircular cap to the bottom of the element
+      capLeft: |
+        Sets to `true` to add a semicircular cap to the left of the element
+      capRight: |
+        Sets to `true` to add a semicircular cap to the right of the element
+      capTop: |
+        Sets to `true` to add a semicircular cap to the top of the element
+      children: |
+        Lists child elements to be rendered inside the element
+      marginBottom: |
+        Sets the bottom margin in LCARS units
+      marginLeft: |
+        Sets the left margin in LCARS units
+      marginRight: |
+        Sets the right margin in LCARS units
+      marginTop: |
+        Sets the top margin in LCARS units
+      md: |
+        Markdown content to be rendered inside the element
+      nav: |
+        Sets the target to navigate to when the element is clicked
+      padBottom: |
+        Sets the bottom padding in LCARS units
+      padLeft: |
+        Sets the left padding in LCARS units
+      padRight: |
+        Sets the right padding in LCARS units
+      padTop: |
+        Sets the top padding in LCARS units
+      positioning: |
+        Sets the positioning strategy of the element as either `relative` (default) or `absolute`
     topics:
       General:
+        - topic: Variables
+          content: |
+            ```yaml
+            vars:
+            ```
+
+            Allows you to modify global variables. 
+
+            You can override any global CSS variable using this `vars` key. Simply remove the leading dashes from the
+            variable name and replace any dashes in the name with underscores. For example, you can change the Home 
+            Assistant primary color (`--primary-color`) using `primary_color`.
+
+            ```yaml
+            vars:
+              primary_color: #0000FF
+            ```
+
+            The following variables are available:
+          properties:
+            - name: lcars_color_bg
+              description: |
+                Main background color of the panel
+            - name: lcars_color_code
+              description: |
+                Default background color for code formatted such as `code` and `pre` tags
+            - name: lcars_color_text
+              description: |
+                Default text color
+            - name: lcars_font_size
+              description: |
+                Default font size in LCARS units
+            - name: lcars_unit
+              description: |
+                Unit size as a valid CSS size such as `50px`, `3rem`, `3em`
         - topic: Colors
+          content: |
+            # LCARS Colors
+
+            LCARS supports thousands of named colors thanks to [Colorblindor Color Name & Hue Picker](https://www.color-blindness.com/color-name-hue/).
+
+            For any property that accepts a color, you can use a named color value. Simply convert the name to lowercase and
+            replace spaces with `-` (ex: `Dodger Blue` = LCARS color `dodger-blue`).
       Layout:
+        - topic: Unit
+          content: |
+            ```yaml
+            vars:
+              lcars_unit: 2vw
+            ```
+            The layout system is based on LCARS Units. The default unit size is `2vw` or 2% of your viewport width
+            meaning that your screen is 50 units wide. You can modify the default unit size by setting the `lcars_unit`
+            variable under the top-level `vars` key to any valid CSS size. For example, you can set the unit size in 
+            pixes using `px`. Note that using percentage is not recommended since this will make the unit have the 
+            same aspect ratio as the viewport which makes layout unpredictable.
+
+            You can access the LCARS unit in native CSS by using the `--lcars-unit` variable.
+            ```yaml
+              - tag: div
+                style:
+                  width: calc(var(--lcars-unit) * 3)
+                  height: calc(var(--lcars-unit) * 3)
+                  background-color: var(--lcars-color-lilac)
+            ```
         - topic: Element
           key: el
+          content: |
+            The element is the primary building block for the visual system. It is rendered as a `div` HTML tag with
+            properties set as defined below to control positioning, size, content alignment, etc.
+
           properties:
             - name: alignContent
-              description: |
-                Aligns the content relative to the element boundary
               action: Options
               modalContent: |
                 - `top-left`: Content is aligned to the top and left of the element (Default)
@@ -19,28 +119,19 @@ children:
                 - `middle-center`: Content is aligned to the middle vertically and centered horizontally in the element
                 - `middle-right`: Content is aligned to the middle vertically and right side of the element
                 - `bottom-left`: Content is aligned to the bottom and left of the element
-                - `bottom-center`: Content is aligned to the bottom and left of the element
-                - `bottom-right`: Content is aligned to the bottom and left of the element
+                - `bottom-center`: Content is aligned to the bottom and center of the element
+                - `bottom-right`: Content is aligned to the bottom and right of the element
             - name: button
-              description: |
-                Sets to `true` to set the cursor to a pointer to indicate the element is clickable
             - name: capBottom
-              description: |
-                Sets to `true` to add a semicircular cap to the bottom of the element
             - name: capLeft
-              description: |
-                Sets to `true` to add a semicircular cap to the left of the element
             - name: capRight
-              description: |
-                Sets to `true` to add a semicircular cap to the right of the element
             - name: capTop
-              description: |
-                Sets to `true` to add a semicircular cap to the top of the element
+            - name: children
             - name: color
               description: |
                 Sets the fill color of the element
               action: Colors
-              actionTopic: General/Colors
+              actionNav: /api/General/Colors
             - name: fill
               description: |
                 Set to `true` to fill available space in the parent row or column
@@ -53,36 +144,41 @@ children:
             - name: lineHeight
               description: |
                 Sets the line height of text in LCARS units (Default is 1.2 times the `fontSize` value)
-            - name: nav
-              description: |
-                Sets the target to navigate to when the element is clicked
             - name: marginBottom
-              description: |
-                Sets the bottom margin in LCARS units
             - name: marginLeft
-              description: |
-                Sets the left margin in LCARS units
             - name: marginRight
-              description: |
-                Sets the right margin in LCARS units
             - name: marginTop
-              description: |
-                Sets the top margin in LCARS units
+            - name: md
+            - name: nav
             - name: padBottom
-              description: |
-                Sets the bottom padding in LCARS units
             - name: padLeft
-              description: |
-                Sets the left padding in LCARS units
             - name: padRight
-              description: |
-                Sets the right padding in LCARS units
             - name: padTop
-              description: |
-                Sets the top padding in LCARS units
             - name: positioning
+            - name: radXInnerBottomLeft
               description: |
-                Sets the positioning strategy of the element as either `relative` (default) or `absolute`
+                Sets the X value bottom-left corner radius of the element
+            - name: radXInnerBottomRight
+              description: |
+                Sets the X value bottom-right corner radius of the element
+            - name: radXInnerTopLeft
+              description: |
+                Sets the X value top-left corner radius of the element
+            - name: radXInnerTopRight
+              description: |
+                Sets the X value top-right corner radius of the element
+            - name: radYInnerBottomLeft
+              description: |
+                Sets the Y value bottom-left corner radius of the element (Default is same as X value)
+            - name: radYInnerBottomRight
+              description: |
+                Sets the Y value bottom-right corner radius of the element (Default is same as X value)
+            - name: radYInnerTopLeft
+              description: |
+                Sets the Y value top-left corner radius of the element (Default is same as X value)
+            - name: radYInnerTopRight
+              description: |
+                Sets the Y value top-right corner radius of the element (Default is same as X value)
             - name: radXBottomLeft
               description: |
                 Sets the X value bottom-left corner radius of the element
@@ -120,23 +216,86 @@ children:
                   data:
                     entity_id: light.test
                 ```
+            - name: text
+              description: |
+                Text to be rendered inside the element
             - name: textColor
               description: |
                 Sets text color
               action: Colors
-              actionTopic: General/Colors
+              actionNav: /api/General/Colors
             - name: textTransform
               description: |
                 Sets the text transform for the text of the element
               action: Options
               modalContent: |
-                - `capitalize` - Capitalize the first letter of each word.
-                - `uppercase` - Convert all letters to uppercase (Default).
-                - `lowercase` - Convert all letters to lowercase.
-                - `none` - Keep all text as it was entered.
+                - `capitalize` - Capitalize the first letter of each word
+                - `uppercase` - Convert all letters to uppercase (Default)
+                - `lowercase` - Convert all letters to lowercase
+                - `none` - Keep all text as it was entered
             - name: top
               description: |
                 Sets the vertical position in LCARS units of the top of the element for absolute-positioned elements
             - name: width
               description: |
                 Sets the width in LCARS units of the element
+        - topic: Row
+          key: row
+          content: |
+            Renders a ["flexbox" CSS layout](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) 
+            row. Immediate children added to a row will be arranged horizontally.
+          properties:
+            - name: bottom
+              description: |
+                Set to `true` to align child elements to the bottom of the row
+            - name: children
+            - name: fill
+              description: |
+                Set to `true` to make the row fill the width of the parent container
+            - name: gap
+              description: |
+                Sets the gap beween child elements in the row in tenths of an LCARS unit (ex: `gap: 1` will set a gap of 
+                0.1 units)
+            - name: height
+              description: |
+                Sets height of the row in LCARS units
+            - name: right
+              description: |
+                Set to `true` to align child elements to the right side of the row
+            - name: stretch
+              description: |
+                Set to `true` to stretch child elements to the width of the row
+        - topic: Column
+          key: col
+          content: |
+            Renders a ["flexbox" CSS layout](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) 
+            column. Immediate children added to a column will be arranged vertically.
+          properties:
+            - name: bottom
+              description: |
+                Set to `true` to align child elements to the bottom of the column
+            - name: children
+            - name: fill
+              description: |
+                Set to `true` to make the column fill the height of the parent container
+            - name: gap
+              description: |
+                Sets the gap beween child elements in the column in tenths of an LCARS unit (ex: `gap: 1` will set a gap of 
+                0.1 units)
+            - name: right
+              description: |
+                Set to `true` to align child elements to the right side of the column
+            - name: stretch
+              description: |
+                Set to `true` to stretch child elements to the width of the column
+            - name: width
+              description: |
+                Sets width of the column in LCARS units
+        - topic: Absolute Container
+          key: absolute-container
+          content: |
+            Positions child items using absolute coordinates. Set the `width` and `height` of the 
+            `absolute-container` to the desired size of the coordinate system of the children. Immediate child 
+            components will use `positioning: absolute` by default.
+          properties:
+            - name: children
