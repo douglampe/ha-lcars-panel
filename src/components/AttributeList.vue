@@ -16,7 +16,6 @@ const rows = computed(() => {
   const entityObject = haState?.value?.states[entity]
 
   if (entityObject) {
-     
     Object.entries((entityObject as any)?.attributes).forEach(([key, value]) => {
       rowList.push({ key, value: value as string })
     })

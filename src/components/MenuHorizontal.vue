@@ -4,7 +4,7 @@ import LCARSElement from './LCARSElement.vue'
 import LCARSRow from './LCARSRow.vue'
 import { haConfig } from '@/HAConfig'
 import { findByPath, type NavItem } from '@/NavItem'
-import { getTheme, getThemeColor } from '@/ThemeConfig'
+import { getThemeColor } from '@/ThemeConfig'
 
 defineOptions({
   inheritAttrs: false,
@@ -21,14 +21,12 @@ const {
 } = defineProps<{
   width?: number
   height?: number
-  textColor?: string
+  textColor?: string | number
   rootPath?: string
   navToFirstChild?: boolean
   gap?: number
   alignContent?: string
 }>()
-
-const theme = getTheme()
 
 const items = computed(() => {
   if (!haConfig.value?.nav) {

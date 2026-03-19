@@ -65,17 +65,18 @@ function getTopics(category: string): APITopic[] {
 
 function getPropertyDescription(property: APIProperty): string | undefined {
   if (!properties || !property) return undefined
-  return properties[property.name] ?? property.description
+  return property.description ?? properties[property.name]
 }
 </script>
 
 <template>
-  <LCARSRow v-for="category in categories" :gap="1" :marginBottom="0.1">
+  <LCARSRow v-for="(category, i) in categories" :key="i" :gap="1" :marginBottom="0.1">
     <LCARSElement :width="3" alignContent="middle-right">{{ category }}:</LCARSElement>
     <LCARSElement
       v-for="(t, index) in getTopics(category)"
       :key="index"
       :width="Math.floor(t.topic.length / 5) + 2"
+      :height="1"
       :color="((index % 10) + 1).toString()"
       alignContent="middle-center"
       textColor="black"
@@ -90,7 +91,7 @@ function getPropertyDescription(property: APIProperty): string | undefined {
       <th>Property</th>
       <th>Description</th>
     </tr>
-    <tr v-for="(property, j) in topic.properties">
+    <tr v-for="(property, j) in topic.properties" :key="j">
       <td>
         <code>{{ property.name }}</code>
       </td>

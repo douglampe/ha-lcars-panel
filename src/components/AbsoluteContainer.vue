@@ -1,7 +1,6 @@
 <!-- eslint-disable @typescript-eslint/no-explicit-any -->
 <script setup lang="ts">
 import type { ConfigItem } from '@/ConfigItem'
-import { unitSize } from '@/Layout'
 import { computed, useAttrs } from 'vue'
 import ParentComponent from './ParentComponent.vue'
 import LCARSElement from './LCARSElement.vue'

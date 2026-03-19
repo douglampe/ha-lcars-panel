@@ -15,8 +15,8 @@ const {
 } = defineProps<{
   entity?: string
   attribute?: string
-  color?: string
-  textColor?: string
+  color?: string | number
+  textColor?: string | number
   min?: number
   max?: number
 }>()

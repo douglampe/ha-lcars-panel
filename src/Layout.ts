@@ -16,7 +16,7 @@ export function gapSize(val?: number) {
   }
 }
 
-export function colorVar(val?: string) {
+export function colorVar(val?: string | number) {
   if (val) {
     return `var(--lcars-color-${val})`
   }

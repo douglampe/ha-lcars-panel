@@ -1,9 +1,3 @@
-<script setup lang="ts">
-import { haConfig } from './HAConfig'
-import ParentComponent from './components/ParentComponent.vue'
-import LCARSConfigEditor from './components/ConfigEditor.vue'
-</script>
-
 <template>
   <div class="lcars-wrapper">
     This component includes an integrated editor. To use the editor, set `editorEnabled: true` in
