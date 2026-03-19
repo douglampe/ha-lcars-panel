@@ -105,7 +105,9 @@ function getPropertyDescription(property: APIProperty): string | undefined {
             </LCARSElement>
           </PanelTL>
         </LCARSModal>
-        <LCARSPill :nav="property.actionNav" v-else>{{ property.action }}</LCARSPill>
+        <LCARSPill :width="property.action.length / 6 + 2" :nav="property.actionNav" v-else>{{
+          property.action
+        }}</LCARSPill>
       </td>
     </tr>
   </LCARSTable>
