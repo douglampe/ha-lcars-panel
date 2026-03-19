@@ -7,9 +7,9 @@ const {
   textColor = 'black',
   alignContent = 'middle-center',
 } = defineProps<{
-  color?: string
+  color?: string | number
   width?: number
-  textColor?: string
+  textColor?: string | number
   alignContent?: string
 }>()
 

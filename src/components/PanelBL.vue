@@ -6,7 +6,7 @@ import LCARSRow from './LCARSRow.vue'
 
 interface PanelBLProps extends MarginProps {
   title?: string
-  color?: string
+  color?: string | number
   fillWidth?: boolean
   fillHeight?: boolean
   fillLeftTop?: boolean
@@ -16,7 +16,7 @@ interface PanelBLProps extends MarginProps {
   gap?: number
   leftWidth?: number
   leftPad?: number
-  leftColor?: string
+  leftColor?: string | number
   leftGap?: number
   topCap?: boolean
   leftStretch?: boolean

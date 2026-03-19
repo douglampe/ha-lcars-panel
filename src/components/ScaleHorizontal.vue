@@ -28,9 +28,9 @@ const {
   attribute?: string
   width?: number
   height?: number
-  color?: string
-  bgColor?: string
-  gridColor?: string
+  color?: string | number
+  bgColor?: string | number
+  gridColor?: string | number
   stroke?: number
   min?: number
   max?: number

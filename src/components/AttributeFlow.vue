@@ -22,7 +22,7 @@ const rows = computed(() => {
   }
   const rowList: Array<{ key: string; value: string }> = []
   const entityObject = haState?.value?.states[entity]
-   
+
   Object.entries((entityObject as any).attributes).forEach(([key, value]) => {
     rowList.push({ key, value: value as string })
   })

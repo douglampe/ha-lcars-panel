@@ -7,7 +7,7 @@ import type { ConfigItem } from '@/ConfigItem'
 
 interface PanelTLProps extends ConfigItem, MarginProps {
   title?: string
-  color?: string
+  color?: string | number
   fillWidth?: boolean
   fillHeight?: boolean
   fillLeftTop?: boolean
@@ -17,7 +17,7 @@ interface PanelTLProps extends ConfigItem, MarginProps {
   gap?: number
   leftWidth?: number
   leftPad?: number
-  leftColor?: string
+  leftColor?: string | number
   leftGap?: number
   leftStretch?: boolean
   topCap?: boolean

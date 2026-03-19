@@ -1,0 +1,937 @@
+children:
+  - type: api-docs
+    properties:
+      alignContent: |
+        Aligns the content relative to the element boundary
+      anmiation: |
+        Sets the animation to apply
+      attribute: |
+        Optional attribute to display instead of the entity state
+      bottomChildren: |
+        Lists child elements to be rendered arranged horizontally in the bottom of the panel
+      bottomCap: |
+        Sets to `true` to add a semicircular cap to the bottom end of the panel boarder
+      bottomGap: |
+        Sets the gap between `bottomChildren` elements in 1/10 of an LCARS unit
+      bottomHeight: |
+        Sets the height (thickness) of the bottom border in LCARS units
+      bottomStretch: |
+        Set to `true` to stretch the height of `bottomChildren` to fill available space
+      button: |
+        Sets to `true` to set the cursor to a pointer to indicate the element is clickable
+      capBottom: |
+        Sets to `true` to add a semicircular cap to the bottom of the element
+      capLeft: |
+        Sets to `true` to add a semicircular cap to the left of the element
+      capRight: |
+        Sets to `true` to add a semicircular cap to the right of the element
+      capTop: |
+        Sets to `true` to add a semicircular cap to the top of the element
+      children: |
+        Lists child elements to be rendered inside the element
+      color: |
+        Sets the fill color of the element
+      entity: |
+        Home Assistant entity identifier
+      fillWidth: |
+        Set to `true` to make the main container for `children` fill available width
+      fontSize: |
+        Sets the text font size in LCARS units
+      gap: |
+        Sets the gap between border elements in 1/10 of an LCARS unit
+      innerRadX: |
+        Sets the X value of the inner radius of the elbow bend of the panel
+      innerRadY: |
+        Sets the Y value of the inner radius of the elbow bend of the panel
+      leftCap: |
+        Sets to `true` to add a semicircular cap to the left end of the panel border
+      leftChildren: |
+        Lists child elements to be rendered arranged vertically in the lefts side of the panel
+      leftColor: |
+        Sets the color for the left side of the boarder
+      leftGap: |
+        Sets the gap between `leftChildren` elements in 1/10 of an LCARS unit
+      leftPad: |
+        Sets the spacing between the left edge of the panel and `leftChildren` in LCARS units
+      leftStretch: |
+        Set to `true` to stretch the width of `leftChildren` to fill available space
+      leftWidth: |
+        Sets the width of the left boarder in LCARS units
+      lineHeight: |
+        Sets the line height of text in LCARS units (Default is 1.2 times the `fontSize` value)
+      marginBottom: |
+        Sets the bottom margin in LCARS units
+      marginLeft: |
+        Sets the left margin in LCARS units
+      marginRight: |
+        Sets the right margin in LCARS units
+      marginTop: |
+        Sets the top margin in LCARS units
+      md: |
+        Markdown content to be rendered inside the element
+      nav: |
+        Sets the target to navigate to when the element is clicked
+      outerRadX: |
+        Sets the X value of the outer radius of the elbow bend of the panel
+      outerRadY: |
+        Sets the Y value of the outer radius of the elbow bend of the panel
+      padBottom: |
+        Sets the bottom padding in LCARS units
+      padLeft: |
+        Sets the left padding in LCARS units
+      padRight: |
+        Sets the right padding in LCARS units
+      padTop: |
+        Sets the top padding in LCARS units
+      positioning: |
+        Sets the positioning strategy of the element as either `relative` (default) or `absolute`
+      rightCap: |
+        Sets to `true` to add a semicircular cap to the right end of the panel border
+      rightColor: |
+        Sets the color for the right side of the boarder
+      rightGap: |
+        Sets the gap between `rightChildren` elements in 1/10 of an LCARS unit
+      rightChildren: |
+        Lists child elements to be rendered arranged vertically in the right side of the panel
+      rightPad: |
+        Sets the spacing between the right edge of the panel and `rightChildren` in LCARS units
+      rightStretch: |
+        Set to `true` to stretch the width of `leftChildren` to fill available space
+      rightWidth: |
+        Sets the width of the right boarder in LCARS units
+      textColor: |
+        Sets the text color
+      title: |
+        Sets the text to display in the title area of the panel
+      topCap: |
+        Sets to `true` to add a semicircular cap to the top end of the panel border
+      topChildren: |
+        Lists child elements to be rendered arranged horizontally in the top of the panel
+      topGap: |
+        Sets the gap between `topChildren` elements in 1/10 of an LCARS unit
+      topHeight: |
+        Sets the height (thickness) of the top border in LCARS units
+      topStretch: |
+        Set to `true` to stretch the height of `topChildren` to fill available space
+    topics:
+      Configuration:
+        - topic: Panel Configuration
+          content: |
+            The following top-level configurations are available.
+          properties:
+            - name: type
+              description: |
+                Defines the card type for Home Assistant and must be `custom:ha-lcars-panel`
+            - name: vars
+              description: Defines global variables
+              action: Details
+              actionNav: /api/Configuration/Variables
+            - name: theme
+              description: Specifies the theme to use for the panel (Default is `default`)
+              action: Details
+              actionNav: /api/Configuration/Themes
+            - name: mixins
+              description: Defines reusable configurations that can be applied to elements
+              action: Details
+              actionNav: /api/Configuration/Mixins
+            - name: positioning
+              description: Default positioning (`relative` or `absolute`) for all elements in the panel (Default is `relative`)
+            - name: children
+              description: Lists the elements to display in the panel
+        - topic: Standard Configuration
+          content: |
+            The following configuration options are suupported across all types of elements.
+          properties:
+            - name: showForNav
+              description: |
+                Sets a path to only show the element if the current path starts with this value
+            - name: showForOrientation
+              category: Layout
+              description: |
+                Set to `portrait` or `landscape` to show the element only in that orientation
+        - topic: Variables
+          content: |
+            ```yaml
+            vars:
+              [variable_name]: [value]
+            ```
+
+            Allows you to modify global variables. 
+
+            You can override any global CSS variable using this `vars` key. Simply remove the leading dashes from the
+            variable name and replace any dashes in the name with underscores. For example, you can change the Home 
+            Assistant primary color (`--primary-color`) using `primary_color`.
+
+            ```yaml
+            vars:
+              primary_color: #0000FF
+            ```
+
+            The following variables are available:
+          properties:
+            - name: lcars_color_bg
+              description: |
+                Main background color of the panel
+            - name: lcars_color_code
+              description: |
+                Default background color for code formatted such as `code` and `pre` tags
+            - name: lcars_color_text
+              description: |
+                Default text color
+            - name: lcars_font_size
+              description: |
+                Default font size in LCARS units
+            - name: lcars_unit
+              description: |
+                Unit size as a valid CSS size such as `50px`, `3rem`, `3em`
+        - topic: Mixins
+          content: |
+            ```yaml
+            mixins:
+              [key]:
+                [setting]: [value]
+            ```
+
+            Mixins allow you to specify static values that can then be applied to multiple elements.
+
+            Note that you cannot change the type of an element using a mixin.
+
+            For example given the following mixins configuration:
+
+            ```yaml
+            mixins:
+              myText:
+                fontSize: 0.4
+                alignContent: bottom-right
+                height: 2
+                width: 3
+                radXTopLeft: 1
+                radXBottomLeft: 1
+            ```
+
+            The mixin `myText` can then be used to define elements using the mixin with additional config added.
+
+            ```yaml
+            - type: el
+              mixin: myText
+              text: Item 1
+              color: orange-peel
+            - type: el
+              mixin: myText
+              text: Item 2
+              color: cosmic
+            ```
+
+        - topic: Navigation
+          content: |
+            ```yaml
+            nav:
+              - [Navigation Item]
+            ```
+
+            Navigation can be configured via the top-level `nav` key. This key can contain a list of navigation
+            items. Each item can have children which establishes a hierarchy that can be used to generate navigation 
+            elements usable across your dashboard.
+
+            Each navigation item is assigned a path to show the full hierarchy delimited with forward slashes
+            (ex: `/home/living/lights`).
+
+          properties:
+            - name: text
+              description: |
+                Text to display in items generated from navigation data such as menus
+            - name: key
+              description: |
+                Path entry for the navigation item (default is `text` value converted to lowercase with spaces replaced with `-`)
+            - name: children
+              description: |
+                Lists child navigation items
+            - name: url
+              description: |
+                Sets a URL to be used to fetch configuration for the navigation item
+              action: Remote Config
+              actionNav: /api/Configuration/Remote Config
+        - topic: Remote Config
+          key: remote
+          content: |
+            You can load a configuration from a remote URL by adding an element with type `remote` and a `url` key. 
+            The URL must point to a valid YAML configuration file. This is useful for sharing configurations or 
+            breaking up a large configuration into multiple files.
+          properties:
+            - name: url
+              description: |
+                URL to use to access remote YAML configuration (Must contnain a single element and not a list of elements)
+        - topic: Colors
+          content: |
+            Over 1,600 named colors are supported thanks to [Colorblindor Color Name & Hue Picker](https://www.color-blindness.com/color-name-hue/).
+
+            For any property that accepts a color, you can use a named color value. Simply convert the name to lowercase and
+            replace spaces with `-` (ex: `Dodger Blue` = LCARS color `dodger-blue`).
+        - topic: Themes
+          content: |
+            Themes provide 10 numbered colors that can be set by simply specifying the number 1-10. You can create your
+            own custom theme by using the vars top-level configuration key to set the values of variables lcars-color-1 
+            through lcars-color-10 to any valid CSS color.
+        - topic: HTML Support
+          content: |
+            To render raw HTML in your panel, you can add an item with a `tag` property instead of a `type`. Properties
+            of the HTML tag are set as YAML keys. Note that for CSS classes, you can provide a list of class names.
+      Layout:
+        - topic: Unit
+          content: |
+            ```yaml
+            vars:
+              lcars_unit: 2vw
+            ```
+            The layout system is based on LCARS Units. The default unit size is `2vw` or 2% of your viewport width
+            meaning that your screen is 50 units wide. You can modify the default unit size by setting the `lcars_unit`
+            variable under the top-level `vars` key to any valid CSS size. For example, you can set the unit size in 
+            pixes using `px`. Note that using percentage is not recommended since this will make the unit have the 
+            same aspect ratio as the viewport which makes layout unpredictable.
+
+            You can access the LCARS unit in native CSS by using the `--lcars-unit` variable.
+            ```yaml
+              - tag: div
+                style:
+                  width: calc(var(--lcars-unit) * 3)
+                  height: calc(var(--lcars-unit) * 3)
+                  background-color: var(--lcars-color-lilac)
+            ```
+        - topic: Element
+          key: el
+          content: |
+            The element is the primary building block for the visual system. It is rendered as a `div` HTML tag with
+            properties set as defined below to control positioning, size, content alignment, etc.
+
+          properties:
+            - name: alignContent
+              category: Content
+              action: Options
+              modalContent: |
+                - `top-left`: Content is aligned to the top and left of the element (Default)
+                - `top-center`: Content is aligned to the top and centered horizontally in the element
+                - `top-right`: Content is aligned to the top and right of the element
+                - `middle-left`: Content is aligned to the middle vertically and left side of the element
+                - `middle-center`: Content is aligned to the middle vertically and centered horizontally in the element
+                - `middle-right`: Content is aligned to the middle vertically and right side of the element
+                - `bottom-left`: Content is aligned to the bottom and left of the element
+                - `bottom-center`: Content is aligned to the bottom and center of the element
+                - `bottom-right`: Content is aligned to the bottom and right of the element
+            - name: button
+              category: Behavior
+            - name: capBottom
+              category: Appearance
+            - name: capLeft
+              category: Appearance
+            - name: capRight
+              category: Appearance
+            - name: capTop
+              category: Appearance
+            - name: children
+              category: Content
+            - name: color
+              category: Appearance
+              action: Colors
+              actionNav: /api/Configuration/Colors
+            - name: fill
+              category: Layout
+              description: |
+                Set to `true` to fill available space in the parent row or column
+            - name: height
+              category: Layout
+              description: |
+                Sets the height in LCARS units of the element
+            - name: left
+              category: Layout
+              description: |
+                Sets the horizontal position in LCARS units of the left of the element for absolute-positioned elements
+            - name: lineHeight
+              category: Content
+            - name: marginBottom
+              category: Layout
+            - name: marginLeft
+              category: Layout
+            - name: marginRight
+              category: Layout
+            - name: marginTop
+              category: Layout
+            - name: md
+              category: Content
+            - name: nav
+              category: Behavior
+              action: Navigation
+              actionNav: /api/Configuration/Navigation
+            - name: padBottom
+              category: Layout
+            - name: padLeft
+              category: Layout
+            - name: padRight
+              category: Layout
+            - name: padTop
+              category: Layout
+            - name: positioning
+              category: Layout
+            - name: radXInnerBottomLeft
+              category: Appearance
+              description: |
+                Sets the X value bottom-left corner radius of the element
+            - name: radXInnerBottomRight
+              category: Appearance
+              description: |
+                Sets the X value bottom-right corner radius of the element
+            - name: radXInnerTopLeft
+              category: Appearance
+              description: |
+                Sets the X value top-left corner radius of the element
+            - name: radXInnerTopRight
+              category: Appearance
+              description: |
+                Sets the X value top-right corner radius of the element
+            - name: radYInnerBottomLeft
+              category: Appearance
+              description: |
+                Sets the Y value bottom-left corner radius of the element (Default is same as X value)
+            - name: radYInnerBottomRight
+              category: Appearance
+              description: |
+                Sets the Y value bottom-right corner radius of the element (Default is same as X value)
+            - name: radYInnerTopLeft
+              category: Appearance
+              description: |
+                Sets the Y value top-left corner radius of the element (Default is same as X value)
+            - name: radYInnerTopRight
+              category: Appearance
+              description: |
+                Sets the Y value top-right corner radius of the element (Default is same as X value)
+            - name: radXBottomLeft
+              category: Appearance
+              description: |
+                Sets the X value bottom-left corner radius of the element
+            - name: radXBottomRight
+              category: Appearance
+              description: |
+                Sets the X value bottom-right corner radius of the element
+            - name: radXTopLeft
+              category: Appearance
+              description: |
+                Sets the X value top-left corner radius of the element
+            - name: radXTopRight
+              category: Appearance
+              description: |
+                Sets the X value top-right corner radius of the element
+            - name: radYBottomLeft
+              category: Appearance
+              description: |
+                Sets the Y value bottom-left corner radius of the element (Default is same as X value)
+            - name: radYBottomRight
+              category: Appearance
+              description: |
+                Sets the Y value bottom-right corner radius of the element (Default is same as X value)
+            - name: radYTopLeft
+              category: Appearance
+              description: |
+                Sets the Y value top-left corner radius of the element (Default is same as X value)
+            - name: radYTopRight
+              category: Appearance
+              description: |
+                Sets the Y value top-right corner radius of the element (Default is same as X value)
+            - name: showForNav
+              description: |
+                Sets a path to only show the element if the current path starts with this value
+            - name: showForOrientation
+              category: Layout
+              description: |
+                Set to `portrait` or `landscape` to show the element only in that orientation
+            - name: tapAction
+              category: Behavior
+              description: |
+                Defines the configuration of an action to perform when the element is clicked
+              action: Details
+              modalContent: |
+                Example:
+                ```
+                tapAction:
+                  action: call-service
+                  service: light.toggle
+                  data:
+                    entity_id: light.test
+                ```
+            - name: text
+              category: Content
+              description: |
+                Text to be rendered inside the element
+            - name: textColor
+              category: Content
+              action: Colors
+              actionNav: /api/Configuration/Colors
+            - name: textTransform
+              category: Content
+              description: |
+                Sets the text transform for the text of the element
+              action: Options
+              modalContent: |
+                - `capitalize` - Capitalize the first letter of each word
+                - `uppercase` - Convert all letters to uppercase (Default)
+                - `lowercase` - Convert all letters to lowercase
+                - `none` - Keep all text as it was entered
+            - name: top
+              category: Layout
+              description: |
+                Sets the vertical position in LCARS units of the top of the element for absolute-positioned elements
+            - name: width
+              category: Layout
+              description: |
+                Sets the width in LCARS units of the element
+        - topic: Row
+          key: row
+          content: |
+            Renders a ["flexbox" CSS layout](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) 
+            row. Immediate children added to a row will be arranged horizontally.
+          properties:
+            - name: bottom
+              category: Layout
+              description: |
+                Set to `true` to align child elements to the bottom of the row
+            - name: children
+              category: Content
+            - name: fill
+              category: Layout
+              description: |
+                Set to `true` to make the row fill the width of the parent container
+            - name: gap
+              category: Layout
+              description: |
+                Sets the gap beween child elements in the row in tenths of an LCARS unit (ex: `gap: 1` will set a gap of 
+                0.1 units)
+            - name: height
+              category: Layout
+              description: |
+                Sets height of the row in LCARS units
+            - name: right
+              category: Layout
+              description: |
+                Set to `true` to align child elements to the right side of the row
+            - name: stretch
+              category: Layout
+              description: |
+                Set to `true` to stretch child elements to the width of the row
+        - topic: Column
+          key: col
+          content: |
+            Renders a ["flexbox" CSS layout](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) 
+            column. Immediate children added to a column will be arranged vertically.
+          properties:
+            - name: bottom
+              category: Layout
+              description: |
+                Set to `true` to align child elements to the bottom of the column
+            - name: children
+              category: Content
+            - name: fill
+              category: Layout
+              description: |
+                Set to `true` to make the column fill the height of the parent container
+            - name: gap
+              category: Layout
+              description: |
+                Sets the gap beween child elements in the column in tenths of an LCARS unit (ex: `gap: 1` will set a gap of 
+                0.1 units)
+            - name: right
+              category: Layout
+              description: |
+                Set to `true` to align child elements to the right side of the column
+            - name: stretch
+              category: Layout
+              description: |
+                Set to `true` to stretch child elements to the width of the column
+            - name: width
+              category: Layout
+              description: |
+                Sets width of the column in LCARS units
+        - topic: Absolute Container
+          key: absolute-container
+          content: |
+            Positions child items using absolute coordinates. Set the `width` and `height` of the 
+            `absolute-container` to the desired size of the coordinate system of the children. Immediate child 
+            components will use `positioning: absolute` by default.
+          properties:
+            - name: children
+              category: Content
+      Panels:
+        - topic: Panel Top-Left
+          key: panel-tl
+          content: |
+            Renders a panel with an LCARS "elbow" at the top-left corner.
+          properties:
+            - name: bottomCap
+            - name: children
+            - name: color
+              action: Colors
+              actionNav: /api/Configuration/Colors
+            - name: fillHeight
+            - name: fillLeftBottom
+              description: |
+                Set to `true` to make the left border fill available space below `leftChildren`
+            - name: fillLeftTop
+              description: |
+                Set to `true` to make the left border fill available space above `leftChildren`
+            - name: fillTopLeft
+              description: |
+                Set to `true` to make the top border fill available space left of `topChildren`
+            - name: fillTopRight
+              description: |
+                Set to `true` to make the top border fill available space right of `topChildren`
+            - name: fillWidth
+            - name: gap
+            - name: innerRadX
+            - name: innerRadY
+            - name: leftChildren
+            - name: leftColor
+              action: Colors
+              actionNav: /api/Configuration/Colors
+            - name: leftGap
+            - name: leftPad
+            - name: leftStretch
+            - name: leftWidth
+            - name: outerRadX
+            - name: outerRadY
+            - name: title
+            - name: topCap
+            - name: topChildren
+            - name: topGap
+            - name: topHeight
+            - name: topStretch
+        - topic: Panel Top-Right
+          key: panel-tr
+          content: |
+            Renders a panel with an LCARS "elbow" at the top-right corner.
+          properties:
+            - name: bottomCap
+            - name: children
+            - name: color
+              action: Colors
+              actionNav: /api/Configuration/Colors
+            - name: fillHeight
+            - name: fillRightBottom
+              description: |
+                Set to `true` to make the right border fill available space below `rightChildren`
+            - name: fillRightTop
+              description: |
+                Set to `true` to make the right border fill available space above `rightChildren`
+            - name: fillTopLeft
+              description: |
+                Set to `true` to make the top border fill available space left of `topChildren`
+            - name: fillTopRight
+              description: |
+                Set to `true` to make the top border fill available space right of `topChildren`
+            - name: fillWidth
+            - name: gap
+            - name: innerRadX
+            - name: innerRadY
+            - name: rightChildren
+            - name: rightColor
+              action: Colors
+              actionNav: /api/Configuration/Colors
+            - name: rightGap
+            - name: rightPad
+            - name: rightStretch
+            - name: rightWidth
+            - name: outerRadX
+            - name: outerRadY
+            - name: title
+            - name: topCap
+            - name: topChildren
+            - name: topGap
+            - name: topHeight
+            - name: topStretch
+        - topic: Panel Bottom-Left
+          key: panel-bl
+          content: |
+            Renders a panel with an LCARS "elbow" at the bottom-left corner.
+          properties:
+            - name: bottomCap
+            - name: bottomChildren
+            - name: bottomGap
+            - name: bottomHeight
+            - name: bottomStretch
+            - name: color
+              action: Colors
+              actionNav: /api/Configuration/Colors
+            - name: fillBottomLeft
+              description: |
+                Set to `true` to make the top border fill available space left of `bottomChildren`
+            - name: fillBottomRight
+              description: |
+                Set to `true` to make the top border fill available space right of `bottomChildren`
+            - name: fillHeight
+            - name: fillLeftBottom
+              description: |
+                Set to `true` to make the left border fill available space below `leftChildren`
+            - name: fillLeftTop
+              description: |
+                Set to `true` to make the left border fill available space above `leftChildren`
+            - name: fillWidth
+            - name: gap
+            - name: innerRadX
+            - name: innerRadY
+            - name: leftColor
+              action: Colors
+              actionNav: /api/Configuration/Colors
+            - name: leftGap
+            - name: leftPad
+            - name: leftStretch
+            - name: leftWidth
+            - name: outerRadX
+            - name: outerRadY
+            - name: title
+            - name: topCap
+        - topic: Panel Bottom-Right
+          key: panel-br
+          content: |
+            Renders a panel with an LCARS "elbow" at the bottom-right corner.
+          properties:
+            - name: bottomCap
+            - name: bottomChildren
+            - name: bottomGap
+            - name: bottomHeight
+            - name: bottomStretch
+            - name: children
+            - name: color
+              action: Colors
+              actionNav: /api/Configuration/Colors
+            - name: fillBottomLeft
+              description: |
+                Set to `true` to make the top border fill available space left of `bottomChildren`
+            - name: fillBottomRight
+              description: |
+                Set to `true` to make the top border fill available space right of `bottomChildren`
+            - name: fillHeight
+            - name: fillRightBottom
+              description: |
+                Set to `true` to make the right border fill available space below `rightChildren`
+            - name: fillRightTop
+              description: |
+                Set to `true` to make the right border fill available space above `rightChildren`
+            - name: fillWidth
+            - name: gap
+            - name: innerRadX
+            - name: innerRadY
+            - name: rightChildren
+            - name: rightColor
+              action: Colors
+              actionNav: /api/Configuration/Colors
+            - name: rightGap
+            - name: rightPad
+            - name: rightWidth
+            - name: rightStretch
+            - name: outerRadX
+            - name: outerRadY
+            - name: title
+            - name: topCap
+      State:
+        - topic: State Map
+          content: |
+            To conditionally set properties based on entity state, you can add a `stateMap` key and add an entry for
+            each state to set properties when the entity has that state.
+            ```yaml
+            - type: pill
+              color: blue
+              textColor: black
+              text: test
+              tapAction:
+                action: call-service
+                service: light.toggle
+              stateMap:
+                entity: light.test
+                states:
+                  on:
+                    color: orange-peel
+                    text: Active
+                  off:
+                    color: cosmic
+                    text: Inactive
+            ```
+        - topic: State Value
+          key: state-value
+          content: |
+            Home Assistant state or attribute value can be displayed using the `state-value` component.
+          properties:
+            - name: entity
+            - name: attribute
+        - topic: State Color
+          key: state-color
+          content: |
+            Renders an element and varies the brightness of the color based on a numeric state value. The brightness
+            is set to a percentage relative to the `min` and `max` value. For example, if the range is 0-100 and the
+            value is 50, then the brightness will be set to 50%. If you want the minimum brightness to be greater than 
+            zero, set the `min` value less than the actual value. For example, setting the minimum to -100 if the range
+            is 0-100 will set the minimum brightness to 50%.
+          properties:
+            - name: entity
+              description: |
+                Home Assistant entity identifier
+            - name: attribute
+            - name: min
+              description: |
+                Minimum value of the state for brightness calculation (Default is 0)
+            - name: max
+              description: |
+                Maximum value of the state for brightness calculation (Default is 100)
+        - topic: Attribute List
+          key: attribute-list
+          content: |
+            Renders all attributes of an entity in a list.
+          properties:
+            - name: entity
+            - name: animation
+              content: |
+                Sets an optiioanl animation of rows in the table
+              action: Options
+              modalContent: |
+                - `scanning` - Each row is highlighted one at a time from top to bottom
+                - `scanning-fast` - Each row is highlighted one at a time from top to bottom at a faster rate
+                - `row-fill` - Each row is rendered one at a time and the process repeats indefinitely
+        - topic: State Table
+          key: state-table
+          content: |
+            Renders all entity states and attributes in a series of rows
+          properties:
+            - name: animation
+              content: |
+                Sets the animation of rows in the table (Default is `row-fill`)
+              action: Options
+              modalContent: |
+                - `scanning` - Each row is highlighted one at a time from top to bottom
+                - `scanning-fast` - Each row is highlighted one at a time from top to bottom at a faster rate
+                - `row-fill` - Each row is rendered one at a time and the process repeats indefinitely
+            - name: entities
+              description: |
+                Set to `false` to hide entity names and only display entity states and attributes (Default is `true`)
+            - name: fontSize
+            - name: keys
+              description: |
+                Set to `false` to hide attribute keys and only display attribute values (Default is `true`)
+            - name: lineHeight
+            - name: textColor
+              action: Colors
+              actionNav: /api/Genenral/Colors
+            - name: pageDuration
+              description: |
+                Sets the time between paging in seconds (Default matches the cycle time for `animation`)
+            - name: pageSize
+              description: |
+                Sets the number of rows displayed at one time (Default is 10)
+        - topic: State Value Table
+          key: state-value-table
+          content: |
+            Renders entity states and attributes in a table layout based on row and column definitions
+          properties:
+            - name: animation
+              content: |
+                Sets the animation of rows in the table (Default is `row-fill`)
+              action: Options
+              modalContent: |
+                - `scanning` - Each row is highlighted one at a time from top to bottom
+                - `scanning-fast` - Each row is highlighted one at a time from top to bottom at a faster rate
+                - `row-fill` - Each row is rendered one at a time and the process repeats indefinitely
+            - name: fontSize
+            - name: lineHeight
+            - name: rows
+              description: |
+                Defines a list of rows made up of cells with each cell defining the state or attribute to display
+              action: Details
+              modalContent: |
+                ```yaml
+                rows:
+                  - cells:
+                      - entity: sun.sun
+                        attribute: elevation
+                      - entity: sun.sun
+                        attribute: azimuth
+                  - cells:
+                      - entity: light.test
+                      - entity: light.test
+                        attribute: brightness
+                ```
+            - name: textColor
+              action: Colors
+              actionNav: /api/Genenral/Colors
+        - topic: Scale Horizontal
+          key: scale-h
+          content: |
+            Renders a horizontal scale for a given entity state or attribute and optionally calls a service when clicked or dragged
+          properties:
+            - name: attribute
+            - name: entity
+            - name: color
+              description: |
+                Sets the color of the bar used to display the value
+            - name: data
+              description: |
+                Additional data to send along with the value when `service` is called
+            - name: decimalPlaces
+              description: |
+                Sets the number of decimal places to use when sending the value to `service`
+            - name: gridColor
+              description: |
+                Sets the color of the grid used to show units of the scale
+            - name: height
+            - name: max
+              description: |
+                Sets the maximum value representing a full bar on the scale (Default is 100)
+            - name: min
+              description: |
+                Sets the minimum value representing an empty bar on the scale (Default is 0)
+            - name: stroke
+                Sets the border width of the grid in pixels (Default is 2)
+            - name: tickInterval
+              description: |
+                Sets the spacing in between grid lines relative to the value to be displayed on the scale (Defaultl is 10)
+            - name: service
+              description: |
+                Sets the name of a service to call when the bar is clicked or dragged
+            - name: serviceKey
+              description: |
+            - name: width
+                Sets the key to be used to send the value when `service` is called
+
+  - showForNav: /api/Configuration/Themes
+    children:
+      - type: sample
+        content: |
+          You can select a theme by setting the `theme` top-level config key.
+
+          Themes provide 10 numbered colors that can be set by simply specifying the number 1-10. You can create
+          your own custom theme by using the `vars` top-level configuration key to set the values of variables
+          `lcars-color-1` through `lcars-color-10` to any valid CSS color.
+        configYaml: |
+          - type: pill
+            color: 1
+            text: Color 1
+            width: 4
+      - type: md
+        content: |
+          Supported themes are shown below.
+      - type: theme-sample
+        rootPath: /api/Configuration/Themes/
+
+  - showForNav: /api/Configuration/HTML Support
+    children:
+      - type: sample
+        configYaml: |
+          - type: html
+            tag: a
+            href: https://www.google.com
+            target: _blank
+            style:
+              display: block
+              background-color: var(--lcars-color-1)
+              width: calc(var(--lcars-unit) * 3)
+              height: calc(var(--lcars-unit) * 3)
+            children:
+              - type: pill
+                text: Google
+                color: "3"
+          - type: pill
+            color: 2
+            text: Test

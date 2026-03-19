@@ -24,17 +24,12 @@ children:
         children:
           - type: md
             content: >
-              Navigation can be configured via the top-level `nav` variable.
+              Navigation can be configured via the top-level `nav` key. This key can contain a list of navigation
+              items. Each item can have children which establishes a hierarchy that can be used to generate navigation 
+              elements usable across your dashboard.
 
-              This defined a navigation hierarchy thay can be used to generate
-              navigation elements
-
-              usable across your dashboard. The configuration of a nav item is as
-              follows:
-
-
+              Example:
               ```
-
               - text: Home
                 key: home
                 url: /home.yaml
@@ -44,16 +39,12 @@ children:
                   - text: 10 Fwd
               ```
 
-
               Note that only the `text` key is required. The `key` will be generated
               from the text by converting to lowercase and replacing spaces with `-`
+              so in the example above, `10 Fwd` would have the key `10-fwd`.
 
-              so in the examole above, `10 Fwd` would havethe key `10-fwd`.
-
-
-              Paths generated from the nav config use forward slashes so the folowing
+              Paths generated from the nav config use forward slashes so the following
               config would navigate to the `10 Fwd` item:
-
 
               ```
 

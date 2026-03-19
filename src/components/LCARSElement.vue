@@ -62,12 +62,7 @@ const styleObject = computed(() => {
 </script>
 
 <template>
-  <div
-    :style="styleObject"
-    :class="config.class ?? []"
-    ref="elementRef"
-    v-on="config.nav || config.tapAction ? { click: onClick } : {}"
-  >
+  <div :style="styleObject" :class="config.class ?? []" ref="elementRef" @click.self="onClick">
     <slot></slot>
   </div>
 </template>

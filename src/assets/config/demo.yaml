@@ -66,6 +66,7 @@ nav:
     children:
       - text: Tap
       - text: Action
+  - text: API
 mixins:
   myText:
     fontSize: 0.4

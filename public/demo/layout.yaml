@@ -79,7 +79,7 @@ children:
                 - type: row
               ```
 
-              Any children added to a column will be arranged horizontally.
+              Any children added to a row will be arranged horizontally.
 
           - type: sample
             content: ''
@@ -108,7 +108,7 @@ children:
                 - type: col
               ```
 
-              Any children added to a row will be arranged vertically.
+              Any children added to a column will be arranged vertically.
             configYaml: |
               - type: col
                 children:
@@ -129,7 +129,7 @@ children:
         children:
           - type: sample
             content: |
-              To position items using absolut coordinates, add an `absolute-container` and add absolute-positioned items
+              To position items using absolute coordinates, add an `absolute-container` and add absolute-positioned items
               as children. You will need to set the `width` and `height` of the `absolute-container` to the desired size
               of the coordinate system of the children.
             configYaml: |

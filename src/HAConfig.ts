@@ -30,6 +30,8 @@ import { loadMenu, type NavItem } from './NavItem'
 import MenuVertical from './components/MenuVertical.vue'
 import MenuHorizontal from './components/MenuHorizontal.vue'
 import NavRemote from './components/NavRemote.vue'
+import LCARSModal from './components/LCARSModal.vue'
+import LCARSApi from './components/LCARSApi.vue'
 
 export interface HAConfig {
   type: string
@@ -81,6 +83,8 @@ registerComponent('absolute-container', AbsoluteContainer)
 registerComponent('menu-vertical', MenuVertical)
 registerComponent('menu-horizontal', MenuHorizontal)
 registerComponent('nav-remote', NavRemote)
+registerComponent('lcars-modal', LCARSModal)
+registerComponent('api-docs', LCARSApi)
 
 export function registerComponent(key: string, component: any) {
   components[key] = component

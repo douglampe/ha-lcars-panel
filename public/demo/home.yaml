@@ -19,11 +19,19 @@ children:
       an entire Lovelace dashboard with a single card, or create a custom panel that runs full-screen without
       the Home Assistant menu.
   - type: md
+    marginTop: 0.5
     delay: 4
     content: |
-      Click the button below to start a detailed demo
-  - type: pill
-    text: Start Demo
-    color: dodger-blue
-    nav: /config/globals
+      Click a button below to start a detailed demo or browse the API
+  - type: row
     marginTop: 0.5
+    gap: 1
+    children:
+      - type: pill
+        text: Start Demo
+        color: dodger-blue
+        nav: /config/globals
+      - type: pill
+        text: API
+        color: golden-tainoi
+        nav: /api

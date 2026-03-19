@@ -15,7 +15,17 @@ export default defineConfig({
       mangle: false,
     },
   },
-  plugins: [vue(), vueJsx(), vueDevTools()],
+  plugins: [
+    vue({
+      template: {
+        compilerOptions: {
+          isCustomElement: (tag) => ['ha-lcars-panel', 'ha-lcars-panel-editor'].includes(tag),
+        },
+      },
+    }),
+    vueJsx(),
+    vueDevTools(),
+  ],
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),

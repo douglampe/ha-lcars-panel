@@ -50,7 +50,7 @@ children:
         children:
           - type: sample
             content: |
-              The element (`type: el`) is the primary building block of the visual system. The configuration below
+              The element (`type: el`) is the primary building block for the visual system. The configuration below
               renders a 1x1 unit element.
             configYaml: |
               - type: el
@@ -188,7 +188,7 @@ children:
               following are the most useful:
 
               - `capitalize` - Capitalize the first letter of each word.
-              - `uppercase` - Conveert all letters to uppercase (Default).
+              - `uppercase` - Convert all letters to uppercase (Default).
               - `lowercase` - Convert all letters to lowercase.
               - `none` - Keep all text as it was entered.
 

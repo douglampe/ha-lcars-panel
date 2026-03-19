@@ -133,26 +133,6 @@ children:
                   - tag: td
                     children:
                       - tag: code
-                        text: 'lcars_color_inner_rad_bg'
-                  - tag: td
-                    text: 'Background color for the inner radius of curved elements'
-                  - tag: td
-                    text: 'black (#000000)'
-              - tag: tr
-                children:
-                  - tag: td
-                    children:
-                      - tag: code
-                        text: 'lcars_color_outer_rad_bg'
-                  - tag: td
-                    text: 'Background color for the outer radius of curved elements'
-                  - tag: td
-                    text: 'periwinkle (#C3CDE6)'
-              - tag: tr
-                children:
-                  - tag: td
-                    children:
-                      - tag: code
                         text: 'lcars_font_size'
                   - tag: td
                     text: 'Default font size'
@@ -165,7 +145,17 @@ children:
                       - tag: code
                         text: 'lcars_color_text'
                   - tag: td
-                    text: 'Default color for code formatted such as `code` and `pre` tags'
+                    text: 'Default text color'
+                  - tag: td
+                    text: 'periwinkle (#C3CDE6)'
+              - tag: tr
+                children:
+                  - tag: td
+                    children:
+                      - tag: code
+                        text: 'lcars_color_code'
+                  - tag: td
+                    text: 'Default background color for code formatted such as `code` and `pre` tags'
                   - tag: td
                     text: 'black-russian (#24252B)'
               - tag: tr

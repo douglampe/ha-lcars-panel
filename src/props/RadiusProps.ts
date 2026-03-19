@@ -35,9 +35,11 @@ function unscale(value?: number, defaultValue = 0) {
 }
 
 //TODO: Resolve color names to hex values
-function resolveColor(color?: string) {
+function resolveColor(color?: string | number) {
   if (color) {
-    if (
+    if (typeof color === 'number') {
+      return `var(--lcars-color-${color})`
+    } else if (
       color.startsWith('#') ||
       color.startsWith('rgb') ||
       color.startsWith('hsl') ||

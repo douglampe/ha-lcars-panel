@@ -1,6 +1,6 @@
 export interface PanelProps {
   title?: string
-  color?: string
+  color?: string | number
   fillWidth?: boolean
   fillHeight?: boolean
   fillTopLeft?: boolean
@@ -18,12 +18,12 @@ export interface PanelProps {
   topStretch?: boolean
   leftWidth?: number
   leftPad?: number
-  leftColor?: string
+  leftColor?: string | number
   leftGap?: number
   leftStretch?: boolean
   rightWidth?: number
   rightPad?: number
-  rightColor?: string
+  rightColor?: string | number
   rightGap?: number
   rightStretch?: boolean
   bottomCap?: boolean
