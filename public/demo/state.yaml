@@ -16,6 +16,23 @@ children:
             mixin: menuTab
             gap: 1
     children:
+      - showForNav: /state/template
+        children:
+          - type: md
+            content: |
+              Any element property can be set using a template by adding `_template` to the property name.
+              ```yaml
+              - type: el
+                width: 5
+                text_template: "{{ states['sun.sun'].attributes.elevation }}"
+              ```
+          - type: el
+            width: 5
+            children:
+              - type: state-value
+                entity: sun.sun
+                attribute: elevation
+
       - showForNav: /state/value
         children:
           - type: sample
