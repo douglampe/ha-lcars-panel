@@ -5,7 +5,7 @@ import { currentNav } from '@/LocalNav'
 import { applyMixin, applyOrientationClass, applyState, type ConfigItem } from '@/ConfigItem'
 import { computed, onMounted, ref, useAttrs, watch } from 'vue'
 import { removeUndefined } from '@/Layout'
-import { haState } from '@/HAState'
+import { applyTemplates, haState } from '@/HAState'
 import HTMLComponent from './HTMLComponent.vue'
 import ParentComponent from './ParentComponent.vue'
 import LoadingComponent from './LoadingComponent.vue'
@@ -30,6 +30,8 @@ function processItem(item: ConfigItem) {
   applyState(processedItem)
 
   applyOrientationClass(processedItem)
+
+  applyTemplates(processedItem)
 
   if (processedItem.tag) {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars

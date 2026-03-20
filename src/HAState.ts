@@ -1,4 +1,6 @@
 import { ref } from 'vue'
+import type { ConfigItem } from './ConfigItem'
+import { renderTemplate } from 'ha-nunjucks'
 
 export interface HAState {
   states: Record<string, any>
@@ -82,6 +84,18 @@ function pushStateValue(
       pushStateValue(stateValues, entity, key, val)
     } else {
       stateValues.push({ entity, key, value: val.toString() })
+    }
+  }
+}
+
+export function applyTemplates(configItem: ConfigItem) {
+  for (const key in configItem) {
+    if (key.endsWith('_template')) {
+      const valueKey = key.substring(0, key.length - 9)
+      configItem[valueKey as keyof ConfigItem] = renderTemplate(
+        haState.value as any,
+        configItem[key as keyof ConfigItem],
+      )
     }
   }
 }

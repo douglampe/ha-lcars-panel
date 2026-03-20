@@ -149,6 +149,15 @@ children:
               category: Layout
               description: |
                 Set to `portrait` or `landscape` to show the element only in that orientation
+        - topic: Templates
+          content: |
+            Any element property can be set using a template by adding `_template` to the property name.
+            ```yaml
+            - type: el
+              width: 5
+              text_template: "{{ states['sun.sun'].attributes.elevation }}"
+            ```
+
         - topic: Variables
           content: |
             ```yaml

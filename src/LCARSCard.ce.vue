@@ -44,6 +44,9 @@ function addCssLink(href: string) {
 onMounted(async () => {
   if (loadTest && config.children.length === 0) {
     haConfig.value = getTestConfig()
+    const ha = document.createElement('home-assistant') as any
+    ha.connected = true
+    ha.connection = { connected: true }
   }
   const cssRoot = getCssRoot()
   if (cssRoot) {
