@@ -54,7 +54,7 @@ nav:
               - text: Are
               - text: Horizontal
   - key: state
-    text: HA State
+    text: State
     children:
       - text: Template
       - text: Map
