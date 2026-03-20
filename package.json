@@ -16,6 +16,7 @@
     "@vueuse/gesture": "^2.0.0",
     "@vueuse/motion": "^2.2.6",
     "gsap": "^3.12.5",
+    "ha-nunjucks": "^1.7.5",
     "marked": "^15.0.4",
     "vue": "^3.5.13",
     "yaml": "^2.6.1"
