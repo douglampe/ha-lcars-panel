@@ -1,3 +1,4 @@
+import type { AnimationConfig } from './AnimationConfig'
 import { mixins } from './HAConfig'
 import { getStateValue, haState } from './HAState'
 import type { ElementProps } from './props/ElementProps'
@@ -24,6 +25,7 @@ export interface ConfigItem extends ElementProps, PanelProps, RowProps, TapActio
   config?: Record<string, any>
   mixin?: string
   url?: string
+  textAnimation?: AnimationConfig
   style?: Record<string, any>
   class?: string | string[] | Record<string, boolean>
 }

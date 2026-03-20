@@ -1,0 +1,18 @@
+children:
+  - type: sample
+    configYaml: |
+      - type: el
+        text: This is text that will be animated to appear as if it is being typed one character at a time.
+        textAnimation:
+          type: typing
+          duration: 0.025
+      - type: md
+        content: |
+          This even works with markdown.
+
+          - Bullet 1
+          - Bullet 2
+          - Bullet 3
+        textAnimation:
+          type: typing
+          delay: 3

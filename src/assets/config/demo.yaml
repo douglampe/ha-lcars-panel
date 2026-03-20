@@ -53,6 +53,9 @@ nav:
               - text: These
               - text: Are
               - text: Horizontal
+  - text: Animation
+    children:
+      - text: Text Animation
   - key: state
     text: State
     children:

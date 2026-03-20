@@ -3,18 +3,20 @@
 import { components } from '../HAConfig'
 import { currentNav } from '@/LocalNav'
 import { applyMixin, applyOrientationClass, applyState, type ConfigItem } from '@/ConfigItem'
-import { computed, onMounted, ref, useAttrs, watch } from 'vue'
+import { computed, onMounted, reactive, ref, useAttrs, watch } from 'vue'
 import { removeUndefined } from '@/Layout'
 import { applyTemplates, haState } from '@/HAState'
 import HTMLComponent from './HTMLComponent.vue'
 import ParentComponent from './ParentComponent.vue'
 import LoadingComponent from './LoadingComponent.vue'
 import LCARSMarkdown from './LCARSMarkdown.vue'
+import gsap from 'gsap'
 
 const props = useAttrs()
 
 const processedProps = ref<ConfigItem>()
 const renderKey = ref(0)
+const animated = reactive<{ typeLength?: number }>({})
 
 defineOptions({
   inheritAttrs: false,
@@ -88,9 +90,23 @@ const isVisible = computed(() => {
   return false
 })
 
+const displayText = computed(() => {
+  return processedProps.value?.text?.substring(0, animated.typeLength)
+})
+
 onMounted(() => {
   if (!processedProps.value) {
     processedProps.value = processItem(props as ConfigItem)
+  }
+  animated.typeLength = (processedProps.value.text ?? '').length
+  if (processedProps.value.textAnimation?.type === 'typing') {
+    const targetLength = animated.typeLength
+    animated.typeLength = 0
+    gsap.to(animated, {
+      duration: (processedProps.value.textAnimation.duration ?? 0.05) * targetLength,
+      delay: processedProps.value.textAnimation.delay,
+      typeLength: targetLength,
+    })
   }
 })
 </script>
@@ -104,7 +120,7 @@ onMounted(() => {
     :style="processedProps?.style ?? {}"
     :class="processedProps?.class ?? []"
   >
-    {{ processedProps?.text }}
+    {{ displayText }}
     <LCARSMarkdown v-if="processedProps?.md" :content="processedProps.md" />
     <a v-if="props.showForNav" :name="props.showForNav"></a>
     <template #left v-if="props.leftChildren">

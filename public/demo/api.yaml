@@ -115,7 +115,7 @@ children:
         Set to `true` to stretch the height of `topChildren` to fill available space
     topics:
       Configuration:
-        - topic: Panel Configuration
+        - topic: Card
           content: |
             The following top-level configurations are available.
           properties:
@@ -469,6 +469,14 @@ children:
               category: Content
               description: |
                 Text to be rendered inside the element
+            - name: textAnimation
+              description: |
+                Optionally configures an animation for text or Markdown
+              action: Details
+              modalContent: |
+                - `type` - Must be `typing`
+                - `duration` - Optional duration of each keystroke in seconds
+                - `delay` - Optional delay before animation begins
             - name: textColor
               category: Content
               action: Colors
