@@ -12,18 +12,23 @@ import LoadingComponent from './LoadingComponent.vue'
 import LCARSMarkdown from './LCARSMarkdown.vue'
 import gsap from 'gsap'
 import type { AnimationConfig } from '@/AnimationConfig'
+import TextComponent from './TextComponent.vue'
 
 const props = useAttrs()
 
 const processedProps = ref<ConfigItem>()
 const renderKey = ref(0)
 const animated = reactive<{
-  typeLength?: number
   top?: number
   bottom?: number
   left?: number
   right?: number
-}>({})
+}>({
+  top: 0,
+  bottom: 0,
+  left: 0,
+  right: 0,
+})
 
 defineOptions({
   inheritAttrs: false,
@@ -97,10 +102,6 @@ const isVisible = computed(() => {
   return false
 })
 
-const displayText = computed(() => {
-  return processedProps.value?.text?.substring(0, animated.typeLength)
-})
-
 const visibleTopChildren = computed(() => {
   if (props.topChildren) {
     return (props.topChildren as any).slice(0, animated.top)
@@ -133,20 +134,10 @@ onMounted(() => {
   if (!processedProps.value) {
     processedProps.value = processItem(props as ConfigItem)
   }
-  animated.typeLength = (processedProps.value.text ?? '').length
-  if (processedProps.value.textAnimation?.type === 'typing') {
-    const targetLength = animated.typeLength
-    animated.typeLength = 0
-    gsap.to(animated, {
-      duration: (processedProps.value.textAnimation.duration ?? 0.05) * targetLength,
-      delay: processedProps.value.textAnimation.delay,
-      typeLength: targetLength,
-    })
-  }
   if (props.topChildren) {
     const topChildren = props.topChildren as ConfigItem[]
-    if (props.topAnimation) {
-      const animation = props.topAnimation as AnimationConfig
+    if (props.topChildrenAnimation) {
+      const animation = props.topChildrenAnimation as AnimationConfig
       if (animation.type === 'build-right') {
         gsap.to(animated, {
           duration: animation.duration ?? 0.1 * topChildren.length,
@@ -161,8 +152,8 @@ onMounted(() => {
   }
   if (props.bottomChildren) {
     const bottomChildren = props.bottomChildren as ConfigItem[]
-    if (props.bottomAnimation) {
-      const animation = props.bottomAnimation as AnimationConfig
+    if (props.bottomChildrenAnimation) {
+      const animation = props.bottomChildrenAnimation as AnimationConfig
       if (animation.type === 'build-right') {
         gsap.to(animated, {
           duration: animation.duration ?? 0.1 * bottomChildren.length,
@@ -177,8 +168,8 @@ onMounted(() => {
   }
   if (props.leftChildren) {
     const leftChildren = props.leftChildren as ConfigItem[]
-    if (props.leftAnimation) {
-      const animation = props.leftAnimation as AnimationConfig
+    if (props.leftChildrenAnimation) {
+      const animation = props.leftChildrenAnimation as AnimationConfig
       if (animation.type === 'build-right') {
         gsap.to(animated, {
           duration: animation.duration ?? 0.1 * leftChildren.length,
@@ -193,8 +184,8 @@ onMounted(() => {
   }
   if (props.rightChildren) {
     const rightChildren = props.rightChildren as ConfigItem[]
-    if (props.rightAnimation) {
-      const animation = props.rightAnimation as AnimationConfig
+    if (props.rightChildrenAnimation) {
+      const animation = props.rightChildrenAnimation as AnimationConfig
       if (animation.type === 'build-right') {
         gsap.to(animated, {
           duration: animation.duration ?? 0.1 * rightChildren.length,
@@ -219,7 +210,11 @@ onMounted(() => {
     :style="processedProps?.style ?? {}"
     :class="processedProps?.class ?? []"
   >
-    {{ displayText }}
+    <TextComponent
+      v-if="processedProps?.text"
+      :text="processedProps.text"
+      :textAnimation="processedProps.textAnimation"
+    />
     <LCARSMarkdown v-if="processedProps?.md" :content="processedProps.md" />
     <a v-if="props.showForNav" :name="props.showForNav"></a>
     <template #left v-if="visibleLeftChildren">

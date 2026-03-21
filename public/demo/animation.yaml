@@ -1,5 +1,7 @@
 children:
   - type: panel-tl
+    marginTop: -0.9
+    marginLeft: -0.9
     title: Animation
     topGap: 1
     color: lilac
@@ -7,12 +9,13 @@ children:
     titleAnimation:
       type: typing
       delay: 1.5
-    topAnimation:
+    topChildrenAnimation:
       type: build-right
     topChildren:
       - type: el
         color: lilac
         width: 20
+        marginLeft: -0.1
         animations:
           in:
             - type: grow-right
@@ -23,7 +26,6 @@ children:
         animations:
           in:
             - type: build-right
-              delay: 0.5
               duration: 0.5
     children:
       - showForNav: /animation/text

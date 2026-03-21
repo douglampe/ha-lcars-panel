@@ -9,52 +9,28 @@ children:
     title: Config
     fillTopLeft: false
     topCap: true
-    topAnimation:
+    topChildrenAnimation:
       type: build-right
+    titleAnimation:
+      type: typing
+      duration: 0.2
+      delay: 1
     topChildren:
       - type: el
-        mixin: menuTab
-        color: dodger-blue
         width: 15
+        color: dodger-blue
         marginLeft: -0.1
-        anmimations:
+        animations:
           in:
             - type: grow-right
-      - type: el
+              duration: 0.1
+      - type: menu-horizontal
         mixin: menuTab
-        nav: /config/globals
-        text: Globals
-        color: golden-tainoi
-      - type: el
-        mixin: menuTab
-        nav: /config/vars
-        text: Variables
-        color: anakiwa
-      - type: el
-        mixin: menuTab
-        nav: /config/themes
-        text: Themes
-        color: fiery-orange
-      - type: el
-        mixin: menuTab
-        nav: /config/mixins
-        text: Mixins
-        color: lilac
-      - type: el
-        mixin: menuTab
-        nav: /config/positioning
-        text: Positioning
-        color: indian-red
-      - type: el
-        mixin: menuTab
-        nav: /config/children
-        text: Children
-        color: dodger-blue
-      - type: el
-        mixin: menuTab
-        nav: /config/remote
-        text: Remote
-        color: golden-tainoi
+        rootPath: /config
+        animations:
+          in:
+            - type: build-right
+              duration: 0.1
       - type: el
         color: dodger-blue
         width: 1

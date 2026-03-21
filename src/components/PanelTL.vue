@@ -5,6 +5,7 @@ import LCARSElement from './LCARSElement.vue'
 import LCARSRow from './LCARSRow.vue'
 import type { ConfigItem } from '@/ConfigItem'
 import type { AnimationConfig } from '@/AnimationConfig'
+import TextComponent from './TextComponent.vue'
 
 interface PanelTLProps extends ConfigItem, MarginProps {
   title?: string
@@ -30,6 +31,7 @@ interface PanelTLProps extends ConfigItem, MarginProps {
   outerRadY?: number
   innerRadX?: number
   innerRadY?: number
+  titleAnimation?: AnimationConfig
 }
 
 const {
@@ -60,6 +62,9 @@ const {
   marginBottom,
   marginLeft,
   marginRight,
+  topAnimation,
+  leftAnimation,
+  titleAnimation,
 } = defineProps<PanelTLProps>()
 
 defineOptions({
@@ -89,6 +94,7 @@ defineOptions({
         :fill="fillTopLeft"
         :height="topHeight"
         :color="color"
+        :animations="topAnimation"
       ></LCARSElement>
       <LCARSRow
         v-if="$slots.top"
@@ -105,9 +111,10 @@ defineOptions({
         :fill="fillTopRight"
         :height="topHeight"
         :color="color"
+        :animations="topAnimation"
       ></LCARSElement>
       <LCARSElement v-if="title" :textColor="color" :fontSize="topHeight" :lineHeight="topHeight">
-        {{ title }}
+        <TextComponent :text="title" :textAnimation="titleAnimation" />
       </LCARSElement>
       <LCARSElement
         v-if="topCap"
@@ -115,8 +122,8 @@ defineOptions({
         :width="topHeight / 2"
         :color="color"
         :cap-right="true"
-      ></LCARSElement
-    ></LCARSRow>
+      ></LCARSElement>
+    </LCARSRow>
   </LCARSRow>
   <LCARSRow
     :fill="fillHeight || fillTopLeft || fillTopRight"
@@ -130,6 +137,7 @@ defineOptions({
         :fill="fillLeftTop"
         :height="topHeight"
         :color="color"
+        :animations="leftAnimation"
       ></LCARSElement>
       <LCARSCol
         v-if="$slots.left"
@@ -145,6 +153,7 @@ defineOptions({
         :fill="fillLeftBottom"
         :color="leftColor ?? color"
         :width="leftWidth"
+        :animations="leftAnimation"
       ></LCARSElement>
       <LCARSElement
         v-if="bottomCap"

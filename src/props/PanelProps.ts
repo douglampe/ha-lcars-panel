@@ -1,3 +1,5 @@
+import type { Animations } from '@/AnimationConfig'
+
 export interface PanelProps {
   title?: string
   color?: string | number
@@ -34,4 +36,8 @@ export interface PanelProps {
   outerRadY?: number
   innerRadX?: number
   innerRadY?: number
+  topAnimation?: Animations
+  bottomAnimation?: Animations
+  leftAnimation?: Animations
+  rightAnimation?: Animations
 }

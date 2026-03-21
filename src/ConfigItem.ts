@@ -16,9 +16,6 @@ export interface ConfigItem extends ElementProps, PanelProps, RowProps, TapActio
   showForNav?: string
   showForOrientation?: string
   animations?: Animations
-  topAnimation?: AnimationConfig
-  leftAnimation?: AnimationConfig
-  childAnimation?: AnimationConfig
   stateMap?: { entity: string; attribute?: string; states: Record<string, any> }
   childPositioning?: string
   children?: ConfigItem[]
@@ -26,6 +23,11 @@ export interface ConfigItem extends ElementProps, PanelProps, RowProps, TapActio
   rightChildren?: ConfigItem[]
   topChildren?: ConfigItem[]
   bottomChildren?: ConfigItem[]
+  topChildrenAnimation?: AnimationConfig
+  bottomChildrenAnimation?: AnimationConfig
+  leftChildrenAnimation?: AnimationConfig
+  rightChildrenAnimation?: AnimationConfig
+  childrenAnimation?: AnimationConfig
   config?: Record<string, any>
   mixin?: string
   url?: string
