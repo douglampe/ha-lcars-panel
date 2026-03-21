@@ -1,12 +1,13 @@
 <!-- eslint-disable @typescript-eslint/no-explicit-any -->
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { navigate } from '@/LocalNav'
 import { alignStyle, colorVar, marginStyle, padStyle, removeUndefined, unitSize } from '@/Layout'
 import { callService } from '@/HAState'
 import type { ConfigItem } from '@/ConfigItem'
 import { createRadiusSvg } from '@/props/RadiusProps'
 import { haConfig } from '@/HAConfig'
+import gsap from 'gsap'
 
 const config = defineProps<ConfigItem>()
 const elementRef = ref<HTMLElement | null>(null)
@@ -58,6 +59,78 @@ const styleObject = computed(() => {
     textTransform: config.textTransform,
     ...(config.style ?? {}),
   })
+})
+
+onMounted(() => {
+  if (config.animation?.in) {
+    let from = {}
+    let to = {}
+    switch (config.animation.in.type) {
+      case 'grow':
+        from = {
+          scale: 0,
+          transformOrigin: config.animation?.in?.transformOrigiin,
+        }
+        to = {
+          scale: 1,
+          duration: config.animation.in.duration ?? 0.5,
+          delay: config.animation.in.delay,
+          transformOrigin: config.animation?.in?.transformOrigiin,
+        }
+        break
+      case 'grow-down':
+        from = {
+          percentX: 0,
+          percentY: 0,
+          scaleY: 0,
+          transformOrigin: '0 0',
+        }
+        to = {
+          scaleY: 1,
+          duration: config.animation.in.duration ?? 0.5,
+          delay: config.animation.in.delay,
+          transformOrigin: config.animation?.in?.transformOrigiin,
+        }
+        break
+      case 'grow-up':
+        from = {
+          scaleY: 0,
+          transformOrigin: '0 100%',
+        }
+        to = {
+          scaleY: 1,
+          duration: config.animation.in.duration ?? 0.5,
+          delay: config.animation.in.delay,
+          transformOrigin: config.animation?.in?.transformOrigiin,
+        }
+        break
+      case 'grow-right':
+        from = {
+          scaleX: 0,
+          transformOrigin: '0 100%',
+        }
+        to = {
+          scaleX: 1,
+          duration: config.animation.in.duration ?? 0.5,
+          delay: config.animation.in.delay,
+          transformOrigin: config.animation?.in?.transformOrigiin,
+        }
+        break
+      case 'grow-left':
+        from = {
+          scaleX: 0,
+          transformOrigin: '100% 100%',
+        }
+        to = {
+          scaleX: 1,
+          duration: config.animation.in.duration ?? 0.5,
+          delay: config.animation.in.delay,
+          transformOrigin: config.animation?.in?.transformOrigiin,
+        }
+        break
+    }
+    gsap.fromTo(elementRef.value, from, to)
+  }
 })
 </script>
 

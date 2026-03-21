@@ -1,18 +1,107 @@
 children:
-  - type: sample
-    configYaml: |
-      - type: el
-        text: This is text that will be animated to appear as if it is being typed one character at a time.
-        textAnimation:
-          type: typing
-          duration: 0.025
-      - type: md
-        content: |
-          This even works with markdown.
+  - type: panel-tl
+    title: Animation
+    topGap: 1
+    color: lilac
+    topChildren:
+      - type: menu-horizontal
+        mixin: menuTab
+        gap: 1
+        rootPath: /animation
+    children:
+      - showForNav: /animation/text
+        children:
+          - type: sample
+            configYaml: |
+              - type: el
+                text: |
+                  This is text that will be animated to
+                  appear as if it is being typed one 
+                  character at a time.
+                textAnimation:
+                  type: typing
+                  duration: 0.025
+              - type: md
+                content: |
+                  This even works with markdown.
 
-          - Bullet 1
-          - Bullet 2
-          - Bullet 3
-        textAnimation:
-          type: typing
-          delay: 3
+                  - Bullet 1
+                  - Bullet 2
+                  - Bullet 3
+                textAnimation:
+                  type: typing
+                  delay: 3
+      - showForNav: /animation/element
+        children:
+          - type: md
+            content: |
+              You can apply animations to any element with the `animation` property. Use the `in` property of the
+              animation to define an animation for when the element appears.
+          - type: menu-horizontal
+            mixin: menuTab
+            gap: 1
+            rootPath: /animation/element
+            marginBottom: 1
+          - type: sample
+            showForNav: /animation/element/grow-all
+            configYaml: |
+              - type: el
+                width: 5
+                height: 5
+                color: 1
+                animation:
+                  in:
+                    type: grow
+                    duration: 0.5
+          - type: sample
+            showForNav: /animation/element/grow-down
+            configYaml: |
+              - type: el
+                width: 5
+                height: 5
+                color: 1
+                animation:
+                  in:
+                    type: grow-down
+          - type: sample
+            showForNav: /animation/element/grow-up
+            configYaml: |
+              - type: el
+                width: 5
+                height: 5
+                color: 1
+                animation:
+                  in:
+                    type: grow-up
+          - type: sample
+            showForNav: /animation/element/grow-right
+            configYaml: |
+              - type: el
+                width: 5
+                height: 5
+                color: 1
+                animation:
+                  in:
+                    type: grow-right
+          - type: sample
+            showForNav: /animation/element/grow-left
+            configYaml: |
+              - type: el
+                width: 5
+                height: 5
+                color: 1
+                animation:
+                  in:
+                    type: grow-left
+          - type: sample
+            showForNav: /animation/element/children
+            content: |
+              Use element animation to animate child elements.
+            configYaml: |
+              - type: el
+                animation:
+                  in:
+                    type: grow
+                    transformOrigin: top left
+                children:
+                  - type: panel-tl

@@ -55,7 +55,15 @@ nav:
               - text: Horizontal
   - text: Animation
     children:
-      - text: Text Animation
+      - text: Text
+      - text: Element
+        children:
+          - text: Grow All
+          - text: Grow Down
+          - text: Grow Up
+          - text: Grow Left
+          - text: Grow Right
+          - text: Children
   - key: state
     text: State
     children:

@@ -18,6 +18,7 @@ const {
   navToFirstChild = false,
   gap,
   alignContent,
+  marginBottom,
 } = defineProps<{
   width?: number
   height?: number
@@ -26,6 +27,8 @@ const {
   navToFirstChild?: boolean
   gap?: number
   alignContent?: string
+  marginTop?: number
+  marginBottom?: number
 }>()
 
 const items = computed(() => {
@@ -48,7 +51,7 @@ function getNavPath(item: NavItem) {
 </script>
 
 <template>
-  <LCARSRow :gap="gap">
+  <LCARSRow :gap="gap" :marginBottom="marginBottom" :marginTop="marginTop">
     <LCARSElement
       v-for="(item, index) in items"
       :key="item.text"

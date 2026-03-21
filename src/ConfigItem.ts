@@ -1,4 +1,4 @@
-import type { AnimationConfig } from './AnimationConfig'
+import type { AnimationConfig, Animations } from './AnimationConfig'
 import { mixins } from './HAConfig'
 import { getStateValue, haState } from './HAState'
 import type { ElementProps } from './props/ElementProps'
@@ -15,6 +15,7 @@ export interface ConfigItem extends ElementProps, PanelProps, RowProps, TapActio
   positioning?: string
   showForNav?: string
   showForOrientation?: string
+  animation?: Animations
   stateMap?: { entity: string; attribute?: string; states: Record<string, any> }
   childPositioning?: string
   children?: ConfigItem[]
