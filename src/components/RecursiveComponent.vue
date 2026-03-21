@@ -11,12 +11,19 @@ import ParentComponent from './ParentComponent.vue'
 import LoadingComponent from './LoadingComponent.vue'
 import LCARSMarkdown from './LCARSMarkdown.vue'
 import gsap from 'gsap'
+import type { AnimationConfig } from '@/AnimationConfig'
 
 const props = useAttrs()
 
 const processedProps = ref<ConfigItem>()
 const renderKey = ref(0)
-const animated = reactive<{ typeLength?: number }>({})
+const animated = reactive<{
+  typeLength?: number
+  top?: number
+  bottom?: number
+  left?: number
+  right?: number
+}>({})
 
 defineOptions({
   inheritAttrs: false,
@@ -94,6 +101,34 @@ const displayText = computed(() => {
   return processedProps.value?.text?.substring(0, animated.typeLength)
 })
 
+const visibleTopChildren = computed(() => {
+  if (props.topChildren) {
+    return (props.topChildren as any).slice(0, animated.top)
+  }
+  return undefined
+})
+
+const visibleBottomChildren = computed(() => {
+  if (props.bottomChildren) {
+    return (props.bottomChildren as any).slice(0, animated.bottom)
+  }
+  return undefined
+})
+
+const visibleLeftChildren = computed(() => {
+  if (props.leftChildren) {
+    return (props.leftChildren as any).slice(0, animated.left)
+  }
+  return undefined
+})
+
+const visibleRightChildren = computed(() => {
+  if (props.rightChildren) {
+    return (props.rightChildren as any).slice(0, animated.right)
+  }
+  return undefined
+})
+
 onMounted(() => {
   if (!processedProps.value) {
     processedProps.value = processItem(props as ConfigItem)
@@ -107,6 +142,70 @@ onMounted(() => {
       delay: processedProps.value.textAnimation.delay,
       typeLength: targetLength,
     })
+  }
+  if (props.topChildren) {
+    const topChildren = props.topChildren as ConfigItem[]
+    if (props.topAnimation) {
+      const animation = props.topAnimation as AnimationConfig
+      if (animation.type === 'build-right') {
+        gsap.to(animated, {
+          duration: animation.duration ?? 0.1 * topChildren.length,
+          top: topChildren.length,
+          ease: `steps(${topChildren.length})`,
+          delay: animation.delay,
+        })
+      }
+    } else {
+      animated.top = topChildren.length
+    }
+  }
+  if (props.bottomChildren) {
+    const bottomChildren = props.bottomChildren as ConfigItem[]
+    if (props.bottomAnimation) {
+      const animation = props.bottomAnimation as AnimationConfig
+      if (animation.type === 'build-right') {
+        gsap.to(animated, {
+          duration: animation.duration ?? 0.1 * bottomChildren.length,
+          bottom: bottomChildren.length,
+          ease: `steps(${bottomChildren.length})`,
+          delay: animation.delay,
+        })
+      }
+    } else {
+      animated.bottom = bottomChildren.length
+    }
+  }
+  if (props.leftChildren) {
+    const leftChildren = props.leftChildren as ConfigItem[]
+    if (props.leftAnimation) {
+      const animation = props.leftAnimation as AnimationConfig
+      if (animation.type === 'build-right') {
+        gsap.to(animated, {
+          duration: animation.duration ?? 0.1 * leftChildren.length,
+          left: leftChildren.length,
+          ease: `steps(${leftChildren.length})`,
+          delay: animation.delay,
+        })
+      }
+    } else {
+      animated.left = leftChildren.length
+    }
+  }
+  if (props.rightChildren) {
+    const rightChildren = props.rightChildren as ConfigItem[]
+    if (props.rightAnimation) {
+      const animation = props.rightAnimation as AnimationConfig
+      if (animation.type === 'build-right') {
+        gsap.to(animated, {
+          duration: animation.duration ?? 0.1 * rightChildren.length,
+          right: rightChildren.length,
+          ease: `steps(${rightChildren.length})`,
+          delay: animation.delay,
+        })
+      }
+    } else {
+      animated.right = rightChildren.length
+    }
   }
 })
 </script>
@@ -123,17 +222,17 @@ onMounted(() => {
     {{ displayText }}
     <LCARSMarkdown v-if="processedProps?.md" :content="processedProps.md" />
     <a v-if="props.showForNav" :name="props.showForNav"></a>
-    <template #left v-if="props.leftChildren">
-      <ParentComponent :children="props.leftChildren as Array<ConfigItem>" />
+    <template #left v-if="visibleLeftChildren">
+      <ParentComponent :children="visibleLeftChildren as Array<ConfigItem>" />
     </template>
-    <template #top v-if="props.topChildren">
-      <ParentComponent :children="props.topChildren as Array<ConfigItem>" />
+    <template #top v-if="visibleTopChildren">
+      <ParentComponent :children="visibleTopChildren as Array<ConfigItem>" />
     </template>
-    <template #bottom v-if="props.bottomChildren">
-      <ParentComponent :children="props.bottomChildren as Array<ConfigItem>" />
+    <template #bottom v-if="visibleBottomChildren">
+      <ParentComponent :children="visibleBottomChildren as Array<ConfigItem>" />
     </template>
-    <template #right v-if="props.rightChildren">
-      <ParentComponent :children="props.rightChildren as Array<ConfigItem>" />
+    <template #right v-if="visibleRightChildren">
+      <ParentComponent :children="visibleRightChildren as Array<ConfigItem>" />
     </template>
     <ParentComponent v-if="props.children" :children="props.children as Array<ConfigItem>" />
   </component>

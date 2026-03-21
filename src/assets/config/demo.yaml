@@ -108,6 +108,10 @@ children:
         gap: 1
         aligntContent: middle-left
         navToFirstChild: true
+        animations:
+          in:
+            - type: build-down
+              duration: 0.1
     children:
       - type: nav-remote
         rootPath: /

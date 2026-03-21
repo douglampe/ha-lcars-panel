@@ -15,7 +15,10 @@ export interface ConfigItem extends ElementProps, PanelProps, RowProps, TapActio
   positioning?: string
   showForNav?: string
   showForOrientation?: string
-  animation?: Animations
+  animations?: Animations
+  topAnimation?: AnimationConfig
+  leftAnimation?: AnimationConfig
+  childAnimation?: AnimationConfig
   stateMap?: { entity: string; attribute?: string; states: Record<string, any> }
   childPositioning?: string
   children?: ConfigItem[]

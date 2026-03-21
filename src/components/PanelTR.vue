@@ -3,6 +3,7 @@ import type { MarginProps } from '@/props/MarginProps'
 import LCARSCol from './LCARSCol.vue'
 import LCARSElement from './LCARSElement.vue'
 import LCARSRow from './LCARSRow.vue'
+import type { AnimationConfig } from '@/AnimationConfig'
 
 interface PanelTLProps extends MarginProps {
   title?: string
@@ -28,6 +29,7 @@ interface PanelTLProps extends MarginProps {
   outerRadY?: number
   innerRadX?: number
   innerRadY?: number
+  titleAnimation?: AnimationConfig
 }
 
 const {
@@ -85,6 +87,7 @@ defineOptions({
         :textColor="color"
         :fontSize="topHeight"
         :lineHeight="topHeight * 0.8"
+        :textAnimation="titleAnimation"
       >
         {{ title }}
       </LCARSElement>

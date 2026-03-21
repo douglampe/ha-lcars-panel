@@ -4,6 +4,7 @@ import LCARSCol from './LCARSCol.vue'
 import LCARSElement from './LCARSElement.vue'
 import LCARSRow from './LCARSRow.vue'
 import type { ConfigItem } from '@/ConfigItem'
+import type { AnimationConfig } from '@/AnimationConfig'
 
 interface PanelTLProps extends ConfigItem, MarginProps {
   title?: string

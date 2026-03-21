@@ -7,49 +7,58 @@ children:
     outerRadX: 0.9
     outerRadY: 0.9
     title: Config
+    fillTopLeft: false
+    topCap: true
+    topAnimation:
+      type: build-right
     topChildren:
-      - type: row
-        gap: 1
-        children:
-          - type: el
-            mixin: menuTab
-            nav: /config/globals
-            text: Globals
-            color: golden-tainoi
-          - type: el
-            mixin: menuTab
-            nav: /config/vars
-            text: Variables
-            color: anakiwa
-          - type: el
-            mixin: menuTab
-            nav: /config/themes
-            text: Themes
-            color: fiery-orange
-          - type: el
-            mixin: menuTab
-            nav: /config/mixins
-            text: Mixins
-            color: lilac
-          - type: el
-            mixin: menuTab
-            nav: /config/positioning
-            text: Positioning
-            color: indian-red
-          - type: el
-            mixin: menuTab
-            nav: /config/children
-            text: Children
-            color: dodger-blue
-          - type: el
-            mixin: menuTab
-            nav: /config/remote
-            text: Remote
-            color: golden-tainoi
-          - type: el
-            color: dodger-blue
-            width: 1
-            height: 1
+      - type: el
+        mixin: menuTab
+        color: dodger-blue
+        width: 15
+        marginLeft: -0.1
+        anmimations:
+          in:
+            - type: grow-right
+      - type: el
+        mixin: menuTab
+        nav: /config/globals
+        text: Globals
+        color: golden-tainoi
+      - type: el
+        mixin: menuTab
+        nav: /config/vars
+        text: Variables
+        color: anakiwa
+      - type: el
+        mixin: menuTab
+        nav: /config/themes
+        text: Themes
+        color: fiery-orange
+      - type: el
+        mixin: menuTab
+        nav: /config/mixins
+        text: Mixins
+        color: lilac
+      - type: el
+        mixin: menuTab
+        nav: /config/positioning
+        text: Positioning
+        color: indian-red
+      - type: el
+        mixin: menuTab
+        nav: /config/children
+        text: Children
+        color: dodger-blue
+      - type: el
+        mixin: menuTab
+        nav: /config/remote
+        text: Remote
+        color: golden-tainoi
+      - type: el
+        color: dodger-blue
+        width: 1
+        height: 1
     children:
       - type: el
         showForNav: /config/globals

@@ -13,6 +13,8 @@ children:
         fontSize: 1
         marginLeft: 0.3
   - type: md
+    textAnmiation:
+      type: typing
     content: |
       This is not just a "custom card" for Home Assistant. It is a comprehensive LCARS system designed to allow
       you to create complex LCARS layouts either as a single card in a dashboard using the LCARS theme, create
