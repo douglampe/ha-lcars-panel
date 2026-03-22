@@ -1,4 +1,5 @@
 import { haConfig } from './HAConfig'
+import { ref } from 'vue'
 
 export interface NavItem {
   text: string
@@ -8,12 +9,18 @@ export interface NavItem {
   url?: string
 }
 
+export const navStructure = ref<NavItem[]>()
+
 export function findByPath(path: string): NavItem | undefined {
-  if (path === '/') {
-    return { text: 'Root', path: '/', children: haConfig.value.navigation }
+  if (!navStructure.value) {
+    return
   }
 
-  for (const item of haConfig.value.navigation || []) {
+  if (path === '/') {
+    return { text: 'Root', path: '/', children: navStructure.value }
+  }
+
+  for (const item of navStructure.value ?? []) {
     const found = findItemByPath(path, item)
     if (found) {
       return found
@@ -52,10 +59,14 @@ function setKey(item: NavItem) {
 }
 
 export function loadMenu() {
+  const nav = []
+
   for (const item of haConfig.value.navigation || []) {
-    setKey(item)
-    item.path = `/${item.key}`
-    loadItem(item)
+    const navItem = { ...item }
+    nav.push(navItem)
+    setKey(navItem)
+    navItem.path = `/${navItem.key}`
+    loadItem(navItem)
   }
 }
 

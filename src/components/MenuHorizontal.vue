@@ -55,11 +55,12 @@ function getNavPath(item: NavItem) {
 }
 
 onMounted(() => {
-  if (!haConfig.value?.navigation) {
+  const rootItem = findByPath(rootPath ?? '/')
+
+  if (!rootItem) {
     return
   }
 
-  const rootItem = findByPath(rootPath ?? '/')
   items.value = rootItem?.children ?? []
 
   if (animations?.in?.length) {
