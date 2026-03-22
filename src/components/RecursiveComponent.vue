@@ -58,7 +58,7 @@ function processItem(item: ConfigItem) {
   if (
     processedItem.children &&
     !processedItem.type?.endsWith('-container') &&
-    processedItem.type !== 'lcars-modal'
+    processedItem.type !== 'modal'
   ) {
     delete processedItem.children
   }
