@@ -1,6 +1,6 @@
 <!-- eslint-disable @typescript-eslint/no-explicit-any -->
 <script setup lang="ts">
-import { components } from '../HAConfig'
+import { components } from '@/ComponentRegistry'
 import { currentNav } from '@/LocalNav'
 import { applyMixin, applyOrientationClass, applyState, type ConfigItem } from '@/ConfigItem'
 import { computed, onMounted, reactive, ref, useAttrs, watch } from 'vue'
