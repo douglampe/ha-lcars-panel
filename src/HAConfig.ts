@@ -96,12 +96,12 @@ export function loadConfig(config: any) {
   }
   haConfig.value = config
   loadMixins(config)
-  loadVariables(config)
   if (config.theme) {
     loadTheme(config.theme)
   } else {
     loadTheme('default')
   }
+  loadVariables(config)
   loadMenu()
 }
 
