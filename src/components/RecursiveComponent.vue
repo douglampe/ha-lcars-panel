@@ -36,14 +36,11 @@ defineOptions({
   inheritAttrs: false,
 })
 
-function updateState() {
+function onStateUpdated() {
   if (props.stateMap || Object.keys(props).some((key) => key.endsWith('_template'))) {
     const processedItem = { ...processedProps.value } as ConfigItem
 
-    applyState(processedItem)
-    applyTemplates(processedItem)
-
-    if (JSON.stringify(processedItem) !== JSON.stringify(processedProps.value)) {
+    if (applyState(processedItem) || applyTemplates(processedItem)) {
       processedProps.value = processedItem
       renderKey.value++
     }
@@ -100,7 +97,7 @@ function getComponentType(cmps: Record<string, any>) {
 watch(
   () => haState.value,
   () => {
-    updateState()
+    onStateUpdated()
   },
   { deep: true },
 )

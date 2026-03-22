@@ -43,9 +43,11 @@ export function applyState(item: ConfigItem) {
       const stateMapValues = item.stateMap.states[val]
       if (stateMapValues) {
         Object.assign(item, stateMapValues)
+        return true
       }
     }
   }
+  return false
 }
 
 export function applyMixin(item: ConfigItem) {

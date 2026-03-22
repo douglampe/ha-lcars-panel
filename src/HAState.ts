@@ -89,15 +89,20 @@ function pushStateValue(
 }
 
 export function applyTemplates(configItem: ConfigItem) {
+  let applied = false
   for (const key in configItem) {
     if (key.endsWith('_template')) {
       const valueKey = key.substring(0, key.length - 9)
-      configItem[valueKey as keyof ConfigItem] = renderTemplate(
-        haState.value as any,
-        configItem[key as keyof ConfigItem],
-      )
+      const oldValue = configItem[valueKey as keyof ConfigItem]
+      const newValue = renderTemplate(haState.value as any, configItem[key as keyof ConfigItem])
+      if (newValue !== oldValue) {
+        configItem[valueKey as keyof ConfigItem] = newValue
+        applied = true
+      }
     }
   }
+
+  return applied
 }
 
 export function loadTestState() {
