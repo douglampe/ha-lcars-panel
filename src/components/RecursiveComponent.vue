@@ -36,6 +36,19 @@ defineOptions({
   inheritAttrs: false,
 })
 
+function updateState() {
+  if (props.stateMap || Object.keys(props).some((key) => key.endsWith('_template'))) {
+    const processedItem = { ...processedProps.value } as ConfigItem
+
+    applyState(processedItem)
+    applyTemplates(processedItem)
+
+    if (JSON.stringify(processedItem) !== JSON.stringify(processedProps.value)) {
+      processedProps.value = processedItem
+    }
+  }
+}
+
 function processItem(item: ConfigItem) {
   const processedItem = { ...item }
 
@@ -45,9 +58,9 @@ function processItem(item: ConfigItem) {
 
   applyState(processedItem)
 
-  applyOrientationClass(processedItem)
-
   applyTemplates(processedItem)
+
+  applyOrientationClass(processedItem)
 
   if (processedItem.tag) {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars
@@ -83,15 +96,13 @@ function getComponentType(cmps: Record<string, any>) {
   return props.tag ? HTMLComponent : 'div'
 }
 
-if (props.stateMap || Object.keys(props).some((key) => key.endsWith('_template'))) {
-  watch(
-    () => haState.value,
-    () => {
-      processedProps.value = processItem(props)
-    },
-    { deep: true },
-  )
-}
+watch(
+  () => haState.value,
+  () => {
+    updateState()
+  },
+  { deep: true },
+)
 
 const isVisible = computed(() => {
   if (
