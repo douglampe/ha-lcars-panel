@@ -7,30 +7,11 @@ children:
     outerRadX: 0.9
     outerRadY: 0.9
     title: Config
-    fillTopLeft: false
     topCap: true
-    topChildrenAnimation:
-      type: build-right
-    titleAnimation:
-      type: typing
-      duration: 0.2
-      delay: 1
     topChildren:
-      - type: el
-        width: 15
-        color: dodger-blue
-        marginLeft: -0.1
-        animations:
-          in:
-            - type: grow-right
-              duration: 0.1
       - type: menu-horizontal
         mixin: menuTab
         rootPath: /config
-        animations:
-          in:
-            - type: build-right
-              duration: 0.1
       - type: el
         color: dodger-blue
         width: 1

@@ -6,15 +6,20 @@ children:
     topGap: 1
     color: lilac
     fillTopLeft: false
+    topCap: true
     titleAnimation:
       type: typing
-      delay: 1.5
+      delay: 1
     topChildrenAnimation:
-      type: build-right
+      type: build
+    topCapAnimations:
+      in:
+        - type: grow-right
+          delay: 1.6
     topChildren:
       - type: el
         color: lilac
-        width: 20
+        width: 31.3
         marginLeft: -0.1
         animations:
           in:
@@ -25,7 +30,7 @@ children:
         rootPath: /animation
         animations:
           in:
-            - type: build-right
+            - type: build
               duration: 0.5
     children:
       - showForNav: /animation/text
@@ -66,7 +71,7 @@ children:
             marginBottom: 1
             animations:
               in:
-                - type: build-right
+                - type: build
                   duration: 0.1
           - type: sample
             showForNav: /animation/element/grow-all
@@ -122,12 +127,29 @@ children:
           - type: sample
             showForNav: /animation/element/children
             content: |
-              Use element animation to animate child elements.
+              Most elements that support children also support animating how those children appear. Currently, the only
+              supported animation type is `build` which will make the children appear one at a time.
             configYaml: |
-              - type: el
-                animations:
-                  in:
-                    - type: grow
-                      transformOrigin: top left
+              - type: row
+                gap: 1
+                childrenAnimation:
+                  type: build
                 children:
-                  - type: panel-tl
+                  - type: el
+                    text: Child 1
+                    color: 1
+                    width: 3
+                    textColor: black
+                    alignContent: middle-center
+                  - type: el
+                    text: Child 2
+                    color: 2
+                    width: 3
+                    textColor: black
+                    alignContent: middle-center
+                  - type: el
+                    text: Child 3
+                    color: 3
+                    width: 3
+                    textColor: black
+                    alignContent: middle-center

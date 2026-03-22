@@ -39,7 +39,7 @@ export interface HAConfig {
   mixins: Record<string, any>
   children: ConfigItem[]
   positioning?: string
-  nav?: NavItem[]
+  navigation?: NavItem[]
   theme?: string
   remoteRoot?: string
   editorEnabled?: boolean

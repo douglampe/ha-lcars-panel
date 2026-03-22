@@ -10,10 +10,10 @@ export interface NavItem {
 
 export function findByPath(path: string): NavItem | undefined {
   if (path === '/') {
-    return { text: 'Root', path: '/', children: haConfig.value.nav }
+    return { text: 'Root', path: '/', children: haConfig.value.navigation }
   }
 
-  for (const item of haConfig.value.nav || []) {
+  for (const item of haConfig.value.navigation || []) {
     const found = findItemByPath(path, item)
     if (found) {
       return found
@@ -52,7 +52,7 @@ function setKey(item: NavItem) {
 }
 
 export function loadMenu() {
-  for (const item of haConfig.value.nav || []) {
+  for (const item of haConfig.value.navigation || []) {
     setKey(item)
     item.path = `/${item.key}`
     loadItem(item)

@@ -33,8 +33,6 @@ export function applyInAnimations(el: any, config: ConfigItem) {
           break
         case 'grow-down':
           from = {
-            percentX: 0,
-            percentY: 0,
             scaleY: 0,
             transformOrigin: '0 0',
           }

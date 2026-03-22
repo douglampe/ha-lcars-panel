@@ -19,7 +19,7 @@ const { rootPath = '/', id } = defineProps<{
 }>()
 
 function setUrl() {
-  if (!haConfig.value?.nav) {
+  if (!haConfig.value?.navigation) {
     return undefined
   }
   const rootItem = findByPath(rootPath)

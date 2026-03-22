@@ -36,8 +36,4 @@ export interface PanelProps {
   outerRadY?: number
   innerRadX?: number
   innerRadY?: number
-  topAnimation?: Animations
-  bottomAnimation?: Animations
-  leftAnimation?: Animations
-  rightAnimation?: Animations
 }

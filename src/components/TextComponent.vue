@@ -18,12 +18,16 @@ const displayText = computed(() => {
 })
 
 onMounted(() => {
-  gsap.to(animated, {
-    typeLength: props.text.length,
-    duration: props.textAnimation?.duration ?? 0.05 * props.text.length,
-    delay: props.textAnimation?.delay ?? 0,
-    ease: 'none',
-  })
+  if (props.textAnimation?.type === 'typing') {
+    gsap.to(animated, {
+      typeLength: props.text.length,
+      duration: props.textAnimation?.duration ?? 0.05 * props.text.length,
+      delay: props.textAnimation?.delay ?? 0,
+      ease: 'none',
+    })
+  } else {
+    animated.typeLength = props.text.length
+  }
 })
 </script>
 

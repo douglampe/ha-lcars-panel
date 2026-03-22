@@ -55,7 +55,7 @@ function getNavPath(item: NavItem) {
 }
 
 onMounted(() => {
-  if (!haConfig.value?.nav) {
+  if (!haConfig.value?.navigation) {
     return
   }
 
@@ -64,7 +64,7 @@ onMounted(() => {
 
   if (animations?.in?.length) {
     for (const animation of animations.in) {
-      if (animation.type === 'build-down') {
+      if (animation.type === 'build') {
         gsap.to(visibleCount, {
           duration: (animation.duration ?? 0.1) * items.value.length,
           value: items.value.length,

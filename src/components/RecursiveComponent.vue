@@ -23,11 +23,13 @@ const animated = reactive<{
   bottom?: number
   left?: number
   right?: number
+  children?: number
 }>({
   top: 0,
   bottom: 0,
   left: 0,
   right: 0,
+  children: 0,
 })
 
 defineOptions({
@@ -130,15 +132,38 @@ const visibleRightChildren = computed(() => {
   return undefined
 })
 
+const visibleChildren = computed(() => {
+  if (props.children) {
+    return (props.children as any).slice(0, animated.children)
+  }
+  return undefined
+})
+
 onMounted(() => {
   if (!processedProps.value) {
     processedProps.value = processItem(props as ConfigItem)
+  }
+  if (props.children) {
+    const children = props.children as ConfigItem[]
+    if (props.childrenAnimation) {
+      const animation = props.childrenAnimation as AnimationConfig
+      if (animation.type === 'build') {
+        gsap.to(animated, {
+          duration: animation.duration ?? 0.1 * children.length,
+          children: children.length,
+          ease: `steps(${children.length})`,
+          delay: animation.delay,
+        })
+      }
+    } else {
+      animated.children = children.length
+    }
   }
   if (props.topChildren) {
     const topChildren = props.topChildren as ConfigItem[]
     if (props.topChildrenAnimation) {
       const animation = props.topChildrenAnimation as AnimationConfig
-      if (animation.type === 'build-right') {
+      if (animation.type === 'build') {
         gsap.to(animated, {
           duration: animation.duration ?? 0.1 * topChildren.length,
           top: topChildren.length,
@@ -154,7 +179,7 @@ onMounted(() => {
     const bottomChildren = props.bottomChildren as ConfigItem[]
     if (props.bottomChildrenAnimation) {
       const animation = props.bottomChildrenAnimation as AnimationConfig
-      if (animation.type === 'build-right') {
+      if (animation.type === 'build') {
         gsap.to(animated, {
           duration: animation.duration ?? 0.1 * bottomChildren.length,
           bottom: bottomChildren.length,
@@ -170,7 +195,7 @@ onMounted(() => {
     const leftChildren = props.leftChildren as ConfigItem[]
     if (props.leftChildrenAnimation) {
       const animation = props.leftChildrenAnimation as AnimationConfig
-      if (animation.type === 'build-right') {
+      if (animation.type === 'build') {
         gsap.to(animated, {
           duration: animation.duration ?? 0.1 * leftChildren.length,
           left: leftChildren.length,
@@ -186,7 +211,7 @@ onMounted(() => {
     const rightChildren = props.rightChildren as ConfigItem[]
     if (props.rightChildrenAnimation) {
       const animation = props.rightChildrenAnimation as AnimationConfig
-      if (animation.type === 'build-right') {
+      if (animation.type === 'build') {
         gsap.to(animated, {
           duration: animation.duration ?? 0.1 * rightChildren.length,
           right: rightChildren.length,
@@ -229,6 +254,6 @@ onMounted(() => {
     <template #right v-if="visibleRightChildren">
       <ParentComponent :children="visibleRightChildren as Array<ConfigItem>" />
     </template>
-    <ParentComponent v-if="props.children" :children="props.children as Array<ConfigItem>" />
+    <ParentComponent v-if="visibleChildren" :children="visibleChildren as Array<ConfigItem>" />
   </component>
 </template>

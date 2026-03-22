@@ -2,12 +2,13 @@ type: custom:ha-lcars-panel
 vars:
   lcars_unit: 2vw
 remoteRoot: /ha-lcars-panel/demo
-nav:
+navigation:
   - text: Home
   - text: Config
     children:
       - text: Globals
       - text: Variables
+        key: vars
       - text: Themes
       - text: Mixins
       - text: Positioning
@@ -110,7 +111,7 @@ children:
         navToFirstChild: true
         animations:
           in:
-            - type: build-down
+            - type: build
               duration: 0.1
     children:
       - type: nav-remote
