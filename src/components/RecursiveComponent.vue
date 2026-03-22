@@ -45,6 +45,7 @@ function updateState() {
 
     if (JSON.stringify(processedItem) !== JSON.stringify(processedProps.value)) {
       processedProps.value = processedItem
+      renderKey.value++
     }
   }
 }
