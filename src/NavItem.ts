@@ -61,13 +61,15 @@ function setKey(item: NavItem) {
 export function loadMenu() {
   const nav = []
 
-  for (const item of haConfig.value.navigation || []) {
+  for (const item of haConfig.value.nav || []) {
     const navItem = { ...item }
     nav.push(navItem)
     setKey(navItem)
     navItem.path = `/${navItem.key}`
     loadItem(navItem)
   }
+
+  navStructure.value = nav
 }
 
 function loadItem(item: NavItem) {

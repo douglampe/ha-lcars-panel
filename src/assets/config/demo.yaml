@@ -2,7 +2,7 @@ type: custom:ha-lcars-panel
 vars:
   lcars_unit: 2vw
 remoteRoot: /ha-lcars-panel/demo
-navigation:
+nav:
   - text: Home
   - text: Config
     children:

@@ -24,13 +24,13 @@ children:
         children:
           - type: md
             content: |
-              Navigation can be configured via the top-level `navigation` key. This key can contain a list of 
+              Navigation can be configured via the top-level `nav` key. This key can contain a list of 
               navigation items. Each item can have children which establishes a hierarchy that can be used to generate 
               navigation elements usable across your dashboard.
 
               Example:
               ```
-              navigation:
+              nav:
                 - text: Home
                   key: home
                   url: /home.yaml

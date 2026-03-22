@@ -915,7 +915,7 @@ children:
         - topic: Menu Horizontal
           key: menu-horizontal
           content: |
-            Renders list of elements in a row with each item navigating to a path based on the `navigation`
+            Renders list of elements in a row with each item navigating to a path based on the `nav`
             configuration for a given root path.
           properties:
             - name: alignContent
@@ -931,7 +931,7 @@ children:
                 Set to `true` to navigate to path of the first child of the menu item when clicked
             - name: rootPath
               description: |
-                Sets the root path under which the navigation items for this menu are defined in the `navigation` configuration
+                Sets the root path under which the navigation items for this menu are defined in the `nav` configuration
             - name: textColor
             - name: width
               description: |
@@ -939,7 +939,7 @@ children:
         - topic: Menu Vertical
           key: menu-vertical
           content: |
-            Renders list of elements in a row with each item navigating to a path based on the `navigation`
+            Renders list of elements in a row with each item navigating to a path based on the `nav`
             configuration for a given root path.
           properties:
             - name: alignContent
@@ -955,7 +955,7 @@ children:
                 Set to `true` to navigate to path of the first child of the menu item when clicked
             - name: rootPath
               description: |
-                Sets the root path under which the navigation items for this menu are defined in the `navigation` configuration
+                Sets the root path under which the navigation items for this menu are defined in the `nav` configuration
             - name: textColor
             - name: width
               description: |
