@@ -120,7 +120,7 @@ export function loadVariables(haConfig: HAConfig) {
 
 export function loadTheme(theme: string) {
   const themes = YAML.parse(themeConfig)
-  const colors = themes[theme]
+  const colors = themes[theme] ?? themes['default'] ?? []
   for (let i = 0; i < 10; i++) {
     const index = i % colors.length
     setVariable(`lcars-color-${i + 1}`, `var(--lcars-color-${colors[index] as string})`)
