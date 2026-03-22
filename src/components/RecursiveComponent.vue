@@ -83,7 +83,7 @@ function getComponentType(cmps: Record<string, any>) {
   return props.tag ? HTMLComponent : 'div'
 }
 
-if (props.stateMap) {
+if (props.stateMap || Object.keys(props).some((key) => key.endsWith('_template'))) {
   watch(
     () => haState.value,
     () => {
