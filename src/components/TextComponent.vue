@@ -4,7 +4,7 @@ import gsap from 'gsap'
 import { computed, onMounted, reactive } from 'vue'
 
 const props = defineProps<{
-  text: string
+  text?: string
   textAnimation?: AnimationConfig
 }>()
 
@@ -14,19 +14,19 @@ const animated = reactive<{
   typeLength: 0,
 })
 const displayText = computed(() => {
-  return props.text.substring(0, animated.typeLength)
+  return props.text?.substring(0, animated.typeLength)
 })
 
 onMounted(() => {
   if (props.textAnimation?.type === 'typing') {
     gsap.to(animated, {
-      typeLength: props.text.length,
-      duration: props.textAnimation?.duration ?? 0.05 * props.text.length,
+      typeLength: props.text?.length,
+      duration: props.textAnimation?.duration ?? 0.05 * (props.text?.length ?? 0),
       delay: props.textAnimation?.delay ?? 0,
       ease: 'none',
     })
   } else {
-    animated.typeLength = props.text.length
+    animated.typeLength = props.text?.length
   }
 })
 </script>
