@@ -13,7 +13,6 @@ import LCARSMarkdown from './LCARSMarkdown.vue'
 import gsap from 'gsap'
 import type { AnimationConfig } from '@/AnimationConfig'
 import TextComponent from './TextComponent.vue'
-import { debounce } from '@/utils'
 
 const props = useAttrs()
 
@@ -98,7 +97,7 @@ function getComponentType(cmps: Record<string, any>) {
 watch(
   () => haState.value,
   () => {
-    debounce(onStateUpdated, 100)()
+    onStateUpdated()
   },
   { deep: true },
 )
