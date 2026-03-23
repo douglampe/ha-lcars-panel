@@ -1,5 +1,3 @@
-import { watch } from 'vue'
-
 import { haState } from './HAState'
 import { haConfig, loadConfig } from './HAConfig'
 import './editor.ts'

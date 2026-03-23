@@ -42,7 +42,7 @@ function onStateUpdated() {
 
     if (applyState(processedItem) || applyTemplates(processedItem)) {
       processedProps.value = processedItem
-      renderKey.value++
+      // renderKey.value++
     }
   }
 }
