@@ -8,3 +8,38 @@ homeassistant:
 # Text to speech
 tts:
   - platform: google_translate
+
+input_boolean:
+  test_boolean_1:
+    name: Test Boolean 1
+  test_boolean_2:
+    name: Test Boolean 2
+  test_boolean_3:
+    name: Test Boolean 3
+  test_boolean_4:
+    name: Test Boolean 4
+
+template:
+  - switch:
+      - name: Test Switch 1
+        state: "{{ is_state('input_boolean.test_boolean_1', 'ON') }}"
+        turn_on:
+          action: input_boolean.turn_on
+          target:
+            entity_id: input_boolean.test_boolean_1
+        turn_off:
+          action: input_boolean.turn_off
+          target:
+            entity_id: input_boolean.test_boolean_1
+    sensor:
+      - name: Test Sensor 1
+        state: >
+          {% if is_state("input_boolean.test_boolean_1", "ON") -%}Option 1{%- elif is_state("input_boolean.test_boolean_2", "ON") -%}Option 2{%- elif is_state("input_boolean.test_boolean_3", "ON") -%}Option 3{%- elif is_state("input_boolean.test_boolean_4", "ON") -%}Option 4{%- endif %}
+    select:
+      - name: Test Select 1
+        options: "{{ ['Option 1', 'Option 2', 'Option 3', 'Option 4']}}"
+        state: "{{ states('sensors.test_sensor_1') }}"
+        select_option:
+          - action: input_boolean.turn_on
+            target:
+              entity_id: "{% if value == 'Option 1' %}input_boolean.test_boolean_1{%- elif value == 'Option 1' -%}input_boolean.test_boolean_2{%- elif value == 'Option 3' -%}input_boolean.test_boolean_3{%- elif value == 'Option 4' -%}input_boolean.test_boolean_4{%- else -%}input_boolean.test_boolean_1{%- endif %}"
