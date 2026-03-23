@@ -1,0 +1,10 @@
+# Configure a default setup of Home Assistant (frontend, api, etc)
+default_config:
+
+homeassistant:
+  latitude: 28.4194708
+  longitude: -81.581321
+  elevation: 108
+# Text to speech
+tts:
+  - platform: google_translate
