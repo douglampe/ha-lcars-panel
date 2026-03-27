@@ -1,5 +1,3 @@
-import { watch } from 'vue'
-
 import { haState } from './HAState'
 import { haConfig, loadConfig } from './HAConfig'
 import './editor.ts'
@@ -81,15 +79,15 @@ export class LCARSCustomCard extends HTMLElement {
 
       head.appendChild(link)
 
-      watch(haConfig, (newConfig) => {
-        this.setConfig(newConfig)
-        const event = new Event('config-changed', {
-          bubbles: true,
-          composed: true,
-        }) as any
-        event.detail = { config: newConfig }
-        this.dispatchEvent(event)
-      })
+      // watch(haConfig, (newConfig) => {
+      //   this.setConfig(newConfig)
+      //   const event = new Event('config-changed', {
+      //     bubbles: true,
+      //     composed: true,
+      //   }) as any
+      //   event.detail = { config: newConfig }
+      //   this.dispatchEvent(event)
+      // })
     }
   }
 

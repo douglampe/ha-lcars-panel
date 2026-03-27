@@ -8,6 +8,7 @@ nav:
     children:
       - text: Globals
       - text: Variables
+        key: vars
       - text: Themes
       - text: Mixins
       - text: Positioning
@@ -53,6 +54,17 @@ nav:
               - text: These
               - text: Are
               - text: Horizontal
+  - text: Animation
+    children:
+      - text: Text
+      - text: Element
+        children:
+          - text: Grow All
+          - text: Grow Down
+          - text: Grow Up
+          - text: Grow Left
+          - text: Grow Right
+          - text: Children
   - key: state
     text: State
     children:
@@ -97,6 +109,10 @@ children:
         gap: 1
         aligntContent: middle-left
         navToFirstChild: true
+        animations:
+          in:
+            - type: build
+              duration: 0.1
     children:
       - type: nav-remote
         rootPath: /

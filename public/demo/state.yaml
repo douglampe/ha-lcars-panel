@@ -3,7 +3,7 @@ children:
     marginLeft: -0.9
     marginTop: -0.9
     marginBottom: 1
-    color: lilac
+    color: golden-tainoi
     outerRadX: 0.9
     outerRadY: 0.9
     title: State
@@ -32,6 +32,26 @@ children:
               - type: state-value
                 entity: sun.sun
                 attribute: elevation
+          - type: sample
+            configYaml: |
+              - type: el
+                width: 4
+                height: 4
+                alignContent: middle-center
+                textColor: black
+                text: Test
+                animations:
+                  in:
+                    - type: grow-right
+                text_template: "{{ states('light.test') }}"
+                color_template: "{% if states('light.test') == 'ON' -%}golden-tainoi{%- else -%}lilac{%- endif %}"
+                tapAction:
+                  action: call-service
+                  service: light.toggle
+                  data:
+                    entity_id: light.test
+              - type: state-value
+                entity: light.test
 
       - showForNav: /state/value
         children:

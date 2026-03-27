@@ -1,3 +1,5 @@
+import type { Animations } from '@/AnimationConfig'
+
 export interface PanelProps {
   title?: string
   color?: string | number

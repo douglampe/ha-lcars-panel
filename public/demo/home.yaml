@@ -13,6 +13,9 @@ children:
         fontSize: 1
         marginLeft: 0.3
   - type: md
+    textAnimation:
+      type: typing
+      duration: 0.01
     content: |
       This is not just a "custom card" for Home Assistant. It is a comprehensive LCARS system designed to allow
       you to create complex LCARS layouts either as a single card in a dashboard using the LCARS theme, create
@@ -20,7 +23,10 @@ children:
       the Home Assistant menu.
   - type: md
     marginTop: 0.5
-    delay: 4
+    textAnimation:
+      type: typing
+      duration: 0.01
+      delay: 4
     content: |
       Click a button below to start a detailed demo or browse the API
   - type: row

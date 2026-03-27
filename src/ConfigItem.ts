@@ -1,3 +1,4 @@
+import type { AnimationConfig, Animations } from './AnimationConfig'
 import { mixins } from './HAConfig'
 import { getStateValue, haState } from './HAState'
 import type { ElementProps } from './props/ElementProps'
@@ -14,6 +15,7 @@ export interface ConfigItem extends ElementProps, PanelProps, RowProps, TapActio
   positioning?: string
   showForNav?: string
   showForOrientation?: string
+  animations?: Animations
   stateMap?: { entity: string; attribute?: string; states: Record<string, any> }
   childPositioning?: string
   children?: ConfigItem[]
@@ -21,9 +23,15 @@ export interface ConfigItem extends ElementProps, PanelProps, RowProps, TapActio
   rightChildren?: ConfigItem[]
   topChildren?: ConfigItem[]
   bottomChildren?: ConfigItem[]
+  topChildrenAnimation?: AnimationConfig
+  bottomChildrenAnimation?: AnimationConfig
+  leftChildrenAnimation?: AnimationConfig
+  rightChildrenAnimation?: AnimationConfig
+  childrenAnimation?: AnimationConfig
   config?: Record<string, any>
   mixin?: string
   url?: string
+  textAnimation?: AnimationConfig
   style?: Record<string, any>
   class?: string | string[] | Record<string, boolean>
 }
@@ -35,9 +43,11 @@ export function applyState(item: ConfigItem) {
       const stateMapValues = item.stateMap.states[val]
       if (stateMapValues) {
         Object.assign(item, stateMapValues)
+        return true
       }
     }
   }
+  return false
 }
 
 export function applyMixin(item: ConfigItem) {

@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import { marked } from 'marked'
-import { computed } from 'vue'
+import { computed, onMounted, reactive } from 'vue'
 import LCARSElement from './LCARSElement.vue'
+import type { AnimationConfig } from '@/AnimationConfig'
+import gsap from 'gsap'
 
 marked.use({
   renderer: {
@@ -12,7 +14,11 @@ marked.use({
   },
 })
 
-const { content } = defineProps<{ content?: string }>()
+const { content, textAnimation } = defineProps<{
+  content?: string
+  textAnimation?: AnimationConfig
+}>()
+const animated = reactive<{ typeLength?: number }>({})
 
 defineOptions({
   inheritAttrs: false,
@@ -20,12 +26,27 @@ defineOptions({
 
 const html = computed(() => {
   if (content) {
+    const displayContent =
+      textAnimation?.type === 'typing' ? content.substring(0, animated.typeLength ?? 0) : content
     if (!new RegExp(/\n\n|\n-|```/g).test(content.trim())) {
-      return marked.parseInline(content)
+      return marked.parseInline(displayContent, { async: false })
     }
-    return marked.parse(content)
+    return marked.parse(displayContent, { async: false })
   }
   return undefined
+})
+
+onMounted(() => {
+  animated.typeLength = (content ?? '').length
+  if (textAnimation?.type === 'typing') {
+    const targetLength = animated.typeLength
+    animated.typeLength = 0
+    gsap.to(animated, {
+      duration: (textAnimation.duration ?? 0.05) * targetLength,
+      delay: textAnimation.delay,
+      typeLength: targetLength,
+    })
+  }
 })
 </script>
 

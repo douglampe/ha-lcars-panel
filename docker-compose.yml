@@ -4,7 +4,7 @@ services:
     image: homeassistant/home-assistant:stable
     volumes:
       - ./ha-config:/config
-      - ./dist:/config/www/lcars
+      - ./dist:/config/www/
     devices:
       - '/dev/ttyUSB0:/dev/ttyUSB0'
     environment:

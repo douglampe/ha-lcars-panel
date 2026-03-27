@@ -1,11 +1,10 @@
 import { defineCustomElement } from 'vue'
-
 import LCARSCardCe from './LCARSCard.ce.vue'
+import { LCARSCustomCard } from './LCARSCustomCard.ts'
+import { registerAllComponents } from './ComponentRegistry.ts'
 import './editor.ts'
 
 customElements.define('lcars-card', defineCustomElement(LCARSCardCe))
-
-import { LCARSCustomCard } from './LCARSCustomCard.ts'
 ;(window as any).customCards = (window as any).customCards || []
 
 if (!(window as any).customCards.some((card: any) => card.type === 'ha-lcars-panel')) {
@@ -20,3 +19,5 @@ if (!(window as any).customCards.some((card: any) => card.type === 'ha-lcars-pan
 if (!customElements.get('ha-lcars-panel')) {
   customElements.define('ha-lcars-panel', LCARSCustomCard)
 }
+
+registerAllComponents()

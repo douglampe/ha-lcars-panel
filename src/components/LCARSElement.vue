@@ -1,12 +1,13 @@
 <!-- eslint-disable @typescript-eslint/no-explicit-any -->
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { navigate } from '@/LocalNav'
 import { alignStyle, colorVar, marginStyle, padStyle, removeUndefined, unitSize } from '@/Layout'
 import { callService } from '@/HAState'
 import type { ConfigItem } from '@/ConfigItem'
 import { createRadiusSvg } from '@/props/RadiusProps'
 import { haConfig } from '@/HAConfig'
+import { applyInAnimations } from '@/AnimationConfig'
 
 const config = defineProps<ConfigItem>()
 const elementRef = ref<HTMLElement | null>(null)
@@ -58,6 +59,10 @@ const styleObject = computed(() => {
     textTransform: config.textTransform,
     ...(config.style ?? {}),
   })
+})
+
+onMounted(() => {
+  applyInAnimations(elementRef.value, config)
 })
 </script>
 

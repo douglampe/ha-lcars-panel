@@ -3,8 +3,8 @@ children:
     properties:
       alignContent: |
         Aligns the content relative to the element boundary
-      anmiation: |
-        Sets the animation to apply
+      animations: |
+        Lists the animations to apply
       attribute: |
         Optional attribute to display instead of the entity state
       bottomChildren: |
@@ -115,7 +115,7 @@ children:
         Set to `true` to stretch the height of `topChildren` to fill available space
     topics:
       Configuration:
-        - topic: Panel Configuration
+        - topic: Card
           content: |
             The following top-level configurations are available.
           properties:
@@ -469,6 +469,14 @@ children:
               category: Content
               description: |
                 Text to be rendered inside the element
+            - name: textAnimation
+              description: |
+                Optionally configures an animation for text or Markdown
+              action: Details
+              modalContent: |
+                - `type` - Must be `typing`
+                - `duration` - Optional duration of each keystroke in seconds
+                - `delay` - Optional delay before animation begins
             - name: textColor
               category: Content
               action: Colors
@@ -903,6 +911,55 @@ children:
               description: |
             - name: width
                 Sets the key to be used to send the value when `service` is called
+      Navigation:
+        - topic: Menu Horizontal
+          key: menu-horizontal
+          content: |
+            Renders list of elements in a row with each item navigating to a path based on the `nav`
+            configuration for a given root path.
+          properties:
+            - name: alignContent
+            - name: animations
+            - name: gap
+            - name: height
+              description: |
+                Sets the height of the menu in LCARS units
+            - name: marginTop
+            - name: marginBottom
+            - name: navToFirstChild
+              description: |
+                Set to `true` to navigate to path of the first child of the menu item when clicked
+            - name: rootPath
+              description: |
+                Sets the root path under which the navigation items for this menu are defined in the `nav` configuration
+            - name: textColor
+            - name: width
+              description: |
+                Sets the width of each menu item in LCARS units
+        - topic: Menu Vertical
+          key: menu-vertical
+          content: |
+            Renders list of elements in a row with each item navigating to a path based on the `nav`
+            configuration for a given root path.
+          properties:
+            - name: alignContent
+            - name: animations
+            - name: gap
+            - name: height
+              description: |
+                Sets the height of each menu item in LCARS units
+            - name: marginLeft
+            - name: marginRight
+            - name: navToFirstChild
+              description: |
+                Set to `true` to navigate to path of the first child of the menu item when clicked
+            - name: rootPath
+              description: |
+                Sets the root path under which the navigation items for this menu are defined in the `nav` configuration
+            - name: textColor
+            - name: width
+              description: |
+                Sets the width of the menu in LCARS units
 
   - showForNav: /api/Configuration/Themes
     children:

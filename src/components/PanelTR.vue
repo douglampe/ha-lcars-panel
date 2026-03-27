@@ -3,6 +3,7 @@ import type { MarginProps } from '@/props/MarginProps'
 import LCARSCol from './LCARSCol.vue'
 import LCARSElement from './LCARSElement.vue'
 import LCARSRow from './LCARSRow.vue'
+import type { AnimationConfig, Animations } from '@/AnimationConfig'
 
 interface PanelTLProps extends MarginProps {
   title?: string
@@ -28,6 +29,13 @@ interface PanelTLProps extends MarginProps {
   outerRadY?: number
   innerRadX?: number
   innerRadY?: number
+  titleAnimation?: AnimationConfig
+  topCapAnimations?: Animations
+  bottomCapAnimations?: Animations
+  topLeftAnimations?: Animations
+  topRightAnimations?: Animations
+  rightTopAnimations?: Animations
+  rightBottomAnimations?: Animations
 }
 
 const {
@@ -58,6 +66,13 @@ const {
   marginBottom,
   marginLeft,
   marginRight,
+  titleAnimation,
+  topCapAnimations,
+  bottomCapAnimations,
+  topLeftAnimations,
+  topRightAnimations,
+  rightTopAnimations,
+  rightBottomAnimations,
 } = defineProps<PanelTLProps>()
 
 defineOptions({
@@ -79,12 +94,14 @@ defineOptions({
         :width="topHeight / 2"
         :color="color"
         :cap-left="true"
+        :animations="topCapAnimations"
       ></LCARSElement>
       <LCARSElement
         v-if="title"
         :textColor="color"
         :fontSize="topHeight"
         :lineHeight="topHeight * 0.8"
+        :textAnimation="titleAnimation"
       >
         {{ title }}
       </LCARSElement>
@@ -93,6 +110,7 @@ defineOptions({
         :fill="fillTopLeft"
         :color="color"
         :height="topHeight"
+        :animations="topLeftAnimations"
       ></LCARSElement>
       <LCARSRow
         v-if="$slots.top"
@@ -109,6 +127,7 @@ defineOptions({
         :fill="fillTopRight"
         :color="color"
         :height="topHeight"
+        :animations="topRightAnimations"
       ></LCARSElement>
     </LCARSRow>
     <LCARSElement
@@ -136,6 +155,7 @@ defineOptions({
         :fill="fillRightTop"
         :color="rightColor ?? color"
         :width="rightWidth"
+        :animations="rightTopAnimations"
       ></LCARSElement>
       <LCARSCol
         v-if="$slots.right"
@@ -151,6 +171,7 @@ defineOptions({
         :fill="fillRightBottom"
         :color="rightColor ?? color"
         :width="rightWidth"
+        :animations="rightBottomAnimations"
       ></LCARSElement>
       <LCARSElement
         v-if="bottomCap"
@@ -158,6 +179,7 @@ defineOptions({
         :height="rightWidth / 2"
         :cap-bottom="true"
         :color="rightColor ?? color"
+        :animations="bottomCapAnimations"
       ></LCARSElement>
     </LCARSCol>
   </LCARSRow>

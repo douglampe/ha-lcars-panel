@@ -1,6 +1,5 @@
-!./ha-config/custom_components/**/*
-!./ha-config/configuration.yaml
 ha-config/**
+!ha-config/configuration.yaml
 
 # Logs
 logs

@@ -1,10 +1,12 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, onMounted, reactive, ref } from 'vue'
 import LCARSElement from './LCARSElement.vue'
 import { haConfig } from '@/HAConfig'
 import { findByPath, type NavItem } from '@/NavItem'
 import { getThemeColor } from '@/ThemeConfig'
 import LCARSCol from './LCARSCol.vue'
+import type { Animations } from '@/AnimationConfig'
+import gsap from 'gsap'
 
 defineOptions({
   inheritAttrs: false,
@@ -18,6 +20,9 @@ const {
   navToFirstChild = false,
   gap,
   alignContent,
+  marginLeft,
+  marginRight,
+  animations,
 } = defineProps<{
   width?: number
   height?: number
@@ -26,14 +31,17 @@ const {
   navToFirstChild?: boolean
   gap?: number
   alignContent?: string
+  marginLeft?: number
+  marginRight?: number
+  animations?: Animations
 }>()
 
-const items = computed(() => {
-  if (!haConfig.value?.nav) {
-    return []
-  }
-  const rootItem = findByPath(rootPath ?? '/')
-  return rootItem?.children || []
+const visibleCount = reactive({ value: 0 })
+
+const items = ref<NavItem[]>([])
+
+const visibleItems = computed(() => {
+  return items.value.slice(0, visibleCount.value)
 })
 
 function getNavPath(item: NavItem) {
@@ -45,12 +53,37 @@ function getNavPath(item: NavItem) {
   }
   return item.path
 }
+
+onMounted(() => {
+  const rootItem = findByPath(rootPath ?? '/')
+
+  if (!rootItem) {
+    return
+  }
+
+  items.value = rootItem?.children ?? []
+
+  if (animations?.in?.length) {
+    for (const animation of animations.in) {
+      if (animation.type === 'build') {
+        gsap.to(visibleCount, {
+          duration: (animation.duration ?? 0.1) * items.value.length,
+          value: items.value.length,
+          ease: `steps(${items.value.length})`,
+          delay: animation.delay,
+        })
+      }
+    }
+  } else {
+    visibleCount.value = items.value.length
+  }
+})
 </script>
 
 <template>
-  <LCARSCol :gap="gap">
+  <LCARSCol :gap="gap" :margintLeft="marginLeft" :marginRight="marginRight">
     <LCARSElement
-      v-for="(item, index) in items"
+      v-for="(item, index) in visibleItems"
       :key="item.text"
       :nav="getNavPath(item)"
       :text="item.text"

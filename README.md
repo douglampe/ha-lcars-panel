@@ -29,6 +29,10 @@ Steps:
 - Copy both files to the `/config/www` folder of your Home Assistant installation.
 - Add `/local/ha-lcars-panel.js` and `/local/ha-lcars-panelcss` as resources under Settings->Dashboards->Resources
 
+### Contributing
+
+To contribute to this project, see our [Contributing Guidelines](CONTRIBUTING.md)
+
 ## Configuration
 
 The best way to learn how to use this LCARS system is through this [interactive demo](https://douglampe.github.io/ha-lcars-panel/).
@@ -44,7 +48,9 @@ If you'd prefer to jump right in, you can find sample configurations (including 
   wrapping a Vue SFC as a custom component.
 - Shout out to [Name That Color](https://chir.ag/projects/name-that-color/) for helping give a name to colors I grabbed
   from various samples and for linking to [Colblindor](https://www.color-blindness.com/color-name-hue/)
-  which provided the list of available colors.
+  which provides the list of available colors.
 - Thanks to [LCARS Anomations](https://youtube.com/playlist?list=PLah0JzbIlDe8vDgRiKqmX7yTxDFh4yEYA&si=UuGOlyX1Z4b-LT1n)
   on YouTube for inspiration for components and demos.
 - Thanks to [The LCARS](https://www.thelcars.com/) for coming up with some cool themes that are supported here.
+- Thanks to [HA Nunjucks](https://github.com/Nerwyn/ha-nunjucks) for bringing template support to custom card
+  development.
