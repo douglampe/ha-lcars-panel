@@ -18,6 +18,7 @@ const props = useAttrs()
 
 const processedProps = ref<ConfigItem>()
 const renderKey = ref(0)
+const isVisible = ref(false)
 const animated = reactive<{
   top?: number
   bottom?: number
@@ -102,19 +103,30 @@ watch(
   { deep: true },
 )
 
-const isVisible = computed(() => {
+function checkVisibility() {
   if (!components) {
-    return false
+    setVisibility(false)
+    return
   }
   if (!processedProps.value?.showForNav) {
-    return true
+    setVisibility(true)
+    return
   }
   if (currentNav.value === '/') {
-    return processedProps.value?.showForNav === '/'
+    setVisibility(processedProps.value?.showForNav === '/')
   } else {
-    return currentNav.value?.startsWith(processedProps.value?.showForNav)
+    setVisibility(currentNav.value?.startsWith(processedProps.value?.showForNav))
   }
-})
+}
+
+function setVisibility(visible: boolean) {
+  if (isVisible.value != visible) {
+    isVisible.value = visible
+    if (visible) {
+      triggerAnimations()
+    }
+  }
+}
 
 const visibleTopChildren = computed(() => {
   if (props.topChildren) {
@@ -155,6 +167,10 @@ onMounted(() => {
   if (!processedProps.value) {
     processedProps.value = processItem(props as ConfigItem)
   }
+  triggerAnimations()
+})
+
+function triggerAnimations() {
   if (props.children) {
     const children = props.children as ConfigItem[]
     if (props.childrenAnimation) {
@@ -235,7 +251,7 @@ onMounted(() => {
       animated.right = rightChildren.length
     }
   }
-})
+}
 </script>
 
 <template>
