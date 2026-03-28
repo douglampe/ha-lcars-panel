@@ -3,6 +3,7 @@ import LCARSCardCe from './LCARSCard.ce.vue'
 import { LCARSCustomCard } from './LCARSCustomCard.ts'
 import { registerAllComponents } from './ComponentRegistry.ts'
 import './editor.ts'
+import { LCARSCustomLayout } from './LCARSCustomLayout.ts'
 
 customElements.define('lcars-card', defineCustomElement(LCARSCardCe))
 ;(window as any).customCards = (window as any).customCards || []
@@ -18,6 +19,10 @@ if (!(window as any).customCards.some((card: any) => card.type === 'ha-lcars-pan
 
 if (!customElements.get('ha-lcars-panel')) {
   customElements.define('ha-lcars-panel', LCARSCustomCard)
+}
+
+if (!customElements.get('ha-lcars-layout')) {
+  customElements.define('ha-lcars-layout', LCARSCustomLayout)
 }
 
 registerAllComponents()
