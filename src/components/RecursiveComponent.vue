@@ -105,8 +105,11 @@ watch(
 const isVisible = computed(() => {
   if (
     components &&
-    (!processedProps?.value?.showForNav ||
-      currentNav.value?.startsWith(processedProps.value.showForNav))
+    (
+      !processedProps?.value?.showForNav ||
+      (currentNav.value === '/' && processedProps.value?.showForNav === '/') ||
+      (currentNav.value !== '/' && currentNav.value?.startsWith(processedProps.value.showForNav))
+    )
   ) {
     return true
   }
