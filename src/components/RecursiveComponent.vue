@@ -103,17 +103,17 @@ watch(
 )
 
 const isVisible = computed(() => {
-  if (
-    components &&
-    (
-      !processedProps?.value?.showForNav ||
-      (currentNav.value === '/' && processedProps.value?.showForNav === '/') ||
-      (currentNav.value !== '/' && currentNav.value?.startsWith(processedProps.value.showForNav))
-    )
-  ) {
+  if (!components) {
+    return false
+  }
+  if (!processedProps.value?.showForNav) {
     return true
   }
-  return false
+  if (currentNav.value === '/') {
+    return processedProps.value?.showForNav === '/'
+  } else {
+    return currentNav.value?.startsWith(processedProps.value?.showForNav)
+  }
 })
 
 const visibleTopChildren = computed(() => {
