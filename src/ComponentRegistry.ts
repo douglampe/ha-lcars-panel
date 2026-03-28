@@ -2,6 +2,7 @@ import AbsoluteContainer from './components/AbsoluteContainer.vue'
 import AttributeFlow from './components/AttributeFlow.vue'
 import AttributeList from './components/AttributeList.vue'
 import AttributeTable from './components/AttributeTable.vue'
+import HACard from './components/HACard.vue'
 import LCARSApi from './components/LCARSApi.vue'
 import LCARSCol from './components/LCARSCol.vue'
 import LCARSElement from './components/LCARSElement.vue'
@@ -39,6 +40,7 @@ export function registerAllComponents() {
   registerComponent('attribute-list', AttributeList)
   registerComponent('col', LCARSCol)
   registerComponent('el', LCARSElement)
+  registerComponent('ha-card', HACard)
   registerComponent('modal', LCARSModal)
   registerComponent('md', LCARSMarkdown)
   registerComponent('menu-horizontal', MenuHorizontal)

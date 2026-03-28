@@ -23,6 +23,8 @@ export const haConfig = ref<HAConfig>({
   children: [],
 } as HAConfig)
 
+export const haCards = ref<Array<any>>([])
+
 export const mixins = ref({} as any)
 
 export function loadConfig(config: any) {
