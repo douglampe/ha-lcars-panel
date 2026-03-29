@@ -84,3 +84,19 @@ export function applyInAnimations(el: any, config: ConfigItem) {
     }
   }
 }
+
+export function applyStepAnimation(
+  animation: AnimationConfig,
+  to: number,
+  target: any,
+  prop: string,
+) {
+  target[prop] = 1
+  const config: any = {
+    duration: animation.duration ?? 0.1 * to,
+    ease: `steps(${to})`,
+    delay: animation.delay,
+  }
+  config[prop] = to
+  gsap.to(target, config)
+}

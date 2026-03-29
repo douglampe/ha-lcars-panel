@@ -11,7 +11,7 @@ import ParentComponent from './ParentComponent.vue'
 import LoadingComponent from './LoadingComponent.vue'
 import LCARSMarkdown from './LCARSMarkdown.vue'
 import gsap from 'gsap'
-import type { AnimationConfig } from '@/AnimationConfig'
+import { applyStepAnimation, type AnimationConfig } from '@/AnimationConfig'
 import TextComponent from './TextComponent.vue'
 
 const props = useAttrs()
@@ -126,12 +126,7 @@ function triggerAnimations() {
     if (props.childrenAnimation) {
       const animation = props.childrenAnimation as AnimationConfig
       if (animation.type === 'build') {
-        gsap.to(animated, {
-          duration: animation.duration ?? 0.1 * children.length,
-          children: children.length,
-          ease: `steps(${children.length})`,
-          delay: animation.delay,
-        })
+        applyStepAnimation(animation, children.length, animated, 'children')
       }
     } else {
       animated.children = children.length
@@ -142,12 +137,7 @@ function triggerAnimations() {
     if (props.topChildrenAnimation) {
       const animation = props.topChildrenAnimation as AnimationConfig
       if (animation.type === 'build') {
-        gsap.to(animated, {
-          duration: animation.duration ?? 0.1 * topChildren.length,
-          top: topChildren.length,
-          ease: `steps(${topChildren.length})`,
-          delay: animation.delay,
-        })
+        applyStepAnimation(animation, topChildren.length, animated, 'top')
       }
     } else {
       animated.top = topChildren.length
@@ -158,12 +148,7 @@ function triggerAnimations() {
     if (props.bottomChildrenAnimation) {
       const animation = props.bottomChildrenAnimation as AnimationConfig
       if (animation.type === 'build') {
-        gsap.to(animated, {
-          duration: animation.duration ?? 0.1 * bottomChildren.length,
-          bottom: bottomChildren.length,
-          ease: `steps(${bottomChildren.length})`,
-          delay: animation.delay,
-        })
+        applyStepAnimation(animation, bottomChildren.length, animated, 'bottom')
       }
     } else {
       animated.bottom = bottomChildren.length
@@ -174,12 +159,7 @@ function triggerAnimations() {
     if (props.leftChildrenAnimation) {
       const animation = props.leftChildrenAnimation as AnimationConfig
       if (animation.type === 'build') {
-        gsap.to(animated, {
-          duration: animation.duration ?? 0.1 * leftChildren.length,
-          left: leftChildren.length,
-          ease: `steps(${leftChildren.length})`,
-          delay: animation.delay,
-        })
+        applyStepAnimation(animation, leftChildren.length, animated, 'left')
       }
     } else {
       animated.left = leftChildren.length
@@ -190,12 +170,7 @@ function triggerAnimations() {
     if (props.rightChildrenAnimation) {
       const animation = props.rightChildrenAnimation as AnimationConfig
       if (animation.type === 'build') {
-        gsap.to(animated, {
-          duration: animation.duration ?? 0.1 * rightChildren.length,
-          right: rightChildren.length,
-          ease: `steps(${rightChildren.length})`,
-          delay: animation.delay,
-        })
+        applyStepAnimation(animation, rightChildren.length, animated, 'right')
       }
     } else {
       animated.right = rightChildren.length
