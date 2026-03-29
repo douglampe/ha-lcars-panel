@@ -126,7 +126,7 @@ function triggerAnimations() {
     if (props.childrenAnimation) {
       const animation = props.childrenAnimation as AnimationConfig
       if (animation.type === 'build') {
-        applyStepAnimation(animation, children.length, animated, 'children')
+        applyStepAnimation(animation, animated, 'children', children.length)
       }
     } else {
       animated.children = children.length
@@ -137,7 +137,7 @@ function triggerAnimations() {
     if (props.topChildrenAnimation) {
       const animation = props.topChildrenAnimation as AnimationConfig
       if (animation.type === 'build') {
-        applyStepAnimation(animation, topChildren.length, animated, 'top')
+        applyStepAnimation(animation, animated, 'top', topChildren.length)
       }
     } else {
       animated.top = topChildren.length
@@ -148,7 +148,7 @@ function triggerAnimations() {
     if (props.bottomChildrenAnimation) {
       const animation = props.bottomChildrenAnimation as AnimationConfig
       if (animation.type === 'build') {
-        applyStepAnimation(animation, bottomChildren.length, animated, 'bottom')
+        applyStepAnimation(animation, animated, 'bottom', bottomChildren.length)
       }
     } else {
       animated.bottom = bottomChildren.length
@@ -159,7 +159,7 @@ function triggerAnimations() {
     if (props.leftChildrenAnimation) {
       const animation = props.leftChildrenAnimation as AnimationConfig
       if (animation.type === 'build') {
-        applyStepAnimation(animation, leftChildren.length, animated, 'left')
+        applyStepAnimation(animation, animated, 'left', leftChildren.length)
       }
     } else {
       animated.left = leftChildren.length
@@ -170,7 +170,7 @@ function triggerAnimations() {
     if (props.rightChildrenAnimation) {
       const animation = props.rightChildrenAnimation as AnimationConfig
       if (animation.type === 'build') {
-        applyStepAnimation(animation, rightChildren.length, animated, 'right')
+        applyStepAnimation(animation, animated, 'right', rightChildren.length)
       }
     } else {
       animated.right = rightChildren.length

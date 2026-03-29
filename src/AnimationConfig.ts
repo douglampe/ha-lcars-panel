@@ -7,6 +7,8 @@ export interface AnimationConfig {
   duration?: number
   interval?: number
   transformOrigiin?: string
+  start?: number
+  end?: number
 }
 
 export interface Animations {
@@ -88,16 +90,18 @@ export function applyInAnimations(el: any, config: ConfigItem) {
 
 export function applyStepAnimation(
   animation: AnimationConfig,
-  to: number,
-  target: any,
+  target: Record<string, number>,
   prop: string,
+  to: number,
 ) {
-  target[prop] = 1
+  if (animation.end) {
+    target[prop] = animation.end
+  }
   const config: any = {
     duration: animation.interval ? animation.interval * to - 1 : (animation.duration ?? 0.1 * to),
     ease: `steps(${to})`,
     delay: animation.delay,
   }
-  config[prop] = to
+  config[prop] = animation.end ?? to
   gsap.to(target, config)
 }
