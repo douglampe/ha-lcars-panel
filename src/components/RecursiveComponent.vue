@@ -249,7 +249,7 @@ watch(
 watch(
   () => currentNav.value,
   () => {
-    onStateUpdated()
+    checkVisibility()
   },
   { deep: true },
 )
