@@ -13,26 +13,16 @@ defineOptions({
 })
 
 const {
-  width,
   textColor = 'black',
   rootPath,
-  height,
   navToFirstChild = false,
   gap,
-  alignContent,
-  marginLeft,
-  marginRight,
   animations,
 } = defineProps<{
-  width?: number
-  height?: number
   textColor?: string | number
   rootPath?: string
   navToFirstChild?: boolean
   gap?: number
-  alignContent?: string
-  marginLeft?: number
-  marginRight?: number
   animations?: Animations
 }>()
 
@@ -81,17 +71,15 @@ onMounted(() => {
 </script>
 
 <template>
-  <LCARSCol :gap="gap" :margintLeft="marginLeft" :marginRight="marginRight">
+  <LCARSCol :gap="gap">
     <LCARSElement
       v-for="(item, index) in visibleItems"
       :key="item.text"
       :nav="getNavPath(item)"
       :text="item.text"
       :textColor="textColor"
-      :width="width"
-      :height="height"
       :color="getThemeColor(index)"
-      :alignContent="alignContent"
+      v-bind="$attrs"
       >{{ item.text }}</LCARSElement
     >
   </LCARSCol>
