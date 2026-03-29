@@ -94,8 +94,8 @@ export function applyStepAnimation(
   prop: string,
   to: number,
 ) {
-  if (animation.end) {
-    target[prop] = animation.end
+  if (animation.start) {
+    target[prop] = animation.start
   }
   const config: any = {
     duration: animation.interval ? animation.interval * to - 1 : (animation.duration ?? 0.1 * to),
