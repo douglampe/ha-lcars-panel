@@ -81,12 +81,7 @@ defineOptions({
 </script>
 
 <template>
-  <LCARSRow
-    :fill="fillHeight"
-    :margin-top="marginTop"
-    :margin-left="marginLeft"
-    :margin-right="marginRight"
-  >
+  <LCARSRow :margin-top="marginTop" :margin-left="marginLeft" :margin-right="marginRight">
     <LCARSRow :height="topHeight" :fill="fillWidth">
       <LCARSElement
         v-if="topCap"
@@ -96,14 +91,8 @@ defineOptions({
         :cap-left="true"
         :animations="topCapAnimations"
       ></LCARSElement>
-      <LCARSElement
-        v-if="title"
-        :textColor="color"
-        :fontSize="topHeight"
-        :lineHeight="topHeight * 0.8"
-        :textAnimation="titleAnimation"
-      >
-        {{ title }}
+      <LCARSElement v-if="title" :textColor="color" :fontSize="topHeight" :lineHeight="topHeight">
+        <TextComponent :text="title" :textAnimation="titleAnimation" />
       </LCARSElement>
       <LCARSElement
         v-if="fillTopLeft"
@@ -141,7 +130,7 @@ defineOptions({
     ></LCARSElement>
   </LCARSRow>
   <LCARSRow
-    :fill="fillHeight"
+    :fill="fillWidth || fillTopLeft || fillTopRight"
     :margin-left="marginLeft"
     :margin-right="marginRight"
     :margin-bottom="marginBottom"

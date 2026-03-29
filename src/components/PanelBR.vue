@@ -66,7 +66,7 @@ defineOptions({
 
 <template>
   <LCARSRow
-    :fill="fillHeight"
+    :fill="fillWidth || fillBottomLeft || fillBottomRight"
     :margin-top="marginTop"
     :margin-left="marginLeft"
     :margin-right="marginRight"
