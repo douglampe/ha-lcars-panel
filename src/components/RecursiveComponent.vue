@@ -18,6 +18,7 @@ const props = useAttrs()
 
 const processedProps = ref<ConfigItem>()
 const renderKey = ref(0)
+const isVisible = ref(false)
 const animated = reactive<{
   top?: number
   bottom?: number
@@ -94,67 +95,32 @@ function getComponentType(cmps: Record<string, any>) {
   return props.tag ? HTMLComponent : 'div'
 }
 
-watch(
-  () => haState.value,
-  () => {
-    onStateUpdated()
-  },
-  { deep: true },
-)
-
-const isVisible = computed(() => {
+function checkVisibility() {
   if (!components) {
-    return false
+    setVisibility(false)
+    return
   }
   if (!processedProps.value?.showForNav) {
-    return true
+    setVisibility(true)
+    return
   }
   if (currentNav.value === '/') {
-    return processedProps.value?.showForNav === '/'
+    setVisibility(processedProps.value?.showForNav === '/')
   } else {
-    return currentNav.value?.startsWith(processedProps.value?.showForNav)
+    setVisibility(currentNav.value?.startsWith(processedProps.value?.showForNav))
   }
-})
+}
 
-const visibleTopChildren = computed(() => {
-  if (props.topChildren) {
-    return (props.topChildren as any).slice(0, animated.top)
+function setVisibility(visible: boolean) {
+  if (isVisible.value != visible) {
+    isVisible.value = visible
+    if (visible) {
+      triggerAnimations()
+    }
   }
-  return undefined
-})
+}
 
-const visibleBottomChildren = computed(() => {
-  if (props.bottomChildren) {
-    return (props.bottomChildren as any).slice(0, animated.bottom)
-  }
-  return undefined
-})
-
-const visibleLeftChildren = computed(() => {
-  if (props.leftChildren) {
-    return (props.leftChildren as any).slice(0, animated.left)
-  }
-  return undefined
-})
-
-const visibleRightChildren = computed(() => {
-  if (props.rightChildren) {
-    return (props.rightChildren as any).slice(0, animated.right)
-  }
-  return undefined
-})
-
-const visibleChildren = computed(() => {
-  if (props.children) {
-    return (props.children as any).slice(0, animated.children)
-  }
-  return undefined
-})
-
-onMounted(() => {
-  if (!processedProps.value) {
-    processedProps.value = processItem(props as ConfigItem)
-  }
+function triggerAnimations() {
   if (props.children) {
     const children = props.children as ConfigItem[]
     if (props.childrenAnimation) {
@@ -235,6 +201,65 @@ onMounted(() => {
       animated.right = rightChildren.length
     }
   }
+}
+
+const visibleTopChildren = computed(() => {
+  if (props.topChildren) {
+    return (props.topChildren as any).slice(0, animated.top)
+  }
+  return undefined
+})
+
+const visibleBottomChildren = computed(() => {
+  if (props.bottomChildren) {
+    return (props.bottomChildren as any).slice(0, animated.bottom)
+  }
+  return undefined
+})
+
+const visibleLeftChildren = computed(() => {
+  if (props.leftChildren) {
+    return (props.leftChildren as any).slice(0, animated.left)
+  }
+  return undefined
+})
+
+const visibleRightChildren = computed(() => {
+  if (props.rightChildren) {
+    return (props.rightChildren as any).slice(0, animated.right)
+  }
+  return undefined
+})
+
+const visibleChildren = computed(() => {
+  if (props.children) {
+    return (props.children as any).slice(0, animated.children)
+  }
+  return undefined
+})
+
+watch(
+  () => haState.value,
+  () => {
+    onStateUpdated()
+  },
+  { deep: true },
+)
+
+watch(
+  () => currentNav.value,
+  () => {
+    checkVisibility()
+  },
+  { deep: true },
+)
+
+onMounted(() => {
+  if (!processedProps.value) {
+    processedProps.value = processItem(props as ConfigItem)
+  }
+
+  checkVisibility()
 })
 </script>
 
