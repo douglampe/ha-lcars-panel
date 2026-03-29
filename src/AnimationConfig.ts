@@ -5,6 +5,7 @@ export interface AnimationConfig {
   type: string
   delay?: number
   duration?: number
+  interval?: number
   transformOrigiin?: string
 }
 
@@ -93,7 +94,7 @@ export function applyStepAnimation(
 ) {
   target[prop] = 1
   const config: any = {
-    duration: animation.duration ?? 0.1 * to,
+    duration: animation.interval ? animation.interval * to - 1 : (animation.duration ?? 0.1 * to),
     ease: `steps(${to})`,
     delay: animation.delay,
   }
