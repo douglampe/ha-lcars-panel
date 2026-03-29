@@ -95,14 +95,6 @@ function getComponentType(cmps: Record<string, any>) {
   return props.tag ? HTMLComponent : 'div'
 }
 
-watch(
-  () => haState.value,
-  () => {
-    onStateUpdated()
-  },
-  { deep: true },
-)
-
 function checkVisibility() {
   if (!components) {
     setVisibility(false)
@@ -127,48 +119,6 @@ function setVisibility(visible: boolean) {
     }
   }
 }
-
-const visibleTopChildren = computed(() => {
-  if (props.topChildren) {
-    return (props.topChildren as any).slice(0, animated.top)
-  }
-  return undefined
-})
-
-const visibleBottomChildren = computed(() => {
-  if (props.bottomChildren) {
-    return (props.bottomChildren as any).slice(0, animated.bottom)
-  }
-  return undefined
-})
-
-const visibleLeftChildren = computed(() => {
-  if (props.leftChildren) {
-    return (props.leftChildren as any).slice(0, animated.left)
-  }
-  return undefined
-})
-
-const visibleRightChildren = computed(() => {
-  if (props.rightChildren) {
-    return (props.rightChildren as any).slice(0, animated.right)
-  }
-  return undefined
-})
-
-const visibleChildren = computed(() => {
-  if (props.children) {
-    return (props.children as any).slice(0, animated.children)
-  }
-  return undefined
-})
-
-onMounted(() => {
-  if (!processedProps.value) {
-    processedProps.value = processItem(props as ConfigItem)
-  }
-  triggerAnimations()
-})
 
 function triggerAnimations() {
   if (props.children) {
@@ -252,6 +202,65 @@ function triggerAnimations() {
     }
   }
 }
+
+const visibleTopChildren = computed(() => {
+  if (props.topChildren) {
+    return (props.topChildren as any).slice(0, animated.top)
+  }
+  return undefined
+})
+
+const visibleBottomChildren = computed(() => {
+  if (props.bottomChildren) {
+    return (props.bottomChildren as any).slice(0, animated.bottom)
+  }
+  return undefined
+})
+
+const visibleLeftChildren = computed(() => {
+  if (props.leftChildren) {
+    return (props.leftChildren as any).slice(0, animated.left)
+  }
+  return undefined
+})
+
+const visibleRightChildren = computed(() => {
+  if (props.rightChildren) {
+    return (props.rightChildren as any).slice(0, animated.right)
+  }
+  return undefined
+})
+
+const visibleChildren = computed(() => {
+  if (props.children) {
+    return (props.children as any).slice(0, animated.children)
+  }
+  return undefined
+})
+
+watch(
+  () => haState.value,
+  () => {
+    onStateUpdated()
+  },
+  { deep: true },
+)
+
+watch(
+  () => currentNav.value,
+  () => {
+    onStateUpdated()
+  },
+  { deep: true },
+)
+
+onMounted(() => {
+  if (!processedProps.value) {
+    processedProps.value = processItem(props as ConfigItem)
+  }
+
+  checkVisibility()
+})
 </script>
 
 <template>
