@@ -74,6 +74,10 @@ onMounted(async () => {
   font-size: var(--lcars-font-size)
   line-height: calc(var(--lcars-font-size) * 1.2)
   text-transform: var(--lcars-text-transform)
+  min-height: 100vh
+  height: 100%
+  display: flex
+  flex-direction: column
 
   & pre,
   & code

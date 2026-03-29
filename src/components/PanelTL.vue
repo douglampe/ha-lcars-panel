@@ -82,12 +82,7 @@ defineOptions({
 </script>
 
 <template>
-  <LCARSRow
-    :fill="fillHeight || fillLeftTop || fillLeftBottom"
-    :margin-top="marginTop"
-    :margin-left="marginLeft"
-    :margin-right="marginRight"
-  >
+  <LCARSRow :margin-top="marginTop" :margin-left="marginLeft" :margin-right="marginRight">
     <LCARSElement
       :rad-x-top-left="outerRadX"
       :rad-y-top-left="outerRadY"
@@ -136,7 +131,7 @@ defineOptions({
     </LCARSRow>
   </LCARSRow>
   <LCARSRow
-    :fill="fillHeight || fillTopLeft || fillTopRight"
+    :fill="fillWidth || fillTopLeft || fillTopRight"
     :margin-left="marginLeft"
     :margin-right="marginRight"
     :margin-bottom="marginBottom"
@@ -159,7 +154,6 @@ defineOptions({
         <slot name="left"></slot>
       </LCARSCol>
       <LCARSElement
-        v-if="fillLeftBottom"
         :fill="fillLeftBottom"
         :color="leftColor ?? color"
         :width="leftWidth"
