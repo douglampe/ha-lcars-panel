@@ -49,7 +49,6 @@ export class LCARSCustomLayout extends HTMLElement {
 
   set cards(cards: Array<any>) {
     haCards.value = cards
-    console.log(cards)
   }
 
   setConfig(config: any) {
