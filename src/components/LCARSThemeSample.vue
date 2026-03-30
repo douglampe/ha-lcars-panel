@@ -40,9 +40,9 @@ function getThemeFromNav() {
     if (themeFromNav) {
       themeColors = themeFromNav
     }
-  } 
+  }
   if (themeColors.length === 0) {
-      themeColors = parsedConfig.value['default']
+    themeColors = parsedConfig.value['default']
   }
   if (themeColors.length > 0) {
     for (let i = 0; i < 10; i++) {
@@ -57,9 +57,9 @@ watch(currentNav, () => {
   getThemeFromNav()
 })
 
-onMounted((() => {
+onMounted(() => {
   getThemeFromNav()
-}))
+})
 </script>
 
 <template>

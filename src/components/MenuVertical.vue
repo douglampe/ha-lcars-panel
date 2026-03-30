@@ -78,7 +78,7 @@ onMounted(() => {
       :nav="getNavPath(item)"
       :text="item.text"
       :textColor="textColor"
-      :color="getThemeColor(index)"
+      :color="getThemeColor(index + 1)"
       v-bind="$attrs"
       >{{ item.text }}</LCARSElement
     >
