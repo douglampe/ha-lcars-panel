@@ -41,6 +41,7 @@ interface PanelBLProps extends MarginProps, RadiusProps {
   outerRadY?: number
   innerRadX?: number
   innerRadY?: number
+  backgroundScale?: number
 }
 
 const {
@@ -93,6 +94,7 @@ const {
   marginBottom,
   marginLeft,
   marginRight,
+  backgroundScale = 100,
 } = defineProps<PanelBLProps>()
 
 defineOptions({
@@ -110,6 +112,7 @@ defineOptions({
       :rad-y-top-left="radYTopLeft"
       :rad-x-inner-top-left="radXInnerTopLeft"
       :rad-y-inner-top-left="radYInnerTopLeft"
+      :backgroundScale="backgroundScale"
     ></LCARSElement>
     <LCARSElement
       v-if="fillTopLeft"
@@ -123,16 +126,7 @@ defineOptions({
       :color="color"
       :height="topHeight"
     ></LCARSElement>
-    <LCARSRow
-      v-if="$slots.top"
-      :margin-left="(gap || topGap || 0) / 10"
-      :margin-right="(gap || topGap || 0) / 10"
-      :gap="topGap ?? gap"
-      :height="topHeight"
-      :stretch="topStretch"
-    >
-      <slot name="top"></slot>
-    </LCARSRow>
+    <slot name="top"></slot>
     <LCARSElement
       v-if="fillTopRight"
       :fill="fillTopRight"
@@ -150,6 +144,7 @@ defineOptions({
       :rad-y-top-right="radYTopRight"
       :rad-x-inner-top-right="radXInnerTopRight"
       :rad-y-inner-top-right="radYInnerTopRight"
+      :backgroundScale="backgroundScale"
     ></LCARSElement>
   </LCARSRow>
   <LCARSRow
@@ -222,6 +217,7 @@ defineOptions({
       :rad-y-bottom-left="radYBottomLeft"
       :rad-x-inner-bottom-left="radXInnerBottomLeft"
       :rad-y-inner-bottom-left="radYInnerBottomLeft"
+      :backgroundScale="backgroundScale"
     ></LCARSElement>
     <LCARSElement
       v-if="fillBottomLeft"
@@ -235,16 +231,7 @@ defineOptions({
       :color="color"
       :height="topHeight"
     ></LCARSElement>
-    <LCARSRow
-      v-if="$slots.bottom"
-      :margin-left="(leftGap || gap || 0) / 10"
-      :margin-right="(leftGap || gap || 0) / 10"
-      :gap="bottomGap ?? gap"
-      :height="bottomHeight"
-      :stretch="bottomStretch"
-    >
-      <slot name="bottom"></slot>
-    </LCARSRow>
+    <slot name="bottom"></slot>
     <LCARSElement
       v-if="fillBottomRight"
       :fill="fillBottomRight"
@@ -259,6 +246,7 @@ defineOptions({
       :rad-y-bottom-right="radYBottomRight"
       :rad-x-inner-bottom-right="radXInnerBottomRight"
       :rad-y-inner-bottom-right="radYInnerBottomRight"
+      :backgroundScale="backgroundScale"
     ></LCARSElement>
   </LCARSRow>
 </template>

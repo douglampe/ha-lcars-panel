@@ -46,7 +46,9 @@ const styleObject = computed(() => {
     backgroundImage: backgroundImageSvg
       ? `url("data:image/svg+xml;utf8,${encodeURIComponent(backgroundImageSvg)}")`
       : undefined,
-    backgroundSize: backgroundImageSvg ? '100.5% 100.5%' : undefined,
+    backgroundSize: backgroundImageSvg
+      ? `${config.backgroundScale ?? 100}% ${config.backgroundScale ?? 100}%`
+      : undefined,
     backgroundRepeat: backgroundImageSvg ? 'no-repeat' : undefined,
     backgroundColor: backgroundImageSvg ? undefined : colorVar(config.color),
     fill: config.color ? 'color' : undefined,

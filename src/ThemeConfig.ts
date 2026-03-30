@@ -18,5 +18,5 @@ export function getThemeColor(index: number) {
   if (!theme || theme.length === 0) {
     return themeConfig.value?.default?.[0] || '#ffc152'
   }
-  return theme[index % theme.length]
+  return theme[(index - 1) % theme.length]
 }

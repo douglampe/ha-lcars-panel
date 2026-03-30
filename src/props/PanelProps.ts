@@ -36,4 +36,5 @@ export interface PanelProps {
   outerRadY?: number
   innerRadX?: number
   innerRadY?: number
+  backgroundScale?: number
 }

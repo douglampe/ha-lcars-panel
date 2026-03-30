@@ -1,5 +1,6 @@
 import { colorList } from '@/ColorList'
 import type { ConfigItem } from '../ConfigItem'
+import { getThemeColor } from '@/ThemeConfig'
 
 export interface RadiusProps {
   capLeft?: boolean
@@ -38,19 +39,18 @@ function unscale(value?: number, defaultValue = 0) {
 function resolveColor(color?: string | number) {
   if (color) {
     if (typeof color === 'number') {
-      return `var(--lcars-color-${color})`
-    } else if (
-      color.startsWith('#') ||
-      color.startsWith('rgb') ||
-      color.startsWith('hsl') ||
-      color.startsWith('var(')
-    ) {
+      const themeColor = getThemeColor(color)
+      if (themeColor.startsWith('#')) {
+        return themeColor
+      }
+      return resolveColor(themeColor)
+    } else if (color.startsWith('#') || color.startsWith('rgb') || color.startsWith('hsl')) {
       return color
-    }
-
-    const colorKey = color.replace(/\-/g, '_')
-    if (colorList.hasOwnProperty(colorKey)) {
-      return colorList[colorKey]
+    } else {
+      const colorKey = color.replace(/\-/g, '_')
+      if (colorList.hasOwnProperty(colorKey)) {
+        return colorList[colorKey]
+      }
     }
   }
 
