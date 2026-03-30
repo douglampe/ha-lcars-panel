@@ -28,6 +28,7 @@ interface PanelBLProps extends MarginProps {
   outerRadY?: number
   innerRadX?: number
   innerRadY?: number
+  backgroundScale?: number
 }
 
 const {
@@ -56,6 +57,7 @@ const {
   marginBottom,
   marginLeft,
   marginRight,
+  backgroundScale = 100,
 } = defineProps<PanelBLProps>()
 
 defineOptions({
@@ -118,6 +120,7 @@ defineOptions({
       :rad-y-bottom-left="outerRadY"
       :rad-x-inner-bottom-left="innerRadX"
       :rad-y-inner-bottom-left="innerRadY"
+      :backgroundScale="backgroundScale"
     ></LCARSElement>
     <LCARSRow :height="bottomHeight" :fill="fillBottomLeft || fillBottomRight">
       <LCARSElement
@@ -126,16 +129,7 @@ defineOptions({
         :color="color"
         :height="bottomHeight"
       ></LCARSElement>
-      <LCARSRow
-        v-if="$slots.bottom"
-        :margin-left="(leftGap || gap || 0) / 10"
-        :margin-right="(leftGap || gap || 0) / 10"
-        :gap="bottomGap ?? gap"
-        :height="bottomHeight"
-        :stretch="bottomStretch"
-      >
-        <slot name="bottom"></slot>
-      </LCARSRow>
+      <slot name="bottom"></slot>
       <LCARSElement
         v-if="fillBottomRight"
         :fill="fillBottomRight"

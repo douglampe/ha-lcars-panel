@@ -36,6 +36,7 @@ interface PanelTLProps extends MarginProps {
   topRightAnimations?: Animations
   rightTopAnimations?: Animations
   rightBottomAnimations?: Animations
+  backgroundScale?: number
 }
 
 const {
@@ -73,6 +74,7 @@ const {
   topRightAnimations,
   rightTopAnimations,
   rightBottomAnimations,
+  backgroundScale = 100,
 } = defineProps<PanelTLProps>()
 
 defineOptions({
@@ -101,16 +103,7 @@ defineOptions({
         :height="topHeight"
         :animations="topLeftAnimations"
       ></LCARSElement>
-      <LCARSRow
-        v-if="$slots.top"
-        :margin-left="(rightGap || gap || 0) / 10"
-        :margin-right="(rightGap || gap || 0) / 10"
-        :gap="topGap ?? gap"
-        :height="topHeight"
-        :stretch="topStretch"
-      >
-        <slot name="top"></slot>
-      </LCARSRow>
+      <slot name="top"></slot>
       <LCARSElement
         v-if="fillTopRight"
         :fill="fillTopRight"
@@ -127,6 +120,7 @@ defineOptions({
       :color="color"
       :width="rightWidth + innerRadX"
       :height="topHeight + innerRadY"
+      :backgroundScale="backgroundScale"
     ></LCARSElement>
   </LCARSRow>
   <LCARSRow
