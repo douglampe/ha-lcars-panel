@@ -1,5 +1,6 @@
 import gsap from 'gsap'
 import type { ConfigItem } from './ConfigItem'
+import { haConfig } from './HAConfig'
 
 export interface AnimationConfig {
   type: string
@@ -17,6 +18,10 @@ export interface Animations {
 }
 
 export function applyInAnimations(el: any, config: ConfigItem) {
+  if (haConfig.value.disableAnimations) {
+    return
+  }
+
   if (config.animations?.in) {
     for (const animation of config.animations.in) {
       let from = {}
@@ -94,6 +99,10 @@ export function applyStepAnimation(
   prop: string,
   to: number,
 ) {
+  if (haConfig.value.disableAnimations) {
+    return
+  }
+
   if (animation.start) {
     target[prop] = animation.start
   }
