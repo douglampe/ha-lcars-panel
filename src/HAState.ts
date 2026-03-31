@@ -1,6 +1,8 @@
 import { ref } from 'vue'
 import type { ConfigItem } from './ConfigItem'
 import { renderTemplate } from 'ha-nunjucks'
+import { currentNav } from './LocalNav'
+import { haConfig } from './HAConfig'
 
 export interface HAState {
   states: Record<string, any>
@@ -94,7 +96,10 @@ export function applyTemplates(configItem: ConfigItem) {
     if (key.endsWith('_template')) {
       const valueKey = key.substring(0, key.length - 9)
       const oldValue = configItem[valueKey as keyof ConfigItem]
-      const newValue = renderTemplate(haState.value as any, configItem[key as keyof ConfigItem])
+      const newValue = renderTemplate(haState.value as any, configItem[key as keyof ConfigItem], {
+        currentNav: currentNav.value,
+        config: haConfig.value,
+      })
       if (newValue !== oldValue) {
         configItem[valueKey as keyof ConfigItem] = newValue
         applied = true
