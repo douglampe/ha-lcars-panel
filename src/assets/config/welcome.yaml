@@ -1,0 +1,67 @@
+type: custom:ha-lcars-panel
+disableAnimations: true
+remoteRoot: /ha-lcars-panel/demo
+cards:
+  - show_state: true
+    show_name: true
+    camera_view: auto
+    type: picture-entity
+    entity: camera.doorbell
+  - type: custom:frigate-card
+    cameras:
+      - camera_entity: camera.doorbell
+        live_provider: auto
+children:
+  - showForNav: /home
+    type: panel-tl
+    fillLeftBottom: true
+    children:
+      - type: md
+        textAnimation:
+          type: typing
+        content: |
+          Greetings, captain.
+
+          Welcome to HA LCARS.
+
+          I am here to get you acquainted with the LCARS
+          layout system.
+
+          I can walk you through the system step-by-step, or you can jump right in to the API.
+      - type: row
+        children:
+          - type: pill
+            nav: /demo/setup
+            width: 6
+            marginTop: 1
+            text: Begin Demonstration
+            animations:
+              in:
+                - type: grow-right
+                  delay: 5
+          - type: pill
+            nav: /api
+            width: 6
+            marginTop: 1
+            text: Browse API
+            color: 2
+            animations:
+              in:
+                - type: grow-right
+                  delay: 5
+  - showForNav: /api
+    type: panel-tl
+    leftChildren:
+      - type: el
+        color: 2
+        text: Home
+        nav: /home
+        textColor: black
+      - type: el
+        color: 3
+        text: Demo
+        nav: /demo/setup
+        textColor: black
+    children:
+      - type: remote
+        url: ~/api.yaml?raw

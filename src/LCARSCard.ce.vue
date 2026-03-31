@@ -2,7 +2,7 @@
 import { onMounted } from 'vue'
 import type { HAConfig } from './HAConfig'
 import { haConfig, loadConfig } from './HAConfig'
-import testConfig from '@/assets/config/demo.yaml?raw'
+import testConfig from '@/assets/config/welcome.yaml?raw'
 import YAML from 'yaml'
 import ParentComponent from './components/ParentComponent.vue'
 import { loadTestState } from './HAState'
