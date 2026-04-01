@@ -1,0 +1,74 @@
+children:
+  - type: el
+    marginTop: 1
+    marginLeft: 1
+    children:
+      - type: md
+        textAnimation:
+          type: typing
+        content: |
+          This is an LCARS unit:
+      - type: el
+        width: 1
+        height: 1
+        marginTop: 1
+        color: golden-tainoi
+        animations:
+          in:
+            - type: grow
+              delay: 1.5
+              duration: 0.1
+      - type: md
+        marginTop: 1
+        textAnimation:
+          type: typing
+          delay: 2.5
+        content: |
+          Visual elements of the LCARS layout system are measured in LCARS Units. The layout system uses a responsive
+          layout that reacts to the size of your screen. The default unit size for various screen sizes is as follows:
+
+          - &lt;= 575 pixes: 6% of the viewport width
+          - 576 - 767 pixels: 5% of the viewport width
+          - 768 - 1023 pixels: 3.33% of the viewport width
+          - &gt;= 1024 pixels: 2% of the viewport width
+
+          Each block below is 10 units wide.
+  - type: row
+    wrap: true
+    marginTop: 1
+    childrenAnimation:
+      type: build
+      delay: 8
+      interval: 1
+    children:
+      - type: el
+        width: 10
+        height: 1
+        color: 1
+      - type: el
+        width: 10
+        height: 1
+        color: 2
+      - type: el
+        width: 10
+        height: 1
+        color: 3
+      - type: el
+        width: 10
+        height: 1
+        color: 4
+      - type: el
+        width: 10
+        height: 1
+        color: 5
+  - type: pill
+    nav: /demo/panel-container
+    marginTop: 1
+    marginLeft: 1
+    text: 'Next: Panel Container'
+    width: 6
+    animations:
+      in:
+        - type: grow
+          duration: 1
+          delay: 12

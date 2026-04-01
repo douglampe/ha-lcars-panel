@@ -11,6 +11,7 @@ interface Props extends MarginProps, PadProps {
   bottom?: boolean
   right?: boolean
   gap?: number
+  wrap?: boolean
 }
 
 const config = defineProps<Props>()
@@ -22,8 +23,9 @@ const style = computed(() => {
     padding: padStyle(config),
     flex: config.fill ? 1 : undefined,
     justifyContent: config.bottom ? 'flex-end' : undefined,
-    alignItems: config.right ? 'flex-end' : config.stretch ? 'stretch' : '',
+    alignItems: config.right ? 'flex-end' : config.stretch ? 'stretch' : 'flex-start',
     gap: gapSize(config.gap),
+    flexWrap: config.wrap ? 'wrap' : undefined,
   })
 })
 </script>

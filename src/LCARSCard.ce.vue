@@ -56,9 +56,11 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="lcars-wrapper">
-    <ParentComponent :children="haConfig.children" />
-    <ConfigEditor v-if="haConfig.editorEnabled" />
+  <div class="lcars-height-wrapper">
+    <div class="lcars-wrapper">
+      <ParentComponent :children="haConfig.children" />
+      <ConfigEditor v-if="haConfig.editorEnabled" />
+    </div>
   </div>
 </template>
 
@@ -67,7 +69,7 @@ onMounted(async () => {
 @use './styles/main'
 @use './styles/table'
 
-.lcars-wrapper
+.lcars-height-wrapper
   background-color: var(--lcars-color-bg)
   color: var(--lcars-color-text)
   font-family: Antonio, "Arial", monospace
@@ -75,9 +77,9 @@ onMounted(async () => {
   line-height: calc(var(--lcars-font-size) * 1.2)
   text-transform: var(--lcars-text-transform)
   min-height: 100vh
-  height: 100%
   display: flex
-  flex-direction: column
+  flex-direction: row
+  align-items: stretch
 
   & pre,
   & code
@@ -87,6 +89,15 @@ onMounted(async () => {
 
   & a
     color: var(--lcars-color-text)
+
+  & h1, h2, h3, h4, h5
+    color: var(--lcars-color-1)
+
+.lcars-wrapper
+  display: flex
+  flex-direction: column
+  align-items: stretch
+  flex: 1
 
 @media all and (orientation: landscape)
   .lcars-portrait-only

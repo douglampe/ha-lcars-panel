@@ -1,0 +1,31 @@
+children:
+  - type: el
+    marginLeft: 1
+    children:
+      - type: md
+        content: |
+          ### HACS
+
+          The easiest way to install HA LCARS Panel is via HACS ([Home Assistant Community Store](https://hacs.xyz/)).
+
+          Steps:
+
+          - Ensure HACS is installed in Home Assistant.
+          - Go to HACS → Frontend → Custom Repositories.
+          - Add this repository: https://github.com/douglampe/ha-lcars-panel as type Dashboard
+          - Install HA LCARS Panel from HACS.
+          - Clear your browser cache and reload Home Assistant.
+
+          ### Manual Install
+
+          - Download `ha-lcars-panel.js` and `ha-lcars-panel.css` from the latest
+            [release](https://github.com/douglampe/ha-lcars-panel/releases).
+          - Copy both files to the `/config/www` folder of your Home Assistant installation.
+          - Add `/local/ha-lcars-panel.js` and `/local/ha-lcars-panelcss` as resources under Settings->Dashboards->Resources
+
+      - type: col
+        fill: false
+        children:
+          - type: pill
+            text: 'Next: Unit'
+            nav: /demo/unit

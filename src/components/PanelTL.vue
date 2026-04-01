@@ -125,7 +125,7 @@ defineOptions({
     </LCARSRow>
   </LCARSRow>
   <LCARSRow
-    :fill="fillWidth || fillTopLeft || fillTopRight"
+    :fill="fillLeftTop || fillLeftBottom || fillHeight"
     :margin-left="marginLeft"
     :margin-right="marginRight"
     :margin-bottom="marginBottom"

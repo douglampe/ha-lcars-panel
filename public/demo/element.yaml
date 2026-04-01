@@ -1,0 +1,31 @@
+children:
+  - type: el
+    marginTop: 1
+    marginLeft: 1
+    children:
+      - type: md
+        textAnimation:
+          type: typing
+        content: |
+          The basic building block of the LCARS layout system is the element (`type: el`).
+      - type: md
+        content: |
+          ```
+          - type: el
+            textColor: black
+            text: this is some text
+            color: 1
+          ```
+      - type: el
+        textColor: black
+        text: this is some text
+        color: 1
+      - type: pill
+        nav: /panels
+        marginTop: 1
+        text: 'Next: Panels'
+        animations:
+          in:
+            - type: grow
+              duration: 1
+              delay: 12

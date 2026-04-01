@@ -1,6 +1,6 @@
 type: custom:ha-lcars-panel
 disableAnimations: true
-remoteRoot: /ha-lcars-panel/demo
+remoteRoot: /ha-lcars-panel
 cards:
   - show_state: true
     show_name: true
@@ -11,6 +11,12 @@ cards:
     cameras:
       - camera_entity: camera.doorbell
         live_provider: auto
+nav:
+  - text: Demo
+    children:
+      - text: Setup
+      - text: Unit
+      - text: Panel Container
 children:
   - showForNav: /home
     type: panel-tl
@@ -29,6 +35,7 @@ children:
 
           I can walk you through the system step-by-step, or you can jump right in to the API.
       - type: row
+        gap: 1
         children:
           - type: pill
             nav: /demo/setup
@@ -65,3 +72,6 @@ children:
     children:
       - type: remote
         url: ~/api.yaml?raw
+  - showForNav: /demo
+    type: nav-remote
+    rootPath: /demo
