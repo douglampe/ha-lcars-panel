@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted } from 'vue'
+import { onMounted, ref } from 'vue'
 import type { HAConfig } from './HAConfig'
 import { haConfig, loadConfig } from './HAConfig'
 import testConfig from '@/assets/config/welcome.yaml?raw'
@@ -9,6 +9,7 @@ import { loadTestState } from './HAState'
 import ConfigEditor from './components/ConfigEditor.vue'
 
 const { config, loadTest } = defineProps<{ config: HAConfig; loadTest: boolean }>()
+const cardRef = ref()
 
 function getTestConfig() {
   if (loadTest) {
@@ -52,11 +53,16 @@ onMounted(async () => {
   if (cssRoot) {
     addCssLink(`${cssRoot}ha-lcars-panel.css`)
   }
+
+  const header = document.querySelector('div.header')
+  if (header) {
+    cardRef.value.style.minHeight = `${cardRef.value.clientHeight - header.clientHeight}px`
+  }
 })
 </script>
 
 <template>
-  <div class="lcars-height-wrapper">
+  <div class="lcars-height-wrapper" ref="cardRef">
     <div class="lcars-wrapper">
       <ParentComponent :children="haConfig.children" />
       <ConfigEditor v-if="haConfig.editorEnabled" />
