@@ -28,6 +28,7 @@ import StateTable from './components/StateTable.vue'
 import StateValue from './components/StateValue.vue'
 import ScaleHorizontal from './components/ScaleHorizontal.vue'
 import StateValueTable from './components/StateValueTable.vue'
+import TextComponent from './components/TextComponent.vue'
 
 export const components = {} as Record<string, any>
 
@@ -61,6 +62,7 @@ export function registerAllComponents() {
   registerComponent('state-value-table', StateValueTable)
   registerComponent('state-table', StateTable)
   registerComponent('table', LCARSTable)
+  registerComponent('text', TextComponent)
   registerComponent('theme-sample', LCARSThemeSample)
 }
 
