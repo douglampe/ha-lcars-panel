@@ -5,7 +5,7 @@ import LCARSCol from './LCARSCol.vue'
 import LCARSRow from './LCARSRow.vue'
 import LCARSElement from './LCARSElement.vue'
 
-interface PanelBLProps extends MarginProps, RadiusProps {
+interface PanelAllProps extends MarginProps, RadiusProps {
   title?: string
   color?: string | number
   fillWidth?: boolean
@@ -21,7 +21,6 @@ interface PanelBLProps extends MarginProps, RadiusProps {
   gap?: number
   topHeight?: number
   topCap?: boolean
-  topGap?: number
   topStretch?: boolean
   leftWidth?: number
   leftPad?: number
@@ -35,7 +34,6 @@ interface PanelBLProps extends MarginProps, RadiusProps {
   rightStretch?: boolean
   bottomCap?: boolean
   bottomHeight?: number
-  bottomGap?: number
   bottomStretch?: boolean
   outerRadX?: number
   outerRadY?: number
@@ -59,7 +57,6 @@ const {
   fillBottomRight = true,
   gap = 1,
   topHeight = 1,
-  topGap,
   topStretch,
   leftWidth = 3,
   leftPad,
@@ -72,7 +69,6 @@ const {
   rightGap,
   rightStretch,
   bottomHeight = 1,
-  bottomGap,
   bottomStretch,
   radXTopLeft = 2,
   radYTopLeft = 2,
@@ -95,7 +91,7 @@ const {
   marginLeft,
   marginRight,
   backgroundScale = 100,
-} = defineProps<PanelBLProps>()
+} = defineProps<PanelAllProps>()
 
 defineOptions({
   inheritAttrs: false,
@@ -103,7 +99,12 @@ defineOptions({
 </script>
 
 <template>
-  <LCARSRow :margin-top="marginTop" :margin-left="marginLeft" :margin-right="marginRight">
+  <LCARSRow
+    :margin-top="marginTop"
+    :margin-left="marginLeft"
+    :margin-right="marginRight"
+    :stretch="topStretch || fillTopLeft || fillTopRight || fillWidth"
+  >
     <LCARSElement
       :color="color"
       :width="leftWidth + radXInnerTopLeft"
@@ -114,22 +115,12 @@ defineOptions({
       :rad-y-inner-top-left="radYInnerTopLeft"
       :backgroundScale="backgroundScale"
     ></LCARSElement>
-    <LCARSElement
-      v-if="fillTopLeft"
-      :fill="fillTopLeft"
-      :color="color"
-      :height="topHeight"
-    ></LCARSElement>
-    <LCARSElement
-      v-if="fillWidth"
-      :fill="fillWidth"
-      :color="color"
-      :height="topHeight"
-    ></LCARSElement>
+    <LCARSElement v-if="fillTopLeft" :fill="true" :color="color" :height="topHeight"></LCARSElement>
+    <LCARSElement v-if="fillWidth" :fill="true" :color="color" :height="topHeight"></LCARSElement>
     <slot name="top"></slot>
     <LCARSElement
       v-if="fillTopRight"
-      :fill="fillTopRight"
+      :fill="true"
       :color="color"
       :height="topHeight"
     ></LCARSElement>
@@ -149,14 +140,17 @@ defineOptions({
   </LCARSRow>
   <LCARSRow
     :fill="fillHeight"
+    :stretch="
+      leftStretch || fillLeftTop || fillLeftBottom || fillRightTop || fillRightBottom || fillHeight
+    "
     :margin-left="marginLeft"
     :margin-right="marginRight"
     :margin-bottom="marginBottom"
   >
-    <LCARSCol>
+    <LCARSCol :stretch="leftStretch || fillLeftTop || fillLeftBottom || fillHeight">
       <LCARSElement
         v-if="fillLeftTop"
-        :fill="fillLeftTop"
+        :fill="true"
         :color="leftColor ?? color"
         :width="leftWidth"
       ></LCARSElement>
@@ -164,14 +158,14 @@ defineOptions({
         v-if="$slots.left"
         :margin-top="(leftGap || gap || 0) / 10"
         :margin-bottom="(leftGap || gap || 0) / 10"
-        :stretch="leftStretch"
+        :stretch="leftStretch || fillLeftTop || fillHeight"
         :gap="leftGap ?? gap"
       >
         <slot name="left"></slot>
       </LCARSCol>
       <LCARSElement
         v-if="fillLeftBottom"
-        :fill="fillLeftBottom"
+        :fill="true"
         :color="leftColor ?? color"
         :width="leftWidth"
       ></LCARSElement>
@@ -179,12 +173,13 @@ defineOptions({
     <LCARSCol :fill="true" :margin-left="leftPad" :margin-right="rightPad">
       <slot></slot>
     </LCARSCol>
-    <LCARSCol>
+    <LCARSCol :stretch="rightStretch || fillRightTop || fillRightBottom || fillHeight">
       <LCARSElement
         v-if="fillRightTop"
-        :fill="fillRightTop"
+        :fill="true"
         :color="rightColor ?? color"
         :width="rightWidth"
+        :stretch="true"
       ></LCARSElement>
       <LCARSCol
         v-if="$slots.right"
@@ -197,9 +192,10 @@ defineOptions({
       </LCARSCol>
       <LCARSElement
         v-if="fillRightBottom"
-        :fill="fillRightBottom"
+        :fill="true"
         :color="rightColor ?? color"
         :width="rightWidth"
+        :stretch="true"
       ></LCARSElement>
     </LCARSCol>
   </LCARSRow>
@@ -208,6 +204,7 @@ defineOptions({
     :margin-left="marginLeft"
     :margin-right="marginRight"
     :margin-bottom="marginBottom"
+    :stretch="bottomStretch || fillBottomLeft || fillBottomRight || fillWidth"
   >
     <LCARSElement
       :color="color"
@@ -221,20 +218,20 @@ defineOptions({
     ></LCARSElement>
     <LCARSElement
       v-if="fillBottomLeft"
-      :fill="fillBottomLeft"
+      :fill="true"
       :color="color"
       :height="bottomHeight"
     ></LCARSElement>
     <LCARSElement
       v-if="fillWidth"
-      :fill="fillWidth"
+      :fill="true"
       :color="color"
-      :height="topHeight"
+      :height="bottomHeight"
     ></LCARSElement>
     <slot name="bottom"></slot>
     <LCARSElement
       v-if="fillBottomRight"
-      :fill="fillBottomRight"
+      :fill="true"
       :color="color"
       :height="bottomHeight"
     ></LCARSElement>

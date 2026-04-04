@@ -47,7 +47,6 @@ const {
   rightGap,
   rightStretch,
   bottomHeight = 1,
-  bottomGap,
   bottomCap,
   bottomStretch,
   outerRadX = 2,
@@ -86,7 +85,7 @@ defineOptions({
       ></LCARSElement>
       <LCARSElement
         v-if="fillRightTop"
-        :fill="fillRightTop"
+        :fill="true"
         :color="rightColor ?? color"
         :width="rightWidth"
       ></LCARSElement>
@@ -100,7 +99,7 @@ defineOptions({
       </LCARSCol>
       <LCARSElement
         v-if="fillRightBottom"
-        :fill="fillRightBottom"
+        :fill="true"
         :color="rightColor ?? color"
         :width="rightWidth"
       ></LCARSElement>
@@ -108,6 +107,7 @@ defineOptions({
   </LCARSRow>
   <LCARSRow
     bottom
+    :stretch="bottomStretch"
     :margin-left="marginLeft"
     :margin-right="marginRight"
     :margin-bottom="marginBottom"
@@ -134,14 +134,14 @@ defineOptions({
       </LCARSElement>
       <LCARSElement
         v-if="fillBottomLeft"
-        :fill="fillBottomLeft"
+        :fill="true"
         :color="color"
         :height="bottomHeight"
       ></LCARSElement>
       <slot name="bottom"></slot>
       <LCARSElement
         v-if="fillBottomRight"
-        :fill="fillBottomRight"
+        :fill="true"
         :color="color"
         :height="bottomHeight"
       ></LCARSElement>
