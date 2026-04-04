@@ -55,9 +55,6 @@ onMounted(async () => {
   }
 
   const header = document.querySelector('div.header')
-  if (!header) {
-    document.documentElement?.style.setProperty('--header-height', '0')
-  }
 })
 </script>
 

@@ -1,0 +1,81 @@
+children:
+  - type: col
+    gap: 10
+    marginTop: 1
+    marginLeft: 1
+    children:
+      - type: md
+        content: |
+          Over 1,600 named colors are supported thanks to 
+          [Colorblindor Color Name & Hue Picker](https://www.color-blindness.com/color-name-hue/). For any property
+          that accepts a color, you can use a named color value. Simply convert the name to lowercase and
+          replace spaces with `-` (ex: `Dodger Blue` = LCARS color `dodger-blue`).
+
+      - type: sample
+        content: |
+          If you would prefer to use standardized colors, LCARS themes provide 10 numbered colors that can be set by 
+          simply specifying the number 1-10.
+        configYaml: |
+          - type: row
+            height: 1
+            stretch: true
+            children:
+              - type: el
+                width: 1
+                color: 1
+              - type: el
+                width: 1
+                color: 2
+              - type: el
+                width: 1
+                color: 3
+              - type: el
+                width: 1
+                color: 4
+              - type: el
+                width: 1
+                color: 5
+              - type: el
+                width: 1
+                color: 6
+              - type: el
+                width: 1
+                color: 7
+              - type: el
+                width: 1
+                color: 8
+              - type: el
+                width: 1
+                color: 9
+              - type: el
+                width: 1
+                color: 10
+      - type: md
+        marginBottom: 1
+        content: |
+          Set the theme using the top level `theme` config.
+          ```
+          type: custom:ha-lcars-panel
+          theme: the-lcars-classic
+          ```
+      - type: md
+        content: |
+          Supported themes are shown below. Note that some themes contain less than 10 colors so in this case, colors
+          are repeated, but there are always 10 numbered colors to choose from. So while colors may repeat, there will
+          always be a color assigned for colors numbered 1-10.
+
+  - type: theme-sample
+    marginTop: 1
+    rootPath: /demo/colors
+
+  - type: pill
+    nav: /demo/layout
+    marginTop: 1
+    marginLeft: 1
+    text: 'Next: Layout'
+    width: 4
+    animations:
+      in:
+        - type: grow
+          duration: 1
+          delay: 12

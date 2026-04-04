@@ -4,129 +4,167 @@ children:
     marginLeft: 1
     gap: 10
     children:
-      - type: sample
+      - type: md
         content: |
-          Panels are containers with rounded borders.
-        configYaml: |
-          - type: panel-tl
-            color: dodger-blue
-            children:
-              - text: content
-      - type: sample
-        configYaml: |
-          - type: panel-bl
-            color: dodger-blue
-            children:
-              - text: content
-      - type: sample
-        configYaml: |
-          - type: panel-tr
-            color: dodger-blue
-            children:
-              - text: content
-      - type: sample
-        configYaml: |
-          - type: panel-br
-            color: dodger-blue
-            children:
-              - text: content
-      - type: sample
-        configYaml: |
-          - type: panel-all
-            color: dodger-blue
-            children:
-              - text: content
+          Panels are containers with rounded "elbow" corners. Panels can have 1, 2, or 4 elbows depending on their
+          orientation. For example, you can have a panel with a single elbow in the top-left corner using `panel-tl`.
+          The following panel types are supported:
 
-      - type: sample
+      - type: row
+        gap: 10
+        wrap: true
+        children:
+          - type: sample
+            configYaml: |
+              - type: panel-tl
+                color: dodger-blue
+                children:
+                  - text: content
+          - type: sample
+            configYaml: |
+              - type: panel-bl
+                color: dodger-blue
+                children:
+                  - text: content
+          - type: sample
+            configYaml: |
+              - type: panel-tr
+                color: dodger-blue
+                children:
+                  - text: content
+          - type: sample
+            configYaml: |
+              - type: panel-br
+                color: dodger-blue
+                children:
+                  - text: content
+          - type: sample
+            configYaml: |
+              - type: panel-t
+                color: dodger-blue
+                children:
+                  - text: content
+          - type: sample
+            configYaml: |
+              - type: panel-b
+                color: dodger-blue
+                children:
+                  - text: content
+          - type: sample
+            configYaml: |
+              - type: panel-l
+                color: dodger-blue
+                children:
+                  - text: content
+          - type: sample
+            configYaml: |
+              - type: panel-r
+                color: dodger-blue
+                children:
+                  - text: content
+          - type: sample
+            configYaml: |
+              - type: panel-all
+                color: dodger-blue
+                children:
+                  - text: content
+
+      - type: md
         content: |
           You can add elements to the sides of a panel with `leftChildren`, `rightChildren`, `topChildren`, and
           `bottomChildren`.
-        configYaml: |
-          - type: panel-tl
-            color: dodger-blue
-            children:
-              - text: content
-            leftChildren:
-              - type: el
-                color: golden-tainoi
-                height: 1
 
-      - type: sample
-        configYaml: |
-          - type: panel-tl
-            color: dodger-blue
-            children:
-              - text: content
-            topChildren:
-              - type: el
-                color: golden-tainoi
-                width: 4
+      - type: row
+        wrap: true
+        gap: 10
+        children:
+          - type: sample
+            configYaml: |
+              - type: panel-tl
+                color: dodger-blue
+                children:
+                  - text: content
+                leftChildren:
+                  - type: el
+                    color: golden-tainoi
+                    height: 1
 
-      - type: sample
-        configYaml: |
-          - type: panel-bl
-            color: dodger-blue
-            children:
-              - text: content
-            leftChildren:
-              - type: el
-                color: golden-tainoi
-                height: 1
+          - type: sample
+            configYaml: |
+              - type: panel-tl
+                color: dodger-blue
+                children:
+                  - text: content
+                topChildren:
+                  - type: el
+                    color: golden-tainoi
+                    width: 4
 
-      - type: sample
-        configYaml: |
-          - type: panel-bl
-            color: dodger-blue
-            children:
-              - text: content
-            bottomChildren:
-              - type: el
-                color: golden-tainoi
-                width: 4
+          - type: sample
+            configYaml: |
+              - type: panel-bl
+                color: dodger-blue
+                children:
+                  - text: content
+                leftChildren:
+                  - type: el
+                    color: golden-tainoi
+                    height: 1
 
-      - type: sample
-        configYaml: |
-          - type: panel-tr
-            color: dodger-blue
-            children:
-              - text: content
-            rightChildren:
-              - type: el
-                color: golden-tainoi
-                height: 1
+          - type: sample
+            configYaml: |
+              - type: panel-bl
+                color: dodger-blue
+                children:
+                  - text: content
+                bottomChildren:
+                  - type: el
+                    color: golden-tainoi
+                    width: 4
 
-      - type: sample
-        configYaml: |
-          - type: panel-tr
-            color: dodger-blue
-            children:
-              - text: content
-            topChildren:
-              - type: el
-                color: golden-tainoi
-                width: 4
+          - type: sample
+            configYaml: |
+              - type: panel-tr
+                color: dodger-blue
+                children:
+                  - text: content
+                rightChildren:
+                  - type: el
+                    color: golden-tainoi
+                    height: 1
 
-      - type: sample
-        configYaml: |
-          - type: panel-br
-            color: dodger-blue
-            children:
-              - text: content
-            rightChildren:
-              - type: el
-                color: golden-tainoi
-                height: 1
+          - type: sample
+            configYaml: |
+              - type: panel-tr
+                color: dodger-blue
+                children:
+                  - text: content
+                topChildren:
+                  - type: el
+                    color: golden-tainoi
+                    width: 4
 
-      - type: sample
-        configYaml: |
-          - type: panel-br
-            color: dodger-blue
-            children:
-              - text: content
-            bottomChildren:
-              - type: el
-                color: golden-tainoi
-                width: 4
+          - type: sample
+            configYaml: |
+              - type: panel-br
+                color: dodger-blue
+                children:
+                  - text: content
+                rightChildren:
+                  - type: el
+                    color: golden-tainoi
+                    height: 1
+
+          - type: sample
+            configYaml: |
+              - type: panel-br
+                color: dodger-blue
+                children:
+                  - text: content
+                bottomChildren:
+                  - type: el
+                    color: golden-tainoi
+                    width: 4
 
       - type: sample
         content: |

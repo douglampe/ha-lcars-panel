@@ -64,7 +64,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <PanelTL :width="1" color="1" :left-width="10">
+  <PanelTL :left-width="10">
     <template #left>
       <LCARSElement
         v-for="(name, index) in themeNames"
