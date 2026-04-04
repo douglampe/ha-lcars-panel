@@ -53,7 +53,7 @@ const styleObject = computed(() => {
     backgroundColor: backgroundImageSvg ? undefined : colorVar(config.color),
     fill: config.color ? 'color' : undefined,
     color: colorVar(config.textColor),
-    flex: config.fill ? 1 : undefined,
+    flexGrow: config.fill ? 1 : undefined,
     margin: marginStyle(config),
     padding: padStyle(config),
     cursor: config.button || config.nav || config.tapAction ? 'pointer' : undefined,

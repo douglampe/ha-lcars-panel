@@ -85,7 +85,11 @@ defineOptions({
 
 <template>
   <LCARSRow :margin-top="marginTop" :margin-left="marginLeft" :margin-right="marginRight">
-    <LCARSRow :height="topHeight" :fill="fillWidth">
+    <LCARSRow
+      :height="topHeight"
+      :fill="fillWidth"
+      :stretch="fillTopLeft || fillTopRight || fillWidth"
+    >
       <LCARSElement
         v-if="topCap"
         :height="topHeight"
@@ -125,6 +129,7 @@ defineOptions({
     ></LCARSElement>
   </LCARSRow>
   <LCARSRow
+    :stretch="fillRightTop || fillRightBottom || fillHeight"
     :fill="fillWidth || fillTopLeft || fillTopRight"
     :margin-left="marginLeft"
     :margin-right="marginRight"
@@ -133,7 +138,7 @@ defineOptions({
     <LCARSCol :fill="fillWidth" :margin-right="rightPad">
       <slot></slot>
     </LCARSCol>
-    <LCARSCol>
+    <LCARSCol :stretch="fillRightTop || fillRightBottom">
       <LCARSElement
         v-if="fillRightTop"
         :fill="fillRightTop"
@@ -145,7 +150,7 @@ defineOptions({
         v-if="$slots.right"
         :margin-top="(rightGap || gap || 0) / 10"
         :margin-bottom="(rightGap || gap || 0) / 10"
-        :stretch="rightStretch"
+        :stretch="rightStretch || fillRightTop || fillRightBottom || fillHeight"
         :gap="rightGap ?? gap"
       >
         <slot name="right"></slot>

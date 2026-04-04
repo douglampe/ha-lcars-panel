@@ -20,19 +20,44 @@ children:
               duration: 0.1
       - type: md
         marginTop: 1
+        marginBottom: 1
         textAnimation:
           type: typing
           delay: 2.5
         content: |
           Visual elements of the LCARS layout system are measured in LCARS Units. The layout system uses a responsive
           layout that reacts to the size of your screen. The default unit size for various screen sizes is as follows:
+      - tag: table
+        children:
+          - tag: tr
+            children:
+              - tag: td
+                md: '&gt;= 1024 pixels'
+              - tag: td
+                text: '2% of the viewport width'
+          - tag: tr
+            children:
+              - tag: td
+                text: '768 - 1023 pixels'
+              - tag: td
+                text: '3.33% of the viewport width'
+          - tag: tr
+            children:
+              - tag: td
+                text: '576 - 767 pixels'
+              - tag: td
+                text: '5% of the viewport width'
+          - tag: tr
+            children:
+              - tag: td
+                md: '&lt;= 575 pixels'
+              - tag: td
+                text: '6% of the viewport width'
 
-          - &lt;= 575 pixes: 6% of the viewport width
-          - 576 - 767 pixels: 5% of the viewport width
-          - 768 - 1023 pixels: 3.33% of the viewport width
-          - &gt;= 1024 pixels: 2% of the viewport width
-
-          Each block below is 10 units wide.
+      - type: md
+        marginTop: 1
+        content: |
+          Each block below is 10 units wide:
   - type: row
     wrap: true
     marginTop: 1
@@ -61,12 +86,39 @@ children:
         width: 10
         height: 1
         color: 5
-  - type: pill
-    nav: /demo/panel-container
+
+  - type: el
     marginTop: 1
     marginLeft: 1
-    text: 'Next: Panel Container'
-    width: 6
+    children:
+      - type: sample
+        content: |
+          Themes provide 10 numbered colors that can be set by simply specifying the number 1-10.
+        configYaml: |
+          - type: pill
+            color: 3
+            text: Color 3
+            width: 4
+      - type: md
+        marginBottom: 1
+        content: |
+          Set the theme using the top level `theme` config.
+          ```
+          type: custom:ha-lcars-panel
+          theme: the-lcars-classic
+          ```
+      - type: md
+        content: |
+          Supported themes are shown below.
+      - type: theme-sample
+        rootPath: /demo/unit
+
+  - type: pill
+    nav: /demo/layout
+    marginTop: 1
+    marginLeft: 1
+    text: 'Next: Layout'
+    width: 4
     animations:
       in:
         - type: grow

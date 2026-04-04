@@ -122,7 +122,11 @@ defineOptions({
       :rad-y-inner-bottom-left="innerRadY"
       :backgroundScale="backgroundScale"
     ></LCARSElement>
-    <LCARSRow :height="bottomHeight" :fill="fillBottomLeft || fillBottomRight">
+    <LCARSRow
+      :height="bottomHeight"
+      :fill="fillBottomLeft || fillBottomRight"
+      :stretch="fillBottomLeft || fillBottomRight || fillWidth"
+    >
       <LCARSElement
         v-if="fillBottomLeft"
         :fill="fillBottomLeft"

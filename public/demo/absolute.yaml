@@ -1,0 +1,58 @@
+children:
+  - type: el
+    marginTop: 1
+    mariginLeft: 1
+      - type: sample
+        content: |
+          To position items using absolute coordinates, add an `absolute-container` and add absolute-positioned items
+          as children. You will need to set the `width` and `height` of the `absolute-container` to the desired size
+          of the coordinate system of the children.
+        configYaml: |
+          - type: panel-all
+            fillWidth: true
+            leftWidth: 1
+            topHeight: 0.5
+            rightWidth: 1
+            bottomHeight: 0.5
+            childPositioning: absolute
+            color: dodger-blue
+            children:
+              - type: absolute-container
+                width: 3
+                height: 3
+                children:
+                  - type: el
+                    width: 1
+                    height: 1
+                    left: 0
+                    top: 0
+                    color: golden-tainoi
+                    position: absolute
+                  - type: el
+                    width: 1
+                    height: 1
+                    left: 2
+                    top: 0
+                    color: golden-tainoi
+                    position: absolute
+                  - type: el
+                    width: 1
+                    height: 1
+                    left: 1
+                    top: 1
+                    color: golden-tainoi
+                    position: absolute
+                  - type: el
+                    width: 1
+                    height: 1
+                    left: 0
+                    top: 2
+                    color: golden-tainoi
+                    position: absolute
+                  - type: el
+                    width: 1
+                    height: 1
+                    left: 2
+                    top: 2
+                    color: golden-tainoi
+                    position: absolute

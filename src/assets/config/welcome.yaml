@@ -1,23 +1,17 @@
 type: custom:ha-lcars-panel
 disableAnimations: true
 remoteRoot: /ha-lcars-panel
-cards:
-  - show_state: true
-    show_name: true
-    camera_view: auto
-    type: picture-entity
-    entity: camera.doorbell
-  - type: custom:frigate-card
-    cameras:
-      - camera_entity: camera.doorbell
-        live_provider: auto
 nav:
   - text: Demo
     children:
       - text: Setup
       - text: Unit
-      - text: Panel Container
+      - text: Layout
+      - text: Panels
 children:
+  - type: pill
+    text: go
+    nav: /demo/panels
   - showForNav: /home
     type: panel-tl
     fillLeftBottom: true
