@@ -67,12 +67,15 @@ defineOptions({
 
 <template>
   <LCARSRow
-    :fill="fillHeight"
+    :stretch="leftStretch || fillLeftTop || fillLeftBottom || fillHeight"
     :margin-top="marginTop"
     :margin-left="marginLeft"
     :margin-right="marginRight"
   >
-    <LCARSCol :stretch="leftStretch" :width="leftWidth">
+    <LCARSCol
+      :stretch="leftStretch || fillLeftTop || fillLeftBottom || fillHeight"
+      :width="leftWidth"
+    >
       <LCARSElement
         v-if="topCap"
         :cap-top="true"

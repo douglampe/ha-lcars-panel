@@ -56,6 +56,7 @@ onMounted(async () => {
 
   const header = document.querySelector('div.header')
   if (header) {
+    cardRef.value.style.paddingTop = `${header.clientHeight}px`
     cardRef.value.style.minHeight = `${cardRef.value.clientHeight - header.clientHeight}px`
   }
 })
