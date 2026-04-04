@@ -24,7 +24,7 @@ export interface RadiusProps {
   radYInnerBottomRight?: number
 }
 
-const scaleFactor = 10
+const scaleFactor = 100
 
 function scaleValue(value?: number, defaultValue = 0) {
   return (value ?? defaultValue) * scaleFactor

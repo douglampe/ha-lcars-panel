@@ -43,7 +43,11 @@ children:
               Panels are containers with rounded borders.
             configYaml: |
               - type: panel-tl
-                color: dodger-blue
+                color: golden-tainoi
+                topChildren:
+                  - type: el
+                    width: 3
+                    color: 2
                 children:
                   - text: content
           - type: sample
