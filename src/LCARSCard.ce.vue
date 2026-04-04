@@ -63,7 +63,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="lcars-height-wrapper" :class="classes" ref="cardRef">
+  <div class="lcars-height-wrapper" ref="cardRef">
     <div class="lcars-wrapper">
       <ParentComponent :children="haConfig.children" />
       <ConfigEditor v-if="haConfig.editorEnabled" />
