@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
 import type { HAConfig } from './HAConfig'
-import { haConfig, loadConfig } from './HAConfig'
+import { haConfig, loadConfig, setVariable } from './HAConfig'
 import testConfig from '@/assets/config/welcome.yaml?raw'
 import YAML from 'yaml'
 import ParentComponent from './components/ParentComponent.vue'
@@ -55,9 +55,8 @@ onMounted(async () => {
   }
 
   const header = document.querySelector('div.header')
-  if (header) {
-    cardRef.value.style.paddingTop = `${header.clientHeight}px`
-    cardRef.value.style.minHeight = `calc(100vh - ${header.clientHeight}px)`
+  if (!header) {
+    document.documentElement?.style.setProperty('--header-height', '0')
   }
 })
 </script>
@@ -83,7 +82,7 @@ onMounted(async () => {
   font-size: var(--lcars-font-size)
   line-height: calc(var(--lcars-font-size) * 1.2)
   text-transform: var(--lcars-text-transform)
-  min-height: 100vh
+  min-height: calc(100vh - var(--header-height))
   display: flex
   flex-direction: row
   align-items: stretch
