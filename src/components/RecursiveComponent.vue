@@ -213,22 +213,24 @@ const visibleChildren = computed(() => {
   return undefined
 })
 
-watch(
-  () => haState.value,
-  () => {
-    onStateUpdated()
-  },
-  { deep: true },
-)
+if (!haConfig.value?.vars?.disableWatchers) {
+  watch(
+    () => haState.value,
+    () => {
+      onStateUpdated()
+    },
+    { deep: true },
+  )
 
-watch(
-  () => currentNav.value,
-  () => {
-    checkVisibility()
-    onStateUpdated()
-  },
-  { deep: true },
-)
+  watch(
+    () => currentNav.value,
+    () => {
+      checkVisibility()
+      onStateUpdated()
+    },
+    { deep: true },
+  )
+}
 
 onMounted(() => {
   if (!processedProps.value) {

@@ -4,6 +4,7 @@ import gsap from 'gsap'
 
 import { getStateValue, haState } from '@/HAState'
 import LCARSElement from './LCARSElement.vue'
+import { haConfig } from '@/HAConfig'
 
 const {
   entity,
@@ -39,15 +40,17 @@ function animateValue(newValue: number) {
   gsap.to(reactiveValue, { duration: 1, number: newValue })
 }
 
-watch(
-  () => (entity ? getStateValue(haState.value, entity, attribute) : undefined),
-  (v) => {
-    if (v) {
-      const newData = brightnessFactor()
-      animateValue(newData)
-    }
-  },
-)
+if (!haConfig.value?.vars?.disableWatchers) {
+  watch(
+    () => (entity ? getStateValue(haState.value, entity, attribute) : undefined),
+    (v) => {
+      if (v) {
+        const newData = brightnessFactor()
+        animateValue(newData)
+      }
+    },
+  )
+}
 
 animateValue(brightness.value)
 </script>
