@@ -47,14 +47,14 @@ const {
   color = 'default',
   fillWidth = true,
   fillHeight = true,
-  fillTopLeft = true,
+  fillTopLeft,
   fillTopRight,
-  fillLeftTop = true,
-  fillLeftBottom = true,
-  fillRightTop = true,
-  fillRightBottom = true,
-  fillBottomLeft = true,
-  fillBottomRight = true,
+  fillLeftTop,
+  fillLeftBottom,
+  fillRightTop,
+  fillRightBottom,
+  fillBottomLeft,
+  fillBottomRight,
   gap = 1,
   topHeight = 1,
   topStretch,
@@ -115,11 +115,15 @@ defineOptions({
       :rad-y-inner-top-left="radYInnerTopLeft"
       :backgroundScale="backgroundScale"
     ></LCARSElement>
-    <LCARSElement v-if="fillTopLeft" :fill="true" :color="color" :height="topHeight"></LCARSElement>
-    <LCARSElement v-if="fillWidth" :fill="true" :color="color" :height="topHeight"></LCARSElement>
+    <LCARSElement
+      v-if="fillTopLeft || fillWidth"
+      :fill="true"
+      :color="color"
+      :height="topHeight"
+    ></LCARSElement>
     <slot name="top"></slot>
     <LCARSElement
-      v-if="fillTopRight"
+      v-if="fillTopRight || fillWidth"
       :fill="true"
       :color="color"
       :height="topHeight"
@@ -149,7 +153,7 @@ defineOptions({
   >
     <LCARSCol :stretch="leftStretch || fillLeftTop || fillLeftBottom || fillHeight">
       <LCARSElement
-        v-if="fillLeftTop"
+        v-if="fillLeftTop || fillHeight"
         :fill="true"
         :color="leftColor ?? color"
         :width="leftWidth"
@@ -164,7 +168,7 @@ defineOptions({
         <slot name="left"></slot>
       </LCARSCol>
       <LCARSElement
-        v-if="fillLeftBottom"
+        v-if="fillLeftBottom || fillHeight"
         :fill="true"
         :color="leftColor ?? color"
         :width="leftWidth"
@@ -175,7 +179,7 @@ defineOptions({
     </LCARSCol>
     <LCARSCol :stretch="rightStretch || fillRightTop || fillRightBottom || fillHeight">
       <LCARSElement
-        v-if="fillRightTop"
+        v-if="fillRightTop || fillHeight"
         :fill="true"
         :color="rightColor ?? color"
         :width="rightWidth"
@@ -191,7 +195,7 @@ defineOptions({
         <slot name="right"></slot>
       </LCARSCol>
       <LCARSElement
-        v-if="fillRightBottom"
+        v-if="fillRightBottom || fillHeight"
         :fill="true"
         :color="rightColor ?? color"
         :width="rightWidth"
@@ -217,20 +221,14 @@ defineOptions({
       :backgroundScale="backgroundScale"
     ></LCARSElement>
     <LCARSElement
-      v-if="fillBottomLeft"
-      :fill="true"
-      :color="color"
-      :height="bottomHeight"
-    ></LCARSElement>
-    <LCARSElement
-      v-if="fillWidth"
+      v-if="fillBottomLeft || fillWidth"
       :fill="true"
       :color="color"
       :height="bottomHeight"
     ></LCARSElement>
     <slot name="bottom"></slot>
     <LCARSElement
-      v-if="fillBottomRight"
+      v-if="fillBottomRight || fillWidth"
       :fill="true"
       :color="color"
       :height="bottomHeight"
