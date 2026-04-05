@@ -15,6 +15,7 @@ export interface HAConfig {
   remoteRoot?: string
   disableAnimations?: boolean
   editorEnabled?: boolean
+  disableWatchers?: boolean
 }
 
 export const haConfig = ref<HAConfig>({

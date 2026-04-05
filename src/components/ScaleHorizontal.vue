@@ -73,7 +73,7 @@ function animateValue(newData: any) {
   gsap.to(reactiveValueX, { duration: 1, number: newData.valueX })
 }
 
-if (!haConfig.value?.vars?.disableWatchers) {
+if (!haConfig.value?.disableWatchers) {
   watch(
     () => getValue(haState.value),
     (v) => {

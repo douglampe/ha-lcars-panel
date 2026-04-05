@@ -213,7 +213,7 @@ const visibleChildren = computed(() => {
   return undefined
 })
 
-if (!haConfig.value?.vars?.disableWatchers) {
+if (!haConfig.value?.disableWatchers) {
   watch(
     () => haState.value,
     () => {
