@@ -51,7 +51,6 @@ children:
                 width: 1
                 color: 10
       - type: md
-        marginBottom: 1
         content: |
           Set the theme using the top level `theme` config.
           ```

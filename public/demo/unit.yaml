@@ -58,6 +58,7 @@ children:
         marginTop: 1
         content: |
           Each block below is 10 units wide:
+
   - type: row
     wrap: true
     marginTop: 1
@@ -86,6 +87,54 @@ children:
         width: 10
         height: 1
         color: 5
+
+  - type: el
+    height: 0.2
+    color: 1
+    marginTop: 1
+    marginBottom: 1
+
+  - type: md
+    marginBottom: 1
+    content: |
+      You can modify the default unit size by setting the `lcars_unit` variable under the top-level `vars` key 
+      to any valid CSS size. For example, you can set the unit size in pixes using `px`. 
+
+      Note that using percentage is not recommended since this will make the unit have the aspect ration of 
+      the screen which makes layout unpredictable.
+
+      ```
+      vars:
+        lcars_unit: 20px
+      children:
+        - type: el
+          width: 1
+          height: 1
+          color: indian-red
+      ````
+
+  - type: el
+    width: 20px
+    height: 20px
+    color: indian-red
+    marginBottom: 1
+
+  - type: el
+    height: 0.2
+    color: 1
+    marginTop: 1
+    marginBottom: 1
+
+  - type: sample
+    content: |
+      You can access the LCARS unit in native CSS by using the `--lcars-unit` variable.
+    configYaml: |
+      children:
+        - tag: div
+          style:
+            width: calc(var(--lcars-unit) * 3)
+            height: calc(var(--lcars-unit) * 3)
+            background-color: var(--lcars-color-lilac)
 
   - type: pill
     nav: /demo/colors
