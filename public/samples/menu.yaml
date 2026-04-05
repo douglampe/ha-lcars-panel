@@ -1,6 +1,3 @@
-type: custom:ha-lcars-panel
-vars:
-  lcars_unit: 5vw
 children:
   - type: row
     children:

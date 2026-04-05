@@ -1,0 +1,19 @@
+children:
+  - type: pill
+    text: Back
+    nav: /home
+  - type: col
+    gap: 10
+    stretch: true
+    children:
+      - type: remote
+        url: ~/samples/sun.yaml
+      - type: remote
+        url: ~/samples/log.yaml
+      - type: remote
+        url: ~/samples/spacecraft.yaml
+      - type: remote
+        url: ~/samples/menu.yaml
+  - type: pill
+    text: Back
+    nav: /home

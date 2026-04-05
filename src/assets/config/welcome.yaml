@@ -9,10 +9,10 @@ nav:
       - text: Colors
       - text: Layout
       - text: Panels
+  - text: Samples
+    children:
+      - text: Sun
 children:
-  - type: pill
-    text: go
-    nav: /demo/colors
   - showForNav: /home
     type: panel-tl
     fillLeftBottom: true
@@ -42,15 +42,31 @@ children:
                 - type: grow-right
                   delay: 5
           - type: pill
-            nav: /api
+            nav: /samples/index
             width: 6
             marginTop: 1
-            text: Browse API
+            text: Browse Samples
             color: 2
             animations:
               in:
                 - type: grow-right
                   delay: 5
+          - type: pill
+            nav: /api
+            width: 6
+            marginTop: 1
+            text: Browse API
+            color: 3
+            animations:
+              in:
+                - type: grow-right
+                  delay: 5
+  - showForNav: /demo
+    type: nav-remote
+    rootPath: /demo
+  - showForNav: /samples
+    type: remote
+    url: ~/samples/index.yaml?raw
   - showForNav: /api
     type: panel-tl
     fillLeftBottom: true
@@ -68,6 +84,3 @@ children:
     children:
       - type: remote
         url: ~/api.yaml?raw
-  - showForNav: /demo
-    type: nav-remote
-    rootPath: /demo
