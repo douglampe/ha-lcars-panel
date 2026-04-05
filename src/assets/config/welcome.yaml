@@ -13,47 +13,44 @@ children:
   - type: pill
     text: go
     nav: /demo/colors
-  - type: el
-    fill: true
+  - showForNav: /home
+    type: panel-tl
+    fillLeftBottom: true
     children:
-      - showForNav: /home
-        type: panel-tl
-        fillLeftBottom: true
+      - type: md
+        textAnimation:
+          type: typing
+        content: |
+          Greetings, captain.
+
+          Welcome to HA LCARS.
+
+          I am here to get you acquainted with the LCARS
+          layout system.
+
+          I can walk you through the system step-by-step, or you can jump right in to the API.
+      - type: row
+        gap: 1
         children:
-          - type: md
-            textAnimation:
-              type: typing
-            content: |
-              Greetings, captain.
-
-              Welcome to HA LCARS.
-
-              I am here to get you acquainted with the LCARS
-              layout system.
-
-              I can walk you through the system step-by-step, or you can jump right in to the API.
-          - type: row
-            gap: 1
-            children:
-              - type: pill
-                nav: /demo/setup
-                width: 6
-                marginTop: 1
-                text: Begin Demonstration
-                animations:
-                  in:
-                    - type: grow-right
-                      delay: 5
-              - type: pill
-                nav: /api
-                width: 6
-                marginTop: 1
-                text: Browse API
-                color: 2
-                animations:
-                  in:
-                    - type: grow-right
-                      delay: 5
+          - type: pill
+            nav: /demo/setup
+            width: 6
+            marginTop: 1
+            text: Begin Demonstration
+            animations:
+              in:
+                - type: grow-right
+                  delay: 5
+          - type: pill
+            nav: /api
+            width: 6
+            marginTop: 1
+            text: Browse API
+            color: 2
+            animations:
+              in:
+                - type: grow-right
+                  delay: 5
   - showForNav: /api
     type: panel-tl
     fillLeftBottom: true

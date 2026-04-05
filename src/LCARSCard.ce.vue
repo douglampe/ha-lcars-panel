@@ -9,7 +9,7 @@ import { loadTestState } from './HAState'
 import ConfigEditor from './components/ConfigEditor.vue'
 
 const { config, loadTest } = defineProps<{ config: HAConfig; loadTest: boolean }>()
-const cardRef = ref()
+const classes = ref<string[]>([])
 
 function getTestConfig() {
   if (loadTest) {
@@ -54,12 +54,15 @@ onMounted(async () => {
     addCssLink(`${cssRoot}ha-lcars-panel.css`)
   }
 
-  const header = document.querySelector('div.header')
+  const haElement = document.querySelector('home-assistant')
+  if (haElement) {
+    classes.value = ['ha-height-wrapper']
+  }
 })
 </script>
 
 <template>
-  <div class="lcars-height-wrapper" ref="cardRef">
+  <div class="lcars-height-wrapper" :class="classes">
     <div class="lcars-wrapper">
       <ParentComponent :children="haConfig.children" />
       <ConfigEditor v-if="haConfig.editorEnabled" />
@@ -72,6 +75,9 @@ onMounted(async () => {
 @use './styles/main'
 @use './styles/table'
 
+.ha-height-wrapper
+  min-height: calc(100vh - var(--header-height)) !important
+
 .lcars-height-wrapper
   background-color: var(--lcars-color-bg)
   color: var(--lcars-color-text)
@@ -79,7 +85,7 @@ onMounted(async () => {
   font-size: var(--lcars-font-size)
   line-height: calc(var(--lcars-font-size) * 1.2)
   text-transform: var(--lcars-text-transform)
-  min-height: calc(100vh - var(--header-height))
+  min-height: 100vh
   display: flex
   flex-direction: row
   align-items: stretch
