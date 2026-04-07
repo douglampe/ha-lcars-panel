@@ -81,13 +81,8 @@ children:
             rootPath: /demo/colors
 
       - type: pill
-        nav: /demo/layout
+        nav: /demo/text
         marginTop: 1
         marginLeft: 1
-        text: 'Next: Layout'
+        text: 'Next: Text'
         width: 4
-        animations:
-          in:
-            - type: grow
-              duration: 1
-              delay: 12

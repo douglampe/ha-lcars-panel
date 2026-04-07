@@ -68,7 +68,14 @@ children:
                 color: dodger-blue
                 children:
                   - text: content
+  - type: el
+    mixin: divider
 
+  - type: col
+    marginTop: 1
+    marginLeft: 1
+    gap: 10
+    children:
       - type: md
         content: |
           You can add elements to the sides of a panel with `leftChildren`, `rightChildren`, `topChildren`, and
@@ -166,6 +173,14 @@ children:
                     color: golden-tainoi
                     width: 4
 
+  - type: el
+    mixin: divider
+
+  - type: col
+    marginTop: 1
+    marginLeft: 1
+    gap: 10
+    children:
       - type: sample
         content: |
           You can add rounded caps to the end of a panel with `topCap` or `bottomCap`
@@ -190,4 +205,29 @@ children:
             children:
               - type: el
                 width: 4
+                text: content
+
+  - type: el
+    mixin: divider
+
+  - type: col
+    marginTop: 1
+    marginLeft: 1
+    gap: 10
+    children:
+      - type: sample
+        content: |
+          You may notice a small gap between "elbow" corners in a panel and other parts of the panel. This is due to
+          glitches in the automated scaling of the generated images used to create the elbow effect. You can tweak this
+          scale percentage to remove the gap by adjusting `backgroundScale` on the panel to a number slighly larget 
+          than 100.
+        configYaml: |
+          - type: panel-tl
+            color: dodger-blue
+            topCap: true
+            backgroundScale: 100.5
+            children:
+              - type: el
+                width: 4
+                height: 4
                 text: content

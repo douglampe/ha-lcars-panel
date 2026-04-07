@@ -4,8 +4,6 @@ children:
     marginLeft: 1
     children:
       - type: md
-        textAnimation:
-          type: typing
         content: |
           This is an LCARS unit:
       - type: el
@@ -13,17 +11,9 @@ children:
         height: 1
         marginTop: 1
         color: golden-tainoi
-        animations:
-          in:
-            - type: grow
-              delay: 1.5
-              duration: 0.1
       - type: md
         marginTop: 1
         marginBottom: 1
-        textAnimation:
-          type: typing
-          delay: 2.5
         content: |
           Visual elements of the LCARS layout system are measured in LCARS Units. The layout system uses a responsive
           layout that reacts to the size of your screen. The default unit size for various screen sizes is as follows:
@@ -62,10 +52,6 @@ children:
   - type: row
     wrap: true
     marginTop: 1
-    childrenAnimation:
-      type: build
-      delay: 8
-      interval: 1
     children:
       - type: el
         width: 10
@@ -136,8 +122,3 @@ children:
     marginLeft: 1
     text: 'Next: Element'
     width: 4
-    animations:
-      in:
-        - type: grow
-          duration: 1
-          delay: 12

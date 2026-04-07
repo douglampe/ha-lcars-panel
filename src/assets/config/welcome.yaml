@@ -1,5 +1,5 @@
 type: custom:ha-lcars-panel
-disableAnimations: true
+disableAnimations: false
 remoteRoot: /ha-lcars-panel
 mixins:
   divider:
@@ -14,6 +14,7 @@ nav:
       - text: Unit
       - text: Element
       - text: Colors
+      - text: Text
       - text: Layout
       - text: Panels
   - text: Samples
@@ -21,11 +22,19 @@ nav:
       - text: Sun
 children:
   - type: pill
-    nav: /demo/element
+    nav: /demo/layout
     text: go
   - showForNav: /home
     type: panel-tl
     fillLeftBottom: true
+    topLeftAnimations:
+      in:
+        - type: grow-right
+          delay: 0.5
+    leftBottomAnimations:
+      in:
+        - type: grow-down
+          delay: 1
     children:
       - type: md
         textAnimation:
@@ -38,7 +47,8 @@ children:
           I am here to get you acquainted with the LCARS
           layout system.
 
-          I can walk you through the system step-by-step, or you can jump right in to the API.
+          I can walk you through the system step-by-step, or you can jump right by browsing sample dashboards and 
+          exploring the API.
       - type: row
         gap: 1
         children:
@@ -50,7 +60,7 @@ children:
             animations:
               in:
                 - type: grow-right
-                  delay: 5
+                  delay: 11
           - type: pill
             nav: /samples/index
             width: 6
@@ -60,7 +70,7 @@ children:
             animations:
               in:
                 - type: grow-right
-                  delay: 5
+                  delay: 11.5
           - type: pill
             nav: /api
             width: 6
@@ -70,7 +80,7 @@ children:
             animations:
               in:
                 - type: grow-right
-                  delay: 5
+                  delay: 12
   - showForNav: /demo
     type: nav-remote
     rootPath: /demo
