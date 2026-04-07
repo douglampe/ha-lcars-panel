@@ -9,6 +9,10 @@ const props = defineProps<{
   textAnimation?: AnimationConfig
 }>()
 
+defineOptions({
+  inheritAttrs: false,
+})
+
 const animated = reactive<{
   typeLength?: number
   typeDone?: boolean
