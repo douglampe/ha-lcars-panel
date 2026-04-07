@@ -89,10 +89,7 @@ children:
         color: 5
 
   - type: el
-    height: 0.2
-    color: 1
-    marginTop: 1
-    marginBottom: 1
+    mixin: divider
 
   - type: md
     marginBottom: 1
@@ -120,10 +117,7 @@ children:
     marginBottom: 1
 
   - type: el
-    height: 0.2
-    color: 1
-    marginTop: 1
-    marginBottom: 1
+    mixin: divider
 
   - type: sample
     content: |
@@ -137,10 +131,10 @@ children:
             background-color: var(--lcars-color-lilac)
 
   - type: pill
-    nav: /demo/colors
+    nav: /demo/element
     marginTop: 1
     marginLeft: 1
-    text: 'Next: Colors'
+    text: 'Next: Element'
     width: 4
     animations:
       in:

@@ -1,11 +1,18 @@
 type: custom:ha-lcars-panel
 disableAnimations: true
 remoteRoot: /ha-lcars-panel
+mixins:
+  divider:
+    height: 0.2
+    color: 1
+    marginTop: 1
+    marginBottom: 1
 nav:
   - text: Demo
     children:
       - text: Setup
       - text: Unit
+      - text: Element
       - text: Colors
       - text: Layout
       - text: Panels
@@ -13,6 +20,9 @@ nav:
     children:
       - text: Sun
 children:
+  - type: pill
+    nav: /demo/element
+    text: go
   - showForNav: /home
     type: panel-tl
     fillLeftBottom: true

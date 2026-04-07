@@ -5,24 +5,6 @@ children:
     gap: 10
     children:
       - type: md
-        textAnimation:
-          type: typing
-        content: |
-          The basic building block of the LCARS layout system is the element (`type: el`).
-      - type: md
-        content: |
-          ```
-          - type: el
-            textColor: black
-            text: this is some text
-            color: 1
-          ```
-      - type: el
-        textColor: black
-        text: this is some text
-        color: 1
-
-      - type: md
         content: |
           The layout system uses the ["flexbox" CSS layout](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) 
           meaning items can be flexibly displayed in rows and columns.

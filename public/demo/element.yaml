@@ -1,31 +1,154 @@
 children:
-  - type: el
+  - type: col
     marginTop: 1
     marginLeft: 1
+    gap: 10
     children:
-      - type: md
-        textAnimation:
-          type: typing
+      - type: sample
         content: |
           The basic building block of the LCARS layout system is the element (`type: el`).
-      - type: md
-        content: |
-          ```
+        configYaml: |
           - type: el
             textColor: black
             text: this is some text
             color: 1
-          ```
-      - type: el
-        textColor: black
-        text: this is some text
-        color: 1
-      - type: pill
-        nav: /panels
-        marginTop: 1
-        text: 'Next: Panels'
-        animations:
-          in:
-            - type: grow
-              duration: 1
-              delay: 12
+
+  - type: el
+    mixin: divider
+
+  - type: col
+    marginTop: 1
+    marginLeft: 1
+    gap: 10
+    children:
+      - type: md
+        content: |
+          Elements can be used to create decorative "elbows" on borders by setting outer and inner radii. The vertical
+          portion of the radius (`radY`) is the same as the horizontal portion by default so therefore you can add an outer
+          radius using `radX[corner]` where `[corner]` is the orientation of the "elbow". For example, `radXTopLeft` and
+          `radXInnerTopLeft` would make the element appear as a top-left corner element with both iner and outer radii.
+
+      - type: row
+        gap: 10
+        wrap: true
+        children:
+          - type: sample
+            configYaml: |
+              - type: el
+                width: 2
+                height: 1
+                color: 1
+                radXTopLeft: 1
+          - type: sample
+            configYaml: |
+              - type: el
+                width: 2
+                height: 1
+                color: 1
+                radXTopRight: 1
+          - type: sample
+            configYaml: |
+              - type: el
+                width: 2
+                height: 1
+                color: 1
+                radXBottomLeft: 1
+          - type: sample
+            configYaml: |
+              - type: el
+                width: 2
+                height: 1
+                color: 1
+                radXBottomRight: 1
+      - type: row
+        gap: 10
+        wrap: true
+        children:
+          - type: sample
+            configYaml: |
+              - type: el
+                width: 2
+                height: 2
+                color: 1
+                radXInnerTopLeft: 1
+          - type: sample
+            configYaml: |
+              - type: el
+                width: 2
+                height: 2
+                color: 1
+                radXInnerTopRight: 1
+          - type: sample
+            configYaml: |
+              - type: el
+                width: 2
+                height: 2
+                color: 1
+                radXInnerBottomLeft: 1
+          - type: sample
+            configYaml: |
+              - type: el
+                width: 2
+                height: 2
+                color: 1
+                radXInnerBottomRight: 1
+      - type: row
+        gap: 10
+        wrap: true
+        children:
+          - type: sample
+            configYaml: |
+              - type: el
+                width: 2
+                height: 2
+                color: 1
+                radXTopLeft: 2
+                radXInnerTopLeft: 1
+          - type: sample
+            configYaml: |
+              - type: el
+                width: 2
+                height: 2
+                color: 1
+                radXTopRight: 2
+                radXInnerTopRight: 1
+          - type: sample
+            configYaml: |
+              - type: el
+                width: 2
+                height: 2
+                color: 1
+                radXBottomLeft: 2
+                radXInnerBottomLeft: 1
+          - type: sample
+            configYaml: |
+              - type: el
+                width: 2
+                height: 2
+                color: 1
+                radXBottomRight: 2
+                radXInnerBottomRight: 1
+
+      - type: sample
+        content: |
+          You can set different vertical and horizontal components to the radii by adding `radY[cornder]` and
+          `radYInner[corner]`.
+        configYaml: |
+          - type: el
+            width: 2
+            height: 2
+            color: 1
+            radXTopLeft: 2
+            radYTopLeft: 1
+
+  - type: pill
+    nav: /demo/colors
+    marginTop: 1
+    marginLeft: 1
+    text: 'Next: Colors'
+    width: 4
+    animations:
+      in:
+        - type: grow
+          duration: 1
+          delay: 12

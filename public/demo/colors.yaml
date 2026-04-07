@@ -57,24 +57,37 @@ children:
           type: custom:ha-lcars-panel
           theme: the-lcars-classic
           ```
+
+  - type: el
+    mixin: divider
+
+  - type: col
+    gap: 10
+    marginTop: 1
+    marginLeft: 1
+    stretch: true
+    children:
       - type: md
         content: |
           Supported themes are shown below. Note that some themes contain less than 10 colors so in this case, colors
           are repeated, but there are always 10 numbered colors to choose from. So while colors may repeat, there will
           always be a color assigned for colors numbered 1-10.
 
-  - type: theme-sample
-    marginTop: 1
-    rootPath: /demo/colors
+      - type: col
+        stretch: true
+        children:
+          - type: theme-sample
+            marginTop: 1
+            rootPath: /demo/colors
 
-  - type: pill
-    nav: /demo/layout
-    marginTop: 1
-    marginLeft: 1
-    text: 'Next: Layout'
-    width: 4
-    animations:
-      in:
-        - type: grow
-          duration: 1
-          delay: 12
+      - type: pill
+        nav: /demo/layout
+        marginTop: 1
+        marginLeft: 1
+        text: 'Next: Layout'
+        width: 4
+        animations:
+          in:
+            - type: grow
+              duration: 1
+              delay: 12
