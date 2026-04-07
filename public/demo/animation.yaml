@@ -1,80 +1,51 @@
 children:
-  - type: panel-tl
-    marginTop: -0.9
-    marginLeft: -0.9
-    title: Animation
-    topGap: 1
-    color: lilac
-    fillTopLeft: false
-    topCap: true
-    titleAnimation:
-      type: typing
-      delay: 1
-    topChildrenAnimation:
-      type: build
-    topCapAnimations:
-      in:
-        - type: grow-right
-          delay: 1.6
-    topChildren:
-      - type: el
-        color: lilac
-        width: 31.3
-        marginLeft: -0.1
-        animations:
-          in:
-            - type: grow-right
-      - type: menu-horizontal
-        mixin: menuTab
-        gap: 1
-        rootPath: /animation
-        animations:
-          in:
-            - type: build
-              duration: 0.5
+  - type: col
+    marginTop: 1
+    marginLeft: 1
+    gap: 10
     children:
-      - showForNav: /animation/text
-        children:
-          - type: sample
-            content: |
-              You can animate text using the `textAnimation` property to make the text appear as if it is being typed
-              one character at a time.
-            configYaml: |
-              - type: el
-                text: |
-                  This is text that will be animated to
-                  appear as if it is being typed one 
-                  character at a time.
-                textAnimation:
-                  type: typing
-                  duration: 0.025
-              - type: md
-                content: |
-                  This even works with markdown.
-
-                  - Bullet 1
-                  - Bullet 2
-                  - Bullet 3
-                textAnimation:
-                  type: typing
-                  delay: 3
-      - showForNav: /animation/element
-        children:
+      - type: sample
+        content: |
+          You can animate text using the `textAnimation` property to make the text appear as if it is being typed
+          one character at a time.
+        configYaml: |
+          - type: el
+            text: |
+              This is text that will be animated to
+              appear as if it is being typed one 
+              character at a time.
+            textAnimation:
+              type: typing
+              duration: 0.025
           - type: md
             content: |
-              You can apply animations to any element with the `animations` property. Use the `in` property of the
-              animation to define an animation for when the element appears.
-          - type: menu-horizontal
-            mixin: menuTab
-            gap: 1
-            rootPath: /animation/element
-            marginBottom: 1
-            animations:
-              in:
-                - type: build
-                  duration: 0.1
+              This even works with markdown.
+
+              - Bullet 1
+              - Bullet 2
+              - Bullet 3
+            textAnimation:
+              type: typing
+              delay: 3
+  - type: el
+    mixin: divider
+
+  - type: col
+    marginTop: 1
+    marginLeft: 1
+    gap: 10
+    children:
+      - type: md
+        content: |
+          You can apply animations to any element with the `animations` property. Use the `in` property of the
+          animation to define an animation for when the element appears.
+      - type: row
+        gap: 10
+        children:
+          - type: menu-vertical
+            rootPath: /demo/animation
           - type: sample
-            showForNav: /animation/element/grow-all
+            showForNav: /demo/animation/grow-all
             configYaml: |
               - type: el
                 width: 5
@@ -85,7 +56,7 @@ children:
                     - type: grow
                       duration: 0.5
           - type: sample
-            showForNav: /animation/element/grow-down
+            showForNav: /demo/animation/grow-down
             configYaml: |
               - type: el
                 width: 5
@@ -95,7 +66,7 @@ children:
                   in:
                     - type: grow-down
           - type: sample
-            showForNav: /animation/element/grow-up
+            showForNav: /demo/animation/grow-up
             configYaml: |
               - type: el
                 width: 5
@@ -105,7 +76,7 @@ children:
                   in:
                     - type: grow-up
           - type: sample
-            showForNav: /animation/element/grow-right
+            showForNav: /demo/animation/grow-right
             configYaml: |
               - type: el
                 width: 5
@@ -115,7 +86,7 @@ children:
                   in:
                     - type: grow-right
           - type: sample
-            showForNav: /animation/element/grow-left
+            showForNav: /demo/animation/grow-left
             configYaml: |
               - type: el
                 width: 5
@@ -125,7 +96,7 @@ children:
                   in:
                     - type: grow-left
           - type: sample
-            showForNav: /animation/element/children
+            showForNav: /demo/animation/children
             content: |
               Most elements that support children also support animating how those children appear. Currently, the only
               supported animation type is `build` which will make the children appear one at a time.

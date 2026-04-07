@@ -17,12 +17,21 @@ nav:
       - text: Text
       - text: Layout
       - text: Panels
+      - text: State
+      - text: Animation
+        children:
+          - text: Grow All
+          - text: Grow Down
+          - text: Grow Up
+          - text: Grow Left
+          - text: Grow Right
+          - text: Children
   - text: Samples
     children:
       - text: Sun
 children:
   - type: pill
-    nav: /demo/layout
+    nav: /demo/animation
     text: go
   - showForNav: /home
     type: panel-tl

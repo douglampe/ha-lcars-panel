@@ -59,9 +59,58 @@ children:
           - `lowercase` - Convert all letters to lowercase.
           - `none` - Keep all text as it was entered.
 
-  - type: pill
-    nav: /demo/layout
+  - type: el
+    mixin: divider
+
+  - type: col
     marginTop: 1
     marginLeft: 1
-    text: 'Next: Layout'
-    width: 4
+    gap: 10
+    children:
+      - type: sample
+        content: |
+          You can add text directly to your panel using the `text` type.
+        configYaml: |
+          - type: row
+            height: 1
+            stretch: true
+            gap: 1
+            children:
+              - type: el
+                width: 1
+                color: 2
+              - type: text
+                text: I am some text
+              - type: el
+                width: 1
+                color: 3
+
+      - type: sample
+        content: |
+          You can also use Markdown to format text with the `md` type.
+        configYaml: |
+          - type: md
+            content: |
+              # This is a heading
+
+              And this is some text with some `inline code`.
+
+              Here is a code block:
+
+              ```
+              This text uses a fixed font size
+              so multiple lines line up.
+              ```
+
+              This is a [link to github](https://github.com/douglampe/ha-lcars-panel/).
+
+              This is an image:
+              
+              ![HA LCARS Logo](https://raw.githubusercontent.com/douglampe/ha-lcars-panel/refs/heads/version-0-demo/public/favicon.svg)
+
+      - type: pill
+        nav: /demo/layout
+        marginTop: 1
+        marginLeft: 1
+        text: 'Next: Layout'
+        width: 4
