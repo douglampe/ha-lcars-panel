@@ -17,7 +17,7 @@ children:
               children:
                 - text: Bridge
                 - text: Crew
-                - text: 10 Fwd
+                - text: '10 Fwd'
           ```
 
           Note that only the `text` key is required. The `key` will be generated
@@ -29,7 +29,7 @@ children:
 
           ```
           - type: pill
-            text: 10 Fwd
+            text: '10 Fwd'
             nav: /home/10-fwd
           ```
 

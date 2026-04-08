@@ -56,9 +56,6 @@ nav:
     children:
       - text: Sun
 children:
-  - type: pill
-    nav: /demo/cards
-    text: go
   - showForNav: /home
     type: panel-tl
     fillLeftBottom: true
@@ -74,6 +71,7 @@ children:
       - type: md
         textAnimation:
           type: typing
+          delay: 1
         content: |
           Greetings, captain.
 
