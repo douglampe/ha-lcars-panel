@@ -1,46 +1,20 @@
 children:
-  - type: panel-tl
-    marginLeft: -0.9
-    marginTop: -0.9
-    marginBottom: 1
-    color: fiery-orange
-    outerRadX: 0.9
-    outerRadY: 0.9
-    title: Panels
-    topChildren:
-      - type: row
-        gap: 1
-        children:
-          - type: el
-            mixin: menuTab
-            nav: /panels/types
-            text: Types
-            color: golden-tainoi
-          - type: el
-            mixin: menuTab
-            nav: /panels/children
-            text: Children
-            color: anakiwa
-          - type: el
-            mixin: menuTab
-            nav: /panels/caps
-            text: Caps
-            color: dodger-blue
-          - type: el
-            mixin: menuTab
-            nav: /panels/title
-            text: Title
-            color: lilac
-          - type: el
-            color: fiery-orange
-            width: 1
-            height: 1
+  - type: col
+    marginTop: 1
+    marginLeft: 1
+    gap: 10
     children:
-      - showForNav: /panels/types
+      - type: md
+        content: |
+          Panels are containers with rounded "elbow" corners. Panels can have 1, 2, or 4 elbows depending on their
+          orientation. For example, you can have a panel with a single elbow in the top-left corner using `panel-tl`.
+          The following panel types are supported:
+
+      - type: row
+        gap: 10
+        wrap: true
         children:
           - type: sample
-            content: |
-              Panels are containers with rounded borders.
             configYaml: |
               - type: panel-tl
                 color: dodger-blue
@@ -66,16 +40,52 @@ children:
                   - text: content
           - type: sample
             configYaml: |
+              - type: panel-t
+                color: dodger-blue
+                children:
+                  - text: content
+          - type: sample
+            configYaml: |
+              - type: panel-b
+                color: dodger-blue
+                children:
+                  - text: content
+          - type: sample
+            configYaml: |
+              - type: panel-l
+                color: dodger-blue
+                children:
+                  - text: content
+          - type: sample
+            configYaml: |
+              - type: panel-r
+                color: dodger-blue
+                children:
+                  - text: content
+          - type: sample
+            configYaml: |
               - type: panel-all
                 color: dodger-blue
                 children:
                   - text: content
-      - showForNav: /panels/children
+  - type: el
+    mixin: divider
+
+  - type: col
+    marginTop: 1
+    marginLeft: 1
+    gap: 10
+    children:
+      - type: md
+        content: |
+          You can add elements to the sides of a panel with `leftChildren`, `rightChildren`, `topChildren`, and
+          `bottomChildren`.
+
+      - type: row
+        wrap: true
+        gap: 10
         children:
           - type: sample
-            content: |
-              You can add elements to the sides of a panel with `leftChildren`, `rightChildren`, `topChildren`, and
-              `bottomChildren`.
             configYaml: |
               - type: panel-tl
                 color: dodger-blue
@@ -118,31 +128,113 @@ children:
                   - type: el
                     color: golden-tainoi
                     width: 4
-      - showForNav: /panels/caps
-        children:
+
           - type: sample
-            content: |
-              You can add rounded caps to the end of a panel with `topCap` or `bottomCap`
             configYaml: |
-              - type: panel-tl
+              - type: panel-tr
                 color: dodger-blue
-                topCap: true
-                bottomCap: true
                 children:
+                  - text: content
+                rightChildren:
                   - type: el
-                    width: 4
-                    height: 4
-                    text: content
-      - showForNav: /panels/title
-        children:
+                    color: golden-tainoi
+                    height: 1
+
           - type: sample
-            content: |
-              You can add a title to the top or bottom using `title`
             configYaml: |
-              - type: panel-tl
+              - type: panel-tr
                 color: dodger-blue
-                title: Title
                 children:
+                  - text: content
+                topChildren:
                   - type: el
+                    color: golden-tainoi
                     width: 4
-                    text: content
+
+          - type: sample
+            configYaml: |
+              - type: panel-br
+                color: dodger-blue
+                children:
+                  - text: content
+                rightChildren:
+                  - type: el
+                    color: golden-tainoi
+                    height: 1
+
+          - type: sample
+            configYaml: |
+              - type: panel-br
+                color: dodger-blue
+                children:
+                  - text: content
+                bottomChildren:
+                  - type: el
+                    color: golden-tainoi
+                    width: 4
+
+  - type: el
+    mixin: divider
+
+  - type: col
+    marginTop: 1
+    marginLeft: 1
+    gap: 10
+    children:
+      - type: sample
+        content: |
+          You can add rounded caps to the end of a panel with `topCap` or `bottomCap`
+        configYaml: |
+          - type: panel-tl
+            color: dodger-blue
+            topCap: true
+            bottomCap: true
+            children:
+              - type: el
+                width: 4
+                height: 4
+                text: content
+
+      - type: sample
+        content: |
+          You can add a title to the top or bottom using `title`
+        configYaml: |
+          - type: panel-tl
+            color: dodger-blue
+            title: Title
+            children:
+              - type: el
+                width: 4
+                text: content
+
+  - type: el
+    mixin: divider
+
+  - type: col
+    marginTop: 1
+    marginLeft: 1
+    gap: 10
+    children:
+      - type: sample
+        content: |
+          You may notice a small gap between "elbow" corners in a panel and other parts of the panel. This is due to
+          glitches in the automated scaling of the generated images used to create the elbow effect. You can tweak this
+          scale percentage to remove the gap by adjusting `backgroundScale` on the panel to a number slighly larget 
+          than 100.
+        configYaml: |
+          - type: panel-tl
+            color: dodger-blue
+            topCap: true
+            backgroundScale: 100.5
+            children:
+              - type: el
+                width: 4
+                height: 4
+                text: content
+
+  - type: pill
+    nav: /demo/state
+    marginTop: 1
+    marginLeft: 1
+    text: 'Next: State'
+    width: 4

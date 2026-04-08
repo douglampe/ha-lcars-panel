@@ -9,7 +9,7 @@ import { currentNav } from '@/LocalNav'
 
 const selectedTheme = ref<string>('default')
 
-const { rootPath = '/config/themes/' } = defineProps<{ rootPath?: string }>()
+const { rootPath = '/config/themes' } = defineProps<{ rootPath?: string }>()
 
 const theme = ref<string[]>()
 
@@ -33,12 +33,13 @@ function getThemeFromNav() {
   const parts = currentNav.value.split('/')
   let themeColors = [] as string[]
   const colors = [] as string[]
-  if (parts.length > 3) {
+  if (parts.length > rootPath.split('/').length) {
     const themeNameFromNav = parts[parts.length - 1]
     const themeFromNav = parsedConfig.value[themeNameFromNav]
 
     if (themeFromNav) {
       themeColors = themeFromNav
+      selectedTheme.value = themeNameFromNav
     }
   }
   if (themeColors.length === 0) {
@@ -63,7 +64,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <PanelTL :width="1" color="1" :left-width="10">
+  <PanelTL :left-width="10">
     <template #left>
       <LCARSElement
         v-for="(name, index) in themeNames"
@@ -72,7 +73,7 @@ onMounted(() => {
         :width="10"
         text-color="black"
         :button="true"
-        :nav="rootPath + name"
+        :nav="rootPath + '/' + name"
         :capRight="selectedTheme === name"
         text-transform="none"
         >{{ name }}</LCARSElement

@@ -1,0 +1,116 @@
+children:
+  - type: col
+    marginTop: 1
+    marginLeft: 1
+    gap: 10
+    children:
+      - type: sample
+        content: |
+          The default font size is 0.6 units. Use the `fontSize` key to set the font size in LCARS Units.
+        configYaml: |
+          - type: el
+            fontSize: 0.5
+            text: fontSize 0.5
+          - type: el
+            fontSize: 1
+            text: fontSize 1
+          - type: el
+            fontSize: 2
+            text: fontSize 2
+
+      - type: sample
+        content: |
+          The default line height is 1.2 times the default font size. Use the `lineHeight` key to set the line 
+          height in LCARS Units.
+        configYaml: |
+          - type: el
+            fontSize: 1
+            lineHeight: 1
+            color: golden-tainoi
+            textColor: black
+            text: lineHeight 1
+          - type: el
+            fontSize: 1
+            lineheight: 1.2
+            color: dodger-blue
+            textColor: black
+            text: lineHeight 1.2
+
+      - type: sample
+        content: |
+          The default text color is `periwinkle` (#C3CDE6) which stands out on the standard black background. To
+          set the text color, use the `textColor` key.
+        configYaml: |
+          - type: el
+            textColor: golden-tainoi
+            text: golden-tainoi
+          - type: el
+            textColor: indian-red
+            text: indian-red
+
+      - type: sample
+        content: |
+          By default, all text is set to all caps unless it is in a `pre` or `code` block. To change the way text
+          is transformed, use the `textTransform` key. Any valid CSS value for `text-transform` will work, but the
+          following are the most useful:
+
+          - `capitalize` - Capitalize the first letter of each word.
+          - `uppercase` - Convert all letters to uppercase (Default).
+          - `lowercase` - Convert all letters to lowercase.
+          - `none` - Keep all text as it was entered.
+
+  - type: el
+    mixin: divider
+
+  - type: col
+    marginTop: 1
+    marginLeft: 1
+    gap: 10
+    children:
+      - type: sample
+        content: |
+          You can add text directly to your panel using the `text` type.
+        configYaml: |
+          - type: row
+            height: 1
+            stretch: true
+            gap: 1
+            children:
+              - type: el
+                width: 1
+                color: 2
+              - type: text
+                text: I am some text
+              - type: el
+                width: 1
+                color: 3
+
+      - type: sample
+        content: |
+          You can also use Markdown to format text with the `md` type.
+        configYaml: |
+          - type: md
+            content: |
+              # This is a heading
+
+              And this is some text with some `inline code`.
+
+              Here is a code block:
+
+              ```
+              This text uses a fixed font size
+              so multiple lines line up.
+              ```
+
+              This is a [link to github](https://github.com/douglampe/ha-lcars-panel/).
+
+              This is an image:
+              
+              ![HA LCARS Logo](https://raw.githubusercontent.com/douglampe/ha-lcars-panel/refs/heads/version-0-demo/public/favicon.svg)
+
+  - type: pill
+    nav: /demo/layout
+    marginTop: 1
+    marginLeft: 1
+    text: 'Next: Layout'
+    width: 4

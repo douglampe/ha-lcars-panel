@@ -1,0 +1,36 @@
+children:
+  - type: pill
+    text: Back
+    nav: /home
+  - type: col
+    gap: 10
+    stretch: true
+    children:
+      - type: md
+        content: |
+          # Planetary Categlog
+
+          [sun.yaml](https://raw.githubusercontent.com/douglampe/ha-lcars-panel/refs/heads/main/public/samples/sun.yaml)
+      - type: remote
+        url: ~/samples/sun.yaml
+      - type: el
+        mixin: divider
+      - type: md
+        content: |
+          # Captains Log
+
+          [log.yaml](https://raw.githubusercontent.com/douglampe/ha-lcars-panel/refs/heads/main/public/samples/log.yaml)
+      - type: remote
+        url: ~/samples/log.yaml
+      - type: el
+        mixin: divider
+      - type: md
+        content: |
+          # Spacecraft Systems
+
+          [spacecraft.yaml](https://raw.githubusercontent.com/douglampe/ha-lcars-panel/refs/heads/main/public/samples/spacecraft.yaml)
+      - type: remote
+        url: ~/samples/spacecraft.yaml
+  - type: pill
+    text: Back
+    nav: /home

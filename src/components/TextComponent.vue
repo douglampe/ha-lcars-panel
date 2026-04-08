@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { AnimationConfig } from '@/AnimationConfig'
+import { haConfig } from '@/HAConfig'
 import gsap from 'gsap'
 import { computed, onMounted, reactive } from 'vue'
 
@@ -7,6 +8,10 @@ const props = defineProps<{
   text?: string
   textAnimation?: AnimationConfig
 }>()
+
+defineOptions({
+  inheritAttrs: false,
+})
 
 const animated = reactive<{
   typeLength?: number
@@ -19,11 +24,12 @@ const displayText = computed(() => {
 })
 
 onMounted(() => {
-  if (props.textAnimation?.type === 'typing') {
+  if (props.textAnimation?.type === 'typing' && !haConfig.value.disableAnimations) {
     gsap.to(animated, {
       typeLength: props.text?.length,
-      typeDone: true,
-      duration: props.textAnimation?.duration ?? 0.05 * (props.text?.length ?? 0),
+      duration:
+        props.textAnimation?.duration ??
+        (props.textAnimation.interval ?? 0.05) * (props.text?.length ?? 0),
       delay: props.textAnimation?.delay ?? 0,
       ease: 'none',
     })

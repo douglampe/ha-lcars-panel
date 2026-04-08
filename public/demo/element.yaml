@@ -1,0 +1,303 @@
+children:
+  - type: col
+    marginTop: 1
+    marginLeft: 1
+    gap: 10
+    children:
+      - type: sample
+        content: |
+          The basic building block of the LCARS layout system is the element (`type: el`).
+        configYaml: |
+          - type: el
+            textColor: black
+            text: this is some text
+            color: 1
+
+  - type: el
+    mixin: divider
+
+  - type: col
+    marginTop: 1
+    marginLeft: 1
+    gap: 10
+    children:
+      - type: md
+        content: |
+          Elements can be used to create decorative "elbows" on borders by setting outer and inner radii. The vertical
+          portion of the radius (`radY`) is the same as the horizontal portion by default so therefore you can add an outer
+          radius using `radX[corner]` where `[corner]` is the orientation of the "elbow". For example, `radXTopLeft` and
+          `radXInnerTopLeft` would make the element appear as a top-left corner element with both iner and outer radii.
+
+      - type: row
+        gap: 10
+        wrap: true
+        children:
+          - type: sample
+            configYaml: |
+              - type: el
+                width: 2
+                height: 1
+                color: 1
+                radXTopLeft: 1
+          - type: sample
+            configYaml: |
+              - type: el
+                width: 2
+                height: 1
+                color: 1
+                radXTopRight: 1
+          - type: sample
+            configYaml: |
+              - type: el
+                width: 2
+                height: 1
+                color: 1
+                radXBottomLeft: 1
+          - type: sample
+            configYaml: |
+              - type: el
+                width: 2
+                height: 1
+                color: 1
+                radXBottomRight: 1
+      - type: row
+        gap: 10
+        wrap: true
+        children:
+          - type: sample
+            configYaml: |
+              - type: el
+                width: 2
+                height: 2
+                color: 1
+                radXInnerTopLeft: 1
+          - type: sample
+            configYaml: |
+              - type: el
+                width: 2
+                height: 2
+                color: 1
+                radXInnerTopRight: 1
+          - type: sample
+            configYaml: |
+              - type: el
+                width: 2
+                height: 2
+                color: 1
+                radXInnerBottomLeft: 1
+          - type: sample
+            configYaml: |
+              - type: el
+                width: 2
+                height: 2
+                color: 1
+                radXInnerBottomRight: 1
+      - type: row
+        gap: 10
+        wrap: true
+        children:
+          - type: sample
+            configYaml: |
+              - type: el
+                width: 2
+                height: 2
+                color: 1
+                radXTopLeft: 2
+                radXInnerTopLeft: 1
+          - type: sample
+            configYaml: |
+              - type: el
+                width: 2
+                height: 2
+                color: 1
+                radXTopRight: 2
+                radXInnerTopRight: 1
+          - type: sample
+            configYaml: |
+              - type: el
+                width: 2
+                height: 2
+                color: 1
+                radXBottomLeft: 2
+                radXInnerBottomLeft: 1
+          - type: sample
+            configYaml: |
+              - type: el
+                width: 2
+                height: 2
+                color: 1
+                radXBottomRight: 2
+                radXInnerBottomRight: 1
+
+      - type: sample
+        content: |
+          You can set different vertical and horizontal components to the radii by adding `radY[cornder]` and
+          `radYInner[corner]`.
+        configYaml: |
+          - type: el
+            width: 2
+            height: 2
+            color: 1
+            radXTopLeft: 2
+            radYTopLeft: 1
+
+  - type: el
+    mixin: divider
+
+  - type: col
+    marginTop: 1
+    marginLeft: 1
+    gap: 10
+    children:
+      - type: sample
+        content: |
+          Margins can be added above, below, or on either side of an element with `marginTop`, `marginBottom`, 
+          `marginLeft`, and `marginRight`. Margins are measured in LCARS Units.
+        configYaml: |
+          - type: el
+            marginBottom: 1
+            width: 1
+            height: 1
+            color: atomic-tangerine
+          - type: el
+            width: 1
+            height: 1
+            color: indian-red
+
+      - type: sample
+        content: |
+          Padding can be added inside the border of the element using `padTop`, `padBottom`, `padLeft`, and `padRight`
+          or set the same padding on all sides with `pad`. Padding is measured in LCARS Units.
+        configYaml: |
+          - type: el
+            pad: 1
+            color: 1
+            children:
+              - type: el
+                width: 1
+                height: 1
+                color: 2
+
+  - type: el
+    mixin: divider
+
+  - type: col
+    marginTop: 1
+    marginLeft: 1
+    gap: 10
+    children:
+      - type: md
+        content: |
+          To make both corners of any side of an element rounded, set `capTop`, `capBottom`, `capLeft`, or `capRight`
+          to `true`.
+
+      - type: row
+        wrap: true
+        gap: 1
+        children:
+          - type: sample
+            configYaml: |
+              - type: el
+                width: 2
+                height: 1
+                color: golden-tainoi
+                capLeft: true
+          - type: sample
+            configYaml: |
+              - type: el
+                width: 2
+                height: 1
+                color: golden-tainoi
+                capRight: true
+          - type: sample
+            configYaml: |
+              - type: el
+                width: 1
+                height: 2
+                color: golden-tainoi
+                capTop: true
+          - type: sample
+            configYaml: |
+              - type: el
+                width: 1
+                height: 2
+                color: golden-tainoi
+                capBottom: true
+
+      - type: sample
+        content: |
+          To make an element with both ends curved, you can use `pill` as the `type`.
+        configYaml: |
+          - type: pill
+            width: 2
+            height: 1
+            color: golden-tainoi
+            text: Pill
+
+  - type: el
+    mixin: divider
+
+  - type: col
+    marginTop: 1
+    marginLeft: 1
+    gap: 10
+    children:
+      - type: md
+        content: |
+          Curves even work for elements that are sized automatically.
+          ```
+          - type: el
+            height: 4
+            radXTopRight: 1
+            radYTopRight: 2
+            pad: 1
+            alignContent: bottom-left
+            color: 2
+            text: I'm automatically sized but still have curves!
+          ```
+      - type: el
+        height: 4
+        radXTopRight: 1
+        radYTopRight: 2
+        pad: 1
+        alignContent: bottom-left
+        color: 2
+        text: I'm automatically sized but still have curves!
+
+  - type: el
+    mixin: divider
+
+  - type: col
+    marginTop: 1
+    marginLeft: 1
+    gap: 10
+    children:
+      - type: sample
+        content: |
+          The default alignment of content inside an element is to the top and left of the element. To set the 
+          content alignement, use the `alignContent` key. The following options are available:
+
+          - `top-left`: Content is aligned to the top and left of the element (Default)
+          - `top-center`: Content is aligned to the top and centered horizontally in the element
+          - `top-right`: Content is aligned to the top and right of the element
+          - `middle-left`: Content is aligned to the middle vertically and left side of the element
+          - `middle-center`: Content is aligned to the middle vertically and centered horizontally in the element
+          - `middle-right`: Content is aligned to the middle vertically and right side of the element
+          - `bottom-left`: Content is aligned to the bottom and left of the element
+          - `bottom-center`: Content is aligned to the bottom and left of the element
+          - `bottom-right`: Content is aligned to the bottom and left of the element
+        configYaml: |
+          - type: el
+            width: 10
+            height: 5
+            color: dodger-blue
+            textColor: black
+            alignContent: bottom-right
+            text: bottom-right
+
+  - type: pill
+    nav: /demo/colors
+    marginTop: 1
+    marginLeft: 1
+    text: 'Next: Colors'
+    width: 4

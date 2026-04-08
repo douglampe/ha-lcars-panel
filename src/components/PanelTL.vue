@@ -84,7 +84,12 @@ defineOptions({
 </script>
 
 <template>
-  <LCARSRow :margin-top="marginTop" :margin-left="marginLeft" :margin-right="marginRight">
+  <LCARSRow
+    :margin-top="marginTop"
+    :margin-left="marginLeft"
+    :margin-right="marginRight"
+    :stretch="topStretch || fillTopLeft || fillTopRight || fillWidth"
+  >
     <LCARSElement
       :rad-x-top-left="outerRadX"
       :rad-y-top-left="outerRadY"
@@ -95,10 +100,15 @@ defineOptions({
       :height="topHeight + innerRadY"
       :backgroundScale="backgroundScale"
     ></LCARSElement>
-    <LCARSRow :height="topHeight" :fill="fillTopLeft || fillTopRight">
+    <LCARSRow
+      :height="topHeight"
+      :fill="fillTopLeft || fillTopRight"
+      :stretch="topStretch || fillTopLeft || fillTopRight"
+      :gap="topGap"
+    >
       <LCARSElement
         v-if="fillTopLeft"
-        :fill="fillTopLeft"
+        :fill="true"
         :height="topHeight"
         :color="color"
         :animations="topLeftAnimations"
@@ -106,7 +116,7 @@ defineOptions({
       <slot name="top"></slot>
       <LCARSElement
         v-if="fillTopRight"
-        :fill="fillTopRight"
+        :fill="true"
         :height="topHeight"
         :color="color"
         :animations="topRightAnimations"
@@ -125,12 +135,13 @@ defineOptions({
     </LCARSRow>
   </LCARSRow>
   <LCARSRow
-    :fill="fillWidth || fillTopLeft || fillTopRight"
+    :stretch="fillLeftTop || fillLeftBottom || fillHeight"
+    :fill="fillLeftTop || fillLeftBottom || fillHeight"
     :margin-left="marginLeft"
     :margin-right="marginRight"
     :margin-bottom="marginBottom"
   >
-    <LCARSCol>
+    <LCARSCol :width="leftWidth" :stretch="true">
       <LCARSElement
         v-if="fillLeftTop"
         :fill="fillLeftTop"

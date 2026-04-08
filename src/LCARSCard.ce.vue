@@ -1,14 +1,15 @@
 <script setup lang="ts">
-import { onMounted } from 'vue'
+import { onMounted, ref } from 'vue'
 import type { HAConfig } from './HAConfig'
-import { haConfig, loadConfig } from './HAConfig'
-import testConfig from '@/assets/config/demo.yaml?raw'
+import { haConfig, loadConfig, setVariable } from './HAConfig'
+import testConfig from '@/assets/config/welcome.yaml?raw'
 import YAML from 'yaml'
 import ParentComponent from './components/ParentComponent.vue'
 import { loadTestState } from './HAState'
 import ConfigEditor from './components/ConfigEditor.vue'
 
 const { config, loadTest } = defineProps<{ config: HAConfig; loadTest: boolean }>()
+const classes = ref<string[]>([])
 
 function getTestConfig() {
   if (loadTest) {
@@ -52,13 +53,20 @@ onMounted(async () => {
   if (cssRoot) {
     addCssLink(`${cssRoot}ha-lcars-panel.css`)
   }
+
+  const haElement = document.querySelector('home-assistant')
+  if (haElement) {
+    classes.value = ['ha-height-wrapper']
+  }
 })
 </script>
 
 <template>
-  <div class="lcars-wrapper">
-    <ParentComponent :children="haConfig.children" />
-    <ConfigEditor v-if="haConfig.editorEnabled" />
+  <div class="lcars-height-wrapper" :class="classes">
+    <div class="lcars-wrapper">
+      <ParentComponent :children="haConfig.children" />
+      <ConfigEditor v-if="haConfig.editorEnabled" />
+    </div>
   </div>
 </template>
 
@@ -67,7 +75,10 @@ onMounted(async () => {
 @use './styles/main'
 @use './styles/table'
 
-.lcars-wrapper
+.ha-height-wrapper
+  min-height: calc(100vh - var(--header-height)) !important
+
+.lcars-height-wrapper
   background-color: var(--lcars-color-bg)
   color: var(--lcars-color-text)
   font-family: Antonio, "Arial", monospace
@@ -75,9 +86,9 @@ onMounted(async () => {
   line-height: calc(var(--lcars-font-size) * 1.2)
   text-transform: var(--lcars-text-transform)
   min-height: 100vh
-  height: 100%
   display: flex
-  flex-direction: column
+  flex-direction: row
+  align-items: stretch
 
   & pre,
   & code
@@ -87,6 +98,15 @@ onMounted(async () => {
 
   & a
     color: var(--lcars-color-text)
+
+  & h1, h2, h3, h4, h5
+    color: var(--lcars-color-1)
+
+.lcars-wrapper
+  display: flex
+  flex-direction: column
+  align-items: stretch
+  flex: 1
 
 @media all and (orientation: landscape)
   .lcars-portrait-only

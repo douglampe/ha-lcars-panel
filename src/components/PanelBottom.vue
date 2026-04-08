@@ -5,13 +5,10 @@ import LCARSCol from './LCARSCol.vue'
 import LCARSRow from './LCARSRow.vue'
 import LCARSElement from './LCARSElement.vue'
 
-interface PanelAllProps extends MarginProps, RadiusProps {
-  title?: string
+interface PanelBottomProps extends MarginProps, RadiusProps {
   color?: string | number
   fillWidth?: boolean
   fillHeight?: boolean
-  fillTopLeft?: boolean
-  fillTopRight?: boolean
   fillLeftTop?: boolean
   fillLeftBottom?: boolean
   fillRightTop?: boolean
@@ -19,9 +16,7 @@ interface PanelAllProps extends MarginProps, RadiusProps {
   fillBottomLeft?: boolean
   fillBottomRight?: boolean
   gap?: number
-  topHeight?: number
   topCap?: boolean
-  topStretch?: boolean
   leftWidth?: number
   leftPad?: number
   leftColor?: string | number
@@ -43,21 +38,16 @@ interface PanelAllProps extends MarginProps, RadiusProps {
 }
 
 const {
-  title,
   color = 'default',
   fillWidth = true,
   fillHeight = true,
-  fillTopLeft,
-  fillTopRight,
-  fillLeftTop,
-  fillLeftBottom,
-  fillRightTop,
-  fillRightBottom,
-  fillBottomLeft,
-  fillBottomRight,
+  fillLeftTop = true,
+  fillLeftBottom = true,
+  fillRightTop = true,
+  fillRightBottom = true,
+  fillBottomLeft = true,
+  fillBottomRight = true,
   gap = 1,
-  topHeight = 1,
-  topStretch,
   leftWidth = 3,
   leftPad,
   leftColor,
@@ -70,28 +60,19 @@ const {
   rightStretch,
   bottomHeight = 1,
   bottomStretch,
-  radXTopLeft = 2,
-  radYTopLeft = 2,
-  radXTopRight = 2,
-  radYTopRight = 2,
   radXBottomLeft = 2,
   radYBottomLeft = 2,
   radXBottomRight = 2,
   radYBottomRight = 2,
-  radXInnerTopLeft = 1,
-  radYInnerTopLeft = 1,
-  radXInnerTopRight = 1,
-  radYInnerTopRight = 1,
   radXInnerBottomLeft = 1,
   radYInnerBottomLeft = 1,
   radXInnerBottomRight = 1,
   radYInnerBottomRight = 1,
-  marginTop,
   marginBottom,
   marginLeft,
   marginRight,
   backgroundScale = 100,
-} = defineProps<PanelAllProps>()
+} = defineProps<PanelBottomProps>()
 
 defineOptions({
   inheritAttrs: false,
@@ -99,49 +80,6 @@ defineOptions({
 </script>
 
 <template>
-  <LCARSRow
-    :margin-top="marginTop"
-    :margin-left="marginLeft"
-    :margin-right="marginRight"
-    :stretch="topStretch || fillTopLeft || fillTopRight || fillWidth"
-  >
-    <LCARSElement
-      :color="color"
-      :width="leftWidth + radXInnerTopLeft"
-      :height="topHeight + radYInnerTopLeft"
-      :rad-x-top-left="radXTopLeft"
-      :rad-y-top-left="radYTopLeft"
-      :rad-x-inner-top-left="radXInnerTopLeft"
-      :rad-y-inner-top-left="radYInnerTopLeft"
-      :backgroundScale="backgroundScale"
-    ></LCARSElement>
-    <LCARSElement
-      v-if="fillTopLeft || fillWidth"
-      :fill="true"
-      :color="color"
-      :height="topHeight"
-    ></LCARSElement>
-    <slot name="top"></slot>
-    <LCARSElement
-      v-if="fillTopRight || fillWidth"
-      :fill="true"
-      :color="color"
-      :height="topHeight"
-    ></LCARSElement>
-    <LCARSElement v-if="title" :font-size="topHeight" :text-color="color" :line-height="topHeight">
-      {{ title }}
-    </LCARSElement>
-    <LCARSElement
-      :color="color"
-      :width="rightWidth + radXInnerTopRight"
-      :height="topHeight + radYInnerTopRight"
-      :rad-x-top-right="radXTopRight"
-      :rad-y-top-right="radYTopRight"
-      :rad-x-inner-top-right="radXInnerTopRight"
-      :rad-y-inner-top-right="radYInnerTopRight"
-      :backgroundScale="backgroundScale"
-    ></LCARSElement>
-  </LCARSRow>
   <LCARSRow
     :fill="fillHeight"
     :stretch="
@@ -153,7 +91,7 @@ defineOptions({
   >
     <LCARSCol :stretch="leftStretch || fillLeftTop || fillLeftBottom || fillHeight">
       <LCARSElement
-        v-if="fillLeftTop || fillHeight"
+        v-if="fillLeftTop"
         :fill="true"
         :color="leftColor ?? color"
         :width="leftWidth"
@@ -168,7 +106,7 @@ defineOptions({
         <slot name="left"></slot>
       </LCARSCol>
       <LCARSElement
-        v-if="fillLeftBottom || fillHeight"
+        v-if="fillLeftBottom"
         :fill="true"
         :color="leftColor ?? color"
         :width="leftWidth"
@@ -179,7 +117,7 @@ defineOptions({
     </LCARSCol>
     <LCARSCol :stretch="rightStretch || fillRightTop || fillRightBottom || fillHeight">
       <LCARSElement
-        v-if="fillRightTop || fillHeight"
+        v-if="fillRightTop"
         :fill="true"
         :color="rightColor ?? color"
         :width="rightWidth"
@@ -195,7 +133,7 @@ defineOptions({
         <slot name="right"></slot>
       </LCARSCol>
       <LCARSElement
-        v-if="fillRightBottom || fillHeight"
+        v-if="fillRightBottom"
         :fill="true"
         :color="rightColor ?? color"
         :width="rightWidth"
@@ -221,14 +159,20 @@ defineOptions({
       :backgroundScale="backgroundScale"
     ></LCARSElement>
     <LCARSElement
-      v-if="fillBottomLeft || fillWidth"
+      v-if="fillBottomLeft"
+      :fill="true"
+      :color="color"
+      :height="bottomHeight"
+    ></LCARSElement>
+    <LCARSElement
+      v-if="fillWidth"
       :fill="true"
       :color="color"
       :height="bottomHeight"
     ></LCARSElement>
     <slot name="bottom"></slot>
     <LCARSElement
-      v-if="fillBottomRight || fillWidth"
+      v-if="fillBottomRight"
       :fill="true"
       :color="color"
       :height="bottomHeight"

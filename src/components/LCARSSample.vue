@@ -28,7 +28,7 @@ onMounted(() => {
   <div>
     <LCARSMarkdown v-if="content" :content="content"></LCARSMarkdown>
     <p v-if="content"></p>
-    <LCARSRow :margin-bottom="1">
+    <LCARSRow :wrap="true">
       <pre>{{ configYaml }}</pre>
       <LCARSCol :margin-left="1"
         ><RecursiveComponent v-if="parsedConfig" v-bind="parsedConfig"></RecursiveComponent>

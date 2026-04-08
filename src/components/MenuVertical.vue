@@ -71,7 +71,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <LCARSCol :gap="gap">
+  <LCARSCol :gap="gap" :stretch="true">
     <LCARSElement
       v-for="(item, index) in visibleItems"
       :key="item.text"

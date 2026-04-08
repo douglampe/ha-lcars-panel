@@ -47,7 +47,6 @@ const {
   leftColor,
   leftStretch = true,
   bottomHeight = 1,
-  bottomGap,
   bottomStretch = true,
   outerRadX = 2,
   outerRadY = 2,
@@ -67,12 +66,15 @@ defineOptions({
 
 <template>
   <LCARSRow
-    :fill="fillHeight"
+    :stretch="leftStretch || fillLeftTop || fillLeftBottom || fillHeight"
     :margin-top="marginTop"
     :margin-left="marginLeft"
     :margin-right="marginRight"
   >
-    <LCARSCol :stretch="leftStretch" :width="leftWidth">
+    <LCARSCol
+      :stretch="leftStretch || fillLeftTop || fillLeftBottom || fillHeight"
+      :width="leftWidth"
+    >
       <LCARSElement
         v-if="topCap"
         :cap-top="true"
@@ -82,7 +84,7 @@ defineOptions({
       ></LCARSElement>
       <LCARSElement
         v-if="fillLeftTop"
-        :fill="fillLeftTop"
+        :fill="true"
         :color="leftColor ?? color"
         :width="leftWidth"
       ></LCARSElement>
@@ -97,7 +99,7 @@ defineOptions({
       </LCARSCol>
       <LCARSElement
         v-if="fillLeftBottom"
-        :fill="fillLeftBottom"
+        :fill="true"
         :color="leftColor ?? color"
         :width="leftWidth"
       ></LCARSElement>
@@ -108,6 +110,7 @@ defineOptions({
   </LCARSRow>
   <LCARSRow
     bottom
+    :stretch="bottomStretch"
     :margin-left="marginLeft"
     :margin-right="marginRight"
     :margin-bottom="marginBottom"
@@ -122,17 +125,21 @@ defineOptions({
       :rad-y-inner-bottom-left="innerRadY"
       :backgroundScale="backgroundScale"
     ></LCARSElement>
-    <LCARSRow :height="bottomHeight" :fill="fillBottomLeft || fillBottomRight">
+    <LCARSRow
+      :height="bottomHeight"
+      :fill="fillBottomLeft || fillBottomRight"
+      :stretch="fillBottomLeft || fillBottomRight || fillWidth"
+    >
       <LCARSElement
         v-if="fillBottomLeft"
-        :fill="fillBottomLeft"
+        :fill="true"
         :color="color"
         :height="bottomHeight"
       ></LCARSElement>
       <slot name="bottom"></slot>
       <LCARSElement
         v-if="fillBottomRight"
-        :fill="fillBottomRight"
+        :fill="true"
         :color="color"
         :height="bottomHeight"
       ></LCARSElement>

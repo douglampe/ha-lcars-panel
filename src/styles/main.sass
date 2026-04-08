@@ -2,6 +2,9 @@
 
 :root
   --lcars-unit: 2vw
+  --lcars-unit-lg: 3.33vw
+  --lcars-unit-md: 5vw
+  --lcars-unit-sm: 6vw
   --lcars-color-bg: var(--lcars-color-black)
   --lcars-color-inner-rad-bg: var(--lcars-color-black)
   --lcars-color-default: var(--lcars-color-golden-tainoi)
@@ -9,6 +12,18 @@
   --lcars-font-size: calc(var(--lcars-unit) * 0.6)
   --lcars-color-code: var(--lcars-color-black-russian)
   --lcars-text-transform: uppercase
+
+@media all and (min-width: 768px) and (max-width: 1023px)
+  :root
+    --lcars-unit: var(--lcars-unit-lg)
+
+@media all and (min-width: 576px) and (max-width: 767px)
+  :root
+    --lcars-unit: var(--lcars-unit-md)
+
+@media all and (max-width: 575px)
+  :root
+    --lcars-unit: var(--lcars-unit-sm)
 
   ha-lcars-panel,
   ha-lcars-layout

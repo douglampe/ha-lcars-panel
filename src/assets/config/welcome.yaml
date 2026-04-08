@@ -1,0 +1,139 @@
+type: custom:ha-lcars-panel
+disableAnimations: false
+remoteRoot: /ha-lcars-panel
+mixins:
+  divider:
+    height: 0.2
+    color: 1
+    marginTop: 1
+    marginBottom: 1
+  pageWrapper:
+    marginTop: 1
+    marginLeft: 1
+    gap: 10
+  menuItem:
+    height: 1
+    pad: 0.1
+    alignContent: middle-right
+nav:
+  - text: Demo
+    children:
+      - text: Setup
+      - text: Unit
+      - text: Element
+      - text: Colors
+      - text: Text
+      - text: Layout
+      - text: Panels
+      - text: State
+      - text: Actions
+      - text: Cards
+      - text: Navigation
+        children:
+          - text: Menu
+            key: menu
+            children:
+              - text: Vertical Sample
+                children:
+                  - text: These
+                  - text: Are
+                  - text: Vertical
+              - text: Horizontal Sample
+                children:
+                  - text: These
+                  - text: Are
+                  - text: Horizontal
+      - text: Animation
+        children:
+          - text: Grow All
+          - text: Grow Down
+          - text: Grow Up
+          - text: Grow Left
+          - text: Grow Right
+          - text: Children
+      - text: Config
+  - text: Samples
+    children:
+      - text: Sun
+children:
+  - showForNav: /home
+    type: panel-tl
+    fillLeftBottom: true
+    topLeftAnimations:
+      in:
+        - type: grow-right
+          delay: 0.5
+    leftBottomAnimations:
+      in:
+        - type: grow-down
+          delay: 1
+    children:
+      - type: md
+        textAnimation:
+          type: typing
+          delay: 1
+        content: |
+          Greetings, captain.
+
+          Welcome to HA LCARS.
+
+          I am here to get you acquainted with the LCARS
+          layout system.
+
+          I can walk you through the system step-by-step, or you can jump right in by browsing sample dashboards or 
+          exploring the API.
+      - type: row
+        gap: 1
+        children:
+          - type: pill
+            nav: /demo/setup
+            width: 6
+            marginTop: 1
+            text: Begin Demonstration
+            animations:
+              in:
+                - type: grow-right
+                  delay: 11
+          - type: pill
+            nav: /samples/index
+            width: 6
+            marginTop: 1
+            text: Browse Samples
+            color: 2
+            animations:
+              in:
+                - type: grow-right
+                  delay: 11.5
+          - type: pill
+            nav: /api
+            width: 6
+            marginTop: 1
+            text: Browse API
+            color: 3
+            animations:
+              in:
+                - type: grow-right
+                  delay: 12
+  - showForNav: /demo
+    type: nav-remote
+    rootPath: /demo
+  - showForNav: /samples
+    type: remote
+    url: ~/samples/index.yaml?raw
+  - showForNav: /api
+    type: panel-tl
+    fillLeftBottom: true
+    leftChildren:
+      - type: el
+        color: 2
+        text: Home
+        nav: /home
+        textColor: black
+      - type: el
+        color: 3
+        text: Demo
+        nav: /demo/setup
+        textColor: black
+    children:
+      - type: remote
+        url: ~/api.yaml?raw

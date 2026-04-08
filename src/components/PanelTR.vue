@@ -51,7 +51,6 @@ const {
   fillTopRight = true,
   gap = 1,
   topCap,
-  topGap,
   topHeight = 1,
   topStretch,
   bottomCap,
@@ -85,7 +84,11 @@ defineOptions({
 
 <template>
   <LCARSRow :margin-top="marginTop" :margin-left="marginLeft" :margin-right="marginRight">
-    <LCARSRow :height="topHeight" :fill="fillWidth">
+    <LCARSRow
+      :height="topHeight"
+      :fill="fillWidth"
+      :stretch="topStretch || fillTopLeft || fillTopRight || fillWidth"
+    >
       <LCARSElement
         v-if="topCap"
         :height="topHeight"
@@ -99,7 +102,7 @@ defineOptions({
       </LCARSElement>
       <LCARSElement
         v-if="fillTopLeft"
-        :fill="fillTopLeft"
+        :fill="true"
         :color="color"
         :height="topHeight"
         :animations="topLeftAnimations"
@@ -107,7 +110,7 @@ defineOptions({
       <slot name="top"></slot>
       <LCARSElement
         v-if="fillTopRight"
-        :fill="fillTopRight"
+        :fill="true"
         :color="color"
         :height="topHeight"
         :animations="topRightAnimations"
@@ -125,6 +128,7 @@ defineOptions({
     ></LCARSElement>
   </LCARSRow>
   <LCARSRow
+    :stretch="fillRightTop || fillRightBottom || fillHeight"
     :fill="fillWidth || fillTopLeft || fillTopRight"
     :margin-left="marginLeft"
     :margin-right="marginRight"
@@ -133,10 +137,10 @@ defineOptions({
     <LCARSCol :fill="fillWidth" :margin-right="rightPad">
       <slot></slot>
     </LCARSCol>
-    <LCARSCol>
+    <LCARSCol :stretch="fillRightTop || fillRightBottom">
       <LCARSElement
         v-if="fillRightTop"
-        :fill="fillRightTop"
+        :fill="true"
         :color="rightColor ?? color"
         :width="rightWidth"
         :animations="rightTopAnimations"
@@ -145,14 +149,14 @@ defineOptions({
         v-if="$slots.right"
         :margin-top="(rightGap || gap || 0) / 10"
         :margin-bottom="(rightGap || gap || 0) / 10"
-        :stretch="rightStretch"
+        :stretch="rightStretch || fillRightTop || fillRightBottom || fillHeight"
         :gap="rightGap ?? gap"
       >
         <slot name="right"></slot>
       </LCARSCol>
       <LCARSElement
         v-if="fillRightBottom"
-        :fill="fillRightBottom"
+        :fill="true"
         :color="rightColor ?? color"
         :width="rightWidth"
         :animations="rightBottomAnimations"

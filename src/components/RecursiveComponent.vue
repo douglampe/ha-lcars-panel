@@ -12,6 +12,7 @@ import LoadingComponent from './LoadingComponent.vue'
 import LCARSMarkdown from './LCARSMarkdown.vue'
 import { applyStepAnimation, type AnimationConfig } from '@/AnimationConfig'
 import TextComponent from './TextComponent.vue'
+import { haConfig } from '@/HAConfig'
 
 const props = useAttrs()
 
@@ -122,7 +123,7 @@ function setVisibility(visible: boolean) {
 function triggerAnimations() {
   if (props.children) {
     const children = props.children as ConfigItem[]
-    if (props.childrenAnimation) {
+    if (props.childrenAnimation && !haConfig.value.disableAnimations) {
       const animation = props.childrenAnimation as AnimationConfig
       if (animation.type === 'build') {
         applyStepAnimation(animation, animated, 'children', children.length)
@@ -133,7 +134,7 @@ function triggerAnimations() {
   }
   if (props.topChildren) {
     const topChildren = props.topChildren as ConfigItem[]
-    if (props.topChildrenAnimation) {
+    if (props.topChildrenAnimation && !haConfig.value.disableAnimations) {
       const animation = props.topChildrenAnimation as AnimationConfig
       if (animation.type === 'build') {
         applyStepAnimation(animation, animated, 'top', topChildren.length)
@@ -144,7 +145,7 @@ function triggerAnimations() {
   }
   if (props.bottomChildren) {
     const bottomChildren = props.bottomChildren as ConfigItem[]
-    if (props.bottomChildrenAnimation) {
+    if (props.bottomChildrenAnimation && !haConfig.value.disableAnimations) {
       const animation = props.bottomChildrenAnimation as AnimationConfig
       if (animation.type === 'build') {
         applyStepAnimation(animation, animated, 'bottom', bottomChildren.length)
@@ -155,7 +156,7 @@ function triggerAnimations() {
   }
   if (props.leftChildren) {
     const leftChildren = props.leftChildren as ConfigItem[]
-    if (props.leftChildrenAnimation) {
+    if (props.leftChildrenAnimation && !haConfig.value.disableAnimations) {
       const animation = props.leftChildrenAnimation as AnimationConfig
       if (animation.type === 'build') {
         applyStepAnimation(animation, animated, 'left', leftChildren.length)
@@ -166,7 +167,7 @@ function triggerAnimations() {
   }
   if (props.rightChildren) {
     const rightChildren = props.rightChildren as ConfigItem[]
-    if (props.rightChildrenAnimation) {
+    if (props.rightChildrenAnimation && !haConfig.value.disableAnimations) {
       const animation = props.rightChildrenAnimation as AnimationConfig
       if (animation.type === 'build') {
         applyStepAnimation(animation, animated, 'right', rightChildren.length)
@@ -212,21 +213,24 @@ const visibleChildren = computed(() => {
   return undefined
 })
 
-watch(
-  () => haState.value,
-  () => {
-    onStateUpdated()
-  },
-  { deep: true },
-)
+if (!haConfig.value?.disableWatchers) {
+  watch(
+    () => haState.value,
+    () => {
+      onStateUpdated()
+    },
+    { deep: true },
+  )
 
-watch(
-  () => currentNav.value,
-  () => {
-    checkVisibility()
-  },
-  { deep: true },
-)
+  watch(
+    () => currentNav.value,
+    () => {
+      checkVisibility()
+      onStateUpdated()
+    },
+    { deep: true },
+  )
+}
 
 onMounted(() => {
   if (!processedProps.value) {

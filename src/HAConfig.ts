@@ -13,7 +13,9 @@ export interface HAConfig {
   nav?: NavItem[]
   theme?: string
   remoteRoot?: string
+  disableAnimations?: boolean
   editorEnabled?: boolean
+  disableWatchers?: boolean
 }
 
 export const haConfig = ref<HAConfig>({

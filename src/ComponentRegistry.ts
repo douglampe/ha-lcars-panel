@@ -18,8 +18,12 @@ import MenuVertical from './components/MenuVertical.vue'
 import NavRemote from './components/NavRemote.vue'
 import PanelAll from './components/PanelAll.vue'
 import PanelBL from './components/PanelBL.vue'
+import PanelBottom from './components/PanelBottom.vue'
 import PanelBR from './components/PanelBR.vue'
+import PanelLeft from './components/PanelLeft.vue'
+import PanelRight from './components/PanelRight.vue'
 import PanelTL from './components/PanelTL.vue'
+import PanelTop from './components/PanelTop.vue'
 import PanelTR from './components/PanelTR.vue'
 import RecursiveComponent from './components/RecursiveComponent.vue'
 import RemoteConfig from './components/RemoteConfig.vue'
@@ -28,6 +32,7 @@ import StateTable from './components/StateTable.vue'
 import StateValue from './components/StateValue.vue'
 import ScaleHorizontal from './components/ScaleHorizontal.vue'
 import StateValueTable from './components/StateValueTable.vue'
+import TextComponent from './components/TextComponent.vue'
 
 export const components = {} as Record<string, any>
 
@@ -48,8 +53,12 @@ export function registerAllComponents() {
   registerComponent('nav-remote', NavRemote)
   registerComponent('panel-all', PanelAll)
   registerComponent('panel-bl', PanelBL)
+  registerComponent('panel-b', PanelBottom)
   registerComponent('panel-br', PanelBR)
+  registerComponent('panel-l', PanelLeft)
+  registerComponent('panel-r', PanelRight)
   registerComponent('panel-tl', PanelTL)
+  registerComponent('panel-t', PanelTop)
   registerComponent('panel-tr', PanelTR)
   registerComponent('pill', LCARSPill)
   registerComponent('remote', RemoteConfig)
@@ -61,6 +70,7 @@ export function registerAllComponents() {
   registerComponent('state-value-table', StateValueTable)
   registerComponent('state-table', StateTable)
   registerComponent('table', LCARSTable)
+  registerComponent('text', TextComponent)
   registerComponent('theme-sample', LCARSThemeSample)
 }
 
