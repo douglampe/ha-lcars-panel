@@ -108,9 +108,9 @@ children:
               
               ![HA LCARS Logo](https://raw.githubusercontent.com/douglampe/ha-lcars-panel/refs/heads/version-0-demo/public/favicon.svg)
 
-      - type: pill
-        nav: /demo/layout
-        marginTop: 1
-        marginLeft: 1
-        text: 'Next: Layout'
-        width: 4
+  - type: pill
+    nav: /demo/layout
+    marginTop: 1
+    marginLeft: 1
+    text: 'Next: Layout'
+    width: 4

@@ -1,0 +1,31 @@
+children:
+  - type: col
+    mixin: pageWrapper
+    children:
+      - type: md
+        content: |
+          To use Home Assistant cards with LCARS, you need to use the `ha-lcars-layout` layout. You can then add any home 
+          assistant card using the `cards` key just like any layout. Then use the `ha-card` type to place the card within
+          an LCARS parent. Set `cardIndex` to the position of the card in the `cards` list with the first card being `0`.
+
+          ```
+          views:
+            - path: api
+              title: LCARS
+              type: custom:ha-lcars-layout
+              cards:
+                - show_name: true
+                  show_icon: true
+                  type: button
+                  entity: input_boolean.test_boolean_1
+              children:
+                - type: ha-card
+                  cardIndex: 0
+          ```
+
+  - type: pill
+    nav: /demo/navigation
+    marginTop: 1
+    marginLeft: 1
+    text: 'Next: Navigation'
+    width: 4

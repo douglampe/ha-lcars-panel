@@ -27,8 +27,9 @@ onMounted(() => {
   if (props.textAnimation?.type === 'typing' && !haConfig.value.disableAnimations) {
     gsap.to(animated, {
       typeLength: props.text?.length,
-      typeDone: true,
-      duration: props.textAnimation?.duration ?? 0.05 * (props.text?.length ?? 0),
+      duration:
+        props.textAnimation?.duration ??
+        (props.textAnimation.interval ?? 0.05) * (props.text?.length ?? 0),
       delay: props.textAnimation?.delay ?? 0,
       ease: 'none',
     })

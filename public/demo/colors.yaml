@@ -80,9 +80,9 @@ children:
             marginTop: 1
             rootPath: /demo/colors
 
-      - type: pill
-        nav: /demo/text
-        marginTop: 1
-        marginLeft: 1
-        text: 'Next: Text'
-        width: 4
+  - type: pill
+    nav: /demo/text
+    marginTop: 1
+    marginLeft: 1
+    text: 'Next: Text'
+    width: 4

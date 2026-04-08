@@ -1,0 +1,138 @@
+children:
+  - type: col
+    mixin: pageWrapper
+    children:
+      - type: md
+        content: |
+          Navigation can be configured via the top-level `nav` key. This key can contain a list of 
+          navigation items. Each item can have children which establishes a hierarchy that can be used to generate 
+          navigation elements usable across your dashboard.
+
+          Example:
+          ```
+          nav:
+            - text: Home
+              key: home
+              url: /home.yaml
+              children:
+                - text: Bridge
+                - text: Crew
+                - text: 10 Fwd
+          ```
+
+          Note that only the `text` key is required. The `key` will be generated
+          from the text by converting to lowercase and replacing spaces with `-`
+          so in the example above, `10 Fwd` would have the key `10-fwd`.
+
+          Paths generated from the nav config use forward slashes so the following
+          config would navigate to the `10 Fwd` item:
+
+          ```
+          - type: pill
+            text: 10 Fwd
+            nav: /home/10-fwd
+          ```
+
+  - type: el
+    mixin: divider
+
+  - type: col
+    mixin: pageWrapper
+    children:
+      - type: sample
+        content: |
+          Local navigation uses the `showForNav` key to have any item and its
+          children visible only for certain navigation paths. The default navigation path is 
+          `/home` so setting this value means the item will be visible by default but will
+          be hidden when navigating to any path that does not start with `/home`.
+        configYaml: |
+          - type: row
+            children:
+              - type: pill
+                text: Nav
+                nav: /demo/navigation/test
+                color: golden-tainoi
+              - type: el
+                showForNav: /demo/navigation/test
+                marginLeft: 0.5
+                pad: 0.2
+                color: indian-red
+                text: Khaaaan!!!!
+
+      - type: sample
+        content: |
+          You can navigate via the browser by prefixing
+          the value with `url:`.
+        configYaml: |
+          - type: col
+            gap: 1
+            children:
+            - type: pill
+              text: Google
+              nav: url:https://google.com
+              color: golden-tainoi
+            - type: pill
+              text: Root Path
+              nav: url:/ha-lcars-panel
+              color: golden-tainoi
+            - tag: a
+              name: foo
+            - type: pill
+              text: Anchor
+              nav: url:#foo
+              color: golden-tainoi
+
+  - type: el
+    mixin: divider
+
+  - type: col
+    mixin: pageWrapper
+    children:
+      - type: sample
+        content: |
+          You can create menus from the `nav` config using the `menu-vertical` and
+          `menu-horizontal` components.
+
+          ```
+          nav:
+            - text: Demo
+              children:
+                - text: Navigation
+                  children:
+                    - text: Menu
+                      key: menu
+                      children:
+                        - text: Vertical Sample
+                          children:
+                            - text: These
+                            - text: Are
+                            - text: Vertical
+                        - text: Horizontal Sample
+                          children:
+                            - text: These
+                            - text: Are
+                            - text: Horizontal
+          ```
+
+        configYaml: |
+          - type: menu-vertical
+            rootPath: /demo/navigation/menu/vertical-sample
+            width: 4
+            gap: 1
+            aligntContent: middle-left
+            pad: 0.1
+      - type: sample
+        configYaml: |
+          - type: menu-horizontal
+            rootPath: /demo/navigation/menu/horizontal-sample
+            height: 1
+            width: 3
+            gap: 1
+            alignContent: middle-center
+
+  - type: pill
+    nav: /demo/animation
+    marginTop: 1
+    marginLeft: 1
+    text: 'Next: Animation'
+    width: 4

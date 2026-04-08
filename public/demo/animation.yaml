@@ -2,7 +2,6 @@ children:
   - type: col
     marginTop: 1
     marginLeft: 1
-    gap: 10
     children:
       - type: sample
         content: |
@@ -16,7 +15,7 @@ children:
               character at a time.
             textAnimation:
               type: typing
-              duration: 0.025
+              interval: 0.02
           - type: md
             content: |
               This even works with markdown.
@@ -27,100 +26,104 @@ children:
             textAnimation:
               type: typing
               delay: 3
-  - type: el
-    mixin: divider
 
-  - type: col
+  - type: panel-tl
     marginTop: 1
-    marginLeft: 1
-    gap: 10
+    leftWidth: 3
+    leftStretch: true
+    leftChildren:
+      - type: menu-vertical
+        mixin: menuItem
+        rootPath: /demo/animation
     children:
       - type: md
         content: |
           You can apply animations to any element with the `animations` property. Use the `in` property of the
           animation to define an animation for when the element appears.
-      - type: row
-        gap: 10
-        children:
-          - type: menu-vertical
-            rootPath: /demo/animation
-          - type: sample
-            showForNav: /demo/animation/grow-all
-            configYaml: |
+      - type: sample
+        showForNav: /demo/animation/grow-all
+        configYaml: |
+          - type: el
+            width: 5
+            height: 5
+            color: 1
+            animations:
+              in:
+                - type: grow
+                  duration: 0.5
+      - type: sample
+        showForNav: /demo/animation/grow-down
+        configYaml: |
+          - type: el
+            width: 5
+            height: 5
+            color: 1
+            animations:
+              in:
+                - type: grow-down
+      - type: sample
+        showForNav: /demo/animation/grow-up
+        configYaml: |
+          - type: el
+            width: 5
+            height: 5
+            color: 1
+            animations:
+              in:
+                - type: grow-up
+      - type: sample
+        showForNav: /demo/animation/grow-right
+        configYaml: |
+          - type: el
+            width: 5
+            height: 5
+            color: 1
+            animations:
+              in:
+                - type: grow-right
+      - type: sample
+        showForNav: /demo/animation/grow-left
+        configYaml: |
+          - type: el
+            width: 5
+            height: 5
+            color: 1
+            animations:
+              in:
+                - type: grow-left
+      - type: sample
+        showForNav: /demo/animation/children
+        content: |
+          Most elements that support children also support animating how those children appear. Currently, the only
+          supported animation type is `build` which will make the children appear one at a time.
+        configYaml: |
+          - type: row
+            gap: 1
+            childrenAnimation:
+              type: build
+            children:
               - type: el
-                width: 5
-                height: 5
+                text: Child 1
                 color: 1
-                animations:
-                  in:
-                    - type: grow
-                      duration: 0.5
-          - type: sample
-            showForNav: /demo/animation/grow-down
-            configYaml: |
+                width: 3
+                textColor: black
+                alignContent: middle-center
               - type: el
-                width: 5
-                height: 5
-                color: 1
-                animations:
-                  in:
-                    - type: grow-down
-          - type: sample
-            showForNav: /demo/animation/grow-up
-            configYaml: |
+                text: Child 2
+                color: 2
+                width: 3
+                textColor: black
+                alignContent: middle-center
               - type: el
-                width: 5
-                height: 5
-                color: 1
-                animations:
-                  in:
-                    - type: grow-up
-          - type: sample
-            showForNav: /demo/animation/grow-right
-            configYaml: |
-              - type: el
-                width: 5
-                height: 5
-                color: 1
-                animations:
-                  in:
-                    - type: grow-right
-          - type: sample
-            showForNav: /demo/animation/grow-left
-            configYaml: |
-              - type: el
-                width: 5
-                height: 5
-                color: 1
-                animations:
-                  in:
-                    - type: grow-left
-          - type: sample
-            showForNav: /demo/animation/children
-            content: |
-              Most elements that support children also support animating how those children appear. Currently, the only
-              supported animation type is `build` which will make the children appear one at a time.
-            configYaml: |
-              - type: row
-                gap: 1
-                childrenAnimation:
-                  type: build
-                children:
-                  - type: el
-                    text: Child 1
-                    color: 1
-                    width: 3
-                    textColor: black
-                    alignContent: middle-center
-                  - type: el
-                    text: Child 2
-                    color: 2
-                    width: 3
-                    textColor: black
-                    alignContent: middle-center
-                  - type: el
-                    text: Child 3
-                    color: 3
-                    width: 3
-                    textColor: black
-                    alignContent: middle-center
+                text: Child 3
+                color: 3
+                width: 3
+                textColor: black
+                alignContent: middle-center
+
+  - type: pill
+    nav: /demo/config
+    marginTop: 1
+    marginLeft: 1
+    text: 'Next: Config'
+    width: 4

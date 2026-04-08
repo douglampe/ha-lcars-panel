@@ -232,9 +232,9 @@ children:
                 height: 4
                 text: content
 
-      - type: pill
-        nav: /demo/state
-        marginTop: 1
-        marginLeft: 1
-        text: 'Next: State'
-        width: 4
+  - type: pill
+    nav: /demo/state
+    marginTop: 1
+    marginLeft: 1
+    text: 'Next: State'
+    width: 4

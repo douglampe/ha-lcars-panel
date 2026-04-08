@@ -23,9 +23,7 @@ children:
     mixin: divider
 
   - type: col
-    marginTop: 1
-    marginLeft: 1
-    gap: 10
+    mixin: pageWrapper
     children:
       - type: sample
         content: |
@@ -56,9 +54,7 @@ children:
     mixin: divider
 
   - type: col
-    marginTop: 1
-    marginLeft: 1
-    gap: 10
+    mixin: pageWrapper
     children:
       - type: sample
         content: |
@@ -83,9 +79,7 @@ children:
     mixin: divider
 
   - type: col
-    marginTop: 1
-    marginLeft: 1
-    gap: 10
+    mixin: pageWrapper
     children:
       - type: sample
         content: |
@@ -229,9 +223,9 @@ children:
                   color: cosmic
                   text: Inactive
 
-      - type: pill
-        nav: /demo/animation
-        marginTop: 1
-        marginLeft: 1
-        text: 'Next: Animation'
-        width: 4
+  - type: pill
+    nav: /demo/actions
+    marginTop: 1
+    marginLeft: 1
+    text: 'Next: Actions'
+    width: 4
