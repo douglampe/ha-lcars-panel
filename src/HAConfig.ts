@@ -33,7 +33,21 @@ export function loadConfig(config: any) {
   if (!config) {
     return
   }
-  haConfig.value = config
+  haConfig.value = {
+    theme: 'default',
+    positioning: 'relative',
+    disableAnimations: false,
+    editorEnabled: false,
+    disableWatchers: false,
+    vars: {
+      lcars_unit: '2vw',
+      lcars_unit_lg: '3.33vw',
+      lcars_unit_md: '5vw',
+      lcars_unit_sm: '6vw',
+      lcars_text_transform: 'uppercase',
+    },
+    ...config,
+  }
   loadMixins(config)
   if (config.theme) {
     loadTheme(config.theme)
