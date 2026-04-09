@@ -2,7 +2,7 @@ import { ref } from 'vue'
 import type { ConfigItem } from './ConfigItem'
 import { renderTemplate } from 'ha-nunjucks'
 import { currentNav } from './LocalNav'
-import { haConfig } from './HAConfig'
+import type { HAConfig } from './HAConfig'
 
 export interface HAState {
   states: Record<string, any>
@@ -98,7 +98,7 @@ export function applyTemplates(configItem: ConfigItem) {
       const oldValue = configItem[valueKey as keyof ConfigItem]
       const newValue = renderTemplate(haState.value as any, configItem[key as keyof ConfigItem], {
         currentNav: currentNav.value,
-        config: haConfig.value,
+        config: configItem.config,
       })
       if (newValue !== oldValue) {
         configItem[valueKey as keyof ConfigItem] = newValue

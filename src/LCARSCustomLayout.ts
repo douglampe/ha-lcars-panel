@@ -1,10 +1,11 @@
 import { haState } from './HAState'
-import { haCards, haConfig, loadConfig } from './HAConfig'
+import { haCards, loadConfig, type HAConfig } from './HAConfig'
 import './editor.ts'
 
 export class LCARSCustomLayout extends HTMLElement {
   private vueElement: any
   private test: boolean = false
+  private haConfig: HAConfig | null = null
 
   static get observedAttributes() {
     return ['config', 'test']
@@ -52,6 +53,7 @@ export class LCARSCustomLayout extends HTMLElement {
   }
 
   setConfig(config: any) {
+    this.haConfig = config
     loadConfig(config)
 
     if (this.vueElement) {
@@ -71,7 +73,7 @@ export class LCARSCustomLayout extends HTMLElement {
   connectedCallback() {
     if (!this.vueElement) {
       this.vueElement = document.createElement('lcars-card')
-      this.vueElement.config = haConfig.value ?? { children: [] }
+      this.vueElement.config = this.haConfig ?? { children: [] }
       this.vueElement.loadTest = this.test
       this.shadowRoot?.appendChild(this.vueElement)
 

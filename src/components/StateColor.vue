@@ -4,7 +4,7 @@ import gsap from 'gsap'
 
 import { getStateValue, haState } from '@/HAState'
 import LCARSElement from './LCARSElement.vue'
-import { haConfig } from '@/HAConfig'
+import type { HAConfig } from '@/HAConfig'
 
 const {
   entity,
@@ -13,6 +13,7 @@ const {
   textColor,
   min = 0,
   max = 100,
+  config,
 } = defineProps<{
   entity?: string
   attribute?: string
@@ -20,6 +21,7 @@ const {
   textColor?: string | number
   min?: number
   max?: number
+  config?: HAConfig
 }>()
 
 function brightnessFactor() {
@@ -40,7 +42,7 @@ function animateValue(newValue: number) {
   gsap.to(reactiveValue, { duration: 1, number: newValue })
 }
 
-if (!haConfig.value?.disableWatchers) {
+if (!config?.disableWatchers) {
   watch(
     () => (entity ? getStateValue(haState.value, entity, attribute) : undefined),
     (v) => {

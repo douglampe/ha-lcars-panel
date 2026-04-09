@@ -4,7 +4,7 @@ import { computed, onMounted, reactive } from 'vue'
 import LCARSElement from './LCARSElement.vue'
 import type { AnimationConfig } from '@/AnimationConfig'
 import gsap from 'gsap'
-import { haConfig } from '@/HAConfig'
+import type { HAConfig } from '@/HAConfig'
 
 marked.use({
   renderer: {
@@ -15,9 +15,10 @@ marked.use({
   },
 })
 
-const { content, textAnimation } = defineProps<{
+const { content, textAnimation, config } = defineProps<{
   content?: string
   textAnimation?: AnimationConfig
+  config?: HAConfig
 }>()
 const animated = reactive<{ typeLength?: number }>({})
 
@@ -39,7 +40,7 @@ const html = computed(() => {
 
 onMounted(() => {
   animated.typeLength = (content ?? '').length
-  if (textAnimation?.type === 'typing' && !haConfig.value.disableAnimations) {
+  if (textAnimation?.type === 'typing' && !config?.disableAnimations) {
     const targetLength = animated.typeLength
     animated.typeLength = 0
     gsap.to(animated, {

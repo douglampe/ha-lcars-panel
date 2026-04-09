@@ -1,5 +1,5 @@
 import type { AnimationConfig, Animations } from './AnimationConfig'
-import { mixins } from './HAConfig'
+import { mixins, type HAConfig } from './HAConfig'
 import { getStateValue, haState } from './HAState'
 import type { ElementProps } from './props/ElementProps'
 import type { PanelProps } from './props/PanelProps'
@@ -7,6 +7,7 @@ import type { RowProps } from './props/RowProps'
 import type { TapActionProps } from './props/TapActionProps'
 
 export interface ConfigItem extends ElementProps, PanelProps, RowProps, TapActionProps {
+  config?: HAConfig
   type?: string
   id?: string
   tag?: string
@@ -28,7 +29,6 @@ export interface ConfigItem extends ElementProps, PanelProps, RowProps, TapActio
   leftChildrenAnimation?: AnimationConfig
   rightChildrenAnimation?: AnimationConfig
   childrenAnimation?: AnimationConfig
-  config?: Record<string, any>
   mixin?: string
   url?: string
   textAnimation?: AnimationConfig

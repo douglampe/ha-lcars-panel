@@ -11,19 +11,13 @@ export interface HAConfig {
   children: ConfigItem[]
   positioning?: string
   nav?: NavItem[]
+  navStructure?: NavItem[]
   theme?: string
   remoteRoot?: string
   disableAnimations?: boolean
   editorEnabled?: boolean
   disableWatchers?: boolean
 }
-
-export const haConfig = ref<HAConfig>({
-  type: 'ha-lcars-panel',
-  vars: {},
-  mixins: {},
-  children: [],
-} as HAConfig)
 
 export const haCards = ref<Array<any>>([])
 
@@ -33,7 +27,7 @@ export function loadConfig(config: any) {
   if (!config) {
     return
   }
-  haConfig.value = {
+  const processedConfig = {
     theme: 'default',
     positioning: 'relative',
     disableAnimations: false,
@@ -48,14 +42,22 @@ export function loadConfig(config: any) {
     },
     ...config,
   }
-  loadMixins(config)
-  if (config.theme) {
-    loadTheme(config.theme)
-  } else {
-    loadTheme('default')
+  loadMixins(processedConfig)
+  loadTheme(processedConfig.theme)
+  loadVariables(processedConfig)
+  loadMenu(processedConfig)
+  addConfigToItems(processedConfig.children, processedConfig)
+
+  return processedConfig
+}
+
+export function addConfigToItems(items: ConfigItem[], config: HAConfig) {
+  for (const item of items) {
+    item.config = config
+    if (item.children) {
+      addConfigToItems(item.children, config)
+    }
   }
-  loadVariables(config)
-  loadMenu()
 }
 
 export function setVariable(key: string, value: string) {

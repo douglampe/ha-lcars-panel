@@ -1,17 +1,11 @@
 import { defineCustomElement } from 'vue'
 
 import LCARSCardEditorCe from './LCARSCardEditor.ce.vue'
-import { haConfig } from './HAConfig'
-
 customElements.define('lcars-card-editor', defineCustomElement(LCARSCardEditorCe))
 
 class LCARSCustomCardEditor extends HTMLElement {
   setConfig(config: any) {
-    if (!config) {
-      return
-    }
-
-    haConfig.value = config
+    // TODO: Figure out if this is needed and implement
   }
 
   static getStubConfig() {

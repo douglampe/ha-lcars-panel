@@ -36,14 +36,14 @@ function unscale(value?: number, defaultValue = 0) {
 }
 
 //TODO: Resolve color names to hex values
-function resolveColor(color?: string | number) {
+function resolveColor(themeName: string | undefined, color?: string | number) {
   if (color) {
     if (typeof color === 'number') {
-      const themeColor = getThemeColor(color)
+      const themeColor = getThemeColor(themeName, color)
       if (themeColor.startsWith('#')) {
         return themeColor
       }
-      return resolveColor(themeColor)
+      return resolveColor(themeName, themeColor)
     } else if (color.startsWith('#') || color.startsWith('rgb') || color.startsWith('hsl')) {
       return color
     } else {
@@ -171,7 +171,7 @@ export function createRadiusSvg(
     return
   }
 
-  const fill = resolveColor(config.color)
+  const fill = resolveColor(config.config?.theme, config.color)
 
   const processedConfig = {
     ...config,
