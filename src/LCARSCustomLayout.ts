@@ -53,11 +53,10 @@ export class LCARSCustomLayout extends HTMLElement {
   }
 
   setConfig(config: any) {
-    this.haConfig = config
-    loadConfig(config)
+    this.haConfig = loadConfig(config)
 
     if (this.vueElement) {
-      this.vueElement.config = config
+      this.vueElement.config = this.haConfig
     }
   }
 
