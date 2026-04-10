@@ -47,7 +47,7 @@ function getNavPath(item: NavItem) {
 }
 
 onMounted(() => {
-  const rootItem = findByPath(rootPath ?? '/')
+  const rootItem = findByPath(config?.navStructure, rootPath ?? '/')
 
   if (!rootItem) {
     return

@@ -51,9 +51,19 @@ export function loadConfig(config: any) {
   return processedConfig
 }
 
+export function getMinConfig(config: HAConfig) {
+  return {
+    vars: config.vars,
+    mixins: config.mixins,
+    navStructure: config.navStructure,
+    type: '',
+    children: [],
+  }
+}
+
 export function addConfigToItems(items: ConfigItem[], config: HAConfig) {
   for (const item of items) {
-    item.config = config
+    item.config = getMinConfig(config)
     if (item.children) {
       addConfigToItems(item.children, config)
     }

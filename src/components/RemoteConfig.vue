@@ -33,6 +33,7 @@ async function getRemoteConfig(item: ConfigItem) {
       }
 
       if (props.config) {
+        remoteConfig.config = props.config
         addConfigToItems(remoteConfig.children, props.config)
       }
 

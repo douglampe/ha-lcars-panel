@@ -4,6 +4,7 @@ import type { ConfigItem } from '@/ConfigItem'
 import { computed, useAttrs } from 'vue'
 import ParentComponent from './ParentComponent.vue'
 import LCARSElement from './LCARSElement.vue'
+import type { HAConfig } from '@/HAConfig'
 
 defineOptions({
   inheritAttrs: false,
@@ -11,7 +12,7 @@ defineOptions({
 
 const attrs = useAttrs() as any
 
-const { children = [] } = defineProps<{ children?: ConfigItem[] }>()
+const { children = [], config } = defineProps<{ children?: ConfigItem[]; config: HAConfig }>()
 
 const filteredAttrs = computed(() => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars
@@ -22,6 +23,8 @@ const filteredAttrs = computed(() => {
 
 <template>
   <LCARSElement positioning="relative" style="display: inline-block" v-bind="filteredAttrs">
-    <ParentComponent :children="children" childPositioning="absolute"> ></ParentComponent>
+    <ParentComponent :children="children" :config="config" childPositioning="absolute">
+      ></ParentComponent
+    >
   </LCARSElement>
 </template>

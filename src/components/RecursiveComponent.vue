@@ -120,7 +120,8 @@ function setVisibility(visible: boolean) {
 }
 
 function triggerAnimations() {
-  if (processedProps.value?.config?.disableAnimations) {
+  const config = (props as ConfigItem).config
+  if (config?.disableAnimations) {
     return
   }
   if (props.children) {
@@ -215,7 +216,7 @@ const visibleChildren = computed(() => {
   return undefined
 })
 
-if (!processedProps.value?.config?.disableWatchers) {
+if (!(props as ConfigItem).config?.disableWatchers) {
   watch(
     () => haState.value,
     () => {
@@ -235,6 +236,9 @@ if (!processedProps.value?.config?.disableWatchers) {
 }
 
 onMounted(() => {
+  if (props.type === 'menu-vertical') {
+    console.log(props)
+  }
   if (!processedProps.value) {
     processedProps.value = processItem(props as ConfigItem)
   }
@@ -260,17 +264,33 @@ onMounted(() => {
     <LCARSMarkdown v-if="processedProps?.md" :content="processedProps.md" />
     <a v-if="props.showForNav" :name="props.showForNav"></a>
     <template #left v-if="visibleLeftChildren">
-      <ParentComponent :children="visibleLeftChildren as Array<ConfigItem>" />
+      <ParentComponent
+        :children="visibleLeftChildren as Array<ConfigItem>"
+        :config="(props as ConfigItem).config ?? ({} as any)"
+      />
     </template>
     <template #top v-if="visibleTopChildren">
-      <ParentComponent :children="visibleTopChildren as Array<ConfigItem>" />
+      <ParentComponent
+        :children="visibleTopChildren as Array<ConfigItem>"
+        :config="(props as ConfigItem).config ?? ({} as any)"
+      />
     </template>
     <template #bottom v-if="visibleBottomChildren">
-      <ParentComponent :children="visibleBottomChildren as Array<ConfigItem>" />
+      <ParentComponent
+        :children="visibleBottomChildren as Array<ConfigItem>"
+        :config="(props as ConfigItem).config ?? ({} as any)"
+      />
     </template>
     <template #right v-if="visibleRightChildren">
-      <ParentComponent :children="visibleRightChildren as Array<ConfigItem>" />
+      <ParentComponent
+        :children="visibleRightChildren as Array<ConfigItem>"
+        :config="(props as ConfigItem).config ?? ({} as any)"
+      />
     </template>
-    <ParentComponent v-if="visibleChildren" :children="visibleChildren as Array<ConfigItem>" />
+    <ParentComponent
+      v-if="visibleChildren"
+      :children="visibleChildren as Array<ConfigItem>"
+      :config="(props as ConfigItem).config ?? ({} as any)"
+    />
   </component>
 </template>

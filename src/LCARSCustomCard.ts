@@ -51,7 +51,7 @@ export class LCARSCustomCard extends HTMLElement {
     this.haConfig = loadConfig(config)
 
     if (this.vueElement) {
-      this.vueElement.config = config
+      this.vueElement.config = this.haConfig
     }
   }
 
