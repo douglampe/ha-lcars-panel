@@ -40,7 +40,7 @@ export function loadConfig(config: any) {
       lcars_unit_sm: '6vw',
       lcars_text_transform: 'uppercase',
     },
-    ...config,
+    ...structuredClone(config),
   }
   loadMixins(processedConfig)
   loadTheme(processedConfig.theme)
@@ -61,7 +61,10 @@ export function getMinConfig(config: HAConfig) {
   }
 }
 
-export function addConfigToItems(items: ConfigItem[], config: HAConfig) {
+export function addConfigToItems(items: ConfigItem[] | undefined, config: HAConfig) {
+  if (!items) {
+    return
+  }
   for (const item of items) {
     item.config = getMinConfig(config)
     if (item.children) {

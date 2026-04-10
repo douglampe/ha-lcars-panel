@@ -48,6 +48,8 @@ onMounted(async () => {
     const ha = document.createElement('home-assistant') as any
     ha.connected = true
     ha.connection = { connected: true }
+  } else {
+    haConfig.value = config
   }
   const cssRoot = getCssRoot()
   if (cssRoot) {
