@@ -8,6 +8,7 @@ import LCARSTable from './LCARSTable.vue'
 import LCARSPill from './LCARSPill.vue'
 import LCARSModal from './LCARSModal.vue'
 import PanelTL from './PanelTL.vue'
+import type { HAConfig } from '@/HAConfig'
 
 interface APIProperty {
   name: string
@@ -27,9 +28,10 @@ interface APITopic {
 
 defineOptions({ inheritAttrs: false })
 
-const { topics, properties } = useAttrs() as {
+const { topics, properties, config } = useAttrs() as {
   topics?: Record<string, APITopic[]>
   properties?: Record<string, string>
+  config: HAConfig
 }
 
 const categories = computed(() => {
@@ -99,7 +101,7 @@ function getPropertyDescription(property: APIProperty): string | undefined {
         <LCARSMarkdown :content="getPropertyDescription(property)" />
       </td>
       <td v-if="property.action">
-        <LCARSModal v-if="property.modalContent" :text="property.action">
+        <LCARSModal v-if="property.modalContent" :text="property.action" :config="config">
           <PanelTL :color="'golden-tainoi'" :fillWidth="true">
             <LCARSElement color="black">
               <LCARSMarkdown :content="property.modalContent" />

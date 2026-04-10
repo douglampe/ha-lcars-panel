@@ -14,7 +14,7 @@ defineOptions({
 const visible = ref(false)
 const attrs = useAttrs()
 
-const { children } = defineProps<{
+const { children, config } = defineProps<{
   children?: ConfigItem[]
   config: HAConfig
 }>()
