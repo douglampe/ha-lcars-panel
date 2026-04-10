@@ -68,6 +68,9 @@ children:
         - type: grow-down
           delay: 1
     children:
+      - type: pill
+        text: go
+        nav: /demo/navigation
       - type: md
         textAnimation:
           type: typing

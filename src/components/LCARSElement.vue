@@ -6,7 +6,6 @@ import { alignStyle, colorVar, marginStyle, padStyle, removeUndefined, unitSize 
 import { callService } from '@/HAState'
 import type { ConfigItem } from '@/ConfigItem'
 import { createRadiusSvg } from '@/props/RadiusProps'
-import { haConfig } from '@/HAConfig'
 import { applyInAnimations } from '@/AnimationConfig'
 
 const config = defineProps<ConfigItem>()
@@ -57,7 +56,7 @@ const styleObject = computed(() => {
     margin: marginStyle(config),
     padding: padStyle(config),
     cursor: config.button || config.nav || config.tapAction ? 'pointer' : undefined,
-    position: config.positioning ?? haConfig.value.positioning ?? undefined,
+    position: config.positioning ?? config?.config?.positioning ?? undefined,
     textTransform: config.textTransform,
     ...(config.style ?? {}),
   })

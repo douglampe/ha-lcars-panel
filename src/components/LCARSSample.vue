@@ -6,8 +6,13 @@ import LCARSRow from './LCARSRow.vue'
 import RecursiveComponent from './RecursiveComponent.vue'
 import YAML from 'yaml'
 import type { ConfigItem } from '@/ConfigItem'
+import { addConfigToItems, type HAConfig } from '@/HAConfig'
 
-const { content, configYaml } = defineProps<{ content?: string; configYaml?: string }>()
+const { content, configYaml, config } = defineProps<{
+  content?: string
+  configYaml?: string
+  config: HAConfig
+}>()
 const parsedConfig = ref<ConfigItem>()
 
 defineOptions({
@@ -15,11 +20,13 @@ defineOptions({
 })
 
 onMounted(() => {
-  if (!configYaml) {
-    parsedConfig.value = {}
-  } else {
+  if (configYaml) {
     const yamlConfig = YAML.parse(configYaml)
-    parsedConfig.value = Array.isArray(yamlConfig) ? { children: yamlConfig } : { ...yamlConfig }
+    const sampleConfig = Array.isArray(yamlConfig)
+      ? { children: yamlConfig, config }
+      : { ...yamlConfig }
+    addConfigToItems(sampleConfig.children, config)
+    parsedConfig.value = sampleConfig
   }
 })
 </script>
@@ -30,8 +37,8 @@ onMounted(() => {
     <p v-if="content"></p>
     <LCARSRow :wrap="true">
       <pre>{{ configYaml }}</pre>
-      <LCARSCol :margin-left="1"
-        ><RecursiveComponent v-if="parsedConfig" v-bind="parsedConfig"></RecursiveComponent>
+      <LCARSCol :margin-left="1">
+        <RecursiveComponent v-if="parsedConfig" v-bind="parsedConfig"></RecursiveComponent>
       </LCARSCol>
     </LCARSRow>
   </div>

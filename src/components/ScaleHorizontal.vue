@@ -6,7 +6,7 @@ import { callService, getStateValue, haState } from '../HAState'
 import { colorVar, removeUndefined, unitSize } from '@/Layout'
 import { useGesture } from '@vueuse/gesture'
 import { useMotionProperties, useSpring } from '@vueuse/motion'
-import { haConfig } from '@/HAConfig'
+import type { HAConfig } from '@/HAConfig'
 
 const {
   entity,
@@ -24,6 +24,7 @@ const {
   service,
   serviceKey,
   data,
+  config,
 } = defineProps<{
   entity?: string
   attribute?: string
@@ -41,6 +42,7 @@ const {
   service?: string
   serviceKey?: string
   data?: any
+  config?: HAConfig
 }>()
 
 defineOptions({
@@ -73,7 +75,7 @@ function animateValue(newData: any) {
   gsap.to(reactiveValueX, { duration: 1, number: newData.valueX })
 }
 
-if (!haConfig.value?.disableWatchers) {
+if (!config?.disableWatchers) {
   watch(
     () => getValue(haState.value),
     (v) => {

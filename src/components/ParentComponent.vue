@@ -1,14 +1,16 @@
 <script setup lang="ts">
 import type { ConfigItem } from '@/ConfigItem'
 import RecursiveComponent from './RecursiveComponent.vue'
+import type { HAConfig } from '@/HAConfig'
 
 defineOptions({
   inheritAttrs: false,
 })
 
-const { children, childPositioning } = defineProps<{
+const { children, childPositioning, config } = defineProps<{
   children: ConfigItem[]
   childPositioning?: string
+  config: HAConfig
 }>()
 </script>
 
@@ -17,6 +19,7 @@ const { children, childPositioning } = defineProps<{
     v-for="(child, index) in children"
     :key="index"
     v-bind="child"
+    :config="config"
     :positioning="child.positioning ?? childPositioning"
   />
 </template>

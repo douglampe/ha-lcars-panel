@@ -12,7 +12,6 @@ import LoadingComponent from './LoadingComponent.vue'
 import LCARSMarkdown from './LCARSMarkdown.vue'
 import { applyStepAnimation, type AnimationConfig } from '@/AnimationConfig'
 import TextComponent from './TextComponent.vue'
-import { haConfig } from '@/HAConfig'
 
 const props = useAttrs()
 
@@ -121,9 +120,13 @@ function setVisibility(visible: boolean) {
 }
 
 function triggerAnimations() {
+  const config = (props as ConfigItem).config
+  if (config?.disableAnimations) {
+    return
+  }
   if (props.children) {
     const children = props.children as ConfigItem[]
-    if (props.childrenAnimation && !haConfig.value.disableAnimations) {
+    if (props.childrenAnimation) {
       const animation = props.childrenAnimation as AnimationConfig
       if (animation.type === 'build') {
         applyStepAnimation(animation, animated, 'children', children.length)
@@ -134,7 +137,7 @@ function triggerAnimations() {
   }
   if (props.topChildren) {
     const topChildren = props.topChildren as ConfigItem[]
-    if (props.topChildrenAnimation && !haConfig.value.disableAnimations) {
+    if (props.topChildrenAnimation) {
       const animation = props.topChildrenAnimation as AnimationConfig
       if (animation.type === 'build') {
         applyStepAnimation(animation, animated, 'top', topChildren.length)
@@ -145,7 +148,7 @@ function triggerAnimations() {
   }
   if (props.bottomChildren) {
     const bottomChildren = props.bottomChildren as ConfigItem[]
-    if (props.bottomChildrenAnimation && !haConfig.value.disableAnimations) {
+    if (props.bottomChildrenAnimation) {
       const animation = props.bottomChildrenAnimation as AnimationConfig
       if (animation.type === 'build') {
         applyStepAnimation(animation, animated, 'bottom', bottomChildren.length)
@@ -156,7 +159,7 @@ function triggerAnimations() {
   }
   if (props.leftChildren) {
     const leftChildren = props.leftChildren as ConfigItem[]
-    if (props.leftChildrenAnimation && !haConfig.value.disableAnimations) {
+    if (props.leftChildrenAnimation) {
       const animation = props.leftChildrenAnimation as AnimationConfig
       if (animation.type === 'build') {
         applyStepAnimation(animation, animated, 'left', leftChildren.length)
@@ -167,7 +170,7 @@ function triggerAnimations() {
   }
   if (props.rightChildren) {
     const rightChildren = props.rightChildren as ConfigItem[]
-    if (props.rightChildrenAnimation && !haConfig.value.disableAnimations) {
+    if (props.rightChildrenAnimation) {
       const animation = props.rightChildrenAnimation as AnimationConfig
       if (animation.type === 'build') {
         applyStepAnimation(animation, animated, 'right', rightChildren.length)
@@ -213,7 +216,7 @@ const visibleChildren = computed(() => {
   return undefined
 })
 
-if (!haConfig.value?.disableWatchers) {
+if (!(props as ConfigItem).config?.disableWatchers) {
   watch(
     () => haState.value,
     () => {
@@ -233,6 +236,9 @@ if (!haConfig.value?.disableWatchers) {
 }
 
 onMounted(() => {
+  if (props.type === 'menu-vertical') {
+    console.log(props)
+  }
   if (!processedProps.value) {
     processedProps.value = processItem(props as ConfigItem)
   }
@@ -258,17 +264,33 @@ onMounted(() => {
     <LCARSMarkdown v-if="processedProps?.md" :content="processedProps.md" />
     <a v-if="props.showForNav" :name="props.showForNav"></a>
     <template #left v-if="visibleLeftChildren">
-      <ParentComponent :children="visibleLeftChildren as Array<ConfigItem>" />
+      <ParentComponent
+        :children="visibleLeftChildren as Array<ConfigItem>"
+        :config="(props as ConfigItem).config ?? ({} as any)"
+      />
     </template>
     <template #top v-if="visibleTopChildren">
-      <ParentComponent :children="visibleTopChildren as Array<ConfigItem>" />
+      <ParentComponent
+        :children="visibleTopChildren as Array<ConfigItem>"
+        :config="(props as ConfigItem).config ?? ({} as any)"
+      />
     </template>
     <template #bottom v-if="visibleBottomChildren">
-      <ParentComponent :children="visibleBottomChildren as Array<ConfigItem>" />
+      <ParentComponent
+        :children="visibleBottomChildren as Array<ConfigItem>"
+        :config="(props as ConfigItem).config ?? ({} as any)"
+      />
     </template>
     <template #right v-if="visibleRightChildren">
-      <ParentComponent :children="visibleRightChildren as Array<ConfigItem>" />
+      <ParentComponent
+        :children="visibleRightChildren as Array<ConfigItem>"
+        :config="(props as ConfigItem).config ?? ({} as any)"
+      />
     </template>
-    <ParentComponent v-if="visibleChildren" :children="visibleChildren as Array<ConfigItem>" />
+    <ParentComponent
+      v-if="visibleChildren"
+      :children="visibleChildren as Array<ConfigItem>"
+      :config="(props as ConfigItem).config ?? ({} as any)"
+    />
   </component>
 </template>

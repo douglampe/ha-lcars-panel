@@ -2,11 +2,11 @@
 import { computed, onMounted, reactive, ref, watch } from 'vue'
 import LCARSElement from './LCARSElement.vue'
 import LCARSRow from './LCARSRow.vue'
-import { haConfig } from '@/HAConfig'
 import { findByPath, type NavItem } from '@/NavItem'
 import { getThemeColor } from '@/ThemeConfig'
 import gsap from 'gsap'
 import type { Animations } from '@/AnimationConfig'
+import type { HAConfig } from '@/HAConfig'
 
 defineOptions({
   inheritAttrs: false,
@@ -18,12 +18,14 @@ const {
   navToFirstChild = false,
   gap,
   animations,
+  config,
 } = defineProps<{
   textColor?: string | number
   rootPath?: string
   navToFirstChild?: boolean
   gap?: number
   animations?: Animations
+  config?: HAConfig
 }>()
 
 const visibleCount = reactive({ value: 0 })
@@ -45,7 +47,7 @@ function getNavPath(item: NavItem) {
 }
 
 onMounted(() => {
-  const rootItem = findByPath(rootPath ?? '/')
+  const rootItem = findByPath(config?.navStructure, rootPath ?? '/')
 
   if (!rootItem) {
     return
@@ -78,7 +80,7 @@ onMounted(() => {
       :nav="getNavPath(item)"
       :text="item.text"
       :textColor="textColor"
-      :color="getThemeColor(index + 1)"
+      :color="getThemeColor(config?.theme, index + 1)"
       v-bind="$attrs"
       >{{ item.text }}</LCARSElement
     >

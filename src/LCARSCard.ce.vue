@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
 import type { HAConfig } from './HAConfig'
-import { haConfig, loadConfig, setVariable } from './HAConfig'
+import { getMinConfig, loadConfig } from './HAConfig'
 import testConfig from '@/assets/config/welcome.yaml?raw'
 import YAML from 'yaml'
 import ParentComponent from './components/ParentComponent.vue'
@@ -10,13 +10,13 @@ import ConfigEditor from './components/ConfigEditor.vue'
 
 const { config, loadTest } = defineProps<{ config: HAConfig; loadTest: boolean }>()
 const classes = ref<string[]>([])
+const haConfig = ref<HAConfig>()
 
 function getTestConfig() {
   if (loadTest) {
     const testConfigParsed = YAML.parse(testConfig)
-    loadConfig(testConfigParsed)
     loadTestState()
-    return testConfigParsed
+    return loadConfig(testConfigParsed)
   }
 }
 
@@ -63,9 +63,9 @@ onMounted(async () => {
 
 <template>
   <div class="lcars-height-wrapper" :class="classes">
-    <div class="lcars-wrapper">
-      <ParentComponent :children="haConfig.children" />
-      <ConfigEditor v-if="haConfig.editorEnabled" />
+    <div class="lcars-wrapper" v-if="haConfig">
+      <ParentComponent :children="haConfig.children" :config="getMinConfig(haConfig)" />
+      <ConfigEditor v-if="haConfig.editorEnabled" :config="getMinConfig(haConfig)" />
     </div>
   </div>
 </template>

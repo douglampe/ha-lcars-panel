@@ -5,6 +5,7 @@ import { ref, useAttrs } from 'vue'
 import ParentComponent from './ParentComponent.vue'
 import LCARSPill from './LCARSPill.vue'
 import LCARSElement from './LCARSElement.vue'
+import type { HAConfig } from '@/HAConfig'
 
 defineOptions({
   inheritAttrs: false,
@@ -15,6 +16,7 @@ const attrs = useAttrs()
 
 const { children } = defineProps<{
   children?: ConfigItem[]
+  config: HAConfig
 }>()
 </script>
 
@@ -44,7 +46,7 @@ const { children } = defineProps<{
       "
     >
       <div style="position: relative">
-        <ParentComponent v-if="children" :children="children" />
+        <ParentComponent v-if="children" :children="children" :config="config" />
         <slot></slot>
         <LCARSElement alignContent="middle-center">
           <div @click="visible = false" style="cursor: pointer">
