@@ -236,9 +236,6 @@ if (!(props as ConfigItem).config?.disableWatchers) {
 }
 
 onMounted(() => {
-  if (props.type === 'menu-vertical') {
-    console.log(props)
-  }
   if (!processedProps.value) {
     processedProps.value = processItem(props as ConfigItem)
   }
