@@ -122,8 +122,8 @@ children:
                 alignContent: middle-center
 
   - type: pill
-    nav: /demo/config
+    nav: /demo/components
     marginTop: 1
     marginLeft: 1
-    text: 'Next: Config'
+    text: 'Next: Components'
     width: 4

@@ -13,7 +13,7 @@ import LCARSMarkdown from './LCARSMarkdown.vue'
 import { applyStepAnimation, type AnimationConfig } from '@/AnimationConfig'
 import TextComponent from './TextComponent.vue'
 
-const props = useAttrs()
+const props = useAttrs() as any
 
 const processedProps = ref<ConfigItem>()
 const renderKey = ref(0)
@@ -85,7 +85,10 @@ function getComponentType(cmps: Record<string, any>) {
   }
 
   if (props.type) {
-    const cmpType = cmps[props.type as any as string]
+    if ((props.type as string).startsWith('user:')) {
+      return cmps.user
+    }
+    const cmpType = cmps[props.type as string]
     if (cmpType) {
       return cmpType
     }
@@ -183,35 +186,35 @@ function triggerAnimations() {
 
 const visibleTopChildren = computed(() => {
   if (props.topChildren) {
-    return (props.topChildren as any).slice(0, animated.top)
+    return props.topChildren.slice(0, animated.top)
   }
   return undefined
 })
 
 const visibleBottomChildren = computed(() => {
   if (props.bottomChildren) {
-    return (props.bottomChildren as any).slice(0, animated.bottom)
+    return props.bottomChildren.slice(0, animated.bottom)
   }
   return undefined
 })
 
 const visibleLeftChildren = computed(() => {
   if (props.leftChildren) {
-    return (props.leftChildren as any).slice(0, animated.left)
+    return props.leftChildren.slice(0, animated.left)
   }
   return undefined
 })
 
 const visibleRightChildren = computed(() => {
   if (props.rightChildren) {
-    return (props.rightChildren as any).slice(0, animated.right)
+    return props.rightChildren.slice(0, animated.right)
   }
   return undefined
 })
 
 const visibleChildren = computed(() => {
   if (props.children) {
-    return (props.children as any).slice(0, animated.children)
+    return props.children.slice(0, animated.children)
   }
   return undefined
 })
