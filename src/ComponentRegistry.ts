@@ -33,6 +33,7 @@ import StateValue from './components/StateValue.vue'
 import ScaleHorizontal from './components/ScaleHorizontal.vue'
 import StateValueTable from './components/StateValueTable.vue'
 import TextComponent from './components/TextComponent.vue'
+import UserComponent from './components/UserComponent.vue'
 
 export const components = {} as Record<string, any>
 
@@ -72,6 +73,7 @@ export function registerAllComponents() {
   registerComponent('table', LCARSTable)
   registerComponent('text', TextComponent)
   registerComponent('theme-sample', LCARSThemeSample)
+  registerComponent('user', UserComponent)
 }
 
 function registerComponent(key: string, component: any) {

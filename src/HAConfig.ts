@@ -17,6 +17,7 @@ export interface HAConfig {
   disableAnimations?: boolean
   editorEnabled?: boolean
   disableWatchers?: boolean
+  components?: Record<string, ConfigItem>
 }
 
 export const haCards = ref<Array<any>>([])
@@ -56,6 +57,7 @@ export function getMinConfig(config: HAConfig) {
     vars: config.vars,
     mixins: config.mixins,
     navStructure: config.navStructure,
+    components: config.components,
     type: '',
     children: [],
   }

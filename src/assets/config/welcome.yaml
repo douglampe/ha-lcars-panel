@@ -1,6 +1,12 @@
 type: custom:ha-lcars-panel
 disableAnimations: false
 remoteRoot: /ha-lcars-panel
+components:
+  myComponent:
+    type: panel-tl
+    children:
+      - type: pill
+        text_template: '{{ props.text }}'
 mixins:
   divider:
     height: 0.2
@@ -51,6 +57,7 @@ nav:
           - text: Grow Left
           - text: Grow Right
           - text: Children
+      - text: Components
       - text: Config
   - text: Samples
     children:
@@ -68,9 +75,6 @@ children:
         - type: grow-down
           delay: 1
     children:
-      - type: pill
-        text: go
-        nav: /demo/navigation
       - type: md
         textAnimation:
           type: typing

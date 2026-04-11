@@ -1,0 +1,31 @@
+children:
+  - type: col
+    mixin: pageWrapper
+    children:
+      - type: md
+        content: |
+          You can create your own custom components using the top-level `components` key. You can use the `_template` 
+          suffix and `props` prefix in order to use templates to set any value when the component is used. To use a
+          component, set the type to `user:[componentKey]`.
+
+          ```
+          type: custom:ha-lcars-panel
+          components:
+          myComponent:
+            type: panel-tl
+            children:
+              - type: pill
+                text_template: '{{ props.text }}'
+          ```
+
+      - type: sample
+        configYaml: |
+          - type: 'user:myComponent'
+            text: 'Hello LCARS!'
+
+  - type: pill
+    nav: /demo/config
+    marginTop: 1
+    marginLeft: 1
+    text: 'Next: Config'
+    width: 4
