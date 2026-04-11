@@ -7,6 +7,16 @@ components:
     children:
       - type: pill
         text_template: '{{ props.text }}'
+  myStateComponent:
+    type: pill
+    color: blue
+    textColor: black
+    text_template: "{% raw %}{{ states('{% endraw %}{{ props.entity }}{% raw %}') }}{% endraw %}"
+    tapAction:
+      action: call-service
+      service: light.toggle
+      data:
+        entity_id_template: '{{ props.entity }}'
 mixins:
   divider:
     height: 0.2
