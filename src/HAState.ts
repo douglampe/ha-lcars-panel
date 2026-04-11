@@ -89,7 +89,7 @@ function pushStateValue(
   }
 }
 
-export function applyTemplates(configItem: ConfigItem, props?: any) {
+export function applyTemplates(configItem: ConfigItem) {
   let applied = false
   for (const key in configItem) {
     if (key.endsWith('_template')) {
@@ -98,21 +98,11 @@ export function applyTemplates(configItem: ConfigItem, props?: any) {
       const newValue = renderTemplate(haState.value as any, configItem[key as keyof ConfigItem], {
         currentNav: currentNav.value,
         config: configItem.config,
-        props,
       })
       if (newValue !== oldValue) {
         configItem[valueKey as keyof ConfigItem] = newValue
-        if (props) {
-          delete configItem[key as keyof ConfigItem]
-        }
         applied = true
       }
-    }
-  }
-
-  if (props && configItem.children) {
-    for (const child of configItem.children) {
-      applyTemplates(child, props)
     }
   }
 

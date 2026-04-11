@@ -213,6 +213,8 @@ children:
             tapAction:
               action: call-service
               service: light.toggle
+              data:
+                entity_id: light.test
             stateMap:
               entity: light.test
               states:

@@ -17,11 +17,35 @@ children:
               - type: pill
                 text_template: '{{ props.text }}'
           ```
-
       - type: sample
         configYaml: |
           - type: 'user:myComponent'
             text: 'Hello LCARS!'
+      - type: sample
+        content: |
+          You can even use Home Assistant state templates inside of custom components. Component properties are always
+          processed first so you will need to wrap any part of the template in `{% raw %}...{% endraw %}` that you want
+          to be retained until after the properties are applied. In the example below, the props will be applied to make
+          the `text_template` value `{{ states('light.test') }}` which will then be processed any time the state 
+          changes.
+
+          ```
+          type: custom:ha-lcars-panel
+          components:
+            myStateComponent:
+              type: pill
+              color: blue
+              textColor: black
+              text_template: "{% raw %}{{ states('{% endraw %}{{ props.entity }}{% raw %}') }}{% endraw %}"
+              tapAction:
+                action: call-service
+                service: light.toggle
+                data:
+                  entity_id_tempate: '{{ props.entity }}'
+          ```
+        configYaml: |
+          - type: user:myStateComponent
+            entity: light.test
 
   - type: pill
     nav: /demo/config
