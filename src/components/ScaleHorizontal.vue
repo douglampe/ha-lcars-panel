@@ -7,13 +7,21 @@ import { colorVar, removeUndefined, unitSize } from '@/Layout'
 import { useGesture } from '@vueuse/gesture'
 import { useMotionProperties, useSpring } from '@vueuse/motion'
 import type { HAConfig } from '@/HAConfig'
+import LCARSRow from './LCARSRow.vue'
+import LCARSElement from './LCARSElement.vue'
+import type { TapActionProps } from '@/props/TapActionProps'
 
 const {
   entity,
   attribute,
+  title,
+  titleColor,
+  titleWidth,
+  titleTapAction,
   width = 10,
   height = 3,
   color = 'golden-tainoi',
+  borderColor = 1,
   gridColor = 'periwinkle',
   stroke = 2,
   min = 0,
@@ -24,13 +32,22 @@ const {
   service,
   serviceKey,
   data,
+  topBorder,
+  bottomBorder,
+  leftBorder,
+  rightBorder,
   config,
 } = defineProps<{
   entity?: string
   attribute?: string
+  title?: string
+  titleColor?: string | number
+  titleWidth?: number
+  titleTapAction?: TapActionProps
   width?: number
   height?: number
   color?: string | number
+  borderColor?: string | number
   bgColor?: string | number
   gridColor?: string | number
   stroke?: number
@@ -42,6 +59,10 @@ const {
   service?: string
   serviceKey?: string
   data?: any
+  topBorder?: number
+  bottomBorder?: number
+  leftBorder?: number
+  rightBorder?: number
   config?: HAConfig
 }>()
 
@@ -190,12 +211,32 @@ const ticks = computed(() => {
       position: 'absolute',
     })
   }
-  return ticksArray
+  return ticksArray as any[]
 })
 </script>
 <template>
-  <div ref="scale" :style="styleObject">
-    <div :style="barStyle"></div>
-    <div v-for="(tick, index) in ticks" :key="index" :style="tick as any"></div>
-  </div>
+  <LCARSRow v-if="topBorder">
+    <LCARSElement v-if="topBorder" :color="borderColor" :fill="true" :height="topBorder" />
+  </LCARSRow>
+  <LCARSRow :stretch="true">
+    <LCARSElement
+      v-if="title"
+      :color="borderColor"
+      :textColor="titleColor"
+      :tapAction="titleTapAction"
+      :width="titleWidth"
+      :pad="0.2"
+      alignContent="middle-right"
+      >{{ title }}</LCARSElement
+    >
+    <LCARSElement v-if="leftBorder" :color="borderColor" :width="leftBorder"></LCARSElement>
+    <div ref="scale" :style="styleObject">
+      <div :style="barStyle"></div>
+      <div v-for="(tick, index) in ticks" :key="index" :style="tick"></div>
+    </div>
+    <LCARSElement v-if="rightBorder" :color="borderColor" :width="rightBorder"></LCARSElement>
+  </LCARSRow>
+  <LCARSRow v-if="bottomBorder">
+    <LCARSElement v-if="bottomBorder" :color="borderColor" :fill="true" :height="bottomBorder" />
+  </LCARSRow>
 </template>

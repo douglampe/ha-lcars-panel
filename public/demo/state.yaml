@@ -181,9 +181,18 @@ children:
             max: 255
             tickInterval: 25.5
             color: golden-tainoi
+            borderColor: 3
+            topBorder: 0.5
             gridColor: dodger-blue
             service: light.turn_on
             serviceKey: brightness
+            title: Light
+            titleColor: black
+            titleTapAction:
+              action: call-service
+              service: light.toggle
+              data:
+                entity_id: light.test
       - type: sample
         configYaml: |
           - type: scale-h
