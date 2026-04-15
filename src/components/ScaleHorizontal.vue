@@ -27,8 +27,10 @@ const {
   min = 0,
   max = 100,
   tickInterval = 10,
+  tickFontSize = 1,
   decimalPlaces,
   showGrid = true,
+  showTickLabels,
   service,
   serviceKey,
   data,
@@ -60,8 +62,21 @@ function getTicks() {
   const tickCount = showGrid ? (max - min) / tickInterval : 0
 
   const ticks = []
-  for (let i = 0; i < tickCount; i++) {
+  for (let i = 1; i <= tickCount; i++) {
     ticks.push(tickWidth * i)
+  }
+  return ticks
+}
+
+function getLabels() {
+  if (!showTickLabels) {
+    return []
+  }
+  const tickCount = showGrid ? (max - min) / tickInterval : 0
+
+  const ticks = []
+  for (let i = 0; i <= tickCount; i++) {
+    ticks.push((tickInterval * (i + 1)).toFixed(decimalPlaces))
   }
   return ticks
 }
@@ -164,6 +179,8 @@ const styleObject = computed(() => {
         scale.value?.offsetWidth,
         scale.value?.offsetHeight,
         getTicks(),
+        getLabels(),
+        unitSize(tickFontSize),
       )
     : undefined
 

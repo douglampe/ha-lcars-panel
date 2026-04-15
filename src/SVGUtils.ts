@@ -197,6 +197,8 @@ export function createScaleHSVG(
   actualWidth: number | undefined,
   actualHeight: number | undefined,
   ticks: number[],
+  tickLabels?: string[],
+  fontSize?: string,
 ) {
   const { width, height } = getSize(config, actualWidth, actualHeight)
 
@@ -211,12 +213,29 @@ export function createScaleHSVG(
   path.push(`l -${width} 0`)
   path.push(`l 0 -${height}`)
 
-  for (const tick of ticks) {
-    path.push(`M ${tick} 0`)
+  const labels = []
+
+  for (let i = 0; i < ticks.length; i++) {
+    path.push(`M ${ticks[i]} 0`)
     path.push(`l 0 ${height}`)
+
+    if (tickLabels && (tickLabels?.length ?? 0 < i)) {
+      labels.push(
+        `<text class="svgScaleLabel" x="${ticks[i] - stroke * 2}" y="${height - stroke * 2}">${tickLabels[i]}</text>`,
+      )
+    }
   }
 
   const pathData = path.join(' ')
+  const text = labels.join('')
+  const strokeColor = resolveColor(config.config?.theme, color)
+  const style = `<style>
+    .svgScaleLabel {
+      font-family: Antonio, Arial, monospace;
+      fill: ${strokeColor};
+      text-anchor: end;
+    }
+  </style>`
 
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" preserveAspectRatio="none"><path d="${pathData}" stroke="${resolveColor(config.config?.theme, color)}" stroke-width="${stroke}" fill="none" /></svg>`
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" preserveAspectRatio="none">${style}<path d="${pathData}" stroke="${strokeColor}" stroke-width="${stroke}" fill="none" />${text}</svg>`
 }

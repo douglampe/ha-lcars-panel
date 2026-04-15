@@ -179,11 +179,13 @@ children:
             attribute: brightness
             min: 0
             max: 255
+            width: 20
             tickInterval: 25.5
             color: 1
             borderColor: 3
             topBorder: 0.5
             gridColor: 2
+            showTickLabels: true
             service: light.turn_on
             serviceKey: brightness
             title: Light
