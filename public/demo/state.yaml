@@ -180,10 +180,10 @@ children:
             min: 0
             max: 255
             tickInterval: 25.5
-            color: golden-tainoi
+            color: 1
             borderColor: 3
             topBorder: 0.5
-            gridColor: dodger-blue
+            gridColor: 2
             service: light.turn_on
             serviceKey: brightness
             title: Light

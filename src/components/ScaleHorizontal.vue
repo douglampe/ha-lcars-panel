@@ -6,10 +6,10 @@ import { callService, getStateValue, haState } from '../HAState'
 import { colorVar, removeUndefined, unitSize } from '@/Layout'
 import { useGesture } from '@vueuse/gesture'
 import { useMotionProperties, useSpring } from '@vueuse/motion'
-import type { HAConfig } from '@/HAConfig'
 import LCARSRow from './LCARSRow.vue'
 import LCARSElement from './LCARSElement.vue'
-import type { TapActionProps } from '@/props/TapActionProps'
+import { createScaleHSVG } from '@/SVGUtils'
+import type { ScaleProps } from '@/props/ScaleProps'
 
 const {
   entity,
@@ -37,34 +37,9 @@ const {
   leftBorder,
   rightBorder,
   config,
-} = defineProps<{
-  entity?: string
-  attribute?: string
-  title?: string
-  titleColor?: string | number
-  titleWidth?: number
-  titleTapAction?: TapActionProps
-  width?: number
-  height?: number
-  color?: string | number
-  borderColor?: string | number
-  bgColor?: string | number
-  gridColor?: string | number
-  stroke?: number
-  min?: number
-  max?: number
-  tickInterval?: number
-  decimalPlaces?: number
-  showGrid?: boolean
-  service?: string
-  serviceKey?: string
-  data?: any
-  topBorder?: number
-  bottomBorder?: number
-  leftBorder?: number
-  rightBorder?: number
-  config?: HAConfig
-}>()
+} = defineProps<ScaleProps>()
+
+const scale = ref()
 
 defineOptions({
   inheritAttrs: false,
@@ -75,11 +50,20 @@ function getData(state: any) {
   return {
     width: unitSize(width),
     height: unitSize(height),
-    tickWidth: (width * tickInterval) / (max - min),
-    tickCount: showGrid ? (max - min) / tickInterval : 0,
     value,
     valueX: ((value - min) * width) / (max - min),
   }
+}
+
+function getTicks() {
+  const tickWidth = (scale.value?.offsetWidth * tickInterval) / (max - min)
+  const tickCount = showGrid ? (max - min) / tickInterval : 0
+
+  const ticks = []
+  for (let i = 0; i < tickCount; i++) {
+    ticks.push(tickWidth * i)
+  }
+  return ticks
 }
 
 const scaleConfig = computed(() => {
@@ -109,8 +93,6 @@ if (!config?.disableWatchers) {
 }
 
 animateValue(scaleConfig.value)
-
-const scale = ref()
 
 if (service) {
   const { motionProperties } = useMotionProperties(scale, {
@@ -174,10 +156,28 @@ function setValue(val: number) {
 const scaleData = computed(() => getData(haState.value))
 
 const styleObject = computed(() => {
+  const backgroundImageSvg = showGrid
+    ? createScaleHSVG(
+        removeUndefined({ ...config }),
+        gridColor,
+        stroke,
+        scale.value?.offsetWidth,
+        scale.value?.offsetHeight,
+        getTicks(),
+      )
+    : undefined
+
   return removeUndefined({
     position: 'relative',
+    top: 0,
+    left: 0,
     width: unitSize(width),
     height: unitSize(height),
+    backgroundImage: backgroundImageSvg
+      ? `url("data:image/svg+xml;utf8,${encodeURIComponent(backgroundImageSvg)}")`
+      : undefined,
+    backgroundSize: '100% 100%',
+    backgroundRepeat: backgroundImageSvg ? 'no-repeat' : undefined,
   })
 })
 
@@ -185,33 +185,13 @@ const barStyle = computed(() => {
   if (!scaleData.value) return {}
 
   return removeUndefined({
-    top: `${stroke ?? 0}px`,
+    top: 0,
     left: 0,
     position: 'absolute',
     width: scaleData.value.valueX ? unitSize(scaleData.value.valueX) : 0,
     height: unitSize(height),
     backgroundColor: colorVar(color),
   })
-})
-
-const ticks = computed(() => {
-  if (!scaleData.value || !showGrid) return []
-
-  const { tickCount, tickWidth } = scaleData.value
-  const ticksArray = []
-  for (let i = 0; i < tickCount; i++) {
-    ticksArray.push({
-      top: 0,
-      left: unitSize(i * tickWidth),
-      width: unitSize(tickWidth),
-      height: unitSize(height),
-      borderColor: colorVar(gridColor),
-      borderStyle: 'solid',
-      borderWidth: `${stroke}px ${stroke}px ${stroke}px ${i === 0 ? stroke : 0}px`,
-      position: 'absolute',
-    })
-  }
-  return ticksArray as any[]
 })
 </script>
 <template>
@@ -230,9 +210,9 @@ const ticks = computed(() => {
       >{{ title }}</LCARSElement
     >
     <LCARSElement v-if="leftBorder" :color="borderColor" :width="leftBorder"></LCARSElement>
-    <div ref="scale" :style="styleObject">
+    <div style="position: relative">
       <div :style="barStyle"></div>
-      <div v-for="(tick, index) in ticks" :key="index" :style="tick"></div>
+      <div ref="scale" :style="styleObject"></div>
     </div>
     <LCARSElement v-if="rightBorder" :color="borderColor" :width="rightBorder"></LCARSElement>
   </LCARSRow>
