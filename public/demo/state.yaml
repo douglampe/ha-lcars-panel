@@ -179,19 +179,63 @@ children:
             attribute: brightness
             min: 0
             max: 255
+            width: 20
             tickInterval: 25.5
-            color: golden-tainoi
-            gridColor: dodger-blue
+            minorTickInterval: 5.1
+            color: 1
+            borderColor: 3
+            topBorder: 0.5
+            gridColor: 2
+            showTickLabels: true
             service: light.turn_on
             serviceKey: brightness
+            title: Light
+            titleColor: black
+            titleTapAction:
+              action: call-service
+              service: light.toggle
+              data:
+                entity_id: light.test
       - type: sample
         configYaml: |
-          - type: scale-h
+          - type: scale-v
+            entity: light.test
+            attribute: brightness
+            min: 0
+            max: 255
+            height: 10
+            tickInterval: 25.5
+            minorTickInterval: 5.1
+            barThickness: 1
+            barOffset: 1
+            color: 1
+            borderColor: 3
+            leftBorder: 0.5
+            gridColor: 2
+            showTickLabels: true
+            service: light.turn_on
+            serviceKey: brightness
+            title: Light
+            titleColor: black
+            titleTapAction:
+              action: call-service
+              service: light.toggle
+              data:
+                entity_id: light.test
+      - type: sample
+        configYaml: |
+          - type: scale-v
             entity: sun.sun
             attribute: elevation
             min: -180
             max: 180
-            showGrid: false
+            tickInterval: 30
+            showTickLabels: true
+            minorTicInterval: 6
+            barThickness: 1
+          - type: state-value
+            entity: sun.sun
+            attribute: elevation
 
   - type: el
     mixin: divider

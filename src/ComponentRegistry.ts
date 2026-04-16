@@ -27,10 +27,11 @@ import PanelTop from './components/PanelTop.vue'
 import PanelTR from './components/PanelTR.vue'
 import RecursiveComponent from './components/RecursiveComponent.vue'
 import RemoteConfig from './components/RemoteConfig.vue'
+import ScaleHorizontal from './components/ScaleHorizontal.vue'
+import ScaleVertical from './components/ScaleVertical.vue'
 import StateColor from './components/StateColor.vue'
 import StateTable from './components/StateTable.vue'
 import StateValue from './components/StateValue.vue'
-import ScaleHorizontal from './components/ScaleHorizontal.vue'
 import StateValueTable from './components/StateValueTable.vue'
 import TextComponent from './components/TextComponent.vue'
 import UserComponent from './components/UserComponent.vue'
@@ -66,6 +67,7 @@ export function registerAllComponents() {
   registerComponent('row', LCARSRow)
   registerComponent('sample', LCARSSample)
   registerComponent('scale-h', ScaleHorizontal)
+  registerComponent('scale-v', ScaleVertical)
   registerComponent('state-color', StateColor)
   registerComponent('state-value', StateValue)
   registerComponent('state-value-table', StateValueTable)

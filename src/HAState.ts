@@ -117,8 +117,16 @@ export function loadTestState() {
           haState.value.states['light.test'].attributes.brightness = data.brightness
           return Promise.resolve('OK')
         } else if (service === 'toggle') {
-          haState.value.states['light.test'].state =
-            haState.value.states['light.test'].state === 'on' ? 'off' : 'on'
+          if (haState.value.states['light.test'].state === 'on') {
+            haState.value.states['light.test'].attributes.oldBrightness =
+              haState.value.states['light.test'].attributes.brightness
+            haState.value.states['light.test'].attributes.brightness = 0
+            haState.value.states['light.test'].state = 'off'
+          } else {
+            haState.value.states['light.test'].attributes.brightness =
+              haState.value.states['light.test'].attributes.oldBrightness
+            haState.value.states['light.test'].state = 'on'
+          }
           return Promise.resolve('OK')
         }
       }

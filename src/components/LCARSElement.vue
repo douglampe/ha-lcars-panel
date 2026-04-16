@@ -5,8 +5,8 @@ import { navigate } from '@/LocalNav'
 import { alignStyle, colorVar, marginStyle, padStyle, removeUndefined, unitSize } from '@/Layout'
 import { callService } from '@/HAState'
 import type { ConfigItem } from '@/ConfigItem'
-import { createRadiusSvg } from '@/props/RadiusProps'
 import { applyInAnimations } from '@/AnimationConfig'
+import { createRadiusSvg } from '@/SVGUtils'
 
 const config = defineProps<ConfigItem>()
 const elementRef = ref<HTMLElement | null>(null)
