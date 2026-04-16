@@ -7,9 +7,12 @@ export interface ScaleProps {
   title?: string
   titleColor?: string | number
   titleWidth?: number
+  titleHeight?: number
   titleTapAction?: TapActionProps
   width?: number
   height?: number
+  barThickness?: number
+  barOffset?: number
   color?: string | number
   borderColor?: string | number
   bgColor?: string | number

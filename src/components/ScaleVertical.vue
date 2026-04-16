@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, reactive, ref, watch } from 'vue'
+import { computed, onMounted, reactive, ref, watch } from 'vue'
 import gsap from 'gsap'
 
 import { callService, getStateValue, haState } from '../HAState'
@@ -8,18 +8,19 @@ import { useGesture } from '@vueuse/gesture'
 import { useMotionProperties, useSpring } from '@vueuse/motion'
 import LCARSRow from './LCARSRow.vue'
 import LCARSElement from './LCARSElement.vue'
-import { createScaleHSVG } from '@/SVGUtils'
+import { createScaleVSVG } from '@/SVGUtils'
 import type { ScaleProps } from '@/props/ScaleProps'
+import LCARSCol from './LCARSCol.vue'
 
 const {
   entity,
   attribute,
   title,
   titleColor,
-  titleWidth,
+  titleHeight,
   titleTapAction,
-  width = 10,
-  height = 3,
+  width = 3,
+  height = 10,
   barThickness,
   barOffset,
   color = 'golden-tainoi',
@@ -56,17 +57,17 @@ function getData(state: any) {
     width: unitSize(width),
     height: unitSize(height),
     value,
-    valueX: ((value - min) * width) / (max - min),
+    valueY: ((value - min) * height) / (max - min),
   }
 }
 
 function getTicks() {
-  const tickWidth = (scale.value?.offsetWidth * tickInterval) / (max - min)
+  const tickHeight = (scale.value?.offsetHeight * tickInterval) / (max - min)
   const tickCount = showGrid ? (max - min) / tickInterval : 0
 
   const ticks = []
   for (let i = 1; i <= tickCount; i++) {
-    ticks.push(tickWidth * i)
+    ticks.push(tickHeight * i)
   }
   return ticks
 }
@@ -76,12 +77,12 @@ function getMinorTicks() {
     return [] as number[]
   }
 
-  const tickWidth = (scale.value?.offsetWidth * minorTickInterval) / (max - min)
+  const tickHeight = (scale.value?.offsetHeight * minorTickInterval) / (max - min)
   const tickCount = showGrid ? (max - min) / minorTickInterval : 0
 
   const ticks = []
   for (let i = 1; i <= tickCount; i++) {
-    ticks.push(tickWidth * i)
+    ticks.push(tickHeight * i)
   }
   return ticks
 }
@@ -107,10 +108,10 @@ function getValue(state: any) {
   return entity ? (getStateValue(state, entity, attribute) ?? min) : min
 }
 
-const reactiveValueX = reactive({ number: 0 })
+const reactiveValueY = reactive({ number: 0 })
 
 function animateValue(newData: any) {
-  gsap.to(reactiveValueX, { duration: 1, number: newData.valueX })
+  gsap.to(reactiveValueY, { duration: 1, number: newData.valueY })
 }
 
 if (!config?.disableWatchers) {
@@ -121,47 +122,6 @@ if (!config?.disableWatchers) {
         const newData = getData(haState.value)
         animateValue(newData)
       }
-    },
-  )
-}
-
-animateValue(scaleConfig.value)
-
-if (service) {
-  const { motionProperties } = useMotionProperties(scale, {
-    cursor: 'grab',
-    x: 0,
-    y: 0,
-  })
-
-  const { set } = useSpring(motionProperties as any)
-
-  useGesture(
-    {
-      onDrag: ({ dragging }) => {
-        if (!dragging) {
-          set({ x: 0, y: 0, cursor: 'grab' })
-          return
-        }
-
-        set({
-          cursor: 'grabbing',
-          x: 0,
-          y: 0,
-        })
-      },
-      onDragEnd: ({ movement: [x, _y], tap, xy: [tapX, _tapY] }) => {
-        if (tap) {
-          const bounds = scale.value.getBoundingClientRect()
-          const newValue = ((tapX - bounds.x) / scale.value.clientWidth) * (max - min) + min
-          setValue(newValue)
-        } else {
-          setValue(scaleConfig.value.value + (x / scale.value.clientWidth) * (max - min))
-        }
-      },
-    },
-    {
-      domTarget: scale,
     },
   )
 }
@@ -190,7 +150,7 @@ const scaleData = computed(() => getData(haState.value))
 
 const styleObject = computed(() => {
   const backgroundImageSvg = showGrid
-    ? createScaleHSVG(
+    ? createScaleVSVG(
         removeUndefined({ ...config }),
         gridColor,
         stroke,
@@ -221,40 +181,93 @@ const barStyle = computed(() => {
   if (!scaleData.value) return {}
 
   return removeUndefined({
-    top: 0,
+    bottom: 0,
     left: 0,
     position: 'absolute',
-    width: scaleData.value.valueX ? unitSize(scaleData.value.valueX) : 0,
-    height: unitSize(barThickness) ?? unitSize(height),
-    marginTop: unitSize(barOffset),
+    width: unitSize(barThickness) ?? unitSize(width),
+    height: scaleData.value.valueY ? unitSize(scaleData.value.valueY) : 0,
+    marginLeft: unitSize(barOffset),
     backgroundColor: colorVar(color),
   })
 })
+
+animateValue(scaleConfig.value)
+
+if (service) {
+  const { motionProperties } = useMotionProperties(scale, {
+    cursor: 'grab',
+    x: 0,
+    y: 0,
+  })
+
+  const { set } = useSpring(motionProperties as any)
+
+  useGesture(
+    {
+      onDrag: ({ dragging }) => {
+        if (!dragging) {
+          set({ x: 0, y: 0, cursor: 'grab' })
+          return
+        }
+
+        set({
+          cursor: 'grabbing',
+          x: 0,
+          y: 0,
+        })
+      },
+      onDragEnd: ({ movement: [_x, y], tap, xy: [_tapX, tapY] }) => {
+        if (tap) {
+          const bounds = scale.value.getBoundingClientRect()
+          const newValue =
+            ((scale.value.clientHeight - (tapY - bounds.y)) / scale.value.clientHeight) *
+              (max - min) +
+            min
+          setValue(newValue)
+        } else {
+          setValue(scaleConfig.value.value - (y / scale.value.clientHeight) * (max - min))
+        }
+      },
+    },
+    {
+      domTarget: scale,
+    },
+  )
+}
 </script>
 <template>
-  <LCARSRow v-if="topBorder">
-    <LCARSElement v-if="topBorder" :color="borderColor" :fill="true" :height="topBorder" />
-  </LCARSRow>
   <LCARSRow :stretch="true">
-    <LCARSElement
-      v-if="title"
-      :color="borderColor"
-      :textColor="titleColor"
-      :tapAction="titleTapAction"
-      :width="titleWidth"
-      :pad="0.2"
-      alignContent="middle-right"
-      >{{ title }}</LCARSElement
-    >
-    <LCARSElement v-if="leftBorder" :color="borderColor" :width="leftBorder"></LCARSElement>
-    <div style="position: relative">
-      <div v-if="!barThickness" :style="barStyle"></div>
-      <div ref="scale" :style="styleObject"></div>
-      <div v-if="barThickness" :style="barStyle"></div>
-    </div>
-    <LCARSElement v-if="rightBorder" :color="borderColor" :width="rightBorder"></LCARSElement>
-  </LCARSRow>
-  <LCARSRow v-if="bottomBorder">
-    <LCARSElement v-if="bottomBorder" :color="borderColor" :fill="true" :height="bottomBorder" />
+    <LCARSCol>
+      <LCARSElement
+        v-if="leftBorder"
+        :color="borderColor"
+        :width="leftBorder"
+        :fill="true"
+      ></LCARSElement>
+    </LCARSCol>
+    <LCARSCol :stretch="true">
+      <LCARSElement v-if="topBorder" :color="borderColor" :fill="true" :height="topBorder" />
+      <LCARSRow>
+        <div style="position: relative">
+          <div v-if="!barThickness" :style="barStyle"></div>
+          <div ref="scale" :style="styleObject"></div>
+          <div v-if="barThickness" :style="barStyle"></div>
+        </div>
+      </LCARSRow>
+      <LCARSElement v-if="bottomBorder" :color="borderColor" :fill="true" :height="bottomBorder" />
+      <LCARSElement
+        v-if="title"
+        :color="borderColor"
+        :textColor="titleColor"
+        :tapAction="titleTapAction"
+        :height="titleHeight"
+        :pad="0.2"
+        alignContent="middle-right"
+        >{{ title }}</LCARSElement
+      >
+    </LCARSCol>
+    <LCARSCol>
+      <LCARSElement v-if="rightBorder" :color="borderColor" :width="rightBorder"></LCARSElement>
+    </LCARSCol>
   </LCARSRow>
 </template>

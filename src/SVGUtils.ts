@@ -227,8 +227,65 @@ export function createScaleHSVG(
     for (let i = 0; i < (minorTicks?.length ?? 0); i++) {
       const x = minorTicks[i]
       if (!ticks.includes(x)) {
-        path.push(`M ${minorTicks[i]} 0`)
+        path.push(`M ${x} 0`)
         path.push(`l 0 ${height / 4}`)
+      }
+    }
+  }
+
+  const pathData = path.join(' ')
+  const text = labels.join('')
+  const strokeColor = resolveColor(config.config?.theme, color)
+  const style = `<style>
+    .svgScaleLabel {
+      font-family: Antonio, Arial, monospace;
+      font-size: ${fontSize ?? unitSize(1)};
+      fill: ${strokeColor};
+      text-anchor: end;
+    }
+  </style>`
+
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" preserveAspectRatio="none">${style}<path d="${pathData}" stroke="${strokeColor}" stroke-width="${stroke}" fill="none" />${text}</svg>`
+}
+
+export function createScaleVSVG(
+  config: ConfigItem,
+  color: number | string,
+  stroke: number,
+  actualWidth: number | undefined,
+  actualHeight: number | undefined,
+  ticks: number[],
+  tickLabels?: string[],
+  fontSize?: string,
+  minorTicks?: number[],
+) {
+  const { width, height } = getSize(config, actualWidth, actualHeight)
+
+  if (typeof width !== 'number' || typeof height !== 'number') {
+    return
+  }
+
+  const path = []
+
+  const labels = []
+
+  for (let i = 0; i < ticks.length; i++) {
+    path.push(`M 0 ${height - ticks[i]}`)
+    path.push(`l ${width} 0`)
+
+    if (tickLabels && (tickLabels?.length ?? 0 < i)) {
+      labels.push(
+        `<text class="svgScaleLabel" dominant-baseline="text-before-edge" y="${height - ticks[i]}" x="${width - stroke * 2}">${tickLabels[i]}</text>`,
+      )
+    }
+  }
+
+  if (minorTicks) {
+    for (let i = 0; i < (minorTicks?.length ?? 0); i++) {
+      const y = minorTicks[i]
+      if (!ticks.includes(y)) {
+        path.push(`M 0 height - ${y}`)
+        path.push(`l ${width / 4} 0`)
       }
     }
   }
