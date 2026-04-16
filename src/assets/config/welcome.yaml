@@ -73,9 +73,6 @@ nav:
     children:
       - text: Sun
 children:
-  - type: pill
-    text: go
-    nav: /demo/state
   - showForNav: /home
     type: panel-tl
     fillLeftBottom: true
