@@ -19,6 +19,7 @@ export interface ScaleProps {
   max?: number
   tickInterval?: number
   tickFontSize?: string | number
+  minorTickInterval?: number
   decimalPlaces?: number
   showGrid?: boolean
   showTickLabels?: boolean

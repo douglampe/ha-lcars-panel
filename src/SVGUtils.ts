@@ -199,6 +199,7 @@ export function createScaleHSVG(
   ticks: number[],
   tickLabels?: string[],
   fontSize?: string,
+  minorTicks?: number[],
 ) {
   const { width, height } = getSize(config, actualWidth, actualHeight)
 
@@ -207,11 +208,6 @@ export function createScaleHSVG(
   }
 
   const path = []
-  path.push(`M 0 0`)
-  path.push(`l ${width} 0`)
-  path.push(`l 0 ${height}`)
-  path.push(`l -${width} 0`)
-  path.push(`l 0 -${height}`)
 
   const labels = []
 
@@ -223,6 +219,16 @@ export function createScaleHSVG(
       labels.push(
         `<text class="svgScaleLabel" x="${ticks[i] - stroke * 2}" y="${height - stroke * 2}">${tickLabels[i]}</text>`,
       )
+    }
+  }
+
+  if (minorTicks) {
+    for (let i = 0; i < (minorTicks?.length ?? 0); i++) {
+      const x = minorTicks[i]
+      if (!ticks.includes(x)) {
+        path.push(`M ${minorTicks[i]} 0`)
+        path.push(`l 0 ${height / 4}`)
+      }
     }
   }
 

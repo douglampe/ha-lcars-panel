@@ -28,6 +28,7 @@ const {
   max = 100,
   tickInterval = 10,
   tickFontSize = 1,
+  minorTickInterval = 2.5,
   decimalPlaces,
   showGrid = true,
   showTickLabels,
@@ -60,6 +61,17 @@ function getData(state: any) {
 function getTicks() {
   const tickWidth = (scale.value?.offsetWidth * tickInterval) / (max - min)
   const tickCount = showGrid ? (max - min) / tickInterval : 0
+
+  const ticks = []
+  for (let i = 1; i <= tickCount; i++) {
+    ticks.push(tickWidth * i)
+  }
+  return ticks
+}
+
+function getMinorTicks() {
+  const tickWidth = (scale.value?.offsetWidth * minorTickInterval) / (max - min)
+  const tickCount = showGrid ? (max - min) / minorTickInterval : 0
 
   const ticks = []
   for (let i = 1; i <= tickCount; i++) {
@@ -181,6 +193,7 @@ const styleObject = computed(() => {
         getTicks(),
         getLabels(),
         unitSize(tickFontSize),
+        getMinorTicks(),
       )
     : undefined
 

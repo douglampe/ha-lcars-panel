@@ -181,6 +181,7 @@ children:
             max: 255
             width: 20
             tickInterval: 25.5
+            minorTickInterval: 5.1
             color: 1
             borderColor: 3
             topBorder: 0.5
