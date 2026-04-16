@@ -1,5 +1,6 @@
 import { colorList } from './ColorList'
 import type { ConfigItem } from './ConfigItem'
+import { unitSize } from './Layout'
 import { getThemeColor } from './ThemeConfig'
 
 const scaleFactor = 10
@@ -238,6 +239,7 @@ export function createScaleHSVG(
   const style = `<style>
     .svgScaleLabel {
       font-family: Antonio, Arial, monospace;
+      font-size: ${fontSize ?? unitSize(1)};
       fill: ${strokeColor};
       text-anchor: end;
     }
