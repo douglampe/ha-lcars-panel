@@ -111,6 +111,14 @@ function checkVisibility() {
     setVisibility(false)
     return
   }
+
+  const visibility = processedProps.value?.visible
+
+  if ((typeof visibility === 'string' && visibility === 'false') || !(visibility ?? true)) {
+    setVisibility(false)
+    return
+  }
+
   if (!processedProps.value?.showForNav) {
     setVisibility(true)
     return
@@ -233,6 +241,7 @@ if (!(props as ConfigItem).config?.disableWatchers) {
     () => haState.value,
     () => {
       onStateUpdated()
+      checkVisibility()
     },
     { deep: true },
   )
@@ -240,8 +249,8 @@ if (!(props as ConfigItem).config?.disableWatchers) {
   watch(
     () => currentNav.value,
     () => {
-      checkVisibility()
       onStateUpdated()
+      checkVisibility()
     },
     { deep: true },
   )
