@@ -97,23 +97,25 @@ export function applyTemplates(configItem: ConfigItem) {
 function applyTemplateToObject(item: any, config?: HAConfig) {
   let applied = false
   for (const key in item) {
-    const valueKey = key.substring(0, key.length - 9)
-    const oldValue = item[valueKey]
-    const newValue = renderTemplate(haState.value as any, item[key], {
-      currentNav: currentNav.value,
-      config,
-    })
-    if (newValue !== oldValue) {
-      item[valueKey] = newValue
-      applied = true
-    }
-    const val = item[key]
-    if (typeof val === 'object') {
-      if (applyTemplateToObject(val, config)) {
+    if (key.endsWith('_template')) {
+      const valueKey = key.substring(0, key.length - 9)
+      const oldValue = item[valueKey]
+      const newValue = renderTemplate(haState.value as any, item[key], {
+        currentNav: currentNav.value,
+        config,
+      })
+      if (newValue !== oldValue) {
+        item[valueKey] = newValue
         applied = true
       }
+      const val = item[key]
+      if (typeof val === 'object') {
+        if (applyTemplateToObject(val, config)) {
+          applied = true
+        }
+      }
+      delete item[key]
     }
-    delete item[key]
   }
 
   return applied
