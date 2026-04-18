@@ -83,7 +83,7 @@ function processItem(item: ConfigItem) {
     delete processedItem.children
   }
 
-  renderKey.value++
+  // renderKey.value++
 
   return processedItem
 }
