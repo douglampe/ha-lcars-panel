@@ -11,6 +11,7 @@ export interface ConfigItem extends ElementProps, PanelProps, RowProps, TapActio
   type?: string
   id?: string
   tag?: string
+  visible?: boolean | string
   text?: string
   md?: string
   positioning?: string

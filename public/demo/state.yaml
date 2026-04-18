@@ -19,6 +19,23 @@ children:
             entity: sun.sun
             attribute: elevation
 
+      - type: sample
+        content: |
+          The `visible` property is used to show or hide an element. Use `visible_template` to dynamically set
+          visibility based on state.
+
+        configYaml: |
+          - type: pill
+            text_template: '{{ states("light.test") }}'
+            tapAction:
+              action: call-service
+              service: light.toggle
+              data:
+                entity_id: light.test
+          - type: el
+            text: I am only visible when the light is on
+            visible_template: "{% if states('light.test') == 'on' -%}true{%- else -%}false{%- endif %}"
+
   - type: el
     mixin: divider
 
