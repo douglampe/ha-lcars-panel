@@ -37,13 +37,21 @@ defineOptions({
 })
 
 function onStateUpdated() {
-  if (props.stateMap || Object.keys(props).some((key) => key.endsWith('_template'))) {
-    const processedItem = { ...processedProps.value } as ConfigItem
-
-    if (applyState(processedItem) || applyTemplates(processedItem)) {
-      processedProps.value = processedItem
-      // renderKey.value++
+  const processedItem = { ...processedProps.value } as ConfigItem
+  let applied = false
+  if (props.stateMap) {
+    if (applyState(processedItem)) {
+      applied = true
     }
+  }
+
+  if (applyTemplates(processedItem)) {
+    applied = true
+  }
+
+  if (applied) {
+    processedProps.value = processedItem
+    // renderKey.value++
   }
 }
 
@@ -68,6 +76,7 @@ function processItem(item: ConfigItem) {
 
   if (
     processedItem.children &&
+    !processedItem.type?.startsWith('user:') &&
     !processedItem.type?.endsWith('-container') &&
     processedItem.type !== 'modal'
   ) {
