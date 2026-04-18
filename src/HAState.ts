@@ -97,10 +97,11 @@ export function applyTemplates(configItem: ConfigItem) {
 function applyTemplateToObject(item: any, config?: HAConfig) {
   let applied = false
   for (const key in item) {
-    if (key.endsWith('_template')) {
+    const templateValue = item[key] as string
+    if (key.endsWith('_template') && !templateValue.includes('props.')) {
       const valueKey = key.substring(0, key.length - 9)
       const oldValue = item[valueKey]
-      const newValue = renderTemplate(haState.value as any, item[key], {
+      const newValue = renderTemplate(haState.value as any, templateValue, {
         currentNav: currentNav.value,
         config,
       })
@@ -108,13 +109,12 @@ function applyTemplateToObject(item: any, config?: HAConfig) {
         item[valueKey] = newValue
         applied = true
       }
-      const val = item[key]
-      if (typeof val === 'object') {
-        if (applyTemplateToObject(val, config)) {
-          applied = true
-        }
-      }
       delete item[key]
+    }
+    if (typeof templateValue === 'object' && key !== 'config') {
+      if (applyTemplateToObject(templateValue, config)) {
+        applied = true
+      }
     }
   }
 

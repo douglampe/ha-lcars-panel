@@ -76,6 +76,7 @@ function processItem(item: ConfigItem) {
 
   if (
     processedItem.children &&
+    !processedItem.type?.startsWith('user:') &&
     !processedItem.type?.endsWith('-container') &&
     processedItem.type !== 'modal'
   ) {
