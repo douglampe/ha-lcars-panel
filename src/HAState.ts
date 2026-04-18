@@ -46,7 +46,17 @@ export function callService(serviceName: string, data: any) {
 
   const [domain, service] = serviceName.split('.')
 
+  removeTemplateKeys(data)
+
   haState.value.callService(domain, service, data)
+}
+
+function removeTemplateKeys(item: any) {
+  for (const key in item) {
+    if (key.endsWith('_template')) {
+      delete item[key]
+    }
+  }
 }
 
 export function getAllStateValues() {
@@ -109,7 +119,6 @@ function applyTemplateToObject(item: any, config?: HAConfig) {
         item[valueKey] = newValue
         applied = true
       }
-      delete item[key]
     }
     if (typeof templateValue === 'object' && key !== 'config') {
       if (applyTemplateToObject(templateValue, config)) {

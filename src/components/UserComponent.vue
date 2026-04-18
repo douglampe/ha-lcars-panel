@@ -3,6 +3,7 @@ import { onMounted, ref, useAttrs } from 'vue'
 import RecursiveComponent from './RecursiveComponent.vue'
 import type { ConfigItem } from '@/ConfigItem'
 import { renderString } from 'nunjucks'
+import deepmerge from 'deepmerge'
 
 const processedProps = ref<ConfigItem>()
 const attrs = useAttrs()
@@ -46,8 +47,13 @@ onMounted(() => {
     if (config?.components && type?.startsWith('user:')) {
       const userType = type.substring(5)
       if (config.components.hasOwnProperty(userType)) {
-        const componentConfig = { ...config?.components[userType] }
+        let componentConfig = { ...config?.components[userType] }
         applyPropTemplates(componentConfig)
+
+        if (attrs.additionalConfig) {
+          componentConfig = deepmerge(componentConfig, attrs.additionalConfig)
+        }
+
         processedProps.value = componentConfig
       }
     }
