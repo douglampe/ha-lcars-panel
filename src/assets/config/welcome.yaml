@@ -7,6 +7,9 @@ components:
     children:
       - type: pill
         text_template: '{{ props.text }}'
+  myPill:
+    type: pill
+    text_template: '{{ props.text }}'
   myStateComponent:
     type: pill
     color: blue
@@ -73,6 +76,9 @@ nav:
     children:
       - text: Sun
 children:
+  - type: pill
+    text: go
+    nav: /demo/components
   - showForNav: /home
     type: panel-tl
     fillLeftBottom: true

@@ -11,16 +11,60 @@ children:
           ```
           type: custom:ha-lcars-panel
           components:
-          myComponent:
-            type: panel-tl
-            children:
-              - type: pill
-                text_template: '{{ props.text }}'
+            myComponent:
+              type: panel-tl
+              children:
+                - type: pill
+                  text_template: '{{ props.text }}'
           ```
       - type: sample
         configYaml: |
           - type: 'user:myComponent'
+            color: 2
             text: 'Hello LCARS!'
+      - type: md
+        content: |
+          You can apply additional properties to the instance of the component and they will be merged with the
+          compomnent configuration.
+
+          ```
+          type: custom:ha-lcars-panel
+          components:
+            myPill:
+              type: pill
+              text_template: '{{ props.text }}'
+          ```
+      - type: sample
+        configYaml: |
+          - type: 'user:myPill'
+            text: 'Hello LCARS!'
+            additionalConfig:
+              color: 2
+
+      - type: md
+        content: |
+          Using `additionalConfig` is the easiest way to add additional templates that also need to be applied at
+          the instance level.
+
+          ```
+          type: custom:ha-lcars-panel
+          components:
+            myPill:
+              type: pill
+              text_template: '{{ props.text }}'
+          ```
+      - type: sample
+        configYaml: |
+          - type: 'user:myPill'
+            text: 'I Change Color'
+            additionalConfig:
+              width: 4
+              color_template: "{% if states('light.test') == 'on' -%}golden-tainoi{%- else -%}dodger-blue{%- endif %}"
+              tapAction:
+                action: call-service
+                service: light.toggle
+                data:
+                  entitiy_id: light.test
       - type: sample
         content: |
           You can even use Home Assistant state templates inside of custom components. Component properties are always
