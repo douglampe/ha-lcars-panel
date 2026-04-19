@@ -45,6 +45,7 @@ const {
 } = defineProps<ScaleProps>()
 
 const scale = ref()
+const touchLayer = ref()
 
 defineOptions({
   inheritAttrs: false,
@@ -161,7 +162,7 @@ if (service) {
       },
     },
     {
-      domTarget: scale,
+      domTarget: touchLayer,
     },
   )
 }
@@ -251,6 +252,7 @@ const barStyle = computed(() => {
       <div v-if="!barThickness" :style="barStyle"></div>
       <div ref="scale" :style="styleObject"></div>
       <div v-if="barThickness" :style="barStyle"></div>
+      <div style="position: absolute; top: 0; bottom: 0; left: 0; right: 0;" ref="touchLayer"></div>
     </div>
     <LCARSElement v-if="rightBorder" :color="borderColor" :width="rightBorder"></LCARSElement>
   </LCARSRow>
