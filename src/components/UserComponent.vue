@@ -48,6 +48,7 @@ onMounted(() => {
       const userType = type.substring(5)
       if (config.components.hasOwnProperty(userType)) {
         let componentConfig = { ...config?.components[userType] }
+        componentConfig = JSON.parse(JSON.stringify(componentConfig))
         applyPropTemplates(componentConfig)
 
         if (attrs.additionalConfig) {
