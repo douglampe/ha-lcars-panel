@@ -79,7 +79,7 @@ children:
   - type: pill
     text: go
     nav: /demo/state
-    visible: false
+    visible: true
   - showForNav: /home
     type: panel-tl
     fillLeftBottom: true

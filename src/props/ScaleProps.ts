@@ -21,11 +21,13 @@ export interface ScaleProps {
   min?: number
   max?: number
   tickInterval?: number
-  tickFontSize?: string | number
+  showTickLabels?: boolean
+  tickLabelFontSize?: string | number
+  tickLabelMin?: number
+  tickLabelMax?: number
   minorTickInterval?: number
   decimalPlaces?: number
   showGrid?: boolean
-  showTickLabels?: boolean
   service?: string
   serviceKey?: string
   data?: any

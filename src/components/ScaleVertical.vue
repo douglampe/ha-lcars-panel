@@ -30,7 +30,9 @@ const {
   min = 0,
   max = 100,
   tickInterval = 10,
-  tickFontSize = 1,
+  tickLabelFontSize = 1,
+  tickLabelMin,
+  tickLabelMax,
   minorTickInterval = 2.5,
   decimalPlaces,
   showGrid = true,
@@ -93,10 +95,12 @@ function getLabels() {
     return []
   }
   const tickCount = showGrid ? (max - min) / tickInterval : 0
+  const labelMin = tickLabelMin ?? min
+  const labelMax = tickLabelMax ?? max
 
   const ticks = []
   for (let i = 0; i <= tickCount; i++) {
-    ticks.push((min + tickInterval * (i + 1)).toFixed(decimalPlaces))
+    ticks.push((labelMin + ((i + 1) / tickCount) * (labelMax - labelMin)).toFixed(decimalPlaces))
   }
   return ticks
 }
@@ -159,7 +163,7 @@ const styleObject = computed(() => {
         scale.value?.offsetHeight,
         getTicks(),
         getLabels(),
-        unitSize(tickFontSize),
+        unitSize(tickLabelFontSize),
         getMinorTicks(),
       )
     : undefined
@@ -253,7 +257,7 @@ if (service) {
           <div v-if="!barThickness" :style="barStyle"></div>
           <div ref="scale" :style="styleObject"></div>
           <div v-if="barThickness" :style="barStyle"></div>
-          <div style="position: absolute; top: 0; bottom: 0; left: 0; right: 0;"></div>
+          <div style="position: absolute; top: 0; bottom: 0; left: 0; right: 0"></div>
         </div>
       </LCARSRow>
       <LCARSElement v-if="bottomBorder" :color="borderColor" :fill="true" :height="bottomBorder" />
