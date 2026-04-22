@@ -1,11 +1,16 @@
-import { haState } from './HAState'
+import { applyState, haState, loadTestState } from './HAState'
 import { loadConfig, type HAConfig } from './HAConfig'
+import { ref, watch } from 'vue'
 import './editor.ts'
+import { currentNav } from './LocalNav.ts'
+import testConfig from '@/assets/config/welcome.yaml?raw'
+import YAML from 'yaml'
 
 export class LCARSCustomCard extends HTMLElement {
   private vueElement: any
   private test: boolean = false
-  private haConfig: HAConfig | null = null
+  private originalConfig: HAConfig | undefined = undefined
+  private haConfig = ref<HAConfig>()
 
   static get observedAttributes() {
     return ['config', 'test']
@@ -15,6 +20,14 @@ export class LCARSCustomCard extends HTMLElement {
     super()
     this.attachShadow({ mode: 'open' })
     this.vueElement = null
+
+    watch(
+      () => currentNav.value,
+      () => {
+        this.onStateUpdated()
+      },
+      { deep: true },
+    )
   }
 
   // TODO: Turn on once editor is ready
@@ -45,10 +58,25 @@ export class LCARSCustomCard extends HTMLElement {
 
   set hass(hass: any) {
     haState.value = hass
+    this.onStateUpdated()
+  }
+
+  onStateUpdated() {
+    if (this.originalConfig && this.haConfig) {
+      const config = loadConfig(this.originalConfig)
+      applyState(config)
+      if (this.haConfig.value) {
+        Object.assign(this.haConfig.value, config)
+      }
+    }
   }
 
   setConfig(config: any) {
-    this.haConfig = loadConfig(config)
+    this.originalConfig = config
+    if (!this.haConfig.value) {
+      this.haConfig.value = config
+    }
+    this.onStateUpdated()
 
     if (this.vueElement) {
       this.vueElement.config = this.haConfig
@@ -64,11 +92,20 @@ export class LCARSCustomCard extends HTMLElement {
     }
   }
 
+  loadTestConfig() {
+    const testConfigParsed = YAML.parse(testConfig)
+    loadTestState()
+    this.setConfig(testConfigParsed)
+  }
+
   connectedCallback() {
     if (!this.vueElement) {
       this.vueElement = document.createElement('lcars-card')
-      this.vueElement.config = this.haConfig ?? { children: [] }
-      this.vueElement.loadTest = this.test
+      if (this.test) {
+        this.loadTestConfig()
+        this.vueElement.loadTest = true
+      }
+      this.vueElement.config = this.haConfig.value ?? { children: [] }
       this.shadowRoot?.appendChild(this.vueElement)
 
       const head = document.head

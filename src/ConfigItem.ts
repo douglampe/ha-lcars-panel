@@ -1,6 +1,5 @@
 import type { AnimationConfig, Animations } from './AnimationConfig'
 import { mixins, type HAConfig } from './HAConfig'
-import { getStateValue, haState } from './HAState'
 import type { ElementProps } from './props/ElementProps'
 import type { PanelProps } from './props/PanelProps'
 import type { RowProps } from './props/RowProps'
@@ -35,20 +34,6 @@ export interface ConfigItem extends ElementProps, PanelProps, RowProps, TapActio
   textAnimation?: AnimationConfig
   style?: Record<string, any>
   class?: string | string[] | Record<string, boolean>
-}
-
-export function applyState(item: ConfigItem) {
-  if (item.stateMap) {
-    const val = getStateValue(haState.value, item.stateMap.entity, item.stateMap.attribute)
-    if (val) {
-      const stateMapValues = item.stateMap.states[val]
-      if (stateMapValues) {
-        Object.assign(item, stateMapValues)
-        return true
-      }
-    }
-  }
-  return false
 }
 
 export function applyMixin(item: ConfigItem) {

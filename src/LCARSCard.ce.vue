@@ -1,24 +1,13 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
 import type { HAConfig } from './HAConfig'
-import { getMinConfig, loadConfig } from './HAConfig'
-import testConfig from '@/assets/config/welcome.yaml?raw'
-import YAML from 'yaml'
+import { getMinConfig } from './HAConfig'
 import ParentComponent from './components/ParentComponent.vue'
-import { loadTestState } from './HAState'
 import ConfigEditor from './components/ConfigEditor.vue'
 
 const { config, loadTest } = defineProps<{ config: HAConfig; loadTest: boolean }>()
 const classes = ref<string[]>([])
-const haConfig = ref<HAConfig>()
-
-function getTestConfig() {
-  if (loadTest) {
-    const testConfigParsed = YAML.parse(testConfig)
-    loadTestState()
-    return loadConfig(testConfigParsed)
-  }
-}
+const minConfig = ref<HAConfig>()
 
 function getCssRoot() {
   const scripts = document.querySelectorAll('script')
@@ -44,12 +33,9 @@ function addCssLink(href: string) {
 
 onMounted(async () => {
   if (loadTest && config.children.length === 0) {
-    haConfig.value = getTestConfig()
     const ha = document.createElement('home-assistant') as any
     ha.connected = true
     ha.connection = { connected: true }
-  } else {
-    haConfig.value = config
   }
   const cssRoot = getCssRoot()
   if (cssRoot) {
@@ -60,14 +46,18 @@ onMounted(async () => {
   if (haElement) {
     classes.value = ['ha-height-wrapper']
   }
+
+  if (config && !minConfig.value) {
+    minConfig.value = getMinConfig(config)
+  }
 })
 </script>
 
 <template>
   <div class="lcars-height-wrapper" :class="classes">
-    <div class="lcars-wrapper" v-if="haConfig">
-      <ParentComponent :children="haConfig.children" :config="getMinConfig(haConfig)" />
-      <ConfigEditor v-if="haConfig.editorEnabled" :config="getMinConfig(haConfig)" />
+    <div class="lcars-wrapper" v-if="minConfig">
+      <ParentComponent :children="config.children" :config="minConfig" />
+      <ConfigEditor v-if="config.editorEnabled" :config="config" />
     </div>
   </div>
 </template>

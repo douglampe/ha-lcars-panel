@@ -26,34 +26,35 @@ defineOptions({
   inheritAttrs: false,
 })
 
-const html = computed(() => {
+function html(typeLength: number | undefined) {
   if (content) {
     const displayContent =
-      textAnimation?.type === 'typing' ? content.substring(0, animated.typeLength ?? 0) : content
+      textAnimation?.type === 'typing' ? content.substring(0, typeLength ?? 0) : content
     if (!new RegExp(/\n\n|\n-|```/g).test(content.trim())) {
       return marked.parseInline(displayContent, { async: false })
     }
     return marked.parse(displayContent, { async: false })
   }
   return undefined
-})
+}
 
 onMounted(() => {
-  animated.typeLength = (content ?? '').length
+  const targetLength = (content ?? '').length
   if (textAnimation?.type === 'typing' && !config?.disableAnimations) {
-    const targetLength = animated.typeLength
     animated.typeLength = 0
     gsap.to(animated, {
       duration: (textAnimation.duration ?? 0.05) * targetLength,
       delay: textAnimation.delay,
       typeLength: targetLength,
     })
+  } else {
+    animated.typeLength = targetLength
   }
 })
 </script>
 
 <template>
-  <LCARSElement v-bind="$attrs">
-    <div v-if="html" v-html="html"></div>
+  <LCARSElement v-bind="$attrs" v-if="html(animated.typeLength)">
+    <div v-html="html(animated.typeLength)"></div>
   </LCARSElement>
 </template>

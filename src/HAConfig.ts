@@ -68,10 +68,10 @@ export function addConfigToItems(items: ConfigItem[] | undefined, config: HAConf
     return
   }
   for (const item of items) {
-    item.config = getMinConfig(config)
     if (item.children) {
       addConfigToItems(item.children, config)
     }
+    item.config = getMinConfig(config)
   }
 }
 

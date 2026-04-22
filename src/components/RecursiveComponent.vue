@@ -1,11 +1,9 @@
 <!-- eslint-disable @typescript-eslint/no-explicit-any -->
 <script setup lang="ts">
 import { components } from '@/ComponentRegistry'
-import { currentNav } from '@/LocalNav'
-import { applyMixin, applyOrientationClass, applyState, type ConfigItem } from '@/ConfigItem'
-import { computed, onMounted, reactive, ref, useAttrs, watch } from 'vue'
+import { applyMixin, applyOrientationClass, type ConfigItem } from '@/ConfigItem'
+import { computed, onMounted, reactive, ref, useAttrs } from 'vue'
 import { removeUndefined } from '@/Layout'
-import { applyTemplates, haState } from '@/HAState'
 import HTMLComponent from './HTMLComponent.vue'
 import ParentComponent from './ParentComponent.vue'
 import LoadingComponent from './LoadingComponent.vue'
@@ -16,8 +14,6 @@ import TextComponent from './TextComponent.vue'
 const props = useAttrs() as any
 
 const processedProps = ref<ConfigItem>()
-const renderKey = ref(0)
-const isVisible = ref(false)
 const animated = reactive<{
   top?: number
   bottom?: number
@@ -36,35 +32,12 @@ defineOptions({
   inheritAttrs: false,
 })
 
-function onStateUpdated() {
-  const processedItem = { ...processedProps.value } as ConfigItem
-  let applied = false
-  if (props.stateMap) {
-    if (applyState(processedItem)) {
-      applied = true
-    }
-  }
-
-  if (applyTemplates(processedItem)) {
-    applied = true
-  }
-
-  if (applied) {
-    processedProps.value = processedItem
-    // renderKey.value++
-  }
-}
-
 function processItem(item: ConfigItem) {
   const processedItem = { ...item }
 
   removeUndefined(processedItem)
 
   applyMixin(processedItem)
-
-  applyState(processedItem)
-
-  applyTemplates(processedItem)
 
   applyOrientationClass(processedItem)
 
@@ -82,8 +55,6 @@ function processItem(item: ConfigItem) {
   ) {
     delete processedItem.children
   }
-
-  // renderKey.value++
 
   return processedItem
 }
@@ -104,39 +75,6 @@ function getComponentType(cmps: Record<string, any>) {
   }
 
   return props.tag ? HTMLComponent : 'div'
-}
-
-function checkVisibility() {
-  if (!components) {
-    setVisibility(false)
-    return
-  }
-
-  const visibility = processedProps.value?.visible
-
-  if ((typeof visibility === 'string' && visibility === 'false') || !(visibility ?? true)) {
-    setVisibility(false)
-    return
-  }
-
-  if (!processedProps.value?.showForNav) {
-    setVisibility(true)
-    return
-  }
-  if (currentNav.value === '/') {
-    setVisibility(processedProps.value?.showForNav === '/')
-  } else {
-    setVisibility(currentNav.value?.startsWith(processedProps.value?.showForNav))
-  }
-}
-
-function setVisibility(visible: boolean) {
-  if (isVisible.value != visible) {
-    isVisible.value = visible
-    if (visible) {
-      triggerAnimations()
-    }
-  }
 }
 
 function triggerAnimations() {
@@ -236,41 +174,22 @@ const visibleChildren = computed(() => {
   return undefined
 })
 
-if (!(props as ConfigItem).config?.disableWatchers) {
-  watch(
-    () => haState.value,
-    () => {
-      onStateUpdated()
-      checkVisibility()
-    },
-    { deep: true },
-  )
-
-  watch(
-    () => currentNav.value,
-    () => {
-      onStateUpdated()
-      checkVisibility()
-    },
-    { deep: true },
-  )
-}
-
 onMounted(() => {
   if (!processedProps.value) {
     processedProps.value = processItem(props as ConfigItem)
   }
 
-  checkVisibility()
+  if (props.visible) {
+    triggerAnimations()
+  }
 })
 </script>
 
 <template>
   <component
-    v-if="isVisible"
+    v-if="props.visible"
     :is="getComponentType(components)"
     v-bind="processedProps"
-    :key="renderKey"
     :style="processedProps?.style ?? {}"
     :class="processedProps?.class ?? []"
   >

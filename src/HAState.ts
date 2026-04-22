@@ -1,4 +1,4 @@
-import { ref } from 'vue'
+import { reactive, ref } from 'vue'
 import type { ConfigItem } from './ConfigItem'
 import { renderTemplate } from 'ha-nunjucks'
 import { currentNav } from './LocalNav'
@@ -17,6 +17,28 @@ export interface HAState {
 
 export const haState = ref({} as HAState)
 
+export function applyState(config: HAConfig) {
+  for (const item of config.children) {
+    applyStateToItem(item, config)
+  }
+}
+
+export function applyStateToItem(item: ConfigItem, config: HAConfig) {
+  if (item.stateMap) {
+    const val = getStateValue(haState.value, item.stateMap.entity, item.stateMap.attribute)
+    if (val) {
+      const stateMapValues = item.stateMap.states[val]
+      if (stateMapValues) {
+        Object.assign(item, stateMapValues)
+        return true
+      }
+    }
+  }
+  applyTemplateToObject(item, config)
+  checkVisibility(item)
+  return false
+}
+
 export function getStateValue(state: any, entity: string, attribute?: string) {
   if (!state.states) {
     return
@@ -33,6 +55,37 @@ export function getStateValue(state: any, entity: string, attribute?: string) {
   }
 
   return entityObject.attributes[attribute]
+}
+
+function isItemVisible(item: ConfigItem) {
+  if (typeof item.visible === 'string') {
+    return item.visible === 'true'
+  } else if (typeof item.visible === 'undefined') {
+    return true
+  }
+  return item.visible
+}
+
+function checkVisibility(item: ConfigItem, parentVisible?: boolean) {
+  let isVisible: string | boolean = false
+
+  if (item.showForNav) {
+    if (currentNav.value === '/' && item.showForNav === '/') {
+      isVisible = true
+    } else if (currentNav.value?.startsWith(item.showForNav)) {
+      isVisible = true
+    }
+  } else {
+    isVisible = item.visible ?? parentVisible ?? true
+  }
+
+  if (isVisible) {
+    for (const child of item.children ?? []) {
+      checkVisibility(child, isItemVisible(item))
+    }
+  }
+
+  item.visible = isVisible
 }
 
 export function callService(serviceName: string, data: any) {
@@ -98,10 +151,6 @@ function pushStateValue(
       stateValues.push({ entity, key, value: val.toString() })
     }
   }
-}
-
-export function applyTemplates(configItem: ConfigItem) {
-  return applyTemplateToObject(configItem, configItem.config)
 }
 
 function applyTemplateToObject(item: any, config?: HAConfig) {

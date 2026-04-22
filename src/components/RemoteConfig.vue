@@ -5,6 +5,7 @@ import { onMounted, ref } from 'vue'
 import RecursiveComponent from './RecursiveComponent.vue'
 import YAML from 'yaml'
 import { addConfigToItems } from '@/HAConfig'
+import { applyStateToItem } from '@/HAState'
 
 const props = defineProps<ConfigItem>()
 
@@ -32,11 +33,6 @@ async function getRemoteConfig(item: ConfigItem) {
         remoteConfig.type = 'el'
       }
 
-      if (props.config) {
-        remoteConfig.config = props.config
-        addConfigToItems(remoteConfig.children, props.config)
-      }
-
       return remoteConfig
     } catch (error) {
       console.error(`Error loading remote config from ${item.url}:`, error)
@@ -45,12 +41,18 @@ async function getRemoteConfig(item: ConfigItem) {
 }
 
 onMounted(async () => {
-  processedProps.value = await getRemoteConfig(props)
+  const remoteConfig = await getRemoteConfig(props)
+  if (remoteConfig && props.config) {
+    remoteConfig.config = props.config
+    addConfigToItems(remoteConfig.children, remoteConfig.config)
+    processedProps.value = remoteConfig
+    applyStateToItem(remoteConfig, props.config)
+  }
 })
 </script>
 
 <template>
   <div>
-    <RecursiveComponent v-if="processedProps" v-bind="processedProps" />
+    <RecursiveComponent v-if="processedProps?.visible" v-bind="processedProps" />
   </div>
 </template>
