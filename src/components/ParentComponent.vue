@@ -2,6 +2,7 @@
 import type { ConfigItem } from '@/ConfigItem'
 import RecursiveComponent from './RecursiveComponent.vue'
 import type { HAConfig } from '@/HAConfig'
+import { onMounted } from 'vue'
 
 defineOptions({
   inheritAttrs: false,

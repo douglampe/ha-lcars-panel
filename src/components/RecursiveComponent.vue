@@ -187,7 +187,7 @@ onMounted(() => {
 
 <template>
   <component
-    v-if="props.visible"
+    v-if="processedProps && props.visible"
     :is="getComponentType(components)"
     v-bind="processedProps"
     :style="processedProps?.style ?? {}"

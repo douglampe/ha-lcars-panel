@@ -1,6 +1,6 @@
 <!-- eslint-disable @typescript-eslint/no-explicit-any -->
 <script setup lang="ts">
-import { computed, onMounted, ref } from 'vue'
+import { computed, onMounted, ref, watchEffect } from 'vue'
 import { navigate } from '@/LocalNav'
 import { alignStyle, colorVar, marginStyle, padStyle, removeUndefined, unitSize } from '@/Layout'
 import { callService } from '@/HAState'
@@ -26,11 +26,13 @@ function onClick() {
 }
 
 const styleObject = computed(() => {
-  const backgroundImageSvg = createRadiusSvg(
-    removeUndefined({ ...config }),
-    elementRef.value?.offsetWidth,
-    elementRef.value?.offsetHeight,
-  )
+  const backgroundImageSvg = elementRef.value
+    ? createRadiusSvg(
+        removeUndefined({ ...config }),
+        elementRef.value.offsetWidth,
+        elementRef.value.offsetHeight,
+      )
+    : undefined
 
   return removeUndefined({
     ...alignStyle(config.alignContent),

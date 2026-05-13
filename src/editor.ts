@@ -1,7 +1,9 @@
 import { defineCustomElement } from 'vue'
 
 import LCARSCardEditorCe from './LCARSCardEditor.ce.vue'
-customElements.define('lcars-card-editor', defineCustomElement(LCARSCardEditorCe))
+if (!customElements.get('lcars-card-editor')) {
+  customElements.define('lcars-card-editor', defineCustomElement(LCARSCardEditorCe))
+}
 
 class LCARSCustomCardEditor extends HTMLElement {
   setConfig(config: any) {

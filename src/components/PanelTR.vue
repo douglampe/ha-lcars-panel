@@ -49,7 +49,7 @@ const {
   fillRightBottom = true,
   fillTopLeft,
   fillTopRight = true,
-  gap = 1,
+  gap,
   topCap,
   topHeight = 1,
   topStretch,

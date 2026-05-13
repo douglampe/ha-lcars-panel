@@ -62,7 +62,7 @@ export class LCARSCustomCard extends HTMLElement {
   }
 
   onStateUpdated() {
-    if (this.originalConfig && this.haConfig) {
+    if (this.originalConfig && this.haConfig.value) {
       const config = loadConfig(this.originalConfig)
       applyState(config)
       if (this.haConfig.value) {
@@ -92,17 +92,13 @@ export class LCARSCustomCard extends HTMLElement {
     }
   }
 
-  loadTestConfig() {
-    const testConfigParsed = YAML.parse(testConfig)
-    loadTestState()
-    this.setConfig(testConfigParsed)
-  }
-
   connectedCallback() {
     if (!this.vueElement) {
       this.vueElement = document.createElement('lcars-card')
       if (this.test) {
-        this.loadTestConfig()
+        const testConfigParsed = YAML.parse(testConfig)
+        loadTestState()
+        this.setConfig(testConfigParsed)
         this.vueElement.loadTest = true
       }
       this.vueElement.config = this.haConfig.value ?? { children: [] }
